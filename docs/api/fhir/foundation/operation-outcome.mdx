@@ -1,7 +1,7 @@
 ---
 title: OperationOutcome
 sidebar_label: OperationOutcome
-description: Information about success or failure of an action. FHIR R5 resource, served by the Ovok FHIR API.
+description: "A collection of error, warning, or information messages that result from a system action."
 ---
 
 # OperationOutcome
@@ -9,55 +9,44 @@ description: Information about success or failure of an action. FHIR R5 resource
 <span className="fhir-maturity" data-level="5">Normative</span>
 <span className="fhir-category">Foundation</span>
 
-Information about success or failure of an action.
+A collection of error, warning, or information messages that result from a system action.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `OperationOutcome` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/OperationOutcome" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/OperationOutcome/[id]` |
-| Vread        | `GET`    | `/OperationOutcome/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/OperationOutcome/[id]` |
-| Patch        | `PATCH`  | `/OperationOutcome/[id]` |
-| Delete       | `DELETE` | `/OperationOutcome/[id]` |
-| Create       | `POST`   | `/OperationOutcome` |
-| Search       | `GET`    | `/OperationOutcome?...` |
-| History      | `GET`    | `/OperationOutcome/[id]/_history` |
-| Type-history | `GET`    | `/OperationOutcome/_history` |
+| Read         | `GET`    | `/fhir/R5/OperationOutcome/[id]` |
+| Vread        | `GET`    | `/fhir/R5/OperationOutcome/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/OperationOutcome/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/OperationOutcome/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/OperationOutcome/[id]` |
+| Create       | `POST`   | `/fhir/R5/OperationOutcome` |
+| Search       | `GET`    | `/fhir/R5/OperationOutcome?...` |
+| History      | `GET`    | `/fhir/R5/OperationOutcome/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/OperationOutcome/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `issue` | `BackboneElement` | `1..*` | A single issue associated with the action |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`OperationOutcome` supports the parameters below.
+
+_No resource-specific search parameters defined. Universal parameters still apply._
 
 ## Reference
 
 - Official FHIR R5 spec: [`OperationOutcome`](https://hl7.org/fhir/R5/operationoutcome.html)
-- Search parameters: [`OperationOutcome` search params](https://hl7.org/fhir/R5/operationoutcome.html#search)
-- Resource maturity: **Normative** (FMM 5).
+- Element bindings & profiles: [`OperationOutcome` profile](https://hl7.org/fhir/R5/operationoutcome-definitions.html)
+- Maturity: **Normative** (FMM 5).

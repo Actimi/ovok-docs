@@ -1,63 +1,58 @@
 ---
 title: SubstancePolymer
 sidebar_label: SubstancePolymer
-description: Polymer substance definition. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Properties of a substance specific to it being a polymer."
 ---
 
 # SubstancePolymer
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Medication Definition</span>
 
-Polymer substance definition.
+Properties of a substance specific to it being a polymer.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `SubstancePolymer` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/SubstancePolymer" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/SubstancePolymer/[id]` |
-| Vread        | `GET`    | `/SubstancePolymer/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/SubstancePolymer/[id]` |
-| Patch        | `PATCH`  | `/SubstancePolymer/[id]` |
-| Delete       | `DELETE` | `/SubstancePolymer/[id]` |
-| Create       | `POST`   | `/SubstancePolymer` |
-| Search       | `GET`    | `/SubstancePolymer?...` |
-| History      | `GET`    | `/SubstancePolymer/[id]/_history` |
-| Type-history | `GET`    | `/SubstancePolymer/_history` |
+| Read         | `GET`    | `/fhir/R5/SubstancePolymer/[id]` |
+| Vread        | `GET`    | `/fhir/R5/SubstancePolymer/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/SubstancePolymer/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/SubstancePolymer/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/SubstancePolymer/[id]` |
+| Create       | `POST`   | `/fhir/R5/SubstancePolymer` |
+| Search       | `GET`    | `/fhir/R5/SubstancePolymer?...` |
+| History      | `GET`    | `/fhir/R5/SubstancePolymer/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/SubstancePolymer/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..1` | A business idenfier for this polymer, but typically this is handled by a SubstanceDefinition identifier |
+| `class` | `CodeableConcept` | `0..1` | Overall type of the polymer |
+| `geometry` | `CodeableConcept` | `0..1` | Polymer geometry, e.g. linear, branched, cross-linked, network or dendritic |
+| `copolymerConnectivity` | `CodeableConcept` | `0..*` | Descrtibes the copolymer sequence type (polymer connectivity) |
+| `modification` | `string` | `0..1` | Todo - this is intended to connect to a repeating full modification structure, also used by Protein and Nucleic Acid . String is just a placeholder |
+| `monomerSet` | `BackboneElement` | `0..*` | Todo |
+| `repeat` | `BackboneElement` | `0..*` | Specifies and quantifies the repeated units and their configuration |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`SubstancePolymer` supports the parameters below.
+
+_No resource-specific search parameters defined. Universal parameters still apply._
 
 ## Reference
 
 - Official FHIR R5 spec: [`SubstancePolymer`](https://hl7.org/fhir/R5/substancepolymer.html)
-- Search parameters: [`SubstancePolymer` search params](https://hl7.org/fhir/R5/substancepolymer.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`SubstancePolymer` profile](https://hl7.org/fhir/R5/substancepolymer-definitions.html)
+- Maturity: **Draft** (FMM 0).

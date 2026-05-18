@@ -1,63 +1,71 @@
 ---
 title: Bundle
 sidebar_label: Bundle
-description: Container for collections of resources. FHIR R5 resource, served by the Ovok FHIR API.
+description: "This profile holds all the requirements and constraints related to a FHIR history bundle."
 ---
 
 # Bundle
 
-<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
 <span className="fhir-category">Foundation</span>
 
-Container for collections of resources.
+This profile holds all the requirements and constraints related to a FHIR history bundle.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `Bundle` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/Bundle" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/Bundle/[id]` |
-| Vread        | `GET`    | `/Bundle/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/Bundle/[id]` |
-| Patch        | `PATCH`  | `/Bundle/[id]` |
-| Delete       | `DELETE` | `/Bundle/[id]` |
-| Create       | `POST`   | `/Bundle` |
-| Search       | `GET`    | `/Bundle?...` |
-| History      | `GET`    | `/Bundle/[id]/_history` |
-| Type-history | `GET`    | `/Bundle/_history` |
+| Read         | `GET`    | `/fhir/R5/Bundle/[id]` |
+| Vread        | `GET`    | `/fhir/R5/Bundle/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/Bundle/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/Bundle/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/Bundle/[id]` |
+| Create       | `POST`   | `/fhir/R5/Bundle` |
+| Search       | `GET`    | `/fhir/R5/Bundle?...` |
+| History      | `GET`    | `/fhir/R5/Bundle/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/Bundle/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..1` | Persistent identifier for the bundle |
+| `type` | `code` | `1..1` | document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection | subscription-notification |
+| `timestamp` | `instant` | `0..1` | When the bundle was assembled |
+| `total` | `unsignedInt` | `0..1` | If search, the total number of matches |
+| `link` | `BackboneElement` | `0..*` | Links related to this Bundle |
+| `entry` | `BackboneElement` | `0..*` | Entry in the bundle - will have a resource or information |
+| `entry:put` | `BackboneElement` | `0..*` | Entry in the bundle - will have a resource or information |
+| `entry:post` | `BackboneElement` | `0..0` | Entry in the bundle - will have a resource or information |
+| `entry:get` | `BackboneElement` | `0..*` | Entry in the bundle - will have a resource or information |
+| `entry:delete` | `BackboneElement` | `0..*` | Entry in the bundle - will have a resource or information |
+| `entry:patch` | `BackboneElement` | `0..0` | Entry in the bundle - will have a resource or information |
+| `signature` | `Signature` | `0..1` | Digital Signature |
+| `issues` | `Resource` | `0..1` | Issues with the Bundle |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`Bundle` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `composition` | `reference` | The first resource in the bundle, if the bundle type is "document" - this is a composition, and this parameter provides access to search its contents |
+| `example-constraint` | `reference` | Search Composition Bundle |
+| `identifier` | `token` | Persistent identifier for the bundle |
+| `message` | `reference` | The first resource in the bundle, if the bundle type is "message" - this is a message header, and this parameter provides access to search its contents |
+| `timestamp` | `date` | When the bundle was assembled |
+| `type` | `token` | document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection | subscription-notification |
 
 ## Reference
 
 - Official FHIR R5 spec: [`Bundle`](https://hl7.org/fhir/R5/bundle.html)
-- Search parameters: [`Bundle` search params](https://hl7.org/fhir/R5/bundle.html#search)
-- Resource maturity: **Normative** (FMM 5).
+- Element bindings & profiles: [`Bundle` profile](https://hl7.org/fhir/R5/bundle-definitions.html)
+- Maturity: **Trial Use 1** (FMM 1).

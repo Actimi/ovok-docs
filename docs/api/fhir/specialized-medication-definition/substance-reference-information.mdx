@@ -1,63 +1,55 @@
 ---
 title: SubstanceReferenceInformation
 sidebar_label: SubstanceReferenceInformation
-description: Reference information about a substance. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Todo."
 ---
 
 # SubstanceReferenceInformation
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Medication Definition</span>
 
-Reference information about a substance.
+Todo.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `SubstanceReferenceInformation` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/SubstanceReferenceInformation" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/SubstanceReferenceInformation/[id]` |
-| Vread        | `GET`    | `/SubstanceReferenceInformation/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/SubstanceReferenceInformation/[id]` |
-| Patch        | `PATCH`  | `/SubstanceReferenceInformation/[id]` |
-| Delete       | `DELETE` | `/SubstanceReferenceInformation/[id]` |
-| Create       | `POST`   | `/SubstanceReferenceInformation` |
-| Search       | `GET`    | `/SubstanceReferenceInformation?...` |
-| History      | `GET`    | `/SubstanceReferenceInformation/[id]/_history` |
-| Type-history | `GET`    | `/SubstanceReferenceInformation/_history` |
+| Read         | `GET`    | `/fhir/R5/SubstanceReferenceInformation/[id]` |
+| Vread        | `GET`    | `/fhir/R5/SubstanceReferenceInformation/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/SubstanceReferenceInformation/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/SubstanceReferenceInformation/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/SubstanceReferenceInformation/[id]` |
+| Create       | `POST`   | `/fhir/R5/SubstanceReferenceInformation` |
+| Search       | `GET`    | `/fhir/R5/SubstanceReferenceInformation?...` |
+| History      | `GET`    | `/fhir/R5/SubstanceReferenceInformation/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/SubstanceReferenceInformation/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `comment` | `string` | `0..1` | Todo |
+| `gene` | `BackboneElement` | `0..*` | Todo |
+| `geneElement` | `BackboneElement` | `0..*` | Todo |
+| `target` | `BackboneElement` | `0..*` | Todo |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`SubstanceReferenceInformation` supports the parameters below.
+
+_No resource-specific search parameters defined. Universal parameters still apply._
 
 ## Reference
 
 - Official FHIR R5 spec: [`SubstanceReferenceInformation`](https://hl7.org/fhir/R5/substancereferenceinformation.html)
-- Search parameters: [`SubstanceReferenceInformation` search params](https://hl7.org/fhir/R5/substancereferenceinformation.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`SubstanceReferenceInformation` profile](https://hl7.org/fhir/R5/substancereferenceinformation-definitions.html)
+- Maturity: **Draft** (FMM 0).

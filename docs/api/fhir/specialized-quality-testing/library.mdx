@@ -1,63 +1,113 @@
 ---
 title: Library
 sidebar_label: Library
-description: Container for knowledge / logic artifacts. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Supports declaration of the library metadata required by HL7 and other organizations that share and publish libraries with a focus on the aspects of that metada"
 ---
 
 # Library
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
 <span className="fhir-category">Specialized — Quality & Testing</span>
 
-Container for knowledge / logic artifacts.
+Supports declaration of the library metadata required by HL7 and other organizations that share and publish libraries with a focus on the aspects of that metadata that are important for post-publication activities including distribution, inclusion in repositories, consumption, and implementation.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `Library` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/Library" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/Library/[id]` |
-| Vread        | `GET`    | `/Library/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/Library/[id]` |
-| Patch        | `PATCH`  | `/Library/[id]` |
-| Delete       | `DELETE` | `/Library/[id]` |
-| Create       | `POST`   | `/Library` |
-| Search       | `GET`    | `/Library?...` |
-| History      | `GET`    | `/Library/[id]/_history` |
-| Type-history | `GET`    | `/Library/_history` |
+| Read         | `GET`    | `/fhir/R5/Library/[id]` |
+| Vread        | `GET`    | `/fhir/R5/Library/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/Library/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/Library/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/Library/[id]` |
+| Create       | `POST`   | `/fhir/R5/Library` |
+| Search       | `GET`    | `/fhir/R5/Library?...` |
+| History      | `GET`    | `/fhir/R5/Library/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/Library/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `extension:knowledgeCapability` | `Extension` | `0..*` | shareable | computable | publishable | executable _must-support_ |
+| `extension:knowledgeRepresentationLevel` | `Extension` | `0..*` | narrative | semi-structured | structured | executable _must-support_ |
+| `extension:artifactComment` | `Extension` | `0..*` | Additional documentation, review, or usage guidance _must-support_ |
+| `extension:logicDefinition` | `Extension` | `0..*` | A logic definition used in the artifact _must-support_ |
+| `url` | `uri` | `1..1` | Canonical identifier for this library, represented as a URI (globally unique) _must-support_ |
+| `identifier` | `Identifier` | `0..*` | Additional identifier for the library _must-support_ |
+| `version` | `string` | `1..1` | Business version of the library _must-support_ |
+| `versionAlgorithm[x]` | `string` / `Coding` | `0..1` | How to compare versions _must-support_ |
+| `name` | `string` | `0..1` | Name for this library (computer friendly) _must-support_ |
+| `title` | `string` | `1..1` | Name for this library (human friendly) _must-support_ |
+| `subtitle` | `string` | `0..1` | Subordinate title of the library |
+| `status` | `code` | `1..1` | draft | active | retired | unknown _modifier_ |
+| `experimental` | `boolean` | `0..1` | For testing purposes, not real usage _must-support_ |
+| `type` | `CodeableConcept` | `1..1` | logic-library | model-definition | asset-collection | module-definition _must-support_ |
+| `subject[x]` | `CodeableConcept` / `Reference` | `0..1` | Type of individual the library content is focused on |
+| `date` | `dateTime` | `1..1` | Date last changed _must-support_ |
+| `publisher` | `string` | `0..1` | Name of the publisher/steward (organization or individual) _must-support_ |
+| `contact` | `ContactDetail` | `0..*` | Contact details for the publisher _must-support_ |
+| `description` | `markdown` | `1..1` | Natural language description of the library _must-support_ |
+| `useContext` | `UsageContext` | `0..*` | The context that the content is intended to support _must-support_ |
+| `jurisdiction` | `CodeableConcept` | `0..*` | Intended jurisdiction for library (if applicable) _must-support_ |
+| `purpose` | `markdown` | `0..1` | Why this library is defined _must-support_ |
+| `usage` | `markdown` | `0..1` | Describes the clinical usage of the library _must-support_ |
+| `copyright` | `markdown` | `0..1` | Use and/or publishing restrictions _must-support_ |
+| `copyrightLabel` | `string` | `0..1` | Copyright holder and year(s) _must-support_ |
+| `approvalDate` | `date` | `0..1` | When the library was approved by publisher _must-support_ |
+| `lastReviewDate` | `date` | `0..1` | When the library was last reviewed by the publisher _must-support_ |
+| `effectivePeriod` | `Period` | `0..1` | When the library is expected to be used _must-support_ |
+| `topic` | `CodeableConcept` | `0..*` | E.g. Education, Treatment, Assessment, etc _must-support_ |
+| `author` | `ContactDetail` | `0..*` | Who authored the content _must-support_ |
+| `editor` | `ContactDetail` | `0..*` | Who edited the content _must-support_ |
+| `reviewer` | `ContactDetail` | `0..*` | Who reviewed the content _must-support_ |
+| `endorser` | `ContactDetail` | `0..*` | Who endorsed the content _must-support_ |
+| `relatedArtifact` | `RelatedArtifact` | `0..*` | Additional documentation, citations, etc _must-support_ |
+| `parameter` | `ParameterDefinition` | `0..*` | Parameters defined by the library |
+| `dataRequirement` | `DataRequirement` | `0..*` | What data is referenced by this library |
+| `content` | `Attachment` | `0..*` | Contents of the library, either embedded or referenced |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`Library` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `composed-of` | `reference` | What resource is being referenced |
+| `content-type` | `token` | The type of content in the library (e.g. text/cql) |
+| `context` | `token` | A use context assigned to the activity definition |
+| `context-quantity` | `quantity` | A quantity- or range-valued use context assigned to the activity definition |
+| `context-type` | `token` | A type of use context assigned to the activity definition |
+| `context-type-quantity` | `composite` | A use context type and quantity- or range-based value assigned to the activity definition |
+| `context-type-value` | `composite` | A use context type and value assigned to the activity definition |
+| `date` | `date` | The activity definition publication date |
+| `depends-on` | `reference` | What resource is being referenced |
+| `derived-from` | `reference` | What resource is being referenced |
+| `description` | `string` | The description of the activity definition |
+| `effective` | `date` | The time during which the activity definition is intended to be in use |
+| `identifier` | `token` | External identifier for the activity definition |
+| `jurisdiction` | `token` | Intended jurisdiction for the activity definition |
+| `name` | `string` | Computationally friendly name of the activity definition |
+| `predecessor` | `reference` | What resource is being referenced |
+| `publisher` | `string` | Name of the publisher of the activity definition |
+| `status` | `token` | The current status of the activity definition |
+| `successor` | `reference` | What resource is being referenced |
+| `title` | `string` | The human-friendly name of the activity definition |
+| `topic` | `token` | Topics associated with the module |
+| `type` | `token` | The type of the library (e.g. logic-library, model-definition, asset-collection, module-definition) |
+| `url` | `uri` | The uri that identifies the activity definition |
+| `version` | `token` | The business version of the activity definition |
 
 ## Reference
 
 - Official FHIR R5 spec: [`Library`](https://hl7.org/fhir/R5/library.html)
-- Search parameters: [`Library` search params](https://hl7.org/fhir/R5/library.html#search)
-- Resource maturity: **Trial Use 2** (FMM 2).
+- Element bindings & profiles: [`Library` profile](https://hl7.org/fhir/R5/library-definitions.html)
+- Maturity: **Trial Use 3** (FMM 3).

@@ -1,63 +1,76 @@
 ---
 title: ClinicalUseDefinition
 sidebar_label: ClinicalUseDefinition
-description: Indication, contraindication or interaction for a product. FHIR R5 resource, served by the Ovok FHIR API.
+description: "A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure."
 ---
 
 # ClinicalUseDefinition
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Specialized — Medication Definition</span>
 
-Indication, contraindication or interaction for a product.
+A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `ClinicalUseDefinition` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/ClinicalUseDefinition" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/ClinicalUseDefinition/[id]` |
-| Vread        | `GET`    | `/ClinicalUseDefinition/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/ClinicalUseDefinition/[id]` |
-| Patch        | `PATCH`  | `/ClinicalUseDefinition/[id]` |
-| Delete       | `DELETE` | `/ClinicalUseDefinition/[id]` |
-| Create       | `POST`   | `/ClinicalUseDefinition` |
-| Search       | `GET`    | `/ClinicalUseDefinition?...` |
-| History      | `GET`    | `/ClinicalUseDefinition/[id]/_history` |
-| Type-history | `GET`    | `/ClinicalUseDefinition/_history` |
+| Read         | `GET`    | `/fhir/R5/ClinicalUseDefinition/[id]` |
+| Vread        | `GET`    | `/fhir/R5/ClinicalUseDefinition/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/ClinicalUseDefinition/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/ClinicalUseDefinition/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/ClinicalUseDefinition/[id]` |
+| Create       | `POST`   | `/fhir/R5/ClinicalUseDefinition` |
+| Search       | `GET`    | `/fhir/R5/ClinicalUseDefinition?...` |
+| History      | `GET`    | `/fhir/R5/ClinicalUseDefinition/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/ClinicalUseDefinition/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..*` | Business identifier for this issue |
+| `type` | `code` | `1..1` | indication | contraindication | interaction | undesirable-effect | warning |
+| `category` | `CodeableConcept` | `0..*` | A categorisation of the issue, primarily for dividing warnings into subject heading areas such as "Pregnancy", "Overdose" |
+| `subject` | `Reference` | `0..*` | The medication, product, substance, device, procedure etc. for which this is an indication |
+| `status` | `CodeableConcept` | `0..1` | Whether this is a current issue or one that has been retired etc |
+| `contraindication` | `BackboneElement` | `0..1` | Specifics for when this is a contraindication |
+| `indication` | `BackboneElement` | `0..1` | Specifics for when this is an indication |
+| `interaction` | `BackboneElement` | `0..1` | Specifics for when this is an interaction |
+| `population` | `Reference` | `0..*` | The population group to which this applies |
+| `library` | `canonical` | `0..*` | Logic used by the clinical use definition |
+| `undesirableEffect` | `BackboneElement` | `0..1` | A possible negative outcome from the use of this treatment |
+| `warning` | `BackboneElement` | `0..1` | Critical environmental, health or physical risks or hazards. For example 'Do not operate heavy machinery', 'May cause drowsiness' |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`ClinicalUseDefinition` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `contraindication` | `token` | The situation that is being documented as contraindicating against this item, as a code |
+| `contraindication-reference` | `reference` | The situation that is being documented as contraindicating against this item, as a reference |
+| `effect` | `token` | The situation in which the undesirable effect may manifest, as a code |
+| `effect-reference` | `reference` | The situation in which the undesirable effect may manifest, as a reference |
+| `identifier` | `token` | Business identifier for this issue |
+| `indication` | `token` | The situation that is being documented as an indicaton for this item, as a code |
+| `indication-reference` | `reference` | The situation that is being documented as an indicaton for this item, as a reference |
+| `interaction` | `token` | The type of the interaction e.g. drug-drug interaction, drug-food interaction, drug-lab test interaction |
+| `product` | `reference` | The medicinal product for which this is a clinical usage issue |
+| `status` | `token` | Whether this is a current issue or one that has been retired etc. |
+| `subject` | `reference` | The resource for which this is a clinical usage issue |
+| `type` | `token` | indication | contraindication | interaction | undesirable-effect | warning |
 
 ## Reference
 
 - Official FHIR R5 spec: [`ClinicalUseDefinition`](https://hl7.org/fhir/R5/clinicalusedefinition.html)
-- Search parameters: [`ClinicalUseDefinition` search params](https://hl7.org/fhir/R5/clinicalusedefinition.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`ClinicalUseDefinition` profile](https://hl7.org/fhir/R5/clinicalusedefinition-definitions.html)
+- Maturity: **Trial Use 2** (FMM 2).

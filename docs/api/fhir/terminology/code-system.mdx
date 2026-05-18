@@ -1,63 +1,116 @@
 ---
 title: CodeSystem
 sidebar_label: CodeSystem
-description: Set of codes and their meanings. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Defines and enforces the minimum expectations for publication and distribution of a code system, typically as part of an artifact repository or implementation g"
 ---
 
 # CodeSystem
 
-<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
 <span className="fhir-category">Terminology</span>
 
-Set of codes and their meanings.
+Defines and enforces the minimum expectations for publication and distribution of a code system, typically as part of an artifact repository or implementation guide publication
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `CodeSystem` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/CodeSystem" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/CodeSystem/[id]` |
-| Vread        | `GET`    | `/CodeSystem/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/CodeSystem/[id]` |
-| Patch        | `PATCH`  | `/CodeSystem/[id]` |
-| Delete       | `DELETE` | `/CodeSystem/[id]` |
-| Create       | `POST`   | `/CodeSystem` |
-| Search       | `GET`    | `/CodeSystem?...` |
-| History      | `GET`    | `/CodeSystem/[id]/_history` |
-| Type-history | `GET`    | `/CodeSystem/_history` |
+| Read         | `GET`    | `/fhir/R5/CodeSystem/[id]` |
+| Vread        | `GET`    | `/fhir/R5/CodeSystem/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/CodeSystem/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/CodeSystem/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/CodeSystem/[id]` |
+| Create       | `POST`   | `/fhir/R5/CodeSystem` |
+| Search       | `GET`    | `/fhir/R5/CodeSystem?...` |
+| History      | `GET`    | `/fhir/R5/CodeSystem/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/CodeSystem/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `extension:knowledgeRepresentationLevel` | `Extension` | `0..*` | narrative | semi-structured | structured | executable _must-support_ |
+| `extension:sourceReference` | `Extension` | `0..1` | Where did this content come from |
+| `extension:otherName` | `Extension` | `0..*` | Alternative names |
+| `url` | `uri` | `1..1` | Canonical identifier for this code system, represented as a URI (globally unique) (Coding.system) _must-support_ |
+| `identifier` | `Identifier` | `0..*` | Additional identifier for the code system (business identifier) _must-support_ |
+| `version` | `string` | `1..1` | Business version of the code system (Coding.version) _must-support_ |
+| `versionAlgorithm[x]` | `string` / `Coding` | `0..1` | How to compare versions _must-support_ |
+| `name` | `string` | `0..1` | Name for this code system (computer friendly) _must-support_ |
+| `title` | `string` | `1..1` | Name for this code system (human friendly) _must-support_ |
+| `status` | `code` | `1..1` | draft | active | retired | unknown _modifier_ _must-support_ |
+| `experimental` | `boolean` | `1..1` | For testing purposes, not real usage _must-support_ |
+| `date` | `dateTime` | `1..1` | Date last changed _must-support_ |
+| `publisher` | `string` | `0..1` | Name of the publisher/steward (organization or individual) _must-support_ |
+| `contact` | `ContactDetail` | `0..*` | Contact details for the publisher _must-support_ |
+| `description` | `markdown` | `1..1` | Natural language description of the code system _must-support_ |
+| `useContext` | `UsageContext` | `0..*` | The context that the content is intended to support _must-support_ |
+| `jurisdiction` | `CodeableConcept` | `0..*` | Intended jurisdiction for code system (if applicable) _must-support_ |
+| `purpose` | `markdown` | `0..1` | Why this code system is defined _must-support_ |
+| `copyright` | `markdown` | `0..1` | Use and/or publishing restrictions _must-support_ |
+| `copyrightLabel` | `string` | `0..1` | Copyright holder and year(s) _must-support_ |
+| `approvalDate` | `date` | `0..1` | When the CodeSystem was approved by publisher |
+| `lastReviewDate` | `date` | `0..1` | When the CodeSystem was last reviewed by the publisher |
+| `effectivePeriod` | `Period` | `0..1` | When the CodeSystem is expected to be used _must-support_ |
+| `topic` | `CodeableConcept` | `0..*` | E.g. Education, Treatment, Assessment, etc _must-support_ |
+| `author` | `ContactDetail` | `0..*` | Who authored the CodeSystem |
+| `editor` | `ContactDetail` | `0..*` | Who edited the CodeSystem |
+| `reviewer` | `ContactDetail` | `0..*` | Who reviewed the CodeSystem |
+| `endorser` | `ContactDetail` | `0..*` | Who endorsed the CodeSystem |
+| `relatedArtifact` | `RelatedArtifact` | `0..*` | Additional documentation, citations, etc |
+| `caseSensitive` | `boolean` | `1..1` | If code comparison is case sensitive _must-support_ |
+| `valueSet` | `canonical` | `0..1` | Canonical reference to the value set with entire code system |
+| `hierarchyMeaning` | `code` | `0..1` | grouped-by | is-a | part-of | classified-with _must-support_ |
+| `compositional` | `boolean` | `0..1` | If code system defines a compositional grammar |
+| `versionNeeded` | `boolean` | `0..1` | If definitions are not stable |
+| `content` | `code` | `1..1` | not-present | example | fragment | complete | supplement _must-support_ |
+| `supplements` | `canonical` | `0..1` | Canonical URL of Code System this adds designations and properties to |
+| `count` | `unsignedInt` | `0..1` | Total concepts in the code system |
+| `filter` | `BackboneElement` | `0..*` | Filter that can be used in a value set |
+| `property` | `BackboneElement` | `0..*` | Additional information supplied about each concept |
+| `concept` | `BackboneElement` | `0..*` | Concepts in the code system _must-support_ |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`CodeSystem` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `code` | `token` | A code defined in the code system |
+| `content-mode` | `token` | not-present | example | fragment | complete | supplement |
+| `context` | `token` | A use context assigned to the activity definition |
+| `context-quantity` | `quantity` | A quantity- or range-valued use context assigned to the activity definition |
+| `context-type` | `token` | A type of use context assigned to the activity definition |
+| `context-type-quantity` | `composite` | A use context type and quantity- or range-based value assigned to the activity definition |
+| `context-type-value` | `composite` | A use context type and value assigned to the activity definition |
+| `date` | `date` | The activity definition publication date |
+| `derived-from` | `reference` | What resource is being referenced |
+| `description` | `string` | The description of the activity definition |
+| `effective` | `date` | The time during which the activity definition is intended to be in use |
+| `identifier` | `token` | External identifier for the activity definition |
+| `jurisdiction` | `token` | Intended jurisdiction for the activity definition |
+| `language` | `token` | A language in which a designation is provided |
+| `name` | `string` | Computationally friendly name of the activity definition |
+| `predecessor` | `reference` | What resource is being referenced |
+| `publisher` | `string` | Name of the publisher of the activity definition |
+| `status` | `token` | The current status of the activity definition |
+| `supplements` | `reference` | Find code system supplements for the referenced code system |
+| `system` | `uri` | The system for any codes defined by this code system (same as 'url') |
+| `title` | `string` | The human-friendly name of the activity definition |
+| `topic` | `token` | Topics associated with the module |
+| `url` | `uri` | The uri that identifies the activity definition |
+| `version` | `token` | The business version of the activity definition |
 
 ## Reference
 
 - Official FHIR R5 spec: [`CodeSystem`](https://hl7.org/fhir/R5/codesystem.html)
-- Search parameters: [`CodeSystem` search params](https://hl7.org/fhir/R5/codesystem.html#search)
-- Resource maturity: **Normative** (FMM 5).
+- Element bindings & profiles: [`CodeSystem` profile](https://hl7.org/fhir/R5/codesystem-definitions.html)
+- Maturity: **Trial Use 3** (FMM 3).

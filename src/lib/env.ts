@@ -26,7 +26,7 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'Bleeding-edge surface. Breaking changes can land any day.',
     hosts: {
       api:       'https://api.dev.ovok.com',
-      fhir:      'https://fhir.dev.ovok.com',
+      fhir:      'https://api.dev.ovok.com/fhir/R5',
       console:   'https://console.dev.ovok.com',
       dashboard: 'https://dashboard.dev.ovok.com',
     },
@@ -39,7 +39,7 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'Release-candidate surface. Stable enough for integration testing.',
     hosts: {
       api:       'https://api.staging.ovok.com',
-      fhir:      'https://fhir.staging.ovok.com',
+      fhir:      'https://api.staging.ovok.com/fhir/R5',
       console:   'https://console.staging.ovok.com',
       dashboard: 'https://dashboard.staging.ovok.com',
     },
@@ -52,7 +52,7 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'The contract you build against. Versioned and supported.',
     hosts: {
       api:       'https://api.ovok.com',
-      fhir:      'https://fhir.ovok.com',
+      fhir:      'https://api.ovok.com/fhir/R5',
       console:   'https://console.ovok.com',
       dashboard: 'https://dashboard.ovok.com',
     },

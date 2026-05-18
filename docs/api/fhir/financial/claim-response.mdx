@@ -1,7 +1,7 @@
 ---
 title: ClaimResponse
 sidebar_label: ClaimResponse
-description: Adjudication response to a Claim. FHIR R5 resource, served by the Ovok FHIR API.
+description: "This resource provides the adjudication details from the processing of a Claim resource."
 ---
 
 # ClaimResponse
@@ -9,55 +9,87 @@ description: Adjudication response to a Claim. FHIR R5 resource, served by the O
 <span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Financial</span>
 
-Adjudication response to a Claim.
+This resource provides the adjudication details from the processing of a Claim resource.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `ClaimResponse` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/ClaimResponse" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/ClaimResponse/[id]` |
-| Vread        | `GET`    | `/ClaimResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/ClaimResponse/[id]` |
-| Patch        | `PATCH`  | `/ClaimResponse/[id]` |
-| Delete       | `DELETE` | `/ClaimResponse/[id]` |
-| Create       | `POST`   | `/ClaimResponse` |
-| Search       | `GET`    | `/ClaimResponse?...` |
-| History      | `GET`    | `/ClaimResponse/[id]/_history` |
-| Type-history | `GET`    | `/ClaimResponse/_history` |
+| Read         | `GET`    | `/fhir/R5/ClaimResponse/[id]` |
+| Vread        | `GET`    | `/fhir/R5/ClaimResponse/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/ClaimResponse/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/ClaimResponse/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/ClaimResponse/[id]` |
+| Create       | `POST`   | `/fhir/R5/ClaimResponse` |
+| Search       | `GET`    | `/fhir/R5/ClaimResponse?...` |
+| History      | `GET`    | `/fhir/R5/ClaimResponse/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/ClaimResponse/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..*` | Business Identifier for a claim response |
+| `traceNumber` | `Identifier` | `0..*` | Number for tracking |
+| `status` | `code` | `1..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `type` | `CodeableConcept` | `1..1` | More granular claim type |
+| `subType` | `CodeableConcept` | `0..1` | More granular claim type |
+| `use` | `code` | `1..1` | claim | preauthorization | predetermination |
+| `patient` | `Reference` | `1..1` | The recipient of the products and services |
+| `created` | `dateTime` | `1..1` | Response creation date |
+| `insurer` | `Reference` | `0..1` | Party responsible for reimbursement |
+| `requestor` | `Reference` | `0..1` | Party responsible for the claim |
+| `request` | `Reference` | `0..1` | Id of resource triggering adjudication |
+| `outcome` | `code` | `1..1` | queued | complete | error | partial |
+| `decision` | `CodeableConcept` | `0..1` | Result of the adjudication |
+| `disposition` | `string` | `0..1` | Disposition Message |
+| `preAuthRef` | `string` | `0..1` | Preauthorization reference |
+| `preAuthPeriod` | `Period` | `0..1` | Preauthorization reference effective period |
+| `event` | `BackboneElement` | `0..*` | Event information |
+| `payeeType` | `CodeableConcept` | `0..1` | Party to be paid any benefits payable |
+| `encounter` | `Reference` | `0..*` | Encounters associated with the listed treatments |
+| `diagnosisRelatedGroup` | `CodeableConcept` | `0..1` | Package billing code |
+| `item` | `BackboneElement` | `0..*` | Adjudication for claim line items |
+| `addItem` | `BackboneElement` | `0..*` | Insurer added line items |
+| `adjudication` | — | `0..*` | Header-level adjudication |
+| `total` | `BackboneElement` | `0..*` | Adjudication totals |
+| `payment` | `BackboneElement` | `0..1` | Payment Details |
+| `fundsReserve` | `CodeableConcept` | `0..1` | Funds reserved status |
+| `formCode` | `CodeableConcept` | `0..1` | Printed form identifier |
+| `form` | `Attachment` | `0..1` | Printed reference or actual form |
+| `processNote` | `BackboneElement` | `0..*` | Note concerning adjudication |
+| `communicationRequest` | `Reference` | `0..*` | Request for additional information |
+| `insurance` | `BackboneElement` | `0..*` | Patient insurance information |
+| `error` | `BackboneElement` | `0..*` | Processing errors |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`ClaimResponse` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `created` | `date` | The creation date |
+| `disposition` | `string` | The contents of the disposition message |
+| `identifier` | `token` | Account number |
+| `insurer` | `reference` | The organization which generated this resource |
+| `outcome` | `token` | The processing outcome |
+| `patient` | `reference` | The entity that caused the expenses |
+| `payment-date` | `date` | The expected payment date |
+| `request` | `reference` | The claim reference |
+| `requestor` | `reference` | The Provider of the claim |
+| `status` | `token` | The status of the ClaimResponse |
+| `use` | `token` | The type of claim |
 
 ## Reference
 
 - Official FHIR R5 spec: [`ClaimResponse`](https://hl7.org/fhir/R5/claimresponse.html)
-- Search parameters: [`ClaimResponse` search params](https://hl7.org/fhir/R5/claimresponse.html#search)
-- Resource maturity: **Trial Use 2** (FMM 2).
+- Element bindings & profiles: [`ClaimResponse` profile](https://hl7.org/fhir/R5/claimresponse-definitions.html)
+- Maturity: **Trial Use 2** (FMM 2).

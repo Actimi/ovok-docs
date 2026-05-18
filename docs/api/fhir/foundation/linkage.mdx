@@ -1,63 +1,58 @@
 ---
 title: Linkage
 sidebar_label: Linkage
-description: Linkage between multiple resources referring to the same thing. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Identifies two or more records (resource instances) that refer to the same real-world \"occurrence\"."
 ---
 
 # Linkage
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Foundation</span>
 
-Linkage between multiple resources referring to the same thing.
+Identifies two or more records (resource instances) that refer to the same real-world "occurrence".
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `Linkage` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/Linkage" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/Linkage/[id]` |
-| Vread        | `GET`    | `/Linkage/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/Linkage/[id]` |
-| Patch        | `PATCH`  | `/Linkage/[id]` |
-| Delete       | `DELETE` | `/Linkage/[id]` |
-| Create       | `POST`   | `/Linkage` |
-| Search       | `GET`    | `/Linkage?...` |
-| History      | `GET`    | `/Linkage/[id]/_history` |
-| Type-history | `GET`    | `/Linkage/_history` |
+| Read         | `GET`    | `/fhir/R5/Linkage/[id]` |
+| Vread        | `GET`    | `/fhir/R5/Linkage/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/Linkage/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/Linkage/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/Linkage/[id]` |
+| Create       | `POST`   | `/fhir/R5/Linkage` |
+| Search       | `GET`    | `/fhir/R5/Linkage?...` |
+| History      | `GET`    | `/fhir/R5/Linkage/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/Linkage/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `active` | `boolean` | `0..1` | Whether this linkage assertion is active or not |
+| `author` | `Reference` | `0..1` | Who is responsible for linkages |
+| `item` | `BackboneElement` | `1..*` | Item to be linked |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`Linkage` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `author` | `reference` | Author of the Linkage |
+| `item` | `reference` | Matches on any item in the Linkage |
+| `source` | `reference` | Matches on any item in the Linkage with a type of 'source' |
 
 ## Reference
 
 - Official FHIR R5 spec: [`Linkage`](https://hl7.org/fhir/R5/linkage.html)
-- Search parameters: [`Linkage` search params](https://hl7.org/fhir/R5/linkage.html#search)
-- Resource maturity: **Trial Use 2** (FMM 2).
+- Element bindings & profiles: [`Linkage` profile](https://hl7.org/fhir/R5/linkage-definitions.html)
+- Maturity: **Draft** (FMM 0).

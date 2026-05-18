@@ -1,7 +1,7 @@
 ---
 title: Parameters
 sidebar_label: Parameters
-description: Parameter set for invoking an operation. FHIR R5 resource, served by the Ovok FHIR API.
+description: "This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not per"
 ---
 
 # Parameters
@@ -9,55 +9,44 @@ description: Parameter set for invoking an operation. FHIR R5 resource, served b
 <span className="fhir-maturity" data-level="5">Normative</span>
 <span className="fhir-category">Foundation</span>
 
-Parameter set for invoking an operation.
+This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not persisted or allowed to be referenced by other resources except as described in the definition of the Parameters resource.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `Parameters` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/Parameters" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/Parameters/[id]` |
-| Vread        | `GET`    | `/Parameters/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/Parameters/[id]` |
-| Patch        | `PATCH`  | `/Parameters/[id]` |
-| Delete       | `DELETE` | `/Parameters/[id]` |
-| Create       | `POST`   | `/Parameters` |
-| Search       | `GET`    | `/Parameters?...` |
-| History      | `GET`    | `/Parameters/[id]/_history` |
-| Type-history | `GET`    | `/Parameters/_history` |
+| Read         | `GET`    | `/fhir/R5/Parameters/[id]` |
+| Vread        | `GET`    | `/fhir/R5/Parameters/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/Parameters/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/Parameters/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/Parameters/[id]` |
+| Create       | `POST`   | `/fhir/R5/Parameters` |
+| Search       | `GET`    | `/fhir/R5/Parameters?...` |
+| History      | `GET`    | `/fhir/R5/Parameters/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/Parameters/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `parameter` | `BackboneElement` | `0..*` | Operation Parameter |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`Parameters` supports the parameters below.
+
+_No resource-specific search parameters defined. Universal parameters still apply._
 
 ## Reference
 
 - Official FHIR R5 spec: [`Parameters`](https://hl7.org/fhir/R5/parameters.html)
-- Search parameters: [`Parameters` search params](https://hl7.org/fhir/R5/parameters.html#search)
-- Resource maturity: **Normative** (FMM 5).
+- Element bindings & profiles: [`Parameters` profile](https://hl7.org/fhir/R5/parameters-definitions.html)
+- Maturity: **Normative** (FMM 5).

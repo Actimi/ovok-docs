@@ -1,7 +1,7 @@
 ---
 title: NutritionProduct
 sidebar_label: NutritionProduct
-description: Nutrition product (food, supplement, enteral). FHIR R5 resource, served by the Ovok FHIR API.
+description: "A food or supplement that is consumed by patients."
 ---
 
 # NutritionProduct
@@ -9,55 +9,59 @@ description: Nutrition product (food, supplement, enteral). FHIR R5 resource, se
 <span className="fhir-maturity" data-level="1">Trial Use 1</span>
 <span className="fhir-category">Specialized — Public Health & Research</span>
 
-Nutrition product (food, supplement, enteral).
+A food or supplement that is consumed by patients.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `NutritionProduct` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/NutritionProduct" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/NutritionProduct/[id]` |
-| Vread        | `GET`    | `/NutritionProduct/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/NutritionProduct/[id]` |
-| Patch        | `PATCH`  | `/NutritionProduct/[id]` |
-| Delete       | `DELETE` | `/NutritionProduct/[id]` |
-| Create       | `POST`   | `/NutritionProduct` |
-| Search       | `GET`    | `/NutritionProduct?...` |
-| History      | `GET`    | `/NutritionProduct/[id]/_history` |
-| Type-history | `GET`    | `/NutritionProduct/_history` |
+| Read         | `GET`    | `/fhir/R5/NutritionProduct/[id]` |
+| Vread        | `GET`    | `/fhir/R5/NutritionProduct/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/NutritionProduct/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/NutritionProduct/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/NutritionProduct/[id]` |
+| Create       | `POST`   | `/fhir/R5/NutritionProduct` |
+| Search       | `GET`    | `/fhir/R5/NutritionProduct?...` |
+| History      | `GET`    | `/fhir/R5/NutritionProduct/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/NutritionProduct/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `code` | `CodeableConcept` | `0..1` | A code that can identify the detailed nutrients and ingredients in a specific food product |
+| `status` | `code` | `1..1` | active | inactive | entered-in-error _modifier_ |
+| `category` | `CodeableConcept` | `0..*` | Broad product groups or categories used to classify the product, such as Legume and Legume Products, Beverages, or Beef Products |
+| `manufacturer` | `Reference` | `0..*` | Manufacturer, representative or officially responsible for the product |
+| `nutrient` | `BackboneElement` | `0..*` | The product's nutritional information expressed by the nutrients |
+| `ingredient` | `BackboneElement` | `0..*` | Ingredients contained in this product |
+| `knownAllergen` | `CodeableReference` | `0..*` | Known or suspected allergens that are a part of this product |
+| `characteristic` | `BackboneElement` | `0..*` | Specifies descriptive properties of the nutrition product |
+| `instance` | `BackboneElement` | `0..*` | One or several physical instances or occurrences of the nutrition product |
+| `note` | `Annotation` | `0..*` | Comments made about the product |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`NutritionProduct` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `code` | `token` | The code identifying a specific nutrition product |
+| `identifier` | `token` | The identifier for the physical instance, typically a serial number |
+| `lot-number` | `token` | The lot number |
+| `serial-number` | `token` | The serial number |
+| `status` | `token` | The broad product group or category of the nutrition product |
 
 ## Reference
 
 - Official FHIR R5 spec: [`NutritionProduct`](https://hl7.org/fhir/R5/nutritionproduct.html)
-- Search parameters: [`NutritionProduct` search params](https://hl7.org/fhir/R5/nutritionproduct.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`NutritionProduct` profile](https://hl7.org/fhir/R5/nutritionproduct-definitions.html)
+- Maturity: **Trial Use 1** (FMM 1).

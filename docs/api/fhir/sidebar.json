@@ -35,6 +35,61 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/composition",
+        "label": "Composition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/composition",
+        "label": "Composition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/composition",
+        "label": "Composition"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/foundation/composition",
         "label": "Composition"
       },
@@ -85,6 +140,11 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/foundation/provenance",
+        "label": "Provenance"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/foundation/subscription",
         "label": "Subscription"
       },
@@ -113,6 +173,16 @@
         "type": "doc",
         "id": "api/fhir/base/endpoint",
         "label": "Endpoint"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/group",
+        "label": "Group"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/group",
+        "label": "Group"
       },
       {
         "type": "doc",
@@ -197,6 +267,11 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/clinical-summary/family-member-history",
+        "label": "FamilyMemberHistory"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/clinical-summary/goal",
         "label": "Goal"
       },
@@ -233,6 +308,11 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/diagnostic-report",
+        "label": "DiagnosticReport"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/clinical-diagnostics/genomic-study",
         "label": "GenomicStudy"
       },
@@ -250,6 +330,86 @@
         "type": "doc",
         "id": "api/fhir/clinical-diagnostics/molecular-sequence",
         "label": "MolecularSequence"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
       },
       {
         "type": "doc",
@@ -395,6 +555,11 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/clinical-care-provision/guidance-response",
+        "label": "GuidanceResponse"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/clinical-care-provision/nutrition-intake",
         "label": "NutritionIntake"
       },
@@ -402,6 +567,11 @@
         "type": "doc",
         "id": "api/fhir/clinical-care-provision/nutrition-order",
         "label": "NutritionOrder"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/request-orchestration",
+        "label": "RequestOrchestration"
       },
       {
         "type": "doc",
@@ -552,11 +722,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/insurance-product",
-        "label": "InsuranceProduct"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/financial/invoice",
         "label": "Invoice"
       },
@@ -695,6 +860,16 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/activity-definition",
+        "label": "ActivityDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/activity-definition",
+        "label": "ActivityDefinition"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/specialized-quality-testing/event-definition",
         "label": "EventDefinition"
       },
@@ -702,6 +877,56 @@
         "type": "doc",
         "id": "api/fhir/specialized-quality-testing/library",
         "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/measure",
+        "label": "Measure"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/measure",
+        "label": "Measure"
       },
       {
         "type": "doc",
@@ -725,6 +950,26 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/plan-definition",
+        "label": "PlanDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/plan-definition",
+        "label": "PlanDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/plan-definition",
+        "label": "PlanDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/plan-definition",
+        "label": "PlanDefinition"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/specialized-quality-testing/specimen-definition",
         "label": "SpecimenDefinition"
       },
@@ -737,6 +982,11 @@
         "type": "doc",
         "id": "api/fhir/specialized-quality-testing/test-report",
         "label": "TestReport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/test-script",
+        "label": "TestScript"
       },
       {
         "type": "doc",
@@ -837,6 +1087,26 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/terminology/code-system",
+        "label": "CodeSystem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/code-system",
+        "label": "CodeSystem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/concept-map",
+        "label": "ConceptMap"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/concept-map",
+        "label": "ConceptMap"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/terminology/concept-map",
         "label": "ConceptMap"
       },
@@ -847,8 +1117,38 @@
       },
       {
         "type": "doc",
+        "id": "api/fhir/terminology/naming-system",
+        "label": "NamingSystem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/naming-system",
+        "label": "NamingSystem"
+      },
+      {
+        "type": "doc",
         "id": "api/fhir/terminology/terminology-capabilities",
         "label": "TerminologyCapabilities"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/value-set",
+        "label": "ValueSet"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/value-set",
+        "label": "ValueSet"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/value-set",
+        "label": "ValueSet"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/value-set",
+        "label": "ValueSet"
       },
       {
         "type": "doc",
@@ -870,6 +1170,11 @@
         "type": "doc",
         "id": "api/fhir/conformance/actor-definition",
         "label": "ActorDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/artifact-assessment",
+        "label": "ArtifactAssessment"
       },
       {
         "type": "doc",
@@ -940,6 +1245,27 @@
         "type": "doc",
         "id": "api/fhir/conformance/structure-map",
         "label": "StructureMap"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Other",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/other/inventory-item"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/other/inventory-item",
+        "label": "InventoryItem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/inventory-report",
+        "label": "InventoryReport"
       }
     ]
   }

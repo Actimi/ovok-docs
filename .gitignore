@@ -5,6 +5,9 @@ node_modules/
 build/
 .docusaurus/
 
+# FHIR R5 spec cache — fetched at gen time, generated MDX is committed
+.fhir-cache/
+
 # Misc
 .DS_Store
 *.log

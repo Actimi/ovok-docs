@@ -1,63 +1,94 @@
 ---
 title: Composition
 sidebar_label: Composition
-description: Coherent set of resources forming a clinical document. FHIR R5 resource, served by the Ovok FHIR API.
+description: "The Clinical Document profile constrains Composition to specify a clinical document (matching CDA)."
 ---
 
 # Composition
 
-<span className="fhir-maturity" data-level="3">Trial Use 3</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Foundation</span>
 
-Coherent set of resources forming a clinical document.
+The Clinical Document profile constrains Composition to specify a clinical document (matching CDA). 
+
+The base Composition is a general resource for compositions or documents about any kind of subject that might be encountered in healthcare including such things as guidelines, medicines, etc. A clinical document is focused on documents related to the provision of care process, where the subject is a patient, a group of patients, or a closely related concept. A clinical document has additional requirements around confidentiality that do not apply in the same way to other kinds of documents.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `Composition` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/Composition" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/Composition/[id]` |
-| Vread        | `GET`    | `/Composition/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/Composition/[id]` |
-| Patch        | `PATCH`  | `/Composition/[id]` |
-| Delete       | `DELETE` | `/Composition/[id]` |
-| Create       | `POST`   | `/Composition` |
-| Search       | `GET`    | `/Composition?...` |
-| History      | `GET`    | `/Composition/[id]/_history` |
-| Type-history | `GET`    | `/Composition/_history` |
+| Read         | `GET`    | `/fhir/R5/Composition/[id]` |
+| Vread        | `GET`    | `/fhir/R5/Composition/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/Composition/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/Composition/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/Composition/[id]` |
+| Create       | `POST`   | `/fhir/R5/Composition` |
+| Search       | `GET`    | `/fhir/R5/Composition?...` |
+| History      | `GET`    | `/fhir/R5/Composition/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/Composition/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `url` | `uri` | `0..1` | Canonical identifier for this Composition, represented as a URI (globally unique) |
+| `identifier` | `Identifier` | `0..*` | Version-independent identifier for the Composition |
+| `version` | `string` | `0..1` | An explicitly assigned identifer of a variation of the content in the Composition |
+| `status` | `code` | `1..1` | registered | partial | preliminary | final | amended | corrected | appended | cancelled | entered-in-error | deprecated | unknown _modifier_ |
+| `type` | `CodeableConcept` | `1..1` | Kind of composition (LOINC if possible) |
+| `category` | `CodeableConcept` | `0..*` | Categorization of Composition |
+| `subject` | `Reference` | `0..*` | Who and/or what the composition is about |
+| `encounter` | `Reference` | `0..1` | Context of the Composition |
+| `date` | `dateTime` | `1..1` | Composition editing time |
+| `useContext` | `UsageContext` | `0..*` | The context that the content is intended to support |
+| `author` | `Reference` | `1..*` | Who and/or what authored the composition |
+| `name` | `string` | `0..1` | Name for this Composition (computer friendly) |
+| `title` | `string` | `1..1` | Human Readable name/title |
+| `note` | `Annotation` | `0..*` | For any additional notes |
+| `attester` | `BackboneElement` | `0..*` | Attests to accuracy of composition |
+| `custodian` | `Reference` | `0..1` | Organization which maintains the composition |
+| `relatesTo` | `RelatedArtifact` | `0..*` | Relationships to other compositions/documents |
+| `event` | `BackboneElement` | `0..*` | The clinical service(s) being documented |
+| `section` | `BackboneElement` | `0..*` | Composition is broken into sections |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`Composition` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `attester` | `reference` | Who attested the composition |
+| `author` | `reference` | Who and/or what authored the composition |
+| `category` | `token` | Categorization of Composition |
+| `date` | `date` | When the event occurred |
+| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
+| `entry` | `reference` | A reference to data that supports this section |
+| `event-code` | `token` | Main clinical acts documented as codes |
+| `event-reference` | `reference` | Main clinical acts documented as references |
+| `identifier` | `token` | Account number |
+| `patient` | `reference` | The entity that caused the expenses |
+| `period` | `date` | The period covered by the documentation |
+| `related` | `reference` | Target of the relationship |
+| `section` | `token` | Classification of section (recommended) |
+| `section-code-text` | `composite` | Search on the section narrative of the resource |
+| `section-text` | `special` | Search on the section narrative of the resource |
+| `status` | `token` | preliminary | final | amended | entered-in-error |
+| `subject` | `reference` | Who and/or what the composition is about |
+| `title` | `string` | Human Readable name/title |
+| `type` | `token` | E.g. patient, expense, depreciation |
+| `url` | `uri` | The uri that identifies the activity definition |
+| `version` | `token` | The business version of the activity definition |
 
 ## Reference
 
 - Official FHIR R5 spec: [`Composition`](https://hl7.org/fhir/R5/composition.html)
-- Search parameters: [`Composition` search params](https://hl7.org/fhir/R5/composition.html#search)
-- Resource maturity: **Trial Use 3** (FMM 3).
+- Element bindings & profiles: [`Composition` profile](https://hl7.org/fhir/R5/composition-definitions.html)
+- Maturity: **Trial Use 2** (FMM 2).

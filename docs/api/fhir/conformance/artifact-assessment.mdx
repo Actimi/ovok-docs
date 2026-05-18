@@ -1,63 +1,65 @@
 ---
 title: ArtifactAssessment
 sidebar_label: ArtifactAssessment
-description: Assessment / review of a knowledge artifact. FHIR R5 resource, served by the Ovok FHIR API.
+description: "Represents justification for a recommendation"
 ---
 
 # ArtifactAssessment
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Conformance</span>
 
-Assessment / review of a knowledge artifact.
+Represents justification for a recommendation
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `ArtifactAssessment` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/ArtifactAssessment" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/ArtifactAssessment/[id]` |
-| Vread        | `GET`    | `/ArtifactAssessment/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/ArtifactAssessment/[id]` |
-| Patch        | `PATCH`  | `/ArtifactAssessment/[id]` |
-| Delete       | `DELETE` | `/ArtifactAssessment/[id]` |
-| Create       | `POST`   | `/ArtifactAssessment` |
-| Search       | `GET`    | `/ArtifactAssessment?...` |
-| History      | `GET`    | `/ArtifactAssessment/[id]/_history` |
-| Type-history | `GET`    | `/ArtifactAssessment/_history` |
+| Read         | `GET`    | `/fhir/R5/ArtifactAssessment/[id]` |
+| Vread        | `GET`    | `/fhir/R5/ArtifactAssessment/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/ArtifactAssessment/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/ArtifactAssessment/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/ArtifactAssessment/[id]` |
+| Create       | `POST`   | `/fhir/R5/ArtifactAssessment` |
+| Search       | `GET`    | `/fhir/R5/ArtifactAssessment?...` |
+| History      | `GET`    | `/fhir/R5/ArtifactAssessment/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/ArtifactAssessment/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..*` | Additional identifier for the artifact assessment |
+| `title` | `string` | `0..1` | A short title for the assessment for use in displaying and selecting |
+| `citeAs[x]` | `Reference` / `markdown` | `0..1` | How to cite the recommendation |
+| `date` | `dateTime` | `0..1` | Date last changed |
+| `copyright` | `markdown` | `0..1` | Use and/or publishing restrictions |
+| `approvalDate` | `date` | `0..1` | When the artifact assessment was approved by publisher |
+| `lastReviewDate` | `date` | `0..1` | When the artifact assessment was last reviewed by the publisher |
+| `artifact[x]` | `Reference` / `canonical` / `uri` | `1..1` | The artifact assessed, commented upon or rated _must-support_ |
+| `content` | `BackboneElement` | `0..*` | Comment, classifier, or rating content |
+| `workflowStatus` | `code` | `0..0` | submitted | triaged | waiting-for-input | resolved-no-change | resolved-change-required | deferred | duplicate | applied | published | entered-in-error |
+| `disposition` | `code` | `0..0` | unresolved | not-persuasive | persuasive | persuasive-with-modification | not-persuasive-with-modification |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`ArtifactAssessment` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `date` | `date` | The artifact assessment publication date |
+| `identifier` | `token` | The artifact assessment identifier |
 
 ## Reference
 
 - Official FHIR R5 spec: [`ArtifactAssessment`](https://hl7.org/fhir/R5/artifactassessment.html)
-- Search parameters: [`ArtifactAssessment` search params](https://hl7.org/fhir/R5/artifactassessment.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`ArtifactAssessment` profile](https://hl7.org/fhir/R5/artifactassessment-definitions.html)
+- Maturity: **Draft** (FMM 0).

@@ -1,63 +1,67 @@
 ---
 title: DeviceAssociation
 sidebar_label: DeviceAssociation
-description: Record that a Device is associated with a subject. FHIR R5 resource, served by the Ovok FHIR API.
+description: "A record of association of a device."
 ---
 
 # DeviceAssociation
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Devices</span>
 
-Record that a Device is associated with a subject.
+A record of association of a device.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `DeviceAssociation` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/DeviceAssociation" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/DeviceAssociation/[id]` |
-| Vread        | `GET`    | `/DeviceAssociation/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/DeviceAssociation/[id]` |
-| Patch        | `PATCH`  | `/DeviceAssociation/[id]` |
-| Delete       | `DELETE` | `/DeviceAssociation/[id]` |
-| Create       | `POST`   | `/DeviceAssociation` |
-| Search       | `GET`    | `/DeviceAssociation?...` |
-| History      | `GET`    | `/DeviceAssociation/[id]/_history` |
-| Type-history | `GET`    | `/DeviceAssociation/_history` |
+| Read         | `GET`    | `/fhir/R5/DeviceAssociation/[id]` |
+| Vread        | `GET`    | `/fhir/R5/DeviceAssociation/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/DeviceAssociation/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/DeviceAssociation/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/DeviceAssociation/[id]` |
+| Create       | `POST`   | `/fhir/R5/DeviceAssociation` |
+| Search       | `GET`    | `/fhir/R5/DeviceAssociation?...` |
+| History      | `GET`    | `/fhir/R5/DeviceAssociation/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/DeviceAssociation/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..*` | Instance identifier |
+| `device` | `Reference` | `1..1` | Reference to the devices associated with the patient or group |
+| `category` | `CodeableConcept` | `0..*` | Describes the relationship between the device and subject |
+| `status` | `CodeableConcept` | `1..1` | implanted | explanted | attached | entered-in-error | unknown |
+| `statusReason` | `CodeableConcept` | `0..*` | The reasons given for the current association status |
+| `subject` | `Reference` | `0..1` | The individual, group of individuals or device that the device is on or associated with |
+| `bodyStructure` | `Reference` | `0..1` | Current anatomical location of the device in/on subject |
+| `period` | `Period` | `0..1` | Begin and end dates and times for the device association |
+| `operation` | `BackboneElement` | `0..*` | The details about the device when it is in use to describe its operation |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`DeviceAssociation` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `device` | `reference` | Search for products that match this code |
+| `identifier` | `token` | The identifier of the device association |
+| `operator` | `reference` | The identity of a operator for whom to list associations |
+| `patient` | `reference` | The identity of a patient for whom to list associations |
+| `status` | `token` | The status of the device associations |
+| `subject` | `reference` | The identity of a patient for whom to list associations |
 
 ## Reference
 
 - Official FHIR R5 spec: [`DeviceAssociation`](https://hl7.org/fhir/R5/deviceassociation.html)
-- Search parameters: [`DeviceAssociation` search params](https://hl7.org/fhir/R5/deviceassociation.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`DeviceAssociation` profile](https://hl7.org/fhir/R5/deviceassociation-definitions.html)
+- Maturity: **Draft** (FMM 0).

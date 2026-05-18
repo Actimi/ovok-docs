@@ -1,7 +1,7 @@
 ---
 title: EnrollmentResponse
 sidebar_label: EnrollmentResponse
-description: Response to an EnrollmentRequest. FHIR R5 resource, served by the Ovok FHIR API.
+description: "This resource provides enrollment and plan details from the processing of an EnrollmentRequest resource."
 ---
 
 # EnrollmentResponse
@@ -9,55 +9,55 @@ description: Response to an EnrollmentRequest. FHIR R5 resource, served by the O
 <span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Financial</span>
 
-Response to an EnrollmentRequest.
+This resource provides enrollment and plan details from the processing of an EnrollmentRequest resource.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `EnrollmentResponse` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/EnrollmentResponse" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/EnrollmentResponse/[id]` |
-| Vread        | `GET`    | `/EnrollmentResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/EnrollmentResponse/[id]` |
-| Patch        | `PATCH`  | `/EnrollmentResponse/[id]` |
-| Delete       | `DELETE` | `/EnrollmentResponse/[id]` |
-| Create       | `POST`   | `/EnrollmentResponse` |
-| Search       | `GET`    | `/EnrollmentResponse?...` |
-| History      | `GET`    | `/EnrollmentResponse/[id]/_history` |
-| Type-history | `GET`    | `/EnrollmentResponse/_history` |
+| Read         | `GET`    | `/fhir/R5/EnrollmentResponse/[id]` |
+| Vread        | `GET`    | `/fhir/R5/EnrollmentResponse/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/EnrollmentResponse/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/EnrollmentResponse/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/EnrollmentResponse/[id]` |
+| Create       | `POST`   | `/fhir/R5/EnrollmentResponse` |
+| Search       | `GET`    | `/fhir/R5/EnrollmentResponse?...` |
+| History      | `GET`    | `/fhir/R5/EnrollmentResponse/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/EnrollmentResponse/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..*` | Business Identifier |
+| `status` | `code` | `0..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `request` | `Reference` | `0..1` | Claim reference |
+| `outcome` | `code` | `0..1` | queued | complete | error | partial |
+| `disposition` | `string` | `0..1` | Disposition Message |
+| `created` | `dateTime` | `0..1` | Creation date |
+| `organization` | `Reference` | `0..1` | Insurer |
+| `requestProvider` | `Reference` | `0..1` | Responsible practitioner |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`EnrollmentResponse` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `identifier` | `token` | The business identifier of the EnrollmentResponse |
+| `request` | `reference` | The reference to the claim |
+| `status` | `token` | The status of the enrollment response |
 
 ## Reference
 
 - Official FHIR R5 spec: [`EnrollmentResponse`](https://hl7.org/fhir/R5/enrollmentresponse.html)
-- Search parameters: [`EnrollmentResponse` search params](https://hl7.org/fhir/R5/enrollmentresponse.html#search)
-- Resource maturity: **Draft** (FMM 0).
+- Element bindings & profiles: [`EnrollmentResponse` profile](https://hl7.org/fhir/R5/enrollmentresponse-definitions.html)
+- Maturity: **Draft** (FMM 0).

@@ -2,21 +2,18 @@
 /**
  * Generate the two API sections of the Ovok docs:
  *
- *   docs/api/high-level/   one MDX per endpoint, grouped into one folder per tag.
+ *   docs/api/high-level/   one MDX per OpenAPI endpoint, grouped per tag.
  *                          Source: openapi/ovok-api-public.yaml.
  *
- *   docs/api/fhir/         one MDX per FHIR R5 resource, grouped into one folder
- *                          per module. Source: data/fhir-r5-resources.json.
+ *   docs/api/fhir/         one MDX per FHIR R5 resource, grouped per module.
+ *                          Sources: .fhir-cache/package/ (real FHIR R5 spec)
+ *                          + data/fhir-r5-resources.json (category mapping).
  *
- * Each section emits its own sidebar.json (consumed by sidebars.ts). Tag /
- * module nodes carry a `link.type=doc` pointing at the first child page so
- * clicking the category label lands on the first endpoint of the group.
- *
- * The raw OpenAPI spec is also copied to static/openapi/ so external tooling
- * can fetch it.
+ * Sidebar nodes carry a `link.type=doc` pointing at the first child page so
+ * clicking the category label lands on the first item of the group.
  */
 
-import { readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -26,6 +23,7 @@ const REPO_ROOT = join(__dirname, '..');
 
 const SPEC_PATH       = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
 const FHIR_DATA_PATH  = join(REPO_ROOT, 'data/fhir-r5-resources.json');
+const FHIR_CACHE      = join(REPO_ROOT, '.fhir-cache/package');
 const OUT_HIGH        = join(REPO_ROOT, 'docs/api/high-level');
 const OUT_FHIR        = join(REPO_ROOT, 'docs/api/fhir');
 const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
@@ -38,12 +36,16 @@ function escapeMdx(text) {
     .replace(/<hr\s*\/?>/gi, '<hr />')
     .replace(/<(?![a-zA-Z/])/g, '&lt;')
     .replace(/\{/g, '&#123;')
-    .replace(/\}/g, '&#125;');
+    .replace(/\}/g, '&#125;')
+    // Rewrite the FHIR spec's intra-doc markdown links (e.g. "request.html#history",
+    // "valueset.html") to absolute hl7.org/fhir/R5/ URLs so they don't become
+    // broken Docusaurus relative links.
+    .replace(/\]\(([a-zA-Z][a-zA-Z0-9_-]*\.html(?:#[^)]*)?)\)/g, '](https://hl7.org/fhir/R5/$1)');
 }
 
 function slug(s) {
   return String(s)
-    .replace(/([a-z])([A-Z])/g, '$1-$2') // splitCamel
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
@@ -77,8 +79,6 @@ function generateHighLevel() {
     return out;
   }
 
-  // Group operations by tag, preserve declaration order so the sidebar
-  // shows them in spec-defined sequence rather than alphabetical chaos.
   const tagGroups = new Map();
   for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
@@ -90,7 +90,6 @@ function generateHighLevel() {
   }
   const sortedTags = [...tagGroups.keys()].sort((a, b) => a.localeCompare(b));
 
-  // Per-operation rendering helpers
   function renderParamsTable(params) {
     if (!params || params.length === 0) return '';
     const rows = params.map((p) => {
@@ -142,7 +141,6 @@ function generateHighLevel() {
     return ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
   }
 
-  // Build one MDX per operation; collect sidebar tree
   ensureCleanDir(OUT_HIGH);
   const sidebarItems = [{ type: 'doc', id: 'api/high-level/index', label: 'Overview' }];
   const firstEndpointSlugByTag = new Map();
@@ -157,11 +155,9 @@ function generateHighLevel() {
     let firstId = null;
 
     for (const { method, path, op } of ops) {
-      // operationId is the most stable filename source; fall back to method+path.
       const fileBase = slug(op.operationId || `${method}-${path}`);
       const opSlug = fileBase || 'endpoint';
       const opLabel = shortenLabel(op.summary?.trim() || `${method} ${path}`);
-
       const rawDesc = (op.description && String(op.description).split('\n')[0].trim()) || `${method} ${path}`;
       const title = op.summary?.trim() || `${method} ${path}`;
       const body = [
@@ -171,7 +167,7 @@ function generateHighLevel() {
         `description: ${JSON.stringify(rawDesc.slice(0, 160))}`,
         '---',
         '',
-        `# ${op.summary?.trim() || `${method} ${path}`}`,
+        `# ${title}`,
         '',
         `<span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
         '',
@@ -184,7 +180,7 @@ function generateHighLevel() {
       body.push(renderRequestBody(op.requestBody));
       body.push(renderResponses(op.responses));
 
-      writeFileSync(join(tagDir, `${opSlug}.mdx`), body.filter((b) => b !== undefined).join('\n'));
+      writeFileSync(join(tagDir, `${opSlug}.mdx`), body.join('\n'));
 
       const id = `api/high-level/${tagSlug}/${opSlug}`;
       opItems.push({ type: 'doc', id, label: opLabel });
@@ -203,8 +199,6 @@ function generateHighLevel() {
     });
   }
 
-  // Index page — links go straight to the first endpoint of each group
-  // because the group folder itself isn't a route (it's a sidebar category).
   const tagSummary = sortedTags
     .map((t) => `- **[${t}](/api/high-level/${firstEndpointSlugByTag.get(t)})** — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
     .join('\n');
@@ -245,10 +239,8 @@ The full machine-readable spec is at
 [\`/openapi/ovok-api-public.yaml\`](pathname:///openapi/ovok-api-public.yaml).
 `);
 
-  // Sidebar
   writeFileSync(join(OUT_HIGH, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
 
-  // Static spec download
   mkdirSync(STATIC_OPENAPI, { recursive: true });
   writeFileSync(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
 
@@ -258,105 +250,130 @@ The full machine-readable spec is at
   };
 }
 
-// ─── FHIR R5 (catalog → MDX per resource) ─────────────────────────────
+// ─── FHIR R5 — drive everything from the official spec cache ──────────
 const MATURITY_LABEL = {
   0: 'Draft', 1: 'Trial Use 1', 2: 'Trial Use 2',
   3: 'Trial Use 3', 4: 'Trial Use 4', 5: 'Normative',
 };
 
-function fhirResourcePage(resource) {
-  const { name, category, maturity, short } = resource;
-  return `---
-title: ${name}
-sidebar_label: ${name}
-description: ${escapeMdx(short)} FHIR R5 resource, served by the Ovok FHIR API.
----
+const FMM_EXT = 'http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm';
 
-# ${name}
+function loadFhirIndex() {
+  if (!existsSync(FHIR_CACHE)) {
+    throw new Error(`FHIR cache missing at ${FHIR_CACHE} — run scripts/fetch-fhir-r5.mjs first`);
+  }
+  const idx = JSON.parse(readFileSync(join(FHIR_CACHE, '.index.json'), 'utf8'));
+  return idx.files ?? [];
+}
 
-<span className="fhir-maturity" data-level="${maturity}">${MATURITY_LABEL[maturity] ?? 'Unspecified'}</span>
-<span className="fhir-category">${category}</span>
+function readFhirJson(filename) {
+  return JSON.parse(readFileSync(join(FHIR_CACHE, filename), 'utf8'));
+}
 
-${escapeMdx(short)}
+function fmmFromSd(sd) {
+  for (const ext of sd.extension ?? []) {
+    if (ext.url === FMM_EXT) {
+      const v = ext.valueInteger;
+      if (typeof v === 'number') return v;
+    }
+  }
+  return null;
+}
 
-## Endpoints
-
-The standard FHIR R5 interactions for \`${name}\` are mounted under your
-selected release tier:
-
-<ApiBase surface="fhir" path="/${name}" inline={false} />
-
-| Interaction | Method | Path |
-| --- | --- | --- |
-| Read         | \`GET\`    | \`/${name}/[id]\` |
-| Vread        | \`GET\`    | \`/${name}/[id]/_history/[vid]\` |
-| Update       | \`PUT\`    | \`/${name}/[id]\` |
-| Patch        | \`PATCH\`  | \`/${name}/[id]\` |
-| Delete       | \`DELETE\` | \`/${name}/[id]\` |
-| Create       | \`POST\`   | \`/${name}\` |
-| Search       | \`GET\`    | \`/${name}?...\` |
-| History      | \`GET\`    | \`/${name}/[id]/_history\` |
-| Type-history | \`GET\`    | \`/${name}/_history\` |
-
-All calls expect FHIR-flavoured JSON
-(\`Content-Type: application/fhir+json\`) and accept the standard
-\`Accept: application/fhir+json\` header.
-
-## Common search parameters
-
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
-
-| Parameter | Meaning |
-| --- | --- |
-| \`_id\` | Logical id of the resource |
-| \`_lastUpdated\` | When the resource version last changed |
-| \`_profile\` | Profiles this resource claims to conform to |
-| \`_security\` | Security labels applied to the resource |
-| \`_source\` | Source system identifier |
-| \`_tag\` | Tags applied to the resource |
-| \`_text\` | Free-text search over narrative |
-| \`_summary\` | Subset of the response (\`true\`, \`text\`, \`data\`, \`count\`, \`false\`) |
-| \`_elements\` | Comma-separated list of elements to include |
-| \`_include\` | Pull in referenced resources |
-| \`_revinclude\` | Pull in resources that reference this one |
-| \`_sort\` | Server sort order |
-| \`_count\` | Max number of matches per page |
-
-## Reference
-
-- Official FHIR R5 spec: [\`${name}\`](https://hl7.org/fhir/R5/${name.toLowerCase()}.html)
-- Search parameters: [\`${name}\` search params](https://hl7.org/fhir/R5/${name.toLowerCase()}.html#search)
-- Resource maturity: **${MATURITY_LABEL[maturity] ?? 'Unspecified'}** (FMM ${maturity}).
-`;
+function topLevelElements(sd) {
+  const elements = sd.snapshot?.element ?? sd.differential?.element ?? [];
+  const out = [];
+  const skipSet = new Set(['id', 'meta', 'implicitRules', 'language', 'text', 'contained', 'extension', 'modifierExtension']);
+  for (const e of elements) {
+    const id = e.id ?? e.path;
+    if (!id) continue;
+    const parts = id.split('.');
+    if (parts.length !== 2) continue;
+    const [_, field] = parts;
+    if (skipSet.has(field)) continue;
+    const types = (e.type ?? []).map((t) => t.code).filter(Boolean);
+    out.push({
+      name: field,
+      types,
+      cardinality: `${e.min ?? 0}..${e.max ?? '*'}`,
+      short: e.short ?? '',
+      isModifier: !!e.isModifier,
+      mustSupport: !!e.mustSupport,
+      isSummary: !!e.isSummary,
+    });
+  }
+  return out;
 }
 
 function generateFhir() {
   const catalog = JSON.parse(readFileSync(FHIR_DATA_PATH, 'utf8'));
-  const resources = [...catalog.resources].sort((a, b) => a.name.localeCompare(b.name));
+  const categoryOf = Object.fromEntries(catalog.resources.map((r) => [r.name, r.category]));
+  const categoryOrder = Object.keys(catalog.categories);
+  const idx = loadFhirIndex();
 
+  // Index search params by base resource
+  const searchByBase = new Map();
+  for (const f of idx) {
+    if (f.resourceType !== 'SearchParameter') continue;
+    const sp = readFhirJson(f.filename);
+    const bases = sp.base ?? [];
+    for (const base of bases) {
+      if (!searchByBase.has(base)) searchByBase.set(base, []);
+      searchByBase.get(base).push({
+        code: sp.code,
+        type: sp.type,
+        description: (sp.description ?? '').replace(/^Multiple Resources:[\s\S]*?\* \[[^\]]+\][^:]*:\s*/m, '').split('\n')[0],
+        expression: sp.expression ?? '',
+      });
+    }
+  }
+
+  // Find all concrete resources in the spec
+  const resources = [];
+  for (const f of idx) {
+    if (f.resourceType !== 'StructureDefinition') continue;
+    if (f.kind !== 'resource') continue;
+    if (f.type === 'Element' || f.type === 'BackboneElement') continue;
+    const sd = readFhirJson(f.filename);
+    if (sd.abstract) continue;
+    const name = sd.type ?? sd.id;
+    if (!name) continue;
+    resources.push({
+      name,
+      description: sd.description ?? '',
+      purpose: sd.purpose ?? '',
+      maturity: fmmFromSd(sd) ?? 0,
+      elements: topLevelElements(sd),
+      searchParams: searchByBase.get(name) ?? [],
+      category: categoryOf[name] ?? 'Other',
+    });
+  }
+  resources.sort((a, b) => a.name.localeCompare(b.name));
+
+  // Group by category
   const byCategory = new Map();
   for (const r of resources) {
     if (!byCategory.has(r.category)) byCategory.set(r.category, []);
     byCategory.get(r.category).push(r);
   }
-  const categoryOrder = Object.keys(catalog.categories);
 
   ensureCleanDir(OUT_FHIR);
 
+  // Per-resource pages
   for (const r of resources) {
     const dir = join(OUT_FHIR, slug(r.category));
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
   }
 
-  // Sidebar — each category links to its first resource so clicking
-  // the category name navigates instead of just toggling.
+  // Sidebar
   const sidebarItems = [{ type: 'doc', id: 'api/fhir/index', label: 'Overview' }];
-  for (const category of categoryOrder) {
+  const seenCategories = new Set();
+  for (const category of [...categoryOrder, 'Other']) {
     const items = byCategory.get(category);
     if (!items) continue;
+    seenCategories.add(category);
+    items.sort((a, b) => a.name.localeCompare(b.name));
     const firstId = `api/fhir/${slug(category)}/${slug(items[0].name)}`;
     sidebarItems.push({
       type: 'category',
@@ -372,22 +389,16 @@ function generateFhir() {
   }
   writeFileSync(join(OUT_FHIR, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
 
-  // Index
-  const categoryBlocks = categoryOrder
+  // Index page — group by category
+  const categoryBlocks = [...categoryOrder, 'Other']
     .filter((cat) => byCategory.has(cat))
     .map((cat) => {
-      const items = byCategory.get(cat);
+      const items = [...byCategory.get(cat)].sort((a, b) => a.name.localeCompare(b.name));
       const lines = items
-        .map((r) => `- [${r.name}](/api/fhir/${slug(cat)}/${slug(r.name)}) — ${escapeMdx(r.short)}`)
+        .map((r) => `- [${r.name}](/api/fhir/${slug(cat)}/${slug(r.name)}) — ${escapeMdx(r.description.split('\n')[0]).slice(0, 120)}`)
         .join('\n');
-      return [
-        `### ${cat}`,
-        '',
-        `*${escapeMdx(catalog.categories[cat])}*`,
-        '',
-        lines,
-        '',
-      ].join('\n');
+      const blurb = catalog.categories[cat] ?? 'Resources outside the standard FHIR R5 module decomposition.';
+      return `### ${cat}\n\n*${escapeMdx(blurb)}*\n\n${lines}\n`;
     })
     .join('\n');
 
@@ -402,9 +413,9 @@ description: The Ovok FHIR API exposes every FHIR R5 resource — Patient, Obser
 # FHIR API
 
 The FHIR API is the raw data plane. Every FHIR R5 resource type is
-mounted under a single host with the standard set of REST interactions
-— read, vread, update, patch, delete, create, search, history,
-type-history.
+mounted under \`/fhir/R5/\` on the API host with the standard set of
+REST interactions — read, vread, update, patch, delete, create, search,
+history, type-history.
 
 <ApiBase surface="fhir" inline={false} />
 
@@ -413,31 +424,119 @@ type-history.
 
 ## What's documented here
 
-This section catalogues all **${resources.length}** FHIR R5 resource types
-supported by Ovok. Each resource has its own page describing the
-endpoints, common search parameters and a link to the official FHIR R5
-specification.
+This section catalogues all **${resources.length}** FHIR R5 resource types,
+sourced directly from the official \`hl7.fhir.r5.core\` package. Each
+resource has its own page with:
+
+- **Top-level elements** with their type, cardinality and short description.
+- **Resource-specific search parameters** with their type and the
+  expression they evaluate against.
+- **Standard interaction table** — every REST verb the resource supports.
+- **Maturity badge** from the HL7 FHIR Maturity Model (FMM 0–5).
 
 ## Conventions
 
+- **Path** — \`/fhir/R5/<Resource>/[id]\` for instance-level interactions,
+  \`/fhir/R5/<Resource>?...\` for searching.
 - **Wire format** — \`application/fhir+json\` for both request and response.
 - **Versioning** — every write returns the new \`Resource.meta.versionId\`;
   use it with the read endpoint's \`_vread\` form to fetch a historical version.
-- **Searching** — all resources accept the
-  [universal FHIR search parameters](https://hl7.org/fhir/R5/search.html)
-  (\`_id\`, \`_lastUpdated\`, \`_profile\`, \`_security\`, \`_source\`, \`_tag\`,
+- **Universal search params** — all resources accept
+  [\`_id\`, \`_lastUpdated\`, \`_profile\`, \`_security\`, \`_source\`, \`_tag\`,
   \`_text\`, \`_summary\`, \`_elements\`, \`_include\`, \`_revinclude\`,
-  \`_sort\`, \`_count\`).
+  \`_sort\`, \`_count\`](https://hl7.org/fhir/R5/search.html).
 - **Maturity** — each resource carries an HL7 FHIR Maturity Model (FMM)
-  level. \`5\` is *Normative* (stable forever). \`0\`–\`4\` are *Trial Use*
-  and may change between R5 ballots.
+  level. \`5\` is *Normative* (stable forever). \`0\`–\`4\` are *Trial Use*.
 
 ## Resources by category
 
 ${categoryBlocks}
 `);
 
-  return { resources: resources.length, categories: byCategory.size };
+  return { resources: resources.length, categories: seenCategories.size };
+}
+
+function fhirResourcePage(r) {
+  const { name, category, maturity, elements, searchParams, description } = r;
+
+  const elementRows = elements.length === 0
+    ? '_No top-level elements beyond the resource base._'
+    : [
+        '| Element | Type(s) | Cardinality | Description |',
+        '| --- | --- | --- | --- |',
+        ...elements.map((e) => {
+          const typeCol = e.types.length ? e.types.map((t) => `\`${t}\``).join(' / ') : '—';
+          const tags = [
+            e.isModifier ? ' _modifier_' : '',
+            e.mustSupport ? ' _must-support_' : '',
+          ].join('');
+          return `| \`${e.name}\` | ${typeCol} | \`${e.cardinality}\` | ${escapeMdx(e.short).replace(/\n+/g, ' ')}${tags} |`;
+        }),
+      ].join('\n');
+
+  const searchRows = searchParams.length === 0
+    ? '_No resource-specific search parameters defined. Universal parameters still apply._'
+    : [
+        '| Parameter | Type | Description |',
+        '| --- | --- | --- |',
+        ...[...searchParams]
+          .sort((a, b) => a.code.localeCompare(b.code))
+          .map((sp) => `| \`${sp.code}\` | \`${sp.type}\` | ${escapeMdx(sp.description).replace(/\n+/g, ' ').slice(0, 200)} |`),
+      ].join('\n');
+
+  const blurb = description.split('\n')[0].trim();
+
+  return `---
+title: ${name}
+sidebar_label: ${name}
+description: ${JSON.stringify(blurb.slice(0, 160) || `${name} FHIR R5 resource on the Ovok API.`)}
+---
+
+# ${name}
+
+<span className="fhir-maturity" data-level="${maturity}">${MATURITY_LABEL[maturity] ?? 'Unspecified'}</span>
+<span className="fhir-category">${category}</span>
+
+${escapeMdx(description)}
+
+## Endpoints
+
+<ApiBase surface="fhir" path="/${name}" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read         | \`GET\`    | \`/fhir/R5/${name}/[id]\` |
+| Vread        | \`GET\`    | \`/fhir/R5/${name}/[id]/_history/[vid]\` |
+| Update       | \`PUT\`    | \`/fhir/R5/${name}/[id]\` |
+| Patch        | \`PATCH\`  | \`/fhir/R5/${name}/[id]\` |
+| Delete       | \`DELETE\` | \`/fhir/R5/${name}/[id]\` |
+| Create       | \`POST\`   | \`/fhir/R5/${name}\` |
+| Search       | \`GET\`    | \`/fhir/R5/${name}?...\` |
+| History      | \`GET\`    | \`/fhir/R5/${name}/[id]/_history\` |
+| Type-history | \`GET\`    | \`/fhir/R5/${name}/_history\` |
+
+All calls expect FHIR-flavoured JSON
+(\`Content-Type: application/fhir+json\`) and accept the standard
+\`Accept: application/fhir+json\` header.
+
+## Top-level elements
+
+${elementRows}
+
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+\`${name}\` supports the parameters below.
+
+${searchRows}
+
+## Reference
+
+- Official FHIR R5 spec: [\`${name}\`](https://hl7.org/fhir/R5/${name.toLowerCase()}.html)
+- Element bindings & profiles: [\`${name}\` profile](https://hl7.org/fhir/R5/${name.toLowerCase()}-definitions.html)
+- Maturity: **${MATURITY_LABEL[maturity] ?? 'Unspecified'}** (FMM ${maturity}).
+`;
 }
 
 // ─── run ──────────────────────────────────────────────────────────────

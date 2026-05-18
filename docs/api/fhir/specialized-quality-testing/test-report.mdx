@@ -1,7 +1,7 @@
 ---
 title: TestReport
 sidebar_label: TestReport
-description: Report of executed TestScripts. FHIR R5 resource, served by the Ovok FHIR API.
+description: "A summary of information based on the results of executing a TestScript."
 ---
 
 # TestReport
@@ -9,55 +9,63 @@ description: Report of executed TestScripts. FHIR R5 resource, served by the Ovo
 <span className="fhir-maturity" data-level="1">Trial Use 1</span>
 <span className="fhir-category">Specialized — Quality & Testing</span>
 
-Report of executed TestScripts.
+A summary of information based on the results of executing a TestScript.
 
 ## Endpoints
-
-The standard FHIR R5 interactions for `TestReport` are mounted under your
-selected release tier:
 
 <ApiBase surface="fhir" path="/TestReport" inline={false} />
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/TestReport/[id]` |
-| Vread        | `GET`    | `/TestReport/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/TestReport/[id]` |
-| Patch        | `PATCH`  | `/TestReport/[id]` |
-| Delete       | `DELETE` | `/TestReport/[id]` |
-| Create       | `POST`   | `/TestReport` |
-| Search       | `GET`    | `/TestReport?...` |
-| History      | `GET`    | `/TestReport/[id]/_history` |
-| Type-history | `GET`    | `/TestReport/_history` |
+| Read         | `GET`    | `/fhir/R5/TestReport/[id]` |
+| Vread        | `GET`    | `/fhir/R5/TestReport/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/fhir/R5/TestReport/[id]` |
+| Patch        | `PATCH`  | `/fhir/R5/TestReport/[id]` |
+| Delete       | `DELETE` | `/fhir/R5/TestReport/[id]` |
+| Create       | `POST`   | `/fhir/R5/TestReport` |
+| Search       | `GET`    | `/fhir/R5/TestReport?...` |
+| History      | `GET`    | `/fhir/R5/TestReport/[id]/_history` |
+| Type-history | `GET`    | `/fhir/R5/TestReport/_history` |
 
 All calls expect FHIR-flavoured JSON
 (`Content-Type: application/fhir+json`) and accept the standard
 `Accept: application/fhir+json` header.
 
-## Common search parameters
+## Top-level elements
 
-Every searchable FHIR R5 resource accepts the universal search
-parameters below, in addition to its own. See the official spec link
-for the resource-specific set.
+| Element | Type(s) | Cardinality | Description |
+| --- | --- | --- | --- |
+| `identifier` | `Identifier` | `0..1` | External identifier |
+| `name` | `string` | `0..1` | Informal name of the executed TestReport |
+| `status` | `code` | `1..1` | completed | in-progress | waiting | stopped | entered-in-error _modifier_ |
+| `testScript` | `canonical` | `1..1` | Canonical URL to the  version-specific TestScript that was executed to produce this TestReport |
+| `result` | `code` | `1..1` | pass | fail | pending |
+| `score` | `decimal` | `0..1` | The final score (percentage of tests passed) resulting from the execution of the TestScript |
+| `tester` | `string` | `0..1` | Name of the tester producing this report (Organization or individual) |
+| `issued` | `dateTime` | `0..1` | When the TestScript was executed and this TestReport was generated |
+| `participant` | `BackboneElement` | `0..*` | A participant in the test execution, either the execution engine, a client, or a server |
+| `setup` | `BackboneElement` | `0..1` | The results of the series of required setup operations before the tests were executed |
+| `test` | `BackboneElement` | `0..*` | A test executed from the test script |
+| `teardown` | `BackboneElement` | `0..1` | The results of running the series of required clean up steps |
 
-| Parameter | Meaning |
-| --- | --- |
-| `_id` | Logical id of the resource |
-| `_lastUpdated` | When the resource version last changed |
-| `_profile` | Profiles this resource claims to conform to |
-| `_security` | Security labels applied to the resource |
-| `_source` | Source system identifier |
-| `_tag` | Tags applied to the resource |
-| `_text` | Free-text search over narrative |
-| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
-| `_elements` | Comma-separated list of elements to include |
-| `_include` | Pull in referenced resources |
-| `_revinclude` | Pull in resources that reference this one |
-| `_sort` | Server sort order |
-| `_count` | Max number of matches per page |
+## Resource-specific search parameters
+
+In addition to the
+[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
+`TestReport` supports the parameters below.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `identifier` | `token` | An external identifier for the test report |
+| `issued` | `date` | The test report generation date |
+| `participant` | `uri` | The reference to a participant in the test execution |
+| `result` | `token` | The result disposition of the test execution |
+| `status` | `token` | The current status of the test report |
+| `tester` | `string` | The name of the testing organization |
+| `testscript` | `reference` | The test script executed to produce this report |
 
 ## Reference
 
 - Official FHIR R5 spec: [`TestReport`](https://hl7.org/fhir/R5/testreport.html)
-- Search parameters: [`TestReport` search params](https://hl7.org/fhir/R5/testreport.html#search)
-- Resource maturity: **Trial Use 1** (FMM 1).
+- Element bindings & profiles: [`TestReport` profile](https://hl7.org/fhir/R5/testreport-definitions.html)
+- Maturity: **Trial Use 1** (FMM 1).
