@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="69 53 102 78" aria-label="Ovok" role="img">
+  <title>Ovok</title>
+  <path fill="url(#ovok-mark-grad-1)" d="M150.351 90.657c0 16.058-8.857 30.099-21.962 37.444 1.44.144 2.808.216 4.248.216 20.81 0 37.732-16.85 37.732-37.66 0-20.81-16.922-37.732-37.732-37.732-1.44 0-2.808.072-4.248.288 13.105 7.345 21.962 21.314 21.962 37.444z"/>
+  <path fill="url(#ovok-mark-grad-2)" d="M69.703 90.657c0 20.81 16.85 37.66 37.66 37.66 20.81 0 37.731-16.85 37.731-37.66 0-20.81-16.921-37.732-37.731-37.732-20.81 0-37.66 16.922-37.66 37.732z"/>
+  <defs>
+    <linearGradient id="ovok-mark-grad-1" x1="0" x2="1" y1="0" y2="0" gradientTransform="rotate(179.766 88.308 50.445) scale(34.69839)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B2A5CD"/>
+      <stop offset="1" stop-color="#694D98"/>
+    </linearGradient>
+    <linearGradient id="ovok-mark-grad-2" x1="0" x2="1" y1="0" y2="0" gradientTransform="rotate(-165.478 74.13 40.992) scale(58.5898)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B2A5CD"/>
+      <stop offset="1" stop-color="#694D98"/>
+    </linearGradient>
+  </defs>
+</svg>
