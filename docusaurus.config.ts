@@ -4,11 +4,12 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Ovok',
-  tagline: 'Infrastructure for digital health',
-  favicon: 'img/favicon.ico',
+  tagline: 'The API platform for digital health teams',
+  favicon: 'img/favicon.svg',
 
   url: 'https://docs.ovok.com',
   baseUrl: '/',
+  trailingSlash: false,
 
   organizationName: 'Actimi',
   projectName: 'ovok-docs',
@@ -29,11 +30,77 @@ const config: Config = {
     locales: ['en'],
   },
 
-  stylesheets: [
+  headTags: [
     {
-      href: 'https://fonts.googleapis.com',
-      rel: 'preconnect',
+      tagName: 'meta',
+      attributes: {
+        name: 'description',
+        content:
+          'Ovok is the API platform for digital health teams. Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface.',
+      },
     },
+    {
+      tagName: 'meta',
+      attributes: { name: 'theme-color', content: '#694D98' },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:type',
+        content: 'website',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:site_name',
+        content: 'Ovok',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:title',
+        content: 'Ovok — The API platform for digital health teams',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:description',
+        content:
+          'Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface. One Console, one API, three release tiers.',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: { name: 'twitter:card', content: 'summary_large_image' },
+    },
+    {
+      tagName: 'link',
+      attributes: { rel: 'canonical', href: 'https://docs.ovok.com' },
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: 'Ovok — The API platform for digital health teams',
+        description:
+          'Documentation for Ovok: the Console, the Data Dashboard, the API, and the release tiers you ship against.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Actimi',
+          url: 'https://actimi.com',
+        },
+        inLanguage: 'en',
+      }),
+    },
+  ],
+
+  stylesheets: [
+    { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
     {
       href: 'https://fonts.gstatic.com',
       rel: 'preconnect',
@@ -58,12 +125,21 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.7,
+        },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
     image: 'img/ovok-social-card.png',
+    metadata: [
+      { name: 'keywords', content: 'digital health, FHIR API, healthcare platform, patient apps, clinical workflows, healthcare integrations, Ovok, Actimi' },
+      { name: 'author', content: 'Actimi GmbH' },
+      { name: 'robots', content: 'index, follow' },
+    ],
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
@@ -94,30 +170,36 @@ const config: Config = {
           label: 'Console',
           position: 'right',
         },
+        {
+          href: 'https://dashboard.ovok.com',
+          label: 'Data Dashboard',
+          position: 'right',
+        },
       ],
     },
     footer: {
       style: 'light',
       links: [
         {
-          title: 'Platform',
+          title: 'Product',
           items: [
             { label: 'Introduction', to: '/' },
-            { label: 'Architecture', to: '/platform/architecture' },
-            { label: 'Environments', to: '/platform/environments' },
+            { label: 'Platform overview', to: '/platform/overview' },
+            { label: 'Release tiers', to: '/platform/environments' },
           ],
         },
         {
           title: 'Surfaces',
           items: [
             { label: 'Console', to: '/surfaces/console' },
+            { label: 'Data Dashboard', to: '/surfaces/data-dashboard' },
           ],
         },
         {
-          title: 'External',
+          title: 'Company',
           items: [
-            { label: 'Status', href: 'https://status.ovok.com' },
             { label: 'Actimi', href: 'https://actimi.com' },
+            { label: 'Status', href: 'https://status.ovok.com' },
           ],
         },
       ],

@@ -1,25 +1,29 @@
 ---
-title: Environments
-sidebar_position: 3
-description: The alpha / beta / final contract — what each surface promises.
+title: Release tiers
+sidebar_position: 2
+description: Ovok ships three release tiers — alpha, beta and final. Each describes the maturity of the contract, not the deployment topology. Pick the right one for the work.
+keywords:
+  - Ovok release tiers
+  - alpha beta production API
+  - healthcare API environments
 ---
 
-# Environments
+# Release tiers
 
-Ovok is delivered as three release surfaces. The names are deliberate:
-they describe *maturity of the contract*, not the deployment topology.
+Ovok is delivered as three release tiers. The names describe **maturity
+of the contract**, not the underlying infrastructure.
 
-| Surface | Promise | Internal branch | API host |
-| --- | --- | --- | --- |
-| **alpha** — preview     | Bleeding edge. Endpoints can change shape day-to-day. Use when you need access to a capability before it ships. | `development` | `api.dev.ovok.com` |
-| **beta** — pre-release  | Release-candidate. Stable enough for integration tests and partner walkthroughs, but not bound by deprecation policy. | `staging` | `api.staging.ovok.com` |
-| **final** — production  | The supported contract. Breaking changes follow the deprecation policy; client integrations target this. | `master` | `api.ovok.com` |
+| Tier | Promise | API host |
+| --- | --- | --- |
+| **alpha** — preview     | Bleeding edge. Endpoints can change shape day-to-day. Use when you need access to a capability before it ships. | `api.dev.ovok.com` |
+| **beta** — pre-release  | Release-candidate. Stable enough for integration tests and partner walkthroughs, but not bound by deprecation policy. | `api.staging.ovok.com` |
+| **final** — production  | The supported contract. Breaking changes follow the deprecation policy; production integrations target this tier. | `api.ovok.com` |
 
-## Switching surfaces in these docs
+## Switching tiers in these docs
 
-The dropdown in the top-right navbar flips the active surface. Your
+The dropdown in the top-right navbar flips the active tier. Your
 selection persists across pages and reloads. Every code sample and
-`<ApiBase />` reference in the documentation updates immediately.
+`<ApiBase />` reference on the site updates immediately.
 
 Currently selected:
 
@@ -27,26 +31,30 @@ Currently selected:
 
 ## Versioning rules
 
-- **alpha → beta**: nothing automatic. A capability is promoted when
-  the platform team signs off on its shape.
-- **beta → final**: gated by an internal release checklist
-  (contract review, load profile, on-call sign-off).
-- **deprecation**: only `final` is bound by a deprecation policy.
-  Endpoints there announce a sunset date in their OpenAPI metadata; the
-  generated reference surfaces it in-line.
+- **alpha → beta** — a capability is promoted when the Ovok team signs
+  off on its shape. Nothing is automatic.
+- **beta → final** — gated by a release checklist (contract review,
+  load profile, on-call sign-off).
+- **Deprecation policy** — only `final` is bound by a deprecation
+  policy. Endpoints there announce a sunset date in the API reference;
+  clients have time to migrate before removal.
 
-## Picking a surface
+## Picking a tier
 
-- **Building something new?** Start on **alpha**. Lock to **beta** before
-  you ship to internal users.
-- **Running in production?** **final**. Don't read from `dev` or `staging`
-  hosts from production code — they are not capacity-managed for that.
-- **Writing partner integration tests?** **beta**. It's the most
+- **Building something new?** Start on **alpha**. Lock to **beta**
+  before you ship to internal users.
+- **Running in production?** **final**. The preview and pre-release
+  tiers are not capacity-managed for production traffic.
+- **Writing a partner integration test?** **beta** — the most
   representative stand-in for production short of the real thing.
 
-## Operator notes
+## Hostnames at a glance
 
-Each surface deploys from its own branch (`development` / `staging` /
-`master`). The same is true of this documentation site: a push to
-`development` in `ovok-internal` publishes to the `alpha` branch of
-this repo; `staging` → `beta`; `master` → `final`.
+Every public Ovok surface follows the same subdomain pattern. Flip the
+tier in the navbar to see the matching hostnames in context.
+
+| Surface | alpha | beta | final |
+| --- | --- | --- | --- |
+| API           | `api.dev.ovok.com`       | `api.staging.ovok.com`       | `api.ovok.com` |
+| Console       | `console.dev.ovok.com`   | `console.staging.ovok.com`   | `console.ovok.com` |
+| Data Dashboard| `dashboard.dev.ovok.com` | `dashboard.staging.ovok.com` | `dashboard.ovok.com` |

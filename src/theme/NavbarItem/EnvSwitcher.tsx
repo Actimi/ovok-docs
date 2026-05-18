@@ -68,7 +68,7 @@ export default function EnvSwitcher({ mobile = false }: Props): JSX.Element {
                 <span className={styles.dot} data-env={key} aria-hidden="true" />
                 <span className={styles.itemBody}>
                   <span className={styles.itemTitle}>{item.label}</span>
-                  <span className={styles.itemHint}>{item.apiBaseUrl}</span>
+                  <span className={styles.itemHint}>{item.hosts.api}</span>
                 </span>
                 {selected && (
                   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className={styles.check}>

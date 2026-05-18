@@ -1,9 +1,10 @@
 import { useEnv } from '@site/src/lib/useEnv';
+import type { Surface } from '@site/src/lib/env';
 import styles from './ApiBase.module.css';
 
 interface Props {
-  /** Which surface to render: api host (default), fhir host, or console. */
-  surface?: 'api' | 'fhir' | 'console';
+  /** Which surface host to render. */
+  surface?: Surface;
   /** Optional suffix appended to the base, e.g. "/Patient". */
   path?: string;
   /** Inline (no copy affordance) vs block (with copy button). */
@@ -11,16 +12,13 @@ interface Props {
 }
 
 /**
- * Renders the base URL for whichever env the visitor has selected,
- * so the same MDX page reads correctly regardless of audience.
+ * Renders the active env's hostname for the requested surface so the
+ * same MDX page reads correctly regardless of which tier the visitor
+ * has selected from the navbar switcher.
  */
 export default function ApiBase({ surface = 'api', path = '', inline = true }: Props): JSX.Element {
   const { config } = useEnv();
-  const host =
-    surface === 'fhir' ? config.fhirBaseUrl :
-    surface === 'console' ? config.consoleUrl :
-    config.apiBaseUrl;
-  const value = `${host}${path}`;
+  const value = `${config.hosts[surface]}${path}`;
 
   if (inline) {
     return <code className={styles.inline}>{value}</code>;

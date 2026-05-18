@@ -7,12 +7,13 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Platform',
       collapsed: false,
-      items: ['platform/overview', 'platform/architecture', 'platform/environments'],
+      items: ['platform/overview', 'platform/environments'],
     },
     {
       type: 'category',
       label: 'Surfaces',
-      items: ['surfaces/console'],
+      collapsed: false,
+      items: ['surfaces/console', 'surfaces/data-dashboard'],
     },
   ],
 };

@@ -1,22 +1,20 @@
 /**
  * Single source of truth for environment surfaces.
  *
- * The product names (alpha/beta/final) deliberately decouple
- * docs language from internal branch/env names so we can talk
- * about API maturity without leaking deployment terminology.
+ * Product names (alpha/beta/final) decouple the docs from internal
+ * deployment terminology. Every public hostname follows the same
+ * subdomain pattern across all three Ovok surfaces.
  */
 
 export type EnvKey = 'alpha' | 'beta' | 'final';
+export type Surface = 'api' | 'console' | 'dashboard';
 
 export interface EnvConfig {
   key: EnvKey;
   label: string;
   shortLabel: string;
   description: string;
-  apiBaseUrl: string;
-  fhirBaseUrl: string;
-  consoleUrl: string;
-  internalBranch: string;
+  hosts: Record<Surface, string>;
   maturity: 'preview' | 'pre-release' | 'production';
 }
 
@@ -26,10 +24,11 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     label: 'Alpha — preview',
     shortLabel: 'alpha',
     description: 'Bleeding-edge surface. Breaking changes can land any day.',
-    apiBaseUrl: 'https://api.dev.ovok.com',
-    fhirBaseUrl: 'https://fhir.dev.ovok.com',
-    consoleUrl: 'https://console.dev.ovok.com',
-    internalBranch: 'development',
+    hosts: {
+      api:       'https://api.dev.ovok.com',
+      console:   'https://console.dev.ovok.com',
+      dashboard: 'https://dashboard.dev.ovok.com',
+    },
     maturity: 'preview',
   },
   beta: {
@@ -37,21 +36,23 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     label: 'Beta — pre-release',
     shortLabel: 'beta',
     description: 'Release-candidate surface. Stable enough for integration testing.',
-    apiBaseUrl: 'https://api.staging.ovok.com',
-    fhirBaseUrl: 'https://fhir.staging.ovok.com',
-    consoleUrl: 'https://console.staging.ovok.com',
-    internalBranch: 'staging',
+    hosts: {
+      api:       'https://api.staging.ovok.com',
+      console:   'https://console.staging.ovok.com',
+      dashboard: 'https://dashboard.staging.ovok.com',
+    },
     maturity: 'pre-release',
   },
   final: {
     key: 'final',
-    label: 'Final — production API',
+    label: 'Final — production',
     shortLabel: 'final',
     description: 'The contract you build against. Versioned and supported.',
-    apiBaseUrl: 'https://api.ovok.com',
-    fhirBaseUrl: 'https://fhir.ovok.com',
-    consoleUrl: 'https://console.ovok.com',
-    internalBranch: 'master',
+    hosts: {
+      api:       'https://api.ovok.com',
+      console:   'https://console.ovok.com',
+      dashboard: 'https://dashboard.ovok.com',
+    },
     maturity: 'production',
   },
 };

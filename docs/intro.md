@@ -1,53 +1,85 @@
 ---
-title: Introduction
+title: Ovok — API platform for digital health
 slug: /
+sidebar_label: Introduction
 sidebar_position: 1
-description: Ovok is the API platform for digital health teams. Start here.
+description: Ovok is the API platform for digital health teams. Build patient-facing apps, clinical workflows and partner integrations on one FHIR-native surface, with three release tiers and two operator surfaces.
+keywords:
+  - digital health platform
+  - FHIR API
+  - healthcare API
+  - patient apps
+  - clinical workflows
+  - healthcare integrations
 ---
 
-# Ovok
+# Build digital health on one platform
 
-Ovok is the API platform digital health teams build on. A single Console,
-one set of credentials, three surfaces of maturity — *alpha*, *beta*, and
-*final*.
+Ovok gives digital health teams a single place to ship: a **FHIR-native API**
+for clinical and consumer apps, a **Console** for configuring projects
+and members, and a **Data Dashboard** for working with the data your
+products produce.
 
-These docs cover everything outside the application code: how the platform
-fits together, which surface to point an integration at, and how to operate
-against it from the Ovok Console.
+One platform. Three release tiers. Two operator surfaces. No
+custom backend to maintain.
 
-## The shape of these docs
+## What you can build
 
-- **Platform** — what Ovok actually is, how the moving parts connect, and
-  how the alpha/beta/final surfaces are versioned.
-- **Surfaces** — the human-facing tools you'll use day to day, starting
-  with the [Ovok Console](./surfaces/console.md).
+- **Patient-facing apps** — sign-up, intake, longitudinal records,
+  remote monitoring, secure messaging.
+- **Clinical workflows** — care plans, encounters, observations,
+  diagnostic reports, scheduling.
+- **Partner integrations** — device fleets, EHR bridges, payer
+  pipelines, analytics exports.
 
-The API reference is regenerated from the source repo whenever the
-underlying OpenAPI spec changes. It is not yet wired into the sidebar —
-that surface is being rebuilt from generated Markdown and will land on
-its own.
+If it lives in a digital health product, you can build it on Ovok
+without standing up a new server.
 
-## Pick a surface
+## How the surfaces fit together
 
-Every endpoint in these docs honours your active surface selection.
-Switch it from the navbar (top right) — the choice persists across pages
-and reloads. By default, new visitors land on **alpha** so you see the
-preview-tier hosts unless you opt into a more stable one.
+```mermaid
+flowchart LR
+  app["Your apps<br/>(patient · clinician)"]
+  api["Ovok API"]
+  team["Your team"]
+  console["Console"]
+  dashboard["Data Dashboard"]
+
+  app -->|"HTTPS"| api
+  team --> console
+  team --> dashboard
+  console -.->|"configures"| api
+  dashboard -.->|"reads + curates"| api
+
+  classDef product stroke:#694D98,stroke-width:1.5,fill:#fbfaf6,color:#161214
+  classDef external stroke-dasharray:3 2,stroke:#8a8086,fill:#fbfaf6,color:#161214
+  class api,console,dashboard product
+  class app,team external
+```
+
+The same API powers every product surface — the Console you sign in to,
+the Data Dashboard you curate from, and the apps your customers use.
+There is no second API.
+
+## Pick a release tier
+
+Every URL on this site honours the **release tier** you've selected in
+the top-right navbar. New visitors land on **alpha** by default.
 
 <ApiBase inline={false} />
 
-That value above changes the moment you flip the switcher; the rest of
-the page updates with it.
-
-| Surface | Maturity | Internal branch | When to use it |
-| --- | --- | --- | --- |
-| `alpha` | Preview | `development` | Building against an unreleased capability. Expect breakage. |
-| `beta`  | Pre-release | `staging` | Integration tests, partner walkthroughs, contract validation. |
-| `final` | Production | `master` | Production traffic. The supported contract. |
+| Tier | Maturity | When to use it |
+| --- | --- | --- |
+| **alpha** | Preview | Building against a capability before it ships. Expect change. |
+| **beta**  | Pre-release | Integration tests, partner walkthroughs, contract validation. |
+| **final** | Production | Production traffic. The supported contract. |
 
 ## What's next
 
-1. Read the [platform overview](./platform/overview.md) for the one-page
-   mental model.
-2. If you're operating the platform, jump to the
-   [Ovok Console guide](./surfaces/console.md).
+1. Read the [platform overview](./platform/overview.md) for the
+   one-page mental model.
+2. Skim the [release tiers](./platform/environments.md) page to choose
+   the surface you'll build against.
+3. Operators — jump to the [Console](./surfaces/console.md).
+4. Analysts and clinicians — head for the
+   [Data Dashboard](./surfaces/data-dashboard.md).

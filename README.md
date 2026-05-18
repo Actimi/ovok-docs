@@ -50,6 +50,6 @@ page. Implementation: `src/lib/useEnv.ts` + `src/theme/NavbarItem/EnvSwitcher.ts
 
 1. Drop a `.md` or `.mdx` file under `docs/` on the right surface branch.
 2. Add it to `sidebars.ts`.
-3. Reference `<ApiBase />`, `<ApiBase surface="fhir" />`, or
-   `<ApiBase surface="console" />` inline — they render the host for
-   whichever surface the visitor is on.
+3. Reference `<ApiBase />` (the API), `<ApiBase surface="console" />`
+   or `<ApiBase surface="dashboard" />` inline — they render the host
+   for whichever release tier the visitor is on.
