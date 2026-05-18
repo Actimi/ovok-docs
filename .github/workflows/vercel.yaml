@@ -1,0 +1,85 @@
+name: Vercel Deployment
+
+# Deploys each docs branch to its own Vercel project. Project ids per env
+# come from repo Variables; the auth token comes from repo Secrets. If either
+# the token or the branch-specific project id is missing, the deploy step
+# is skipped (no failure) so the workflow stays green during initial setup.
+
+on:
+  push:
+    branches: [dev, alpha, beta, final]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "22.x"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve Vercel project for this branch
+        id: project
+        env:
+          VT: ${{ secrets.VERCEL_TOKEN }}
+          PID_DEV:   ${{ vars.VERCEL_PROJECT_ID_DEV }}
+          PID_ALPHA: ${{ vars.VERCEL_PROJECT_ID_ALPHA }}
+          PID_BETA:  ${{ vars.VERCEL_PROJECT_ID_BETA }}
+          PID_FINAL: ${{ vars.VERCEL_PROJECT_ID_FINAL }}
+          ORG_ID:    ${{ vars.VERCEL_ORG_ID }}
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          case "$BRANCH" in
+            dev)   PROJECT_ID="$PID_DEV";   TIER="Dev (sandbox)" ;;
+            alpha) PROJECT_ID="$PID_ALPHA"; TIER="Alpha (preview)" ;;
+            beta)  PROJECT_ID="$PID_BETA";  TIER="Beta (pre-release)" ;;
+            final) PROJECT_ID="$PID_FINAL"; TIER="Final (production)" ;;
+            *)
+              echo "Unknown branch '$BRANCH' — skipping deploy."
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+              ;;
+          esac
+          MISSING=""
+          [ -z "$VT" ]        && MISSING="$MISSING VERCEL_TOKEN"
+          [ -z "$ORG_ID" ]    && MISSING="$MISSING VERCEL_ORG_ID"
+          [ -z "$PROJECT_ID" ] && MISSING="$MISSING VERCEL_PROJECT_ID_$(echo "$BRANCH" | tr a-z A-Z)"
+          if [ -n "$MISSING" ]; then
+            echo "::warning::Skipping Vercel deploy for $TIER — missing:$MISSING"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "VERCEL_PROJECT_ID=$PROJECT_ID" >> "$GITHUB_ENV"
+            echo "VERCEL_ORG_ID=$ORG_ID"         >> "$GITHUB_ENV"
+            echo "tier=$TIER"                    >> "$GITHUB_OUTPUT"
+            echo "skip=false"                    >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node
+        if: steps.project.outputs.skip != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Set up pnpm
+        if: steps.project.outputs.skip != 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        if: steps.project.outputs.skip != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Deploy to Vercel (${{ steps.project.outputs.tier }})
+        if: steps.project.outputs.skip != 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm add -g vercel@latest
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
