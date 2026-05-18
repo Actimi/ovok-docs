@@ -17,18 +17,16 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: ['surfaces/console', 'surfaces/data-dashboard'],
     },
-  ],
-  api: [
     {
       type: 'category',
       label: 'High Level API',
-      collapsed: false,
+      collapsed: true,
       items: highLevelSidebar as never,
     },
     {
       type: 'category',
       label: 'FHIR API',
-      collapsed: false,
+      collapsed: true,
       items: fhirSidebar as never,
     },
   ],

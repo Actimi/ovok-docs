@@ -127,7 +127,6 @@ const config: Config = {
       logo: { alt: 'Ovok', src: 'img/logo.svg' },
       items: [
         { type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs' },
-        { type: 'docSidebar', sidebarId: 'api',  position: 'left', label: 'API' },
         { type: 'custom-envSwitcher', position: 'right' },
         { href: 'https://console.ovok.com',   label: 'Console',         position: 'right' },
         { href: 'https://dashboard.ovok.com', label: 'Data Dashboard',  position: 'right' },
