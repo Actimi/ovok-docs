@@ -27,6 +27,7 @@ const REPO_ROOT = join(__dirname, '..');
 // endpoint ships in alpha + beta but not final yet" at a glance.
 const SPEC_PATH       = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
 const ENV_SPEC_PATHS  = {
+  dev:   join(REPO_ROOT, 'openapi/dev-public.yaml'),
   alpha: join(REPO_ROOT, 'openapi/alpha-public.yaml'),
   beta:  join(REPO_ROOT, 'openapi/beta-public.yaml'),
   final: join(REPO_ROOT, 'openapi/final-public.yaml'),
@@ -348,9 +349,9 @@ The full machine-readable spec is at
 
   // Cross-env availability matrix. If any of the env-specific specs exist,
   // index every (method, path) they contain. The manifest entry below then
-  // records availableIn=['alpha','beta','final'] (or a subset) per endpoint.
-  // When no env-specific specs exist (local dev with just the primary YAML),
-  // every endpoint defaults to all three envs.
+  // records availableIn=['dev','alpha','beta','final'] (or a subset) per
+  // endpoint. When no env-specific specs exist (local dev with just the
+  // primary YAML), every endpoint defaults to all four envs.
   const envAvail = new Map(); // `${METHOD} ${path}` → Set<envKey>
   const envsPresent = [];
   for (const [envKey, p] of Object.entries(ENV_SPEC_PATHS)) {
@@ -366,7 +367,7 @@ The full machine-readable spec is at
       }
     }
   }
-  const ALL_ENVS = ['alpha', 'beta', 'final'];
+  const ALL_ENVS = ['dev', 'alpha', 'beta', 'final'];
   const availabilityFor = (method, path) => {
     if (envsPresent.length === 0) return [...ALL_ENVS]; // no env specs → assume everywhere
     return ALL_ENVS.filter((e) => envAvail.get(`${method} ${path}`)?.has(e));
