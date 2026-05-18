@@ -1,0 +1,63 @@
+---
+title: ObservationDefinition
+sidebar_label: ObservationDefinition
+description: Definition of an Observation that may be performed. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# ObservationDefinition
+
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-category">Specialized — Quality & Testing</span>
+
+Definition of an Observation that may be performed.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `ObservationDefinition` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/ObservationDefinition" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/ObservationDefinition/[id]` |
+| Vread      | `GET`    | `/ObservationDefinition/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/ObservationDefinition/[id]` |
+| Patch      | `PATCH`  | `/ObservationDefinition/[id]` |
+| Delete     | `DELETE` | `/ObservationDefinition/[id]` |
+| Create     | `POST`   | `/ObservationDefinition` |
+| Search     | `GET`    | `/ObservationDefinition?...` |
+| History    | `GET`    | `/ObservationDefinition/[id]/_history` |
+| Type-history | `GET`  | `/ObservationDefinition/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`ObservationDefinition`](https://hl7.org/fhir/R5/observationdefinition.html)
+- Search parameters: [`ObservationDefinition` search params](https://hl7.org/fhir/R5/observationdefinition.html#search)
+- Resource maturity: **Trial Use 1** (FMM 1).

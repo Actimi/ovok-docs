@@ -1,0 +1,890 @@
+[
+  {
+    "type": "doc",
+    "id": "api/fhir/index",
+    "label": "Overview"
+  },
+  {
+    "type": "category",
+    "label": "Foundation",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/auditevent",
+        "label": "AuditEvent"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/basic",
+        "label": "Basic"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/binary",
+        "label": "Binary"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/bundle",
+        "label": "Bundle"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/composition",
+        "label": "Composition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/consent",
+        "label": "Consent"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/documentreference",
+        "label": "DocumentReference"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/linkage",
+        "label": "Linkage"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/list",
+        "label": "List"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/messageheader",
+        "label": "MessageHeader"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/operationoutcome",
+        "label": "OperationOutcome"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/parameters",
+        "label": "Parameters"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/permission",
+        "label": "Permission"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/provenance",
+        "label": "Provenance"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/subscription",
+        "label": "Subscription"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/subscriptionstatus",
+        "label": "SubscriptionStatus"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/foundation/subscriptiontopic",
+        "label": "SubscriptionTopic"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Base",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/base/endpoint",
+        "label": "Endpoint"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/group",
+        "label": "Group"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/healthcareservice",
+        "label": "HealthcareService"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/location",
+        "label": "Location"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/organization",
+        "label": "Organization"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/organizationaffiliation",
+        "label": "OrganizationAffiliation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/patient",
+        "label": "Patient"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/person",
+        "label": "Person"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/practitioner",
+        "label": "Practitioner"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/practitionerrole",
+        "label": "PractitionerRole"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/base/relatedperson",
+        "label": "RelatedPerson"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Clinical — Summary",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/allergyintolerance",
+        "label": "AllergyIntolerance"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/clinicalimpression",
+        "label": "ClinicalImpression"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/condition",
+        "label": "Condition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/familymemberhistory",
+        "label": "FamilyMemberHistory"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/goal",
+        "label": "Goal"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/procedure",
+        "label": "Procedure"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-summary/riskassessment",
+        "label": "RiskAssessment"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Clinical — Diagnostics",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/bodystructure",
+        "label": "BodyStructure"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/diagnosticreport",
+        "label": "DiagnosticReport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/genomicstudy",
+        "label": "GenomicStudy"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/imagingselection",
+        "label": "ImagingSelection"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/imagingstudy",
+        "label": "ImagingStudy"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/molecularsequence",
+        "label": "MolecularSequence"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/observation",
+        "label": "Observation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/questionnaire",
+        "label": "Questionnaire"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/questionnaireresponse",
+        "label": "QuestionnaireResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-diagnostics/specimen",
+        "label": "Specimen"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Clinical — Medications",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/formularyitem",
+        "label": "FormularyItem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/immunization",
+        "label": "Immunization"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/immunizationevaluation",
+        "label": "ImmunizationEvaluation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/immunizationrecommendation",
+        "label": "ImmunizationRecommendation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medication",
+        "label": "Medication"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medicationadministration",
+        "label": "MedicationAdministration"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medicationdispense",
+        "label": "MedicationDispense"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medicationknowledge",
+        "label": "MedicationKnowledge"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medicationrequest",
+        "label": "MedicationRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-medications/medicationstatement",
+        "label": "MedicationStatement"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Clinical — Care Provision",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/careplan",
+        "label": "CarePlan"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/careteam",
+        "label": "CareTeam"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/communication",
+        "label": "Communication"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/communicationrequest",
+        "label": "CommunicationRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/devicerequest",
+        "label": "DeviceRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/encounter",
+        "label": "Encounter"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/encounterhistory",
+        "label": "EncounterHistory"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/episodeofcare",
+        "label": "EpisodeOfCare"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/flag",
+        "label": "Flag"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/guidanceresponse",
+        "label": "GuidanceResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/nutritionintake",
+        "label": "NutritionIntake"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/nutritionorder",
+        "label": "NutritionOrder"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/requestorchestration",
+        "label": "RequestOrchestration"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/servicerequest",
+        "label": "ServiceRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/supplydelivery",
+        "label": "SupplyDelivery"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/supplyrequest",
+        "label": "SupplyRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/clinical-care-provision/visionprescription",
+        "label": "VisionPrescription"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Workflow",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/appointment",
+        "label": "Appointment"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/appointmentresponse",
+        "label": "AppointmentResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/schedule",
+        "label": "Schedule"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/slot",
+        "label": "Slot"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/task",
+        "label": "Task"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/transport",
+        "label": "Transport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/workflow/verificationresult",
+        "label": "VerificationResult"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Financial",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/account",
+        "label": "Account"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/chargeitem",
+        "label": "ChargeItem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/chargeitemdefinition",
+        "label": "ChargeItemDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/claim",
+        "label": "Claim"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/claimresponse",
+        "label": "ClaimResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/contract",
+        "label": "Contract"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/coverage",
+        "label": "Coverage"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/coverageeligibilityrequest",
+        "label": "CoverageEligibilityRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/coverageeligibilityresponse",
+        "label": "CoverageEligibilityResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/enrollmentrequest",
+        "label": "EnrollmentRequest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/enrollmentresponse",
+        "label": "EnrollmentResponse"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/explanationofbenefit",
+        "label": "ExplanationOfBenefit"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/insuranceplan",
+        "label": "InsurancePlan"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/insuranceproduct",
+        "label": "InsuranceProduct"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/invoice",
+        "label": "Invoice"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/paymentnotice",
+        "label": "PaymentNotice"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/financial/paymentreconciliation",
+        "label": "PaymentReconciliation"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Specialized — Public Health & Research",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/adverseevent",
+        "label": "AdverseEvent"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/biologicallyderivedproduct",
+        "label": "BiologicallyDerivedProduct"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/biologicallyderivedproductdispense",
+        "label": "BiologicallyDerivedProductDispense"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/detectedissue",
+        "label": "DetectedIssue"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/evidence",
+        "label": "Evidence"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/evidencereport",
+        "label": "EvidenceReport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/evidencevariable",
+        "label": "EvidenceVariable"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/nutritionproduct",
+        "label": "NutritionProduct"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/researchstudy",
+        "label": "ResearchStudy"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/researchsubject",
+        "label": "ResearchSubject"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-public-health-research/substance",
+        "label": "Substance"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Specialized — Devices",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/device",
+        "label": "Device"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/deviceassociation",
+        "label": "DeviceAssociation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/devicedefinition",
+        "label": "DeviceDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/devicedispense",
+        "label": "DeviceDispense"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/devicemetric",
+        "label": "DeviceMetric"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-devices/deviceusage",
+        "label": "DeviceUsage"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Specialized — Quality & Testing",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/activitydefinition",
+        "label": "ActivityDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/eventdefinition",
+        "label": "EventDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/library",
+        "label": "Library"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/measure",
+        "label": "Measure"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/measurereport",
+        "label": "MeasureReport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/observationdefinition",
+        "label": "ObservationDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/plandefinition",
+        "label": "PlanDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/specimendefinition",
+        "label": "SpecimenDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/testplan",
+        "label": "TestPlan"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/testreport",
+        "label": "TestReport"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-quality-testing/testscript",
+        "label": "TestScript"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Specialized — Medication Definition",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/administrableproductdefinition",
+        "label": "AdministrableProductDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/clinicalusedefinition",
+        "label": "ClinicalUseDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/ingredient",
+        "label": "Ingredient"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/manufactureditemdefinition",
+        "label": "ManufacturedItemDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/medicinalproductdefinition",
+        "label": "MedicinalProductDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/packagedproductdefinition",
+        "label": "PackagedProductDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/regulatedauthorization",
+        "label": "RegulatedAuthorization"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substancedefinition",
+        "label": "SubstanceDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substancenucleicacid",
+        "label": "SubstanceNucleicAcid"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substancepolymer",
+        "label": "SubstancePolymer"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substanceprotein",
+        "label": "SubstanceProtein"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substancereferenceinformation",
+        "label": "SubstanceReferenceInformation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/specialized-medication-definition/substancesourcematerial",
+        "label": "SubstanceSourceMaterial"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Terminology",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/codesystem",
+        "label": "CodeSystem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/conceptmap",
+        "label": "ConceptMap"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/namingsystem",
+        "label": "NamingSystem"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/terminologycapabilities",
+        "label": "TerminologyCapabilities"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/terminology/valueset",
+        "label": "ValueSet"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Conformance",
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/actordefinition",
+        "label": "ActorDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/artifactassessment",
+        "label": "ArtifactAssessment"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/capabilitystatement",
+        "label": "CapabilityStatement"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/citation",
+        "label": "Citation"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/compartmentdefinition",
+        "label": "CompartmentDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/conditiondefinition",
+        "label": "ConditionDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/examplescenario",
+        "label": "ExampleScenario"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/graphdefinition",
+        "label": "GraphDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/implementationguide",
+        "label": "ImplementationGuide"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/messagedefinition",
+        "label": "MessageDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/operationdefinition",
+        "label": "OperationDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/requirements",
+        "label": "Requirements"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/searchparameter",
+        "label": "SearchParameter"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/structuredefinition",
+        "label": "StructureDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/conformance/structuremap",
+        "label": "StructureMap"
+      }
+    ]
+  }
+]

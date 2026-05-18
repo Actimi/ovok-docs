@@ -1,0 +1,63 @@
+---
+title: Patient
+sidebar_label: Patient
+description: Demographics and other administrative information about a recipient of care. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Patient
+
+<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-category">Base</span>
+
+Demographics and other administrative information about a recipient of care.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Patient` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Patient" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Patient/[id]` |
+| Vread      | `GET`    | `/Patient/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Patient/[id]` |
+| Patch      | `PATCH`  | `/Patient/[id]` |
+| Delete     | `DELETE` | `/Patient/[id]` |
+| Create     | `POST`   | `/Patient` |
+| Search     | `GET`    | `/Patient?...` |
+| History    | `GET`    | `/Patient/[id]/_history` |
+| Type-history | `GET`  | `/Patient/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Patient`](https://hl7.org/fhir/R5/patient.html)
+- Search parameters: [`Patient` search params](https://hl7.org/fhir/R5/patient.html#search)
+- Resource maturity: **Normative** (FMM 5).

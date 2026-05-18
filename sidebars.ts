@@ -1,5 +1,6 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
-import apiItems from './docs/api/reference/sidebar.json';
+import highLevelSidebar from './docs/api/high-level/sidebar.json';
+import fhirSidebar from './docs/api/fhir/sidebar.json';
 
 const sidebars: SidebarsConfig = {
   docs: [
@@ -17,7 +18,20 @@ const sidebars: SidebarsConfig = {
       items: ['surfaces/console', 'surfaces/data-dashboard'],
     },
   ],
-  api: apiItems as SidebarsConfig[string],
+  api: [
+    {
+      type: 'category',
+      label: 'High Level API',
+      collapsed: false,
+      items: highLevelSidebar as never,
+    },
+    {
+      type: 'category',
+      label: 'FHIR API',
+      collapsed: false,
+      items: fhirSidebar as never,
+    },
+  ],
 };
 
 export default sidebars;

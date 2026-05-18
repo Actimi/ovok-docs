@@ -1,0 +1,63 @@
+---
+title: Goal
+sidebar_label: Goal
+description: Intended objective for a patient. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Goal
+
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-category">Clinical — Summary</span>
+
+Intended objective for a patient.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Goal` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Goal" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Goal/[id]` |
+| Vread      | `GET`    | `/Goal/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Goal/[id]` |
+| Patch      | `PATCH`  | `/Goal/[id]` |
+| Delete     | `DELETE` | `/Goal/[id]` |
+| Create     | `POST`   | `/Goal` |
+| Search     | `GET`    | `/Goal?...` |
+| History    | `GET`    | `/Goal/[id]/_history` |
+| Type-history | `GET`  | `/Goal/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Goal`](https://hl7.org/fhir/R5/goal.html)
+- Search parameters: [`Goal` search params](https://hl7.org/fhir/R5/goal.html#search)
+- Resource maturity: **Trial Use 2** (FMM 2).

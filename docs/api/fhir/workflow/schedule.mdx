@@ -1,0 +1,63 @@
+---
+title: Schedule
+sidebar_label: Schedule
+description: Availability of a resource for scheduling. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Schedule
+
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
+<span className="fhir-category">Workflow</span>
+
+Availability of a resource for scheduling.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Schedule` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Schedule" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Schedule/[id]` |
+| Vread      | `GET`    | `/Schedule/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Schedule/[id]` |
+| Patch      | `PATCH`  | `/Schedule/[id]` |
+| Delete     | `DELETE` | `/Schedule/[id]` |
+| Create     | `POST`   | `/Schedule` |
+| Search     | `GET`    | `/Schedule?...` |
+| History    | `GET`    | `/Schedule/[id]/_history` |
+| Type-history | `GET`  | `/Schedule/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Schedule`](https://hl7.org/fhir/R5/schedule.html)
+- Search parameters: [`Schedule` search params](https://hl7.org/fhir/R5/schedule.html#search)
+- Resource maturity: **Trial Use 3** (FMM 3).

@@ -1,0 +1,63 @@
+---
+title: Flag
+sidebar_label: Flag
+description: Prospective warning of a clinical concern. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Flag
+
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-category">Clinical — Care Provision</span>
+
+Prospective warning of a clinical concern.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Flag` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Flag" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Flag/[id]` |
+| Vread      | `GET`    | `/Flag/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Flag/[id]` |
+| Patch      | `PATCH`  | `/Flag/[id]` |
+| Delete     | `DELETE` | `/Flag/[id]` |
+| Create     | `POST`   | `/Flag` |
+| Search     | `GET`    | `/Flag?...` |
+| History    | `GET`    | `/Flag/[id]/_history` |
+| Type-history | `GET`  | `/Flag/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Flag`](https://hl7.org/fhir/R5/flag.html)
+- Search parameters: [`Flag` search params](https://hl7.org/fhir/R5/flag.html#search)
+- Resource maturity: **Trial Use 1** (FMM 1).

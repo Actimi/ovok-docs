@@ -83,3 +83,8 @@ the top-right navbar. New visitors land on **alpha** by default.
 3. Operators — jump to the [Console](./surfaces/console.md).
 4. Analysts and clinicians — head for the
    [Data Dashboard](./surfaces/data-dashboard.md).
+5. Builders — pick an API surface:
+   - [**High Level API**](./api/high-level/index.mdx) — auth, projects,
+     content, billing, devices, signals. The convenience layer.
+   - [**FHIR API**](./api/fhir/index.mdx) — every FHIR R5 resource,
+     served with the standard FHIR REST interactions.

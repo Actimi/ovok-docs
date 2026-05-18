@@ -1,0 +1,63 @@
+---
+title: Transport
+sidebar_label: Transport
+description: Record of moving an item from one location to another. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Transport
+
+<span className="fhir-maturity" data-level="0">Draft</span>
+<span className="fhir-category">Workflow</span>
+
+Record of moving an item from one location to another.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Transport` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Transport" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Transport/[id]` |
+| Vread      | `GET`    | `/Transport/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Transport/[id]` |
+| Patch      | `PATCH`  | `/Transport/[id]` |
+| Delete     | `DELETE` | `/Transport/[id]` |
+| Create     | `POST`   | `/Transport` |
+| Search     | `GET`    | `/Transport?...` |
+| History    | `GET`    | `/Transport/[id]/_history` |
+| Type-history | `GET`  | `/Transport/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Transport`](https://hl7.org/fhir/R5/transport.html)
+- Search parameters: [`Transport` search params](https://hl7.org/fhir/R5/transport.html#search)
+- Resource maturity: **Draft** (FMM 0).

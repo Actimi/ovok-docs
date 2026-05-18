@@ -352,6 +352,38 @@ code {
 [data-theme='dark'] .api-method.patch  { color: #d4b066; }
 [data-theme='dark'] .api-method.delete { color: #e07a80; }
 
+/* ─── FHIR resource badges ──────────────────────────────────────────── */
+
+.fhir-maturity,
+.fhir-category {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  margin: 0 0.4rem 0.4rem 0;
+  border-radius: var(--radius-xs);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line);
+  background: var(--paper-quiet);
+  color: var(--ink-2);
+}
+
+.fhir-maturity[data-level="5"] { color: var(--signal-ok);    border-color: color-mix(in srgb, var(--signal-ok) 30%, var(--line)); }
+.fhir-maturity[data-level="4"] { color: var(--ovok-deep);    border-color: color-mix(in srgb, var(--ovok-deep) 25%, var(--line)); }
+.fhir-maturity[data-level="3"] { color: var(--ovok-deep);    border-color: color-mix(in srgb, var(--ovok-deep) 22%, var(--line)); }
+.fhir-maturity[data-level="2"] { color: var(--signal-warn);  border-color: color-mix(in srgb, var(--signal-warn) 25%, var(--line)); }
+.fhir-maturity[data-level="1"] { color: var(--signal-warn);  border-color: color-mix(in srgb, var(--signal-warn) 20%, var(--line)); }
+.fhir-maturity[data-level="0"] { color: var(--ink-3); }
+
+[data-theme='dark'] .fhir-maturity[data-level="5"] { color: #6cc593; }
+[data-theme='dark'] .fhir-maturity[data-level="4"],
+[data-theme='dark'] .fhir-maturity[data-level="3"] { color: var(--ovok-light); }
+[data-theme='dark'] .fhir-maturity[data-level="2"],
+[data-theme='dark'] .fhir-maturity[data-level="1"] { color: #e0a35a; }
+
+.fhir-category { color: var(--ink-3); text-transform: none; letter-spacing: 0; }
+
 /* ─── Scrollbar (subtle) ────────────────────────────────────────────── */
 
 @media (pointer: fine) {

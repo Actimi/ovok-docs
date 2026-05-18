@@ -1,0 +1,267 @@
+---
+title: FHIR API
+sidebar_position: 1
+description: The Ovok FHIR API exposes every FHIR R5 resource — Patient, Observation, Encounter, CarePlan and the rest — under one host, with the standard set of FHIR interactions on each.
+---
+
+# FHIR API
+
+The FHIR API is the raw data plane. Every FHIR R5 resource type is
+mounted under a single host with the standard set of REST interactions
+— read, vread, update, patch, delete, create, search, history.
+
+<ApiBase surface="fhir" inline={false} />
+
+> Looking for higher-level workflows (auth, projects, billing, content)?
+> See the [High Level API](/api/high-level).
+
+## What's documented here
+
+This section catalogues all **157** FHIR R5 resource types
+supported by Ovok. Each resource has its own page describing the
+endpoints, common search parameters and a link to the official FHIR R5
+specification.
+
+## Conventions
+
+- **Wire format** — `application/fhir+json` for both request and response.
+- **Versioning** — every write returns the new `Resource.meta.versionId`;
+  use it with the read endpoint's `_vread` form to fetch a historical version.
+- **Searching** — all resources accept the
+  [universal FHIR search parameters](https://hl7.org/fhir/R5/search.html)
+  (`_id`, `_lastUpdated`, `_profile`, `_security`, `_source`, `_tag`,
+  `_text`, `_summary`, `_elements`, `_include`, `_revinclude`,
+  `_sort`, `_count`).
+- **Maturity** — each resource carries an HL7 FHIR Maturity Model (FMM)
+  level. `5` is *Normative* (stable forever). `0`–`4` are *Trial Use*
+  and may change between R5 ballots.
+
+## Resources by category
+
+### Foundation
+
+*Cross-resource infrastructure — versioning, conformance, terminology binding, capabilities.*
+
+- [AuditEvent](/api/fhir/foundation/auditevent) — Record of system actions for security and audit.
+- [Basic](/api/fhir/foundation/basic) — Container for resource types that don't yet have a defined shape.
+- [Binary](/api/fhir/foundation/binary) — Raw binary content (image, PDF, etc.).
+- [Bundle](/api/fhir/foundation/bundle) — Container for collections of resources.
+- [Composition](/api/fhir/foundation/composition) — Coherent set of resources forming a clinical document.
+- [Consent](/api/fhir/foundation/consent) — Patient's directive permitting / restricting use of data.
+- [DocumentReference](/api/fhir/foundation/documentreference) — Reference to a document made available for retrieval.
+- [Linkage](/api/fhir/foundation/linkage) — Linkage between multiple resources referring to the same thing.
+- [List](/api/fhir/foundation/list) — Ordered collection of references to resources.
+- [MessageHeader](/api/fhir/foundation/messageheader) — Header for a FHIR messaging exchange.
+- [OperationOutcome](/api/fhir/foundation/operationoutcome) — Information about success or failure of an action.
+- [Parameters](/api/fhir/foundation/parameters) — Parameter set for invoking an operation.
+- [Permission](/api/fhir/foundation/permission) — Permission resource holding access rules.
+- [Provenance](/api/fhir/foundation/provenance) — Audit trail of who, when, why for resource changes.
+- [Subscription](/api/fhir/foundation/subscription) — Notification request when content changes.
+- [SubscriptionStatus](/api/fhir/foundation/subscriptionstatus) — Status of a Subscription notification stream.
+- [SubscriptionTopic](/api/fhir/foundation/subscriptiontopic) — Definition of an event that subscriptions can subscribe to.
+
+### Base
+
+*People, places and organisations participating in care.*
+
+- [Endpoint](/api/fhir/base/endpoint) — Technical details of an endpoint that can be contacted.
+- [Group](/api/fhir/base/group) — Group of entities — patients, practitioners, devices.
+- [HealthcareService](/api/fhir/base/healthcareservice) — Service offered by a healthcare provider.
+- [Location](/api/fhir/base/location) — Physical place where services are provided.
+- [Organization](/api/fhir/base/organization) — Formal group recognised as an organisation.
+- [OrganizationAffiliation](/api/fhir/base/organizationaffiliation) — Relationship between two organisations.
+- [Patient](/api/fhir/base/patient) — Demographics and other administrative information about a recipient of care.
+- [Person](/api/fhir/base/person) — A generic person — linked across roles.
+- [Practitioner](/api/fhir/base/practitioner) — A person involved in the provision of healthcare.
+- [PractitionerRole](/api/fhir/base/practitionerrole) — Role a Practitioner performs at an Organisation.
+- [RelatedPerson](/api/fhir/base/relatedperson) — A person related to a patient but not a direct target of care.
+
+### Clinical — Summary
+
+*Patient-summary content. The longitudinal clinical picture.*
+
+- [AllergyIntolerance](/api/fhir/clinical-summary/allergyintolerance) — Risk of adverse reaction to a substance.
+- [ClinicalImpression](/api/fhir/clinical-summary/clinicalimpression) — Clinician's assessment of a patient's state.
+- [Condition](/api/fhir/clinical-summary/condition) — Clinical condition, problem, diagnosis or finding.
+- [FamilyMemberHistory](/api/fhir/clinical-summary/familymemberhistory) — Significant health history of a family member.
+- [Goal](/api/fhir/clinical-summary/goal) — Intended objective for a patient.
+- [Procedure](/api/fhir/clinical-summary/procedure) — An action performed on or for a patient.
+- [RiskAssessment](/api/fhir/clinical-summary/riskassessment) — Potential outcomes for a patient with given risks.
+
+### Clinical — Diagnostics
+
+*Observations, reports, imaging, genomics.*
+
+- [BodyStructure](/api/fhir/clinical-diagnostics/bodystructure) — Anatomical / biological structure of the subject.
+- [DiagnosticReport](/api/fhir/clinical-diagnostics/diagnosticreport) — Findings of a diagnostic test.
+- [GenomicStudy](/api/fhir/clinical-diagnostics/genomicstudy) — Genomic analysis study.
+- [ImagingSelection](/api/fhir/clinical-diagnostics/imagingselection) — Selection of images from a study.
+- [ImagingStudy](/api/fhir/clinical-diagnostics/imagingstudy) — Set of medical images organised in a study.
+- [MolecularSequence](/api/fhir/clinical-diagnostics/molecularsequence) — Representation of a molecular sequence.
+- [Observation](/api/fhir/clinical-diagnostics/observation) — Measurement or assertion about a patient.
+- [Questionnaire](/api/fhir/clinical-diagnostics/questionnaire) — Structured set of questions.
+- [QuestionnaireResponse](/api/fhir/clinical-diagnostics/questionnaireresponse) — Answers to a Questionnaire.
+- [Specimen](/api/fhir/clinical-diagnostics/specimen) — Sample to be used for analysis.
+
+### Clinical — Medications
+
+*Medications, immunizations, dispensing, ordering.*
+
+- [FormularyItem](/api/fhir/clinical-medications/formularyitem) — Available item in a medication formulary.
+- [Immunization](/api/fhir/clinical-medications/immunization) — Record of an immunization administered.
+- [ImmunizationEvaluation](/api/fhir/clinical-medications/immunizationevaluation) — Evaluation of an Immunization against a schedule.
+- [ImmunizationRecommendation](/api/fhir/clinical-medications/immunizationrecommendation) — Patient-specific recommendations for immunizations.
+- [Medication](/api/fhir/clinical-medications/medication) — Definition of a medication for prescribing / dispensing.
+- [MedicationAdministration](/api/fhir/clinical-medications/medicationadministration) — Record that a medication was given to a patient.
+- [MedicationDispense](/api/fhir/clinical-medications/medicationdispense) — Provision of a medication to a patient.
+- [MedicationKnowledge](/api/fhir/clinical-medications/medicationknowledge) — Detailed knowledge about a medication.
+- [MedicationRequest](/api/fhir/clinical-medications/medicationrequest) — Order or request for supply / administration of a medication.
+- [MedicationStatement](/api/fhir/clinical-medications/medicationstatement) — Record of medication a patient is taking.
+
+### Clinical — Care Provision
+
+*Care plans, encounters, requests, communications.*
+
+- [CarePlan](/api/fhir/clinical-care-provision/careplan) — Plan to provide care for a patient.
+- [CareTeam](/api/fhir/clinical-care-provision/careteam) — Set of practitioners participating in care for a patient.
+- [Communication](/api/fhir/clinical-care-provision/communication) — A record of a communication between participants.
+- [CommunicationRequest](/api/fhir/clinical-care-provision/communicationrequest) — Request that a communication take place.
+- [DeviceRequest](/api/fhir/clinical-care-provision/devicerequest) — Request to supply or use a Device.
+- [Encounter](/api/fhir/clinical-care-provision/encounter) — An interaction during which services are provided.
+- [EncounterHistory](/api/fhir/clinical-care-provision/encounterhistory) — Status change history for an Encounter.
+- [EpisodeOfCare](/api/fhir/clinical-care-provision/episodeofcare) — Association of patient with care over a period of time.
+- [Flag](/api/fhir/clinical-care-provision/flag) — Prospective warning of a clinical concern.
+- [GuidanceResponse](/api/fhir/clinical-care-provision/guidanceresponse) — Response from a clinical decision support module.
+- [NutritionIntake](/api/fhir/clinical-care-provision/nutritionintake) — Record of food / fluid consumed by a patient.
+- [NutritionOrder](/api/fhir/clinical-care-provision/nutritionorder) — Order for nutrition for a patient.
+- [RequestOrchestration](/api/fhir/clinical-care-provision/requestorchestration) — Coordinated set of requests forming a single intent.
+- [ServiceRequest](/api/fhir/clinical-care-provision/servicerequest) — Request for a procedure, diagnostic, or other service.
+- [SupplyDelivery](/api/fhir/clinical-care-provision/supplydelivery) — Record of delivery of a supply.
+- [SupplyRequest](/api/fhir/clinical-care-provision/supplyrequest) — Request for a supply of items.
+- [VisionPrescription](/api/fhir/clinical-care-provision/visionprescription) — Prescription for vision correction.
+
+### Workflow
+
+*Scheduling, tasks and verification.*
+
+- [Appointment](/api/fhir/workflow/appointment) — Booking of a healthcare event at a time.
+- [AppointmentResponse](/api/fhir/workflow/appointmentresponse) — Reply to a participation request for an Appointment.
+- [Schedule](/api/fhir/workflow/schedule) — Availability of a resource for scheduling.
+- [Slot](/api/fhir/workflow/slot) — Slot of time on a Schedule that may be available.
+- [Task](/api/fhir/workflow/task) — A unit of work to be performed.
+- [Transport](/api/fhir/workflow/transport) — Record of moving an item from one location to another.
+- [VerificationResult](/api/fhir/workflow/verificationresult) — Description of verification of a piece of data.
+
+### Financial
+
+*Coverage, claims, payments, billing.*
+
+- [Account](/api/fhir/financial/account) — Tracks balance, charges, for a patient or encounter.
+- [ChargeItem](/api/fhir/financial/chargeitem) — Item billable to a patient or insurer.
+- [ChargeItemDefinition](/api/fhir/financial/chargeitemdefinition) — Definition of a billable item.
+- [Claim](/api/fhir/financial/claim) — Statement of services for adjudication.
+- [ClaimResponse](/api/fhir/financial/claimresponse) — Adjudication response to a Claim.
+- [Contract](/api/fhir/financial/contract) — Legally binding agreement between parties.
+- [Coverage](/api/fhir/financial/coverage) — Insurance or payment plan covering a patient.
+- [CoverageEligibilityRequest](/api/fhir/financial/coverageeligibilityrequest) — Request to determine coverage eligibility.
+- [CoverageEligibilityResponse](/api/fhir/financial/coverageeligibilityresponse) — Eligibility response to a Coverage request.
+- [EnrollmentRequest](/api/fhir/financial/enrollmentrequest) — Request to enroll someone in coverage.
+- [EnrollmentResponse](/api/fhir/financial/enrollmentresponse) — Response to an EnrollmentRequest.
+- [ExplanationOfBenefit](/api/fhir/financial/explanationofbenefit) — Detailed adjudication of a claim.
+- [InsurancePlan](/api/fhir/financial/insuranceplan) — Description of insurance plan offerings.
+- [InsuranceProduct](/api/fhir/financial/insuranceproduct) — Insurance product (plan family / template).
+- [Invoice](/api/fhir/financial/invoice) — Itemised invoice issued to a payer.
+- [PaymentNotice](/api/fhir/financial/paymentnotice) — Notice of payment between parties.
+- [PaymentReconciliation](/api/fhir/financial/paymentreconciliation) — Provider payment details.
+
+### Specialized — Public Health & Research
+
+*Adverse events, biospecimens, research subjects, evidence.*
+
+- [AdverseEvent](/api/fhir/specialized-public-health-research/adverseevent) — Event that may be related to a subject's care.
+- [BiologicallyDerivedProduct](/api/fhir/specialized-public-health-research/biologicallyderivedproduct) — Material derived from a biological source.
+- [BiologicallyDerivedProductDispense](/api/fhir/specialized-public-health-research/biologicallyderivedproductdispense) — Dispensing of a biologically derived product.
+- [DetectedIssue](/api/fhir/specialized-public-health-research/detectedissue) — Detected issue with a patient's care.
+- [Evidence](/api/fhir/specialized-public-health-research/evidence) — Single piece of evidence — measurement, association, claim.
+- [EvidenceReport](/api/fhir/specialized-public-health-research/evidencereport) — Composition of evidence for review.
+- [EvidenceVariable](/api/fhir/specialized-public-health-research/evidencevariable) — Population, intervention or outcome being studied.
+- [NutritionProduct](/api/fhir/specialized-public-health-research/nutritionproduct) — Nutrition product (food, supplement, enteral).
+- [ResearchStudy](/api/fhir/specialized-public-health-research/researchstudy) — Process of investigation involving human subjects.
+- [ResearchSubject](/api/fhir/specialized-public-health-research/researchsubject) — A subject participating in a ResearchStudy.
+- [Substance](/api/fhir/specialized-public-health-research/substance) — Homogeneous material with a definite composition.
+
+### Specialized — Devices
+
+*Device identity, definition, association and observation.*
+
+- [Device](/api/fhir/specialized-devices/device) — A manufactured item used in healthcare.
+- [DeviceAssociation](/api/fhir/specialized-devices/deviceassociation) — Record that a Device is associated with a subject.
+- [DeviceDefinition](/api/fhir/specialized-devices/devicedefinition) — Catalogue / model entry for a Device.
+- [DeviceDispense](/api/fhir/specialized-devices/devicedispense) — Dispensing of a Device to a patient.
+- [DeviceMetric](/api/fhir/specialized-devices/devicemetric) — Measurement, calculation or setting of a Device.
+- [DeviceUsage](/api/fhir/specialized-devices/deviceusage) — Patient-reported use of a Device.
+
+### Specialized — Quality & Testing
+
+*Measures, definitions, test scripts and reports.*
+
+- [ActivityDefinition](/api/fhir/specialized-quality-testing/activitydefinition) — Definition of a clinical activity to be performed.
+- [EventDefinition](/api/fhir/specialized-quality-testing/eventdefinition) — Definition of an event that can trigger a workflow.
+- [Library](/api/fhir/specialized-quality-testing/library) — Container for knowledge / logic artifacts.
+- [Measure](/api/fhir/specialized-quality-testing/measure) — Quality measure definition.
+- [MeasureReport](/api/fhir/specialized-quality-testing/measurereport) — Results of running a Measure.
+- [ObservationDefinition](/api/fhir/specialized-quality-testing/observationdefinition) — Definition of an Observation that may be performed.
+- [PlanDefinition](/api/fhir/specialized-quality-testing/plandefinition) — Reusable plan / pathway definition.
+- [SpecimenDefinition](/api/fhir/specialized-quality-testing/specimendefinition) — Kind of specimen to be collected.
+- [TestPlan](/api/fhir/specialized-quality-testing/testplan) — Description of a test plan.
+- [TestReport](/api/fhir/specialized-quality-testing/testreport) — Report of executed TestScripts.
+- [TestScript](/api/fhir/specialized-quality-testing/testscript) — Suite of tests against a FHIR server.
+
+### Specialized — Medication Definition
+
+*Regulatory & manufacturing models for medicinal products.*
+
+- [AdministrableProductDefinition](/api/fhir/specialized-medication-definition/administrableproductdefinition) — The administrable form of a medicinal product.
+- [ClinicalUseDefinition](/api/fhir/specialized-medication-definition/clinicalusedefinition) — Indication, contraindication or interaction for a product.
+- [Ingredient](/api/fhir/specialized-medication-definition/ingredient) — Ingredient that participates in a medicinal product.
+- [ManufacturedItemDefinition](/api/fhir/specialized-medication-definition/manufactureditemdefinition) — Manufactured item within a packaged product.
+- [MedicinalProductDefinition](/api/fhir/specialized-medication-definition/medicinalproductdefinition) — Detailed definition of a medicinal product.
+- [PackagedProductDefinition](/api/fhir/specialized-medication-definition/packagedproductdefinition) — Medicinal product packaged for distribution.
+- [RegulatedAuthorization](/api/fhir/specialized-medication-definition/regulatedauthorization) — Regulatory authorization for a medicinal product.
+- [SubstanceDefinition](/api/fhir/specialized-medication-definition/substancedefinition) — Detailed definition of a substance.
+- [SubstanceNucleicAcid](/api/fhir/specialized-medication-definition/substancenucleicacid) — Nucleic acid substance definition.
+- [SubstancePolymer](/api/fhir/specialized-medication-definition/substancepolymer) — Polymer substance definition.
+- [SubstanceProtein](/api/fhir/specialized-medication-definition/substanceprotein) — Protein substance definition.
+- [SubstanceReferenceInformation](/api/fhir/specialized-medication-definition/substancereferenceinformation) — Reference information about a substance.
+- [SubstanceSourceMaterial](/api/fhir/specialized-medication-definition/substancesourcematerial) — Source material from which a substance is derived.
+
+### Terminology
+
+*Code systems, value sets, mappings, naming.*
+
+- [CodeSystem](/api/fhir/terminology/codesystem) — Set of codes and their meanings.
+- [ConceptMap](/api/fhir/terminology/conceptmap) — Mapping between sets of codes.
+- [NamingSystem](/api/fhir/terminology/namingsystem) — Definition of a system of identifiers.
+- [TerminologyCapabilities](/api/fhir/terminology/terminologycapabilities) — Terminology capabilities of a server.
+- [ValueSet](/api/fhir/terminology/valueset) — Set of codes drawn from one or more code systems.
+
+### Conformance
+
+*Schemas, profiles, search params, capability statements.*
+
+- [ActorDefinition](/api/fhir/conformance/actordefinition) — Describes an actor in a workflow or scenario.
+- [ArtifactAssessment](/api/fhir/conformance/artifactassessment) — Assessment / review of a knowledge artifact.
+- [CapabilityStatement](/api/fhir/conformance/capabilitystatement) — What a server supports — endpoints, resources, interactions.
+- [Citation](/api/fhir/conformance/citation) — Bibliographic citation for a knowledge artifact.
+- [CompartmentDefinition](/api/fhir/conformance/compartmentdefinition) — Definition of a compartment scoping resources.
+- [ConditionDefinition](/api/fhir/conformance/conditiondefinition) — Definition of a condition for a clinical pathway.
+- [ExampleScenario](/api/fhir/conformance/examplescenario) — Worked example showing how resources flow in a scenario.
+- [GraphDefinition](/api/fhir/conformance/graphdefinition) — Definition of a graph of resources.
+- [ImplementationGuide](/api/fhir/conformance/implementationguide) — Definition of a set of resources for a use case.
+- [MessageDefinition](/api/fhir/conformance/messagedefinition) — Definition of a message that a system can send / receive.
+- [OperationDefinition](/api/fhir/conformance/operationdefinition) — Definition of a FHIR operation.
+- [Requirements](/api/fhir/conformance/requirements) — Set of requirements for a system to satisfy.
+- [SearchParameter](/api/fhir/conformance/searchparameter) — Definition of a search parameter for a resource.
+- [StructureDefinition](/api/fhir/conformance/structuredefinition) — Structural definition of a type, resource or profile.
+- [StructureMap](/api/fhir/conformance/structuremap) — Map between two structures, for transformation.
+

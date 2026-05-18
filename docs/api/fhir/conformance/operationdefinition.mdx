@@ -1,0 +1,63 @@
+---
+title: OperationDefinition
+sidebar_label: OperationDefinition
+description: Definition of a FHIR operation. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# OperationDefinition
+
+<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-category">Conformance</span>
+
+Definition of a FHIR operation.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `OperationDefinition` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/OperationDefinition" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/OperationDefinition/[id]` |
+| Vread      | `GET`    | `/OperationDefinition/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/OperationDefinition/[id]` |
+| Patch      | `PATCH`  | `/OperationDefinition/[id]` |
+| Delete     | `DELETE` | `/OperationDefinition/[id]` |
+| Create     | `POST`   | `/OperationDefinition` |
+| Search     | `GET`    | `/OperationDefinition?...` |
+| History    | `GET`    | `/OperationDefinition/[id]/_history` |
+| Type-history | `GET`  | `/OperationDefinition/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`OperationDefinition`](https://hl7.org/fhir/R5/operationdefinition.html)
+- Search parameters: [`OperationDefinition` search params](https://hl7.org/fhir/R5/operationdefinition.html#search)
+- Resource maturity: **Trial Use 4** (FMM 4).

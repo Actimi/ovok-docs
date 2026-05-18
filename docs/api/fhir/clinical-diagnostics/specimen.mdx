@@ -1,0 +1,63 @@
+---
+title: Specimen
+sidebar_label: Specimen
+description: Sample to be used for analysis. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Specimen
+
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-category">Clinical — Diagnostics</span>
+
+Sample to be used for analysis.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Specimen` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Specimen" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Specimen/[id]` |
+| Vread      | `GET`    | `/Specimen/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Specimen/[id]` |
+| Patch      | `PATCH`  | `/Specimen/[id]` |
+| Delete     | `DELETE` | `/Specimen/[id]` |
+| Create     | `POST`   | `/Specimen` |
+| Search     | `GET`    | `/Specimen?...` |
+| History    | `GET`    | `/Specimen/[id]/_history` |
+| Type-history | `GET`  | `/Specimen/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Specimen`](https://hl7.org/fhir/R5/specimen.html)
+- Search parameters: [`Specimen` search params](https://hl7.org/fhir/R5/specimen.html#search)
+- Resource maturity: **Trial Use 2** (FMM 2).

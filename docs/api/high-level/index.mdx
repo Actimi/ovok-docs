@@ -1,0 +1,44 @@
+---
+title: High Level API
+sidebar_position: 1
+description: The Ovok platform API — high-level endpoints for auth, projects, content, billing, devices, signals and more. Built on top of FHIR but exposing the workflows your apps actually need.
+---
+
+# High Level API
+
+The High Level API is the convenience layer that sits in front of the
+FHIR data plane. It exposes platform concepts — projects, members,
+billing, content, devices, signals — as a coherent REST surface so
+applications don't have to assemble them out of raw FHIR resources.
+
+<ApiBase inline={false} />
+
+> Looking for raw FHIR access? See the [FHIR API](/api/fhir).
+
+## Areas
+
+- [AI Translation](/api/high-level/ai-translation) — 1 endpoint
+- [Authentication](/api/high-level/authentication) — 5 endpoints
+- [Authentication - B2B](/api/high-level/authentication-b2b) — 2 endpoints
+- [Authentication - Session Management](/api/high-level/authentication-session-management) — 2 endpoints
+- [Bots - Execute a custom script](/api/high-level/bots-execute-a-custom-script) — 1 endpoint
+- [CMS](/api/high-level/cms) — 8 endpoints
+- [Document](/api/high-level/document) — 7 endpoints
+- [FHIR Operations](/api/high-level/fhir-operations) — 12 endpoints
+- [Localization](/api/high-level/localization) — 2 endpoints
+- [Localization Keys](/api/high-level/localization-keys) — 7 endpoints
+- [Organization Code Information](/api/high-level/organization-code-information) — 2 endpoints
+- [Partner](/api/high-level/partner) — 4 endpoints
+- [Tenant Authentication](/api/high-level/tenant-authentication) — 7 endpoints
+
+## How endpoints are documented
+
+Each endpoint page lists:
+
+- **Method + path** with a coloured method badge.
+- **Parameters** — path, query, header and cookie, with types and requirements.
+- **Request body** — content-type and schema summary.
+- **Responses** — status code → description, from the spec.
+
+The full machine-readable spec is at
+[`/openapi/ovok-api-public.yaml`](pathname:///openapi/ovok-api-public.yaml).

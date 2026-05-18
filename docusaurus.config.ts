@@ -154,7 +154,8 @@ const config: Config = {
         {
           title: 'API',
           items: [
-            { label: 'Reference', to: '/api/reference' },
+            { label: 'High Level API', to: '/api/high-level' },
+            { label: 'FHIR API',       to: '/api/fhir' },
           ],
         },
         {

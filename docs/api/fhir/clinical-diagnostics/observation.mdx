@@ -1,0 +1,63 @@
+---
+title: Observation
+sidebar_label: Observation
+description: Measurement or assertion about a patient. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Observation
+
+<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-category">Clinical — Diagnostics</span>
+
+Measurement or assertion about a patient.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Observation` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Observation" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Observation/[id]` |
+| Vread      | `GET`    | `/Observation/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Observation/[id]` |
+| Patch      | `PATCH`  | `/Observation/[id]` |
+| Delete     | `DELETE` | `/Observation/[id]` |
+| Create     | `POST`   | `/Observation` |
+| Search     | `GET`    | `/Observation?...` |
+| History    | `GET`    | `/Observation/[id]/_history` |
+| Type-history | `GET`  | `/Observation/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Observation`](https://hl7.org/fhir/R5/observation.html)
+- Search parameters: [`Observation` search params](https://hl7.org/fhir/R5/observation.html#search)
+- Resource maturity: **Normative** (FMM 5).

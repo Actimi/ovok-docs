@@ -1,20 +1,13 @@
 #!/usr/bin/env node
 /**
- * Convert an OpenAPI 3.x spec into a directory of clean Docusaurus MDX —
- * one page per tag, one page per schema, plus an index.
+ * Generate the two API sections of the Ovok docs:
  *
- * Why hand-rolled instead of docusaurus-plugin-openapi-docs:
- *   - The plugin's <MimeTabs> uses useTabsContext outside a Tabs provider,
- *     which crashes SSR on Docusaurus 3.10.
- *   - Its bundle drags in postman-code-generators (node-only) which breaks
- *     browser builds without manual fallback config.
- *   - We don't need a request runner here; we need clean reference text
- *     that integrates with the existing sidebar + theme.
+ *   docs/api/high-level/   one MDX per OpenAPI tag, from openapi/ovok-api-public.yaml
+ *   docs/api/fhir/         one MDX per FHIR R5 resource, from data/fhir-r5-resources.json
  *
- * Usage:
- *   node scripts/generate-api-docs.mjs \
- *     --spec openapi/ovok-api-public.yaml \
- *     --out  docs/api/reference
+ * Each section emits its own sidebar.json (consumed by sidebars.ts) and an
+ * index page. The OpenAPI spec is also copied into static/openapi/ so the
+ * raw YAML is downloadable.
  */
 
 import { readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs';
@@ -25,48 +18,19 @@ import yaml from 'js-yaml';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 
-// ─── args ─────────────────────────────────────────────────────────────
-const args = Object.fromEntries(
-  process.argv.slice(2).reduce((acc, arg, i, arr) => {
-    if (arg.startsWith('--')) acc.push([arg.slice(2), arr[i + 1]]);
-    return acc;
-  }, []),
-);
-const SPEC_PATH = join(REPO_ROOT, args.spec ?? 'openapi/ovok-api-public.yaml');
-const OUT_DIR  = join(REPO_ROOT, args.out  ?? 'docs/api/reference');
+const SPEC_PATH       = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
+const FHIR_DATA_PATH  = join(REPO_ROOT, 'data/fhir-r5-resources.json');
+const OUT_HIGH        = join(REPO_ROOT, 'docs/api/high-level');
+const OUT_FHIR        = join(REPO_ROOT, 'docs/api/fhir');
+const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
 
-// ─── load + resolve refs ──────────────────────────────────────────────
-const spec = yaml.load(readFileSync(SPEC_PATH, 'utf8'));
-
-function resolveRef(ref) {
-  // "#/components/schemas/UserDto" → spec.components.schemas.UserDto
-  return ref.replace(/^#\//, '').split('/').reduce((obj, key) => obj?.[key], spec);
-}
-
-function deref(node, seen = new WeakSet()) {
-  if (!node || typeof node !== 'object') return node;
-  if (seen.has(node)) return node;
-  seen.add(node);
-  if (node.$ref) {
-    const target = resolveRef(node.$ref);
-    return deref(target, seen);
-  }
-  if (Array.isArray(node)) return node.map((item) => deref(item, seen));
-  const out = {};
-  for (const [k, v] of Object.entries(node)) out[k] = deref(v, seen);
-  return out;
-}
-
-// ─── MDX-safety pass for any free-text from the spec ──────────────────
+// ─── shared helpers ───────────────────────────────────────────────────
 function escapeMdx(text) {
   if (!text) return '';
   return String(text)
     .replace(/<br\s*\/?>/gi, '<br />')
     .replace(/<hr\s*\/?>/gi, '<hr />')
-    // bare `<` not followed by a letter or `/` becomes &lt; so MDX doesn't
-    // treat it as a tag opener
     .replace(/<(?![a-zA-Z/])/g, '&lt;')
-    // curly braces in narrative text are interpreted as JSX expressions
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;');
 }
@@ -75,144 +39,162 @@ function slug(s) {
   return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-function title(s) {
-  return String(s).replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+function ensureCleanDir(path) {
+  rmSync(path, { recursive: true, force: true });
+  mkdirSync(path, { recursive: true });
 }
 
-// ─── group operations by primary tag ──────────────────────────────────
-const tagGroups = new Map(); // tag → [{method, path, op}]
-for (const [path, methods] of Object.entries(spec.paths ?? {})) {
-  for (const [method, op] of Object.entries(methods)) {
-    if (!['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].includes(method)) continue;
-    const tag = (op.tags?.[0] ?? 'Uncategorized').trim();
-    if (!tagGroups.has(tag)) tagGroups.set(tag, []);
-    tagGroups.get(tag).push({ method: method.toUpperCase(), path, op });
+// ─── high-level (OpenAPI → MDX, per tag) ──────────────────────────────
+function generateHighLevel() {
+  const spec = yaml.load(readFileSync(SPEC_PATH, 'utf8'));
+
+  function resolveRef(ref) {
+    return ref.replace(/^#\//, '').split('/').reduce((obj, key) => obj?.[key], spec);
   }
-}
+  function deref(node, seen = new WeakSet()) {
+    if (!node || typeof node !== 'object') return node;
+    if (seen.has(node)) return node;
+    seen.add(node);
+    if (node.$ref) return deref(resolveRef(node.$ref), seen);
+    if (Array.isArray(node)) return node.map((item) => deref(item, seen));
+    const out = {};
+    for (const [k, v] of Object.entries(node)) out[k] = deref(v, seen);
+    return out;
+  }
 
-// Stable sort: tags alphabetical, ops by path then method.
-const sortedTags = [...tagGroups.keys()].sort((a, b) => a.localeCompare(b));
-for (const tag of sortedTags) {
-  tagGroups.get(tag).sort((a, b) =>
-    a.path.localeCompare(b.path) || a.method.localeCompare(b.method),
-  );
-}
+  const tagGroups = new Map();
+  for (const [path, methods] of Object.entries(spec.paths ?? {})) {
+    for (const [method, op] of Object.entries(methods)) {
+      if (!['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].includes(method)) continue;
+      const tag = (op.tags?.[0] ?? 'Uncategorized').trim();
+      if (!tagGroups.has(tag)) tagGroups.set(tag, []);
+      tagGroups.get(tag).push({ method: method.toUpperCase(), path, op });
+    }
+  }
+  const sortedTags = [...tagGroups.keys()].sort((a, b) => a.localeCompare(b));
+  for (const tag of sortedTags) {
+    tagGroups.get(tag).sort((a, b) =>
+      a.path.localeCompare(b.path) || a.method.localeCompare(b.method),
+    );
+  }
 
-// ─── per-operation block renderer ─────────────────────────────────────
-const METHOD_BADGE = {
-  GET: 'get', POST: 'post', PUT: 'put', PATCH: 'patch',
-  DELETE: 'delete', HEAD: 'head', OPTIONS: 'options',
-};
-
-function renderParamsTable(params) {
-  if (!params || params.length === 0) return '';
-  const rows = params.map((p) => {
-    const sch = deref(p.schema) ?? {};
-    const type = sch.type ?? (sch.$ref ? sch.$ref.split('/').pop() : '—');
-    const required = p.required ? '**yes**' : 'no';
-    return `| \`${p.name}\` | ${p.in} | \`${type}\` | ${required} | ${escapeMdx(p.description ?? '').replace(/\n+/g, ' ')} |`;
-  });
-  return [
-    '',
-    '**Parameters**',
-    '',
-    '| Name | In | Type | Required | Description |',
-    '| --- | --- | --- | --- | --- |',
-    ...rows,
-    '',
-  ].join('\n');
-}
-
-function summariseSchema(schema, depth = 0) {
-  if (!schema) return '_no schema_';
-  const s = deref(schema);
-  if (s.type === 'object' && s.properties) {
-    const indent = '  '.repeat(depth);
-    const lines = Object.entries(s.properties).map(([name, prop]) => {
-      const p = deref(prop);
-      const t = p.type ?? (p.$ref ? p.$ref.split('/').pop() : '—');
-      const req = s.required?.includes(name) ? ' **(required)**' : '';
-      const desc = p.description ? ` — ${escapeMdx(p.description).replace(/\n+/g, ' ')}` : '';
-      return `${indent}- \`${name}\`: \`${t}\`${req}${desc}`;
+  function renderParamsTable(params) {
+    if (!params || params.length === 0) return '';
+    const rows = params.map((p) => {
+      const sch = deref(p.schema) ?? {};
+      const type = sch.type ?? (sch.$ref ? sch.$ref.split('/').pop() : '—');
+      const required = p.required ? '**yes**' : 'no';
+      return `| \`${p.name}\` | ${p.in} | \`${type}\` | ${required} | ${escapeMdx(p.description ?? '').replace(/\n+/g, ' ')} |`;
     });
-    return lines.join('\n');
+    return ['', '**Parameters**', '', '| Name | In | Type | Required | Description |', '| --- | --- | --- | --- | --- |', ...rows, ''].join('\n');
   }
-  if (s.type === 'array' && s.items) {
-    return `Array of \`${deref(s.items).type ?? 'object'}\``;
+
+  function summariseSchema(schema, depth = 0) {
+    if (!schema) return '_no schema_';
+    const s = deref(schema);
+    if (s.type === 'object' && s.properties) {
+      const indent = '  '.repeat(depth);
+      return Object.entries(s.properties).map(([name, prop]) => {
+        const p = deref(prop);
+        const t = p.type ?? (p.$ref ? p.$ref.split('/').pop() : '—');
+        const req = s.required?.includes(name) ? ' **(required)**' : '';
+        const desc = p.description ? ` — ${escapeMdx(p.description).replace(/\n+/g, ' ')}` : '';
+        return `${indent}- \`${name}\`: \`${t}\`${req}${desc}`;
+      }).join('\n');
+    }
+    if (s.type === 'array' && s.items) return `Array of \`${deref(s.items).type ?? 'object'}\``;
+    if (s.enum) return `enum: ${s.enum.map((v) => `\`${v}\``).join(', ')}`;
+    if (s.type) return `\`${s.type}\``;
+    return '_unknown_';
   }
-  if (s.enum) return `enum: ${s.enum.map((v) => `\`${v}\``).join(', ')}`;
-  if (s.type) return `\`${s.type}\``;
-  return '_unknown_';
-}
 
-function renderRequestBody(body) {
-  if (!body) return '';
-  const b = deref(body);
-  const content = b.content ?? {};
-  const blocks = ['', '**Request body**', ''];
-  if (b.description) blocks.push(escapeMdx(b.description), '');
-  for (const [mime, media] of Object.entries(content)) {
-    blocks.push(`Content-Type: \`${mime}\``, '', summariseSchema(media.schema), '');
+  function renderRequestBody(body) {
+    if (!body) return '';
+    const b = deref(body);
+    const blocks = ['', '**Request body**', ''];
+    if (b.description) blocks.push(escapeMdx(b.description), '');
+    for (const [mime, media] of Object.entries(b.content ?? {})) {
+      blocks.push(`Content-Type: \`${mime}\``, '', summariseSchema(media.schema), '');
+    }
+    return blocks.join('\n');
   }
-  return blocks.join('\n');
-}
 
-function renderResponses(responses) {
-  if (!responses) return '';
-  const rows = Object.entries(responses).map(([code, res]) => {
-    const r = deref(res);
-    const desc = escapeMdx(r.description ?? '').replace(/\n+/g, ' ');
-    return `| \`${code}\` | ${desc} |`;
-  });
-  return ['', '**Responses**', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
-}
+  function renderResponses(responses) {
+    if (!responses) return '';
+    const rows = Object.entries(responses).map(([code, res]) => {
+      const r = deref(res);
+      const desc = escapeMdx(r.description ?? '').replace(/\n+/g, ' ');
+      return `| \`${code}\` | ${desc} |`;
+    });
+    return ['', '**Responses**', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
+  }
 
-function renderOperation({ method, path, op }) {
-  const opTitle = op.summary?.trim() || `${method} ${path}`;
-  const anchor = slug(op.operationId || `${method}-${path}`);
-  const desc = op.description ? escapeMdx(op.description) : '';
-  const blocks = [
-    `### ${opTitle} {#${anchor}}`,
-    '',
-    `<span className="api-method ${METHOD_BADGE[method]}">${method}</span> \`${path}\``,
-    '',
-  ];
-  if (desc) blocks.push(desc, '');
-  if (op.deprecated) blocks.push(':::warning Deprecated\nThis endpoint is deprecated. Migrate before the next major release.\n:::', '');
-  blocks.push(renderParamsTable(op.parameters));
-  blocks.push(renderRequestBody(op.requestBody));
-  blocks.push(renderResponses(op.responses));
-  blocks.push('---', '');
-  return blocks.filter(Boolean).join('\n');
-}
+  function renderOperation({ method, path, op }) {
+    const opTitle = op.summary?.trim() || `${method} ${path}`;
+    const anchor = slug(op.operationId || `${method}-${path}`);
+    const blocks = [
+      `### ${opTitle} {#${anchor}}`,
+      '',
+      `<span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
+      '',
+    ];
+    if (op.description) blocks.push(escapeMdx(op.description), '');
+    if (op.deprecated) blocks.push(':::warning Deprecated\nThis endpoint is deprecated. Migrate before the next major release.\n:::', '');
+    blocks.push(renderParamsTable(op.parameters));
+    blocks.push(renderRequestBody(op.requestBody));
+    blocks.push(renderResponses(op.responses));
+    blocks.push('---', '');
+    return blocks.filter(Boolean).join('\n');
+  }
 
-// ─── write the tree ───────────────────────────────────────────────────
-rmSync(OUT_DIR, { recursive: true, force: true });
-mkdirSync(OUT_DIR, { recursive: true });
+  ensureCleanDir(OUT_HIGH);
 
-// Index page
-const tagLinks = sortedTags
-  .map((t) => `- [${t}](/api/reference/${slug(t)}) — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
-  .join('\n');
+  // Per-tag pages
+  const sidebarItems = [{ type: 'doc', id: 'api/high-level/index', label: 'Overview' }];
+  for (const tag of sortedTags) {
+    const ops = tagGroups.get(tag);
+    const tagSlug = slug(tag);
+    const body = [
+      '---',
+      `title: ${tag}`,
+      `description: ${tag} endpoints in the Ovok platform API.`,
+      `sidebar_label: ${tag}`,
+      '---',
+      '',
+      `# ${tag}`,
+      '',
+      `${ops.length} endpoint${ops.length === 1 ? '' : 's'}.`,
+      '',
+      '<ApiBase inline={false} />',
+      '',
+      ...ops.map(renderOperation),
+    ].join('\n');
+    writeFileSync(join(OUT_HIGH, `${tagSlug}.mdx`), body);
+    sidebarItems.push({ type: 'doc', id: `api/high-level/${tagSlug}`, label: tag });
+  }
 
-writeFileSync(
-  join(OUT_DIR, 'index.mdx'),
-  `---
-title: API reference
+  // Index
+  const tagLinks = sortedTags
+    .map((t) => `- [${t}](/api/high-level/${slug(t)}) — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
+    .join('\n');
+
+  writeFileSync(join(OUT_HIGH, 'index.mdx'),
+`---
+title: High Level API
 sidebar_position: 1
-description: Reference for the Ovok public API — every endpoint your apps can call, grouped by area.
+description: The Ovok platform API — high-level endpoints for auth, projects, content, billing, devices, signals and more. Built on top of FHIR but exposing the workflows your apps actually need.
 ---
 
-# API reference
+# High Level API
 
-This is the reference for the **Ovok public API** — every endpoint
-exposed to integrations, generated from the OpenAPI specification at
-build time.
+The High Level API is the convenience layer that sits in front of the
+FHIR data plane. It exposes platform concepts — projects, members,
+billing, content, devices, signals — as a coherent REST surface so
+applications don't have to assemble them out of raw FHIR resources.
 
 <ApiBase inline={false} />
 
-> Your selected release tier above sets the host. Endpoint paths and
-> contracts are identical across tiers; the host changes.
+> Looking for raw FHIR access? See the [FHIR API](/api/fhir).
 
 ## Areas
 
@@ -222,53 +204,215 @@ ${tagLinks}
 
 Each endpoint page lists:
 
-- **Method + path** — the HTTP verb and URL template.
-- **Parameters** — path, query, header and cookie parameters with
-  types and requirements.
+- **Method + path** with a coloured method badge.
+- **Parameters** — path, query, header and cookie, with types and requirements.
 - **Request body** — content-type and schema summary.
-- **Responses** — status code → description, summarised from the
-  spec's response definitions.
+- **Responses** — status code → description, from the spec.
 
-The full machine-readable schema is available at
+The full machine-readable spec is at
 [\`/openapi/ovok-api-public.yaml\`](pathname:///openapi/ovok-api-public.yaml).
-`,
-);
+`);
 
-// Per-tag pages
-const sidebarItems = [{ type: 'doc', id: 'api/reference/index', label: 'Overview' }];
+  // Sidebar
+  writeFileSync(join(OUT_HIGH, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
 
-for (const tag of sortedTags) {
-  const ops = tagGroups.get(tag);
-  const tagSlug = slug(tag);
-  const body = [
-    '---',
-    `title: ${tag}`,
-    `description: ${tag} endpoints in the Ovok public API.`,
-    `sidebar_label: ${tag}`,
-    '---',
-    '',
-    `# ${tag}`,
-    '',
-    `${ops.length} endpoint${ops.length === 1 ? '' : 's'}.`,
-    '',
-    '<ApiBase inline={false} />',
-    '',
-    ...ops.map(renderOperation),
-  ].join('\n');
-  writeFileSync(join(OUT_DIR, `${tagSlug}.mdx`), body);
-  sidebarItems.push({ type: 'doc', id: `api/reference/${tagSlug}`, label: tag });
+  // Static spec download
+  mkdirSync(STATIC_OPENAPI, { recursive: true });
+  writeFileSync(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
+
+  return { tags: sortedTags.length };
 }
 
-// Sidebar JSON (consumed by sidebars.ts)
-writeFileSync(
-  join(OUT_DIR, 'sidebar.json'),
-  JSON.stringify(sidebarItems, null, 2),
-);
+// ─── FHIR R5 (catalog → MDX per resource) ─────────────────────────────
+const MATURITY_LABEL = {
+  0: 'Draft',
+  1: 'Trial Use 1',
+  2: 'Trial Use 2',
+  3: 'Trial Use 3',
+  4: 'Trial Use 4',
+  5: 'Normative',
+};
 
-// Static spec (so users can download the raw YAML)
-const staticOpenapiDir = join(REPO_ROOT, 'static/openapi');
-mkdirSync(staticOpenapiDir, { recursive: true });
-writeFileSync(join(staticOpenapiDir, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
+function fhirResourcePage(resource) {
+  const { name, category, maturity, short } = resource;
+  const lower = name; // FHIR resource paths preserve PascalCase
+  return `---
+title: ${name}
+sidebar_label: ${name}
+description: ${escapeMdx(short)} FHIR R5 resource, served by the Ovok FHIR API.
+---
 
-console.log(`Generated ${sortedTags.length} tag pages + index → ${OUT_DIR}`);
-console.log(`Staged spec at static/openapi/ovok-api-public.yaml`);
+# ${name}
+
+<span className="fhir-maturity" data-level="${maturity}">${MATURITY_LABEL[maturity] ?? 'Unspecified'}</span>
+<span className="fhir-category">${category}</span>
+
+${escapeMdx(short)}
+
+## Endpoints
+
+The standard FHIR R5 interactions for \`${name}\` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/${lower}" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | \`GET\`    | \`/${lower}/[id]\` |
+| Vread      | \`GET\`    | \`/${lower}/[id]/_history/[vid]\` |
+| Update     | \`PUT\`    | \`/${lower}/[id]\` |
+| Patch      | \`PATCH\`  | \`/${lower}/[id]\` |
+| Delete     | \`DELETE\` | \`/${lower}/[id]\` |
+| Create     | \`POST\`   | \`/${lower}\` |
+| Search     | \`GET\`    | \`/${lower}?...\` |
+| History    | \`GET\`    | \`/${lower}/[id]/_history\` |
+| Type-history | \`GET\`  | \`/${lower}/_history\` |
+
+All calls expect FHIR-flavoured JSON
+(\`Content-Type: application/fhir+json\`) and accept the standard
+\`Accept: application/fhir+json\` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| \`_id\` | Logical id of the resource |
+| \`_lastUpdated\` | When the resource version last changed |
+| \`_profile\` | Profiles this resource claims to conform to |
+| \`_security\` | Security labels applied to the resource |
+| \`_source\` | Source system identifier |
+| \`_tag\` | Tags applied to the resource |
+| \`_text\` | Free-text search over narrative |
+| \`_summary\` | Subset of the response (\`true\`, \`text\`, \`data\`, \`count\`, \`false\`) |
+| \`_elements\` | Comma-separated list of elements to include |
+| \`_include\` | Pull in referenced resources |
+| \`_revinclude\` | Pull in resources that reference this one |
+| \`_sort\` | Server sort order |
+| \`_count\` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [\`${name}\`](https://hl7.org/fhir/R5/${name.toLowerCase()}.html)
+- Search parameters: [\`${name}\` search params](https://hl7.org/fhir/R5/${name.toLowerCase()}.html#search)
+- Resource maturity: **${MATURITY_LABEL[maturity] ?? 'Unspecified'}** (FMM ${maturity}).
+`;
+}
+
+function generateFhir() {
+  const catalog = JSON.parse(readFileSync(FHIR_DATA_PATH, 'utf8'));
+  const resources = [...catalog.resources].sort((a, b) => a.name.localeCompare(b.name));
+
+  // Group by category for sidebar
+  const byCategory = new Map();
+  for (const r of resources) {
+    if (!byCategory.has(r.category)) byCategory.set(r.category, []);
+    byCategory.get(r.category).push(r);
+  }
+  const categoryOrder = Object.keys(catalog.categories);
+
+  ensureCleanDir(OUT_FHIR);
+
+  // Per-resource pages
+  for (const r of resources) {
+    const dir = join(OUT_FHIR, slug(r.category));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
+  }
+
+  // Sidebar
+  const sidebarItems = [
+    { type: 'doc', id: 'api/fhir/index', label: 'Overview' },
+  ];
+  for (const category of categoryOrder) {
+    const items = byCategory.get(category);
+    if (!items) continue;
+    sidebarItems.push({
+      type: 'category',
+      label: category,
+      collapsed: true,
+      items: items.map((r) => ({
+        type: 'doc',
+        id: `api/fhir/${slug(category)}/${slug(r.name)}`,
+        label: r.name,
+      })),
+    });
+  }
+  writeFileSync(join(OUT_FHIR, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
+
+  // Index
+  const categoryBlocks = categoryOrder
+    .filter((cat) => byCategory.has(cat))
+    .map((cat) => {
+      const items = byCategory.get(cat);
+      const lines = items
+        .map((r) => `- [${r.name}](/api/fhir/${slug(cat)}/${slug(r.name)}) — ${escapeMdx(r.short)}`)
+        .join('\n');
+      return [
+        `### ${cat}`,
+        '',
+        `*${escapeMdx(catalog.categories[cat])}*`,
+        '',
+        lines,
+        '',
+      ].join('\n');
+    })
+    .join('\n');
+
+  writeFileSync(join(OUT_FHIR, 'index.mdx'),
+`---
+title: FHIR API
+sidebar_position: 1
+description: The Ovok FHIR API exposes every FHIR R5 resource — Patient, Observation, Encounter, CarePlan and the rest — under one host, with the standard set of FHIR interactions on each.
+---
+
+# FHIR API
+
+The FHIR API is the raw data plane. Every FHIR R5 resource type is
+mounted under a single host with the standard set of REST interactions
+— read, vread, update, patch, delete, create, search, history.
+
+<ApiBase surface="fhir" inline={false} />
+
+> Looking for higher-level workflows (auth, projects, billing, content)?
+> See the [High Level API](/api/high-level).
+
+## What's documented here
+
+This section catalogues all **${resources.length}** FHIR R5 resource types
+supported by Ovok. Each resource has its own page describing the
+endpoints, common search parameters and a link to the official FHIR R5
+specification.
+
+## Conventions
+
+- **Wire format** — \`application/fhir+json\` for both request and response.
+- **Versioning** — every write returns the new \`Resource.meta.versionId\`;
+  use it with the read endpoint's \`_vread\` form to fetch a historical version.
+- **Searching** — all resources accept the
+  [universal FHIR search parameters](https://hl7.org/fhir/R5/search.html)
+  (\`_id\`, \`_lastUpdated\`, \`_profile\`, \`_security\`, \`_source\`, \`_tag\`,
+  \`_text\`, \`_summary\`, \`_elements\`, \`_include\`, \`_revinclude\`,
+  \`_sort\`, \`_count\`).
+- **Maturity** — each resource carries an HL7 FHIR Maturity Model (FMM)
+  level. \`5\` is *Normative* (stable forever). \`0\`–\`4\` are *Trial Use*
+  and may change between R5 ballots.
+
+## Resources by category
+
+${categoryBlocks}
+`);
+
+  return { resources: resources.length, categories: byCategory.size };
+}
+
+// ─── run ──────────────────────────────────────────────────────────────
+const hl = generateHighLevel();
+const fhir = generateFhir();
+
+console.log(`High Level API → ${hl.tags} tag pages + index → ${OUT_HIGH}`);
+console.log(`FHIR API       → ${fhir.resources} resources in ${fhir.categories} categories → ${OUT_FHIR}`);
+console.log(`Static spec    → ${STATIC_OPENAPI}/ovok-api-public.yaml`);

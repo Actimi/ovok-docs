@@ -1,0 +1,63 @@
+---
+title: Group
+sidebar_label: Group
+description: Group of entities — patients, practitioners, devices. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# Group
+
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-category">Base</span>
+
+Group of entities — patients, practitioners, devices.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `Group` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/Group" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/Group/[id]` |
+| Vread      | `GET`    | `/Group/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/Group/[id]` |
+| Patch      | `PATCH`  | `/Group/[id]` |
+| Delete     | `DELETE` | `/Group/[id]` |
+| Create     | `POST`   | `/Group` |
+| Search     | `GET`    | `/Group?...` |
+| History    | `GET`    | `/Group/[id]/_history` |
+| Type-history | `GET`  | `/Group/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`Group`](https://hl7.org/fhir/R5/group.html)
+- Search parameters: [`Group` search params](https://hl7.org/fhir/R5/group.html#search)
+- Resource maturity: **Trial Use 1** (FMM 1).

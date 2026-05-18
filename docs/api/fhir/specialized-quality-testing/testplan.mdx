@@ -1,0 +1,63 @@
+---
+title: TestPlan
+sidebar_label: TestPlan
+description: Description of a test plan. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# TestPlan
+
+<span className="fhir-maturity" data-level="0">Draft</span>
+<span className="fhir-category">Specialized — Quality & Testing</span>
+
+Description of a test plan.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `TestPlan` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/TestPlan" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read       | `GET`    | `/TestPlan/[id]` |
+| Vread      | `GET`    | `/TestPlan/[id]/_history/[vid]` |
+| Update     | `PUT`    | `/TestPlan/[id]` |
+| Patch      | `PATCH`  | `/TestPlan/[id]` |
+| Delete     | `DELETE` | `/TestPlan/[id]` |
+| Create     | `POST`   | `/TestPlan` |
+| Search     | `GET`    | `/TestPlan?...` |
+| History    | `GET`    | `/TestPlan/[id]/_history` |
+| Type-history | `GET`  | `/TestPlan/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`TestPlan`](https://hl7.org/fhir/R5/testplan.html)
+- Search parameters: [`TestPlan` search params](https://hl7.org/fhir/R5/testplan.html#search)
+- Resource maturity: **Draft** (FMM 0).
