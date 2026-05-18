@@ -12,12 +12,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Surfaces',
-      items: ['surfaces/dashboard'],
-    },
-    {
-      type: 'category',
-      label: 'API reference',
-      items: ['reference/index'],
+      items: ['surfaces/console'],
     },
   ],
 };

@@ -19,7 +19,10 @@ const config: Config = {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
+    mermaid: true,
   },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   i18n: {
     defaultLocale: 'en',
@@ -62,9 +65,12 @@ const config: Config = {
   themeConfig: {
     image: 'img/ovok-social-card.png',
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: false,
+    },
+    mermaid: {
+      theme: { light: 'neutral', dark: 'dark' },
     },
     navbar: {
       title: 'Ovok',
@@ -84,8 +90,8 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://dashboard.ovok.com',
-          label: 'Dashboard',
+          href: 'https://console.ovok.com',
+          label: 'Console',
           position: 'right',
         },
       ],
@@ -104,8 +110,7 @@ const config: Config = {
         {
           title: 'Surfaces',
           items: [
-            { label: 'Dashboard', to: '/surfaces/dashboard' },
-            { label: 'API reference', to: '/reference/' },
+            { label: 'Console', to: '/surfaces/console' },
           ],
         },
         {

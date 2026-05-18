@@ -36,7 +36,7 @@ Node 18+ required.
 ## Theming
 
 The visual language deliberately matches
-[ovok-dashboard](https://github.com/Actimi/ovok-dashboard) — warm canvas,
+the Ovok Console — warm canvas,
 deep purple, Geist + Instrument Serif. See `src/css/custom.css`.
 
 ## Env switcher
@@ -51,5 +51,5 @@ page. Implementation: `src/lib/useEnv.ts` + `src/theme/NavbarItem/EnvSwitcher.ts
 1. Drop a `.md` or `.mdx` file under `docs/` on the right surface branch.
 2. Add it to `sidebars.ts`.
 3. Reference `<ApiBase />`, `<ApiBase surface="fhir" />`, or
-   `<ApiBase surface="dashboard" />` inline — they render the host for
+   `<ApiBase surface="console" />` inline — they render the host for
    whichever surface the visitor is on.

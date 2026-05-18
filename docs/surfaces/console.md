@@ -1,23 +1,23 @@
 ---
-title: Ovok Dashboard
+title: Ovok Console
 sidebar_position: 1
 description: The developer console for the Ovok platform.
 ---
 
-# Ovok Dashboard
+# Ovok Console
 
-The Ovok Dashboard is the operator surface for the platform. It's where
+The Ovok Console is the operator surface for the platform. It's where
 projects are configured, members are invited, content is edited, billing
 is connected, and audit trails are read.
 
-<ApiBase surface="dashboard" inline={false} />
+<ApiBase surface="console" inline={false} />
 
-## What you can do from the dashboard
+## What you can do from the Console
 
 - **Projects** — create, rename, archive. Every project is a tenant boundary;
   resources never cross projects.
 - **Members** — invite, assign roles, revoke. Roles map to
-  `ProjectMembership` resources in FHIR; the dashboard hides that detail
+  `ProjectMembership` resources in FHIR; the Console hides that detail
   but the audit log does not.
 - **Content** — edit the copy and assets served by the platform via the
   Payload CMS back-end.
@@ -30,21 +30,21 @@ is connected, and audit trails are read.
 
 ## Stack
 
-The dashboard is a Next.js 16 app (React 19, Tailwind 4). It's a
-**thin client over the platform API** — there is no dashboard-only
-endpoint. If you can do it in the dashboard, you can do it from your
+The Console is a Next.js 16 app (React 19, Tailwind 4). It's a
+**thin client over the platform API** — there is no Console-only
+endpoint. If you can do it in the Console, you can do it from your
 own integration against the same API.
 
 The visual language of this docs site is deliberately the same as the
-dashboard: warm off-white canvas, deep purple accent, Geist + Instrument
+Console: warm off-white canvas, deep purple accent, Geist + Instrument
 Serif. If you're switching tabs between the two, that's intentional.
 
 ## Where to find it
 
-- **alpha** — `dashboard.dev.ovok.com`
-- **beta**  — `dashboard.staging.ovok.com`
-- **final** — `dashboard.ovok.com`
+- **alpha** — `console.dev.ovok.com`
+- **beta**  — `console.staging.ovok.com`
+- **final** — `console.ovok.com`
 
-The link in the navbar always goes to the *final* dashboard.
+The link in the navbar always goes to the *final* Console.
 Switch the API surface in the env switcher to use the matching
-dashboard for the same maturity tier.
+Console for the same maturity tier.

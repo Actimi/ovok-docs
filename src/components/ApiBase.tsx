@@ -2,8 +2,8 @@ import { useEnv } from '@site/src/lib/useEnv';
 import styles from './ApiBase.module.css';
 
 interface Props {
-  /** Which surface to render: api host (default), fhir host, or dashboard. */
-  surface?: 'api' | 'fhir' | 'dashboard';
+  /** Which surface to render: api host (default), fhir host, or console. */
+  surface?: 'api' | 'fhir' | 'console';
   /** Optional suffix appended to the base, e.g. "/Patient". */
   path?: string;
   /** Inline (no copy affordance) vs block (with copy button). */
@@ -18,7 +18,7 @@ export default function ApiBase({ surface = 'api', path = '', inline = true }: P
   const { config } = useEnv();
   const host =
     surface === 'fhir' ? config.fhirBaseUrl :
-    surface === 'dashboard' ? config.dashboardUrl :
+    surface === 'console' ? config.consoleUrl :
     config.apiBaseUrl;
   const value = `${host}${path}`;
 

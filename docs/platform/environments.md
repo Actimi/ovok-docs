@@ -47,5 +47,6 @@ Currently selected:
 ## Operator notes
 
 Each surface deploys from its own branch (`development` / `staging` /
-`master`). The same is true of this documentation site — see
-[How docs are published](../reference/index.md#how-docs-are-published).
+`master`). The same is true of this documentation site: a push to
+`development` in `ovok-internal` publishes to the `alpha` branch of
+this repo; `staging` → `beta`; `master` → `final`.

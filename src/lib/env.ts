@@ -15,7 +15,7 @@ export interface EnvConfig {
   description: string;
   apiBaseUrl: string;
   fhirBaseUrl: string;
-  dashboardUrl: string;
+  consoleUrl: string;
   internalBranch: string;
   maturity: 'preview' | 'pre-release' | 'production';
 }
@@ -28,7 +28,7 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'Bleeding-edge surface. Breaking changes can land any day.',
     apiBaseUrl: 'https://api.dev.ovok.com',
     fhirBaseUrl: 'https://fhir.dev.ovok.com',
-    dashboardUrl: 'https://dashboard.dev.ovok.com',
+    consoleUrl: 'https://console.dev.ovok.com',
     internalBranch: 'development',
     maturity: 'preview',
   },
@@ -39,7 +39,7 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'Release-candidate surface. Stable enough for integration testing.',
     apiBaseUrl: 'https://api.staging.ovok.com',
     fhirBaseUrl: 'https://fhir.staging.ovok.com',
-    dashboardUrl: 'https://dashboard.staging.ovok.com',
+    consoleUrl: 'https://console.staging.ovok.com',
     internalBranch: 'staging',
     maturity: 'pre-release',
   },
@@ -50,14 +50,14 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     description: 'The contract you build against. Versioned and supported.',
     apiBaseUrl: 'https://api.ovok.com',
     fhirBaseUrl: 'https://fhir.ovok.com',
-    dashboardUrl: 'https://dashboard.ovok.com',
+    consoleUrl: 'https://console.ovok.com',
     internalBranch: 'master',
     maturity: 'production',
   },
 };
 
 export const ENV_ORDER: EnvKey[] = ['alpha', 'beta', 'final'];
-export const DEFAULT_ENV: EnvKey = 'final';
+export const DEFAULT_ENV: EnvKey = 'alpha';
 export const STORAGE_KEY = 'ovok-docs:env';
 export const CHANGE_EVENT = 'ovok-docs:env-change';
 

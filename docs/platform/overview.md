@@ -21,7 +21,7 @@ clinical and consumer-facing products across the Actimi portfolio.
 - **An opinionated platform API.** Higher-level resources (projects,
   members, billing, content, devices, signals) that aren't part of FHIR
   but every digital-health product needs.
-- **A developer console.** [Ovok Dashboard](../surfaces/dashboard.md) for
+- **A developer console.** [Ovok Console](../surfaces/console.md) for
   project setup, member invites, content management, billing, and audit.
 - **Three release surfaces.** *alpha*, *beta*, *final* — read
   [Environments](./environments.md) for the contract on each.
@@ -38,7 +38,7 @@ The platform is split across a handful of repos. See
 [Architecture](./architecture.md) for the full topology; the short version:
 
 - `ovok-internal` — the Ovok Platform API (this surface's source of truth).
-- `ovok-dashboard` — the developer console at `dashboard.ovok.com`.
+- `ovok-console` — the operator console at `console.ovok.com`.
 - `ovok-payload` — content/CMS back-end powering marketing and in-product copy.
 - `medplum` — the FHIR data plane Ovok runs on.
 
