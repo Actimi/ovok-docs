@@ -21,7 +21,16 @@ import yaml from 'js-yaml';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 
+// Primary spec drives the docs pages (sidebar + per-endpoint MDX).
+// The env-specific specs (when present) drive the cross-env availability
+// matrix consumed by the Playground picker — so users can see "this
+// endpoint ships in alpha + beta but not final yet" at a glance.
 const SPEC_PATH       = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
+const ENV_SPEC_PATHS  = {
+  alpha: join(REPO_ROOT, 'openapi/alpha-public.yaml'),
+  beta:  join(REPO_ROOT, 'openapi/beta-public.yaml'),
+  final: join(REPO_ROOT, 'openapi/final-public.yaml'),
+};
 const FHIR_DATA_PATH  = join(REPO_ROOT, 'data/fhir-r5-resources.json');
 const FHIR_CACHE      = join(REPO_ROOT, '.fhir-cache/package');
 const OUT_HIGH        = join(REPO_ROOT, 'docs/api/high-level');
@@ -337,6 +346,32 @@ The full machine-readable spec is at
   mkdirSync(STATIC_OPENAPI, { recursive: true });
   writeIfChanged(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
 
+  // Cross-env availability matrix. If any of the env-specific specs exist,
+  // index every (method, path) they contain. The manifest entry below then
+  // records availableIn=['alpha','beta','final'] (or a subset) per endpoint.
+  // When no env-specific specs exist (local dev with just the primary YAML),
+  // every endpoint defaults to all three envs.
+  const envAvail = new Map(); // `${METHOD} ${path}` → Set<envKey>
+  const envsPresent = [];
+  for (const [envKey, p] of Object.entries(ENV_SPEC_PATHS)) {
+    if (!existsSync(p)) continue;
+    envsPresent.push(envKey);
+    const envSpec = yaml.load(readFileSync(p, 'utf8'));
+    for (const [path, methods] of Object.entries(envSpec.paths ?? {})) {
+      for (const method of Object.keys(methods)) {
+        if (!['get','post','put','patch','delete','head','options'].includes(method)) continue;
+        const key = `${method.toUpperCase()} ${path}`;
+        if (!envAvail.has(key)) envAvail.set(key, new Set());
+        envAvail.get(key).add(envKey);
+      }
+    }
+  }
+  const ALL_ENVS = ['alpha', 'beta', 'final'];
+  const availabilityFor = (method, path) => {
+    if (envsPresent.length === 0) return [...ALL_ENVS]; // no env specs → assume everywhere
+    return ALL_ENVS.filter((e) => envAvail.get(`${method} ${path}`)?.has(e));
+  };
+
   // Endpoint manifest consumed by the Playground — flat list of public ops
   // with body examples synthesised from the OpenAPI schemas so the user
   // has something to mutate instead of an empty textarea.
@@ -345,7 +380,9 @@ The full machine-readable spec is at
   const manifest = [];
   for (const tag of sortedTags) {
     for (const { method, path: p, op } of tagGroups.get(tag)) {
-      manifest.push(buildManifestEntry(tag, method, p, op, deref));
+      const entry = buildManifestEntry(tag, method, p, op, deref);
+      entry.availableIn = availabilityFor(method, p);
+      manifest.push(entry);
     }
   }
   // FHIR custom ops — dedupe across /fhir/, /R4/, /R5/ variants; pick R5.
@@ -358,9 +395,22 @@ The full machine-readable spec is at
   }
   for (const variants of byHandler.values()) {
     const canonical = variants.find((v) => v.path.includes('/R5/')) ?? variants[0];
-    manifest.push(buildManifestEntry('FHIR custom operations', canonical.method, canonical.path, canonical.op, deref));
+    const entry = buildManifestEntry('FHIR custom operations', canonical.method, canonical.path, canonical.op, deref);
+    // Custom op is available wherever ANY of its variants exist in any env spec.
+    const envs = new Set();
+    for (const v of variants) {
+      const a = availabilityFor(v.method, v.path);
+      a.forEach((e) => envs.add(e));
+    }
+    entry.availableIn = ALL_ENVS.filter((e) => envs.has(e));
+    if (entry.availableIn.length === 0) entry.availableIn = [...ALL_ENVS];
+    manifest.push(entry);
   }
   writeIfChanged(join(STATIC_DATA, 'endpoints.json'), JSON.stringify(manifest, null, 2));
+
+  if (envsPresent.length > 0) {
+    console.log(`Cross-env availability computed from: ${envsPresent.join(', ')}`);
+  }
 
   return {
     tags: sortedTags.length,

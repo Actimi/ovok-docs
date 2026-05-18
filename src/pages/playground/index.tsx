@@ -19,6 +19,9 @@ interface ManifestEntry {
   parameters: { name: string; in: string; required: boolean; type: string | null }[];
   bodyExample: unknown;
   deprecated: boolean;
+  /** Release tiers (alpha/beta/final) where this endpoint actually exists.
+   *  Driven by per-env OpenAPI specs at generate time. */
+  availableIn?: ('alpha' | 'beta' | 'final')[];
 }
 
 interface HeaderRow { id: number; key: string; value: string }
@@ -138,6 +141,7 @@ function PlaygroundImpl(): JSX.Element {
   const [snippetLang, setSnippetLang] = useState<SnippetLang>('curl');
   const [query, setQuery] = useState('');
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [onlyThisEnv, setOnlyThisEnv] = useState(true);
   const [response, setResponse] = useState<{
     status: number; statusText: string; timeMs: number;
     headers: Record<string, string>; body: string;
@@ -201,14 +205,18 @@ function PlaygroundImpl(): JSX.Element {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return manifest;
-    return manifest.filter((e) =>
+    let pool = manifest;
+    if (onlyThisEnv) {
+      pool = pool.filter((e) => (e.availableIn ?? ['alpha', 'beta', 'final']).includes(env));
+    }
+    if (!q) return pool;
+    return pool.filter((e) =>
       e.path.toLowerCase().includes(q) ||
       e.summary.toLowerCase().includes(q) ||
       e.method.toLowerCase().includes(q) ||
       e.tag.toLowerCase().includes(q),
     );
-  }, [query]);
+  }, [query, env, onlyThisEnv]);
 
   const groupedByTag = useMemo(() => {
     const m = new Map<string, ManifestEntry[]>();
@@ -357,6 +365,17 @@ function PlaygroundImpl(): JSX.Element {
                 autoFocus
                 spellCheck={false}
               />
+              <div className={styles.pickerFilterBar}>
+                <label className={styles.pickerToggle}>
+                  <input
+                    type="checkbox"
+                    checked={onlyThisEnv}
+                    onChange={(e) => setOnlyThisEnv(e.target.checked)}
+                  />
+                  <span>Only endpoints in <strong>{env}</strong></span>
+                </label>
+                <span className={styles.pickerCount}>{filtered.length} endpoint{filtered.length === 1 ? '' : 's'}</span>
+              </div>
               <div className={styles.pickerResults}>
                 {groupedByTag.length === 0 && (
                   <div className={styles.pickerEmpty}>No endpoints match "{query}".</div>
@@ -364,23 +383,41 @@ function PlaygroundImpl(): JSX.Element {
                 {groupedByTag.map(([tag, items]) => (
                   <div key={tag} className={styles.pickerGroup}>
                     <div className={styles.pickerGroupLabel}>{tag}</div>
-                    {items.map((e, i) => (
-                      <button
-                        key={`${e.method}-${e.path}-${i}`}
-                        type="button"
-                        role="option"
-                        aria-selected={false}
-                        className={styles.pickerItem}
-                        onClick={() => pickEndpoint(e)}
-                      >
-                        <span className={`${styles.methodPill} ${styles[`m_${e.method.toLowerCase()}`]}`}>{e.method}</span>
-                        <span className={styles.pickerItemBody}>
-                          <span className={styles.pickerItemPath}>{e.path}</span>
-                          <span className={styles.pickerItemSummary}>{e.summary}</span>
-                        </span>
-                        {e.deprecated && <span className={styles.deprecatedTag}>deprecated</span>}
-                      </button>
-                    ))}
+                    {items.map((e, i) => {
+                      const envs = e.availableIn ?? ['alpha', 'beta', 'final'];
+                      const inCurrent = envs.includes(env);
+                      return (
+                        <button
+                          key={`${e.method}-${e.path}-${i}`}
+                          type="button"
+                          role="option"
+                          aria-selected={false}
+                          className={styles.pickerItem}
+                          data-not-in-env={!inCurrent || undefined}
+                          onClick={() => pickEndpoint(e)}
+                        >
+                          <span className={`${styles.methodPill} ${styles[`m_${e.method.toLowerCase()}`]}`}>{e.method}</span>
+                          <span className={styles.pickerItemBody}>
+                            <span className={styles.pickerItemPath}>{e.path}</span>
+                            <span className={styles.pickerItemSummary}>{e.summary}</span>
+                          </span>
+                          <span className={styles.envPills} aria-label={`Available in: ${envs.join(', ')}`}>
+                            {(['alpha', 'beta', 'final'] as const).map((k) => (
+                              <span
+                                key={k}
+                                className={styles.envPill}
+                                data-env={k}
+                                data-active={envs.includes(k) || undefined}
+                                title={envs.includes(k) ? `Available in ${k}` : `Not in ${k}`}
+                              >
+                                {k.charAt(0).toUpperCase()}
+                              </span>
+                            ))}
+                          </span>
+                          {e.deprecated && <span className={styles.deprecatedTag}>deprecated</span>}
+                        </button>
+                      );
+                    })}
                   </div>
                 ))}
               </div>

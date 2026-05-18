@@ -454,6 +454,88 @@
   border-radius: var(--radius-xs);
 }
 
+/* ─── Env availability pills ────────────────────────────────────── */
+
+.envPills {
+  display: inline-flex;
+  gap: 0.18rem;
+  flex-shrink: 0;
+}
+
+.envPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-4);
+}
+
+.envPill[data-active][data-env='alpha']  { color: var(--signal-warn); border-color: color-mix(in srgb, var(--signal-warn) 30%, var(--line)); background: color-mix(in srgb, var(--signal-warn) 8%, transparent); }
+.envPill[data-active][data-env='beta']   { color: var(--ovok-deep);   border-color: color-mix(in srgb, var(--ovok-deep) 30%, var(--line));   background: color-mix(in srgb, var(--ovok-deep) 8%, transparent); }
+.envPill[data-active][data-env='final']  { color: var(--signal-ok);   border-color: color-mix(in srgb, var(--signal-ok) 30%, var(--line));   background: color-mix(in srgb, var(--signal-ok) 8%, transparent); }
+
+[data-theme='dark'] .envPill[data-active][data-env='alpha'] { color: #e0a35a; }
+[data-theme='dark'] .envPill[data-active][data-env='beta']  { color: var(--ovok-light); }
+[data-theme='dark'] .envPill[data-active][data-env='final'] { color: #6cc593; }
+
+.pickerItem[data-not-in-env] .pickerItemPath,
+.pickerItem[data-not-in-env] .pickerItemSummary {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--ink-3) 35%, transparent);
+}
+
+.pickerItem[data-not-in-env] .methodPill { opacity: 0.55; }
+
+/* ─── Filter bar inside picker ─────────────────────────────────── */
+
+.pickerFilterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-quiet);
+}
+
+.pickerToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.pickerToggle input[type='checkbox'] {
+  accent-color: var(--ovok-deep);
+  margin: 0;
+}
+
+[data-theme='dark'] .pickerToggle input[type='checkbox'] {
+  accent-color: var(--ovok-light);
+}
+
+.pickerToggle strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pickerCount {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  font-family: var(--ifm-font-family-monospace);
+}
+
 /* Compact method pills used in picker / history (smaller than url-bar badges). */
 .methodPill {
   display: inline-flex;

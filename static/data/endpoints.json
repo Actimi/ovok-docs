@@ -16,7 +16,12 @@
         "<p>No worries sir, I will take <b>care</b> of it.</p>"
       ]
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -29,7 +34,12 @@
     "bodyExample": {
       "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "DELETE",
@@ -43,7 +53,12 @@
       "days": 30,
       "wipe": false
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -58,7 +73,12 @@
       "password": "LyA{P.thDJw_E=Nr",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -69,7 +89,12 @@
     "operationId": "AuthMeController_getUserProfile",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -86,7 +111,12 @@
       "name": "Max",
       "surname": "Mustermann"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -102,7 +132,12 @@
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -120,7 +155,12 @@
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -131,7 +171,12 @@
     "operationId": "AuthSessionController_findAll",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "DELETE",
@@ -149,7 +194,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -167,7 +217,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -215,7 +270,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -239,7 +299,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -269,7 +334,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -319,7 +389,12 @@
         }
       ]
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -367,7 +442,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "PUT",
@@ -423,7 +503,12 @@
         }
       ]
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -453,7 +538,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "DELETE",
@@ -483,7 +573,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -498,7 +593,12 @@
       "contentType": "image/png",
       "isPublic": false
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -528,7 +628,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -570,7 +675,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -612,7 +722,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "DELETE",
@@ -630,7 +745,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "PATCH",
@@ -651,7 +771,12 @@
       "fileName": "updated-image.png",
       "isPublic": false
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -672,7 +797,12 @@
       "fileName": "new-cat.png",
       "contentType": "image/png"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -683,7 +813,12 @@
     "operationId": "LocaleController_getLocale",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "PATCH",
@@ -701,7 +836,12 @@
       ],
       "defaultLanguage": "en-US"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -719,7 +859,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "PATCH",
@@ -746,7 +891,12 @@
         }
       }
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -788,7 +938,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -830,7 +985,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -854,7 +1014,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "PUT",
@@ -880,7 +1045,12 @@
     "bodyExample": {
       "value": "Home"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "DELETE",
@@ -904,7 +1074,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -917,7 +1092,12 @@
     "bodyExample": {
       "email": "max.mustermann@example.com"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -928,7 +1108,12 @@
     "operationId": "OrganizationCodeController_getOrganizationCode",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -939,7 +1124,12 @@
     "operationId": "PartnerController_healthCheck[0]",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -950,7 +1140,12 @@
     "operationId": "PartnerController_healthCheck[1]_v1",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -961,7 +1156,12 @@
     "operationId": "PartnerController_healthCheck[2]_v2",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -972,7 +1172,12 @@
     "operationId": "PartnerController_healthCheck[3]_v3",
     "parameters": [],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -987,7 +1192,12 @@
       "password": "LyA{P.thDJw_E=Nr",
       "codeChallenge": "k0CBzsBqgJejBTsi97acWeHGQLpNWYLR"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1002,7 +1212,12 @@
       "codeVerifier": "ZtjbdYPZTfMP7xbXit2bMm0Hq7pu5YYoZhivzvILd5orAFHgLRAGh9vgwMGKYDp0",
       "tenantCode": "big-health-company"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1016,7 +1231,12 @@
       "mfaToken": "string",
       "loginId": "string"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1032,7 +1252,12 @@
       "codeChallenge": "6JFfDinyaWwLWn0MOplQbhHx2uI416bZ",
       "tenantCode": "big-health-company"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1046,7 +1271,12 @@
       "sessionCode": "VswcCqe7FdOPwXeNkqDTXaos5A4wtM1n",
       "codeVerifier": "mF6rayn3QcjlDWR1o6NvmLXDsTQjTQfif079mpVopKv50l6pIsgorG2jKtokBGvT"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1060,7 +1290,12 @@
       "mfaToken": "string",
       "loginId": "string"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1077,7 +1312,12 @@
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -1107,7 +1347,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "GET",
@@ -1125,7 +1370,12 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1162,7 +1412,12 @@
         }
       ]
     },
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   },
   {
     "method": "POST",
@@ -1180,6 +1435,11 @@
       }
     ],
     "bodyExample": null,
-    "deprecated": false
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta",
+      "final"
+    ]
   }
 ]
