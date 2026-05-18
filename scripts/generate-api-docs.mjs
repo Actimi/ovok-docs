@@ -28,6 +28,14 @@ const OUT_HIGH        = join(REPO_ROOT, 'docs/api/high-level');
 const OUT_FHIR        = join(REPO_ROOT, 'docs/api/fhir');
 const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
 
+// Paths starting with these prefixes are custom operations layered on top
+// of the FHIR API rather than high-level platform endpoints. They get
+// routed to docs/api/fhir/custom-operations/ instead of docs/api/high-level/.
+const FHIR_PATH_PREFIXES = ['/fhir/', '/R4/', '/R5/'];
+function isFhirCustomOpPath(path) {
+  return FHIR_PATH_PREFIXES.some((p) => path.startsWith(p));
+}
+
 // ─── shared helpers ───────────────────────────────────────────────────
 /**
  * Make narrative text safe for MDX without mangling code samples.
@@ -104,16 +112,26 @@ function generateHighLevel() {
     return out;
   }
 
+  // Split operations: FHIR custom ops go to a separate bucket the FHIR
+  // generator picks up; everything else stays in High Level tag groups.
   const tagGroups = new Map();
+  const fhirCustomOps = []; // [{method, path, op}, ...] — raw list, deduped later
   for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
       if (!['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].includes(method)) continue;
+      const entry = { method: method.toUpperCase(), path, op };
+      if (isFhirCustomOpPath(path)) {
+        fhirCustomOps.push(entry);
+        continue;
+      }
       const tag = (op.tags?.[0] ?? 'Uncategorized').trim();
       if (!tagGroups.has(tag)) tagGroups.set(tag, []);
-      tagGroups.get(tag).push({ method: method.toUpperCase(), path, op });
+      tagGroups.get(tag).push(entry);
     }
   }
   const sortedTags = [...tagGroups.keys()].sort((a, b) => a.localeCompare(b));
+  // Stash the raw list and the deref helpers for the FHIR generator.
+  globalThis.__OVOK_FHIR_CUSTOM__ = { ops: fhirCustomOps, deref, renderParamsTable: null };
 
   function renderParamsTable(params) {
     if (!params || params.length === 0) return '';
@@ -165,6 +183,12 @@ function generateHighLevel() {
     });
     return ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
   }
+
+  // Expose the rendering helpers to the FHIR generator so custom ops
+  // are rendered with identical shape to the High Level pages.
+  globalThis.__OVOK_FHIR_CUSTOM__.renderParamsTable = renderParamsTable;
+  globalThis.__OVOK_FHIR_CUSTOM__.renderRequestBody = renderRequestBody;
+  globalThis.__OVOK_FHIR_CUSTOM__.renderResponses = renderResponses;
 
   ensureCleanDir(OUT_HIGH);
   const sidebarItems = [{ type: 'doc', id: 'api/high-level/index', label: 'Overview' }];
@@ -391,8 +415,12 @@ function generateFhir() {
     writeFileSync(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
   }
 
+  // Custom operations (from the OpenAPI spec, routed here by generateHighLevel)
+  const customOpsCategory = generateFhirCustomOps();
+
   // Sidebar
   const sidebarItems = [{ type: 'doc', id: 'api/fhir/index', label: 'Overview' }];
+  if (customOpsCategory) sidebarItems.push(customOpsCategory);
   const seenCategories = new Set();
   for (const category of [...categoryOrder, 'Other']) {
     const items = byCategory.get(category);
@@ -479,6 +507,115 @@ ${categoryBlocks}
 `);
 
   return { resources: resources.length, categories: seenCategories.size };
+}
+
+function generateFhirCustomOps() {
+  const { ops, renderParamsTable, renderRequestBody, renderResponses } =
+    globalThis.__OVOK_FHIR_CUSTOM__ ?? {};
+  if (!ops || ops.length === 0) return null;
+
+  // Dedupe by operationId prefix (NestJS suffixes [0]/[1]/[2] when one
+  // handler is mounted under multiple paths — /fhir, /fhir/R4, /fhir/R5).
+  const byHandler = new Map();
+  for (const entry of ops) {
+    const opid = entry.op.operationId ?? `${entry.method}-${entry.path}`;
+    const key = opid.replace(/\[\d+\]$/, '');
+    if (!byHandler.has(key)) byHandler.set(key, { key, variants: [] });
+    byHandler.get(key).variants.push(entry);
+  }
+
+  // Build a stable ordering: keep first-seen order from the spec.
+  const handlers = [...byHandler.values()];
+  handlers.sort((a, b) => {
+    const ax = ops.findIndex((o) => (o.op.operationId ?? '').replace(/\[\d+\]$/, '') === a.key);
+    const bx = ops.findIndex((o) => (o.op.operationId ?? '').replace(/\[\d+\]$/, '') === b.key);
+    return ax - bx;
+  });
+
+  const dir = join(OUT_FHIR, 'custom-operations');
+  mkdirSync(dir, { recursive: true });
+
+  const sidebarItems = [];
+  let firstId = null;
+
+  for (const { key, variants } of handlers) {
+    // Pick the canonical R5 variant if present, otherwise the first.
+    const canonical = variants.find((v) => v.path.includes('/R5/')) ?? variants[0];
+    const { method, path, op } = canonical;
+
+    const opSlug = slug(key);
+    const title = op.summary?.trim() || `${method} ${path}`;
+    const desc = (op.description && String(op.description).split('\n')[0].trim()) || `${method} ${path}`;
+
+    const pathLines = variants
+      .map((v) => `- <span className="api-method ${v.method.toLowerCase()}">${v.method}</span> \`${v.path}\``)
+      .join('\n');
+
+    const body = [
+      '---',
+      `title: ${JSON.stringify(title)}`,
+      `sidebar_label: ${JSON.stringify(title.length > 42 ? title.slice(0, 41) + '…' : title)}`,
+      `description: ${JSON.stringify(desc.slice(0, 160))}`,
+      '---',
+      '',
+      `# ${title}`,
+      '',
+      '**Available paths**',
+      '',
+      pathLines,
+      '',
+      '<ApiBase surface="api" inline={false} />',
+      '',
+    ];
+    if (op.description) body.push(escapeMdx(op.description), '');
+    if (op.deprecated) body.push(':::warning Deprecated', 'This endpoint is deprecated. Migrate before the next major release.', ':::', '');
+    body.push(renderParamsTable(op.parameters));
+    body.push(renderRequestBody(op.requestBody));
+    body.push(renderResponses(op.responses));
+
+    writeFileSync(join(dir, `${opSlug}.mdx`), body.join('\n'));
+    const id = `api/fhir/custom-operations/${opSlug}`;
+    sidebarItems.push({ type: 'doc', id, label: title.length > 42 ? title.slice(0, 41) + '…' : title });
+    if (!firstId) firstId = id;
+  }
+
+  // Write a category index page so the category landing has context.
+  const indexBody = [
+    '---',
+    'title: Custom operations',
+    'sidebar_label: Overview',
+    'description: Ovok-specific operations layered on top of the FHIR API — $lastn, $populate, $extract, telemetry projections and more.',
+    '---',
+    '',
+    '# Custom FHIR operations',
+    '',
+    'Ovok layers a handful of named operations on top of standard FHIR resources.',
+    'These are not part of the FHIR R5 specification — they are Ovok extensions.',
+    'Every one of them is mounted under all three release tiers and supports the',
+    '`/fhir/`, `/fhir/R4/` and `/fhir/R5/` path forms.',
+    '',
+    '<ApiBase inline={false} />',
+    '',
+    '## Available operations',
+    '',
+    handlers.map(({ key, variants }) => {
+      const op = variants[0].op;
+      const title = op.summary?.trim() || key;
+      return `- **[${title}](/api/fhir/custom-operations/${slug(key)})** — ${
+        ((op.description && String(op.description).split('\n')[0].trim()) || '').slice(0, 100)
+      }`;
+    }).join('\n'),
+    '',
+  ].join('\n');
+  writeFileSync(join(dir, 'index.mdx'), indexBody);
+
+  return {
+    type: 'category',
+    label: 'Custom operations',
+    link: { type: 'doc', id: firstId ?? 'api/fhir/custom-operations/index' },
+    collapsed: false,
+    items: [{ type: 'doc', id: 'api/fhir/custom-operations/index', label: 'Overview' }, ...sidebarItems],
+  };
 }
 
 function fhirResourcePage(r) {

@@ -6,6 +6,42 @@
   },
   {
     "type": "category",
+    "label": "Custom operations",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/custom-operations/fhir-controller-get-patient-last-observation"
+    },
+    "collapsed": false,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/fhir/custom-operations/index",
+        "label": "Overview"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/custom-operations/fhir-controller-get-patient-last-observation",
+        "label": "Get last observations"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/custom-operations/fhir-controller-get-device-telemetry",
+        "label": "Get device telemetry"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/custom-operations/fhir-controller-populate-questionnaire",
+        "label": "Populate questionnaire"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response",
+        "label": "Extract observations from questionnaire r…"
+      }
+    ]
+  },
+  {
+    "type": "category",
     "label": "Foundation",
     "link": {
       "type": "doc",
