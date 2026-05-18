@@ -2,26 +2,14 @@
 title: "Get available locales"
 sidebar_label: "Get available locales"
 description: "Fetch the enabled locales and the default locale for localization."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/locales","summary":"Get available locales","description":"Fetch the enabled locales and the default locale for localization.","deprecated":false,"operationId":"LocaleController_getLocale","tag":"Localization","parameters":[],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/locales","summary":"Get available locales","description":"Fetch the enabled locales and the default locale for localization.","deprecated":false,"operationId":"LocaleController_getLocale","tag":"Localization","parameters":[],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/locales","summary":"Get available locales","description":"Fetch the enabled locales and the default locale for localization.","deprecated":false,"operationId":"LocaleController_getLocale","tag":"Localization","parameters":[],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/locales","summary":"Get available locales","description":"Fetch the enabled locales and the default locale for localization.","deprecated":false,"operationId":"LocaleController_getLocale","tag":"Localization","parameters":[],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Get available locales
 
-<span className="api-method get">GET</span> `/locales`
-
-<ApiBase inline={false} />
-
-Fetch the enabled locales and the default locale for localization.
-
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

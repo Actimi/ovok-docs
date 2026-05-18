@@ -2,50 +2,14 @@
 title: "Mapped Localizations"
 sidebar_label: "Mapped Localizations"
 description: "Map a localization to a target language"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/localization/map/{target}","summary":"Mapped Localizations","description":"Map a localization to a target language\n\nAll query parameters are FHIR query parameteters.\n\n### Parameters\n\n| Parameter Example            | Description                                                              |\n| ---------------------------- | ------------------------------------------------------------------------ |\n| category=key&#124;home.about | Get all localizations for the key `home.about`                           |\n| title:contains=About Page    | Get all localizations where the value of the title contains `About Page` |\n| \\_offset=0                   | Offset of the first localization                                         |\n| \\_count=10                   | Count of the localizations                                               |\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationMappedController_mapLocalizations","tag":"Localization Keys","parameters":[{"name":"target","in":"path","required":true,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/localization/map/{target}","summary":"Mapped Localizations","description":"Map a localization to a target language\n\nAll query parameters are FHIR query parameteters.\n\n### Parameters\n\n| Parameter Example            | Description                                                              |\n| ---------------------------- | ------------------------------------------------------------------------ |\n| category=key&#124;home.about | Get all localizations for the key `home.about`                           |\n| title:contains=About Page    | Get all localizations where the value of the title contains `About Page` |\n| \\_offset=0                   | Offset of the first localization                                         |\n| \\_count=10                   | Count of the localizations                                               |\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationMappedController_mapLocalizations","tag":"Localization Keys","parameters":[{"name":"target","in":"path","required":true,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/localization/map/{target}","summary":"Mapped Localizations","description":"Map a localization to a target language\n\nAll query parameters are FHIR query parameteters.\n\n### Parameters\n\n| Parameter Example            | Description                                                              |\n| ---------------------------- | ------------------------------------------------------------------------ |\n| category=key&#124;home.about | Get all localizations for the key `home.about`                           |\n| title:contains=About Page    | Get all localizations where the value of the title contains `About Page` |\n| \\_offset=0                   | Offset of the first localization                                         |\n| \\_count=10                   | Count of the localizations                                               |\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationMappedController_mapLocalizations","tag":"Localization Keys","parameters":[{"name":"target","in":"path","required":true,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/localization/map/{target}","summary":"Mapped Localizations","description":"Map a localization to a target language\n\nAll query parameters are FHIR query parameteters.\n\n### Parameters\n\n| Parameter Example            | Description                                                              |\n| ---------------------------- | ------------------------------------------------------------------------ |\n| category=key&#124;home.about | Get all localizations for the key `home.about`                           |\n| title:contains=About Page    | Get all localizations where the value of the title contains `About Page` |\n| \\_offset=0                   | Offset of the first localization                                         |\n| \\_count=10                   | Count of the localizations                                               |\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationMappedController_mapLocalizations","tag":"Localization Keys","parameters":[{"name":"target","in":"path","required":true,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Mapped Localizations
 
-<span className="api-method get">GET</span> `/localization/map/{target}`
-
-<ApiBase inline={false} />
-
-Map a localization to a target language
-
-All query parameters are FHIR query parameteters.
-
-### Parameters
-
-| Parameter Example            | Description                                                              |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| category=key&#124;home.about | Get all localizations for the key `home.about`                           |
-| title:contains=About Page    | Get all localizations where the value of the title contains `About Page` |
-| \_offset=0                   | Offset of the first localization                                         |
-| \_count=10                   | Count of the localizations                                               |
-
-> NOTE: The provided language must be enabled in the system by calling Locale APIs.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `target` | path | `string` | **yes** |  |
-| `_count` | query | `string` | no |  |
-| `_offset` | query | `string` | no |  |
-| `_sort` | query | `string` | no |  |
-| `search` | query | `string` | no |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

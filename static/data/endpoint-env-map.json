@@ -1,0 +1,290 @@
+{
+  "api/high-level/ai-translation/translation-controller-translate": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication/auth-me-controller-get-user-profile": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication/auth-login-controller-login-v-2": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication/auth-controller-refresh-token": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication/auth-register-controller-register": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication/auth-delete-controller-delete-user": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication-b-2-b/auth-b-2-b-register-controller-register": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication-session-management/auth-session-controller-find-all": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/authentication-session-management/auth-session-controller-revoke-sessions": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-copy-single-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-copy-contents": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-create-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-delete-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-get-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-search-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-search-mapped-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/cms/cms-controller-update-content": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-delete-document": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-generate-replace-credentials": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-get-file-url": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-get-public-file-url": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-search-files": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-update-document-metadata": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/document/document-controller-create-upload-credentials": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization/locale-controller-get-locale": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization/locale-controller-patch-locale": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-controller-delete-localization": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-controller-get-localization": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-controller-get-localizations": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-i-18-next-controller-patch-all-i-18-n": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-mapped-controller-map-localizations": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/localization-keys/localization-controller-update-localization": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/organization-code-information/organization-code-controller-get-organization-code": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/partner/partner-controller-health-check-0": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/partner/partner-controller-health-check-1-v-1": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/partner/partner-controller-health-check-2-v-2": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/partner/partner-controller-health-check-3-v-3": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-patient-auth-controller-start-login": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-patient-auth-controller-register": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ],
+  "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start": [
+    "dev",
+    "alpha",
+    "beta",
+    "final"
+  ]
+}

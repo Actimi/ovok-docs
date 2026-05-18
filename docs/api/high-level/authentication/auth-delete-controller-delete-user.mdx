@@ -2,48 +2,14 @@
 title: "Schedule user account deletion"
 sidebar_label: "Schedule user account deletion"
 description: "The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"DELETE","path":"/auth/delete","summary":"Schedule user account deletion","description":"The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.\n<br>User deletion can be aborted by logging in to the account.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/delete' \\\n -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"days\": 30,\n    \"wipe\": false\n}'\n```\n","deprecated":false,"operationId":"AuthDeleteController_deleteUser","tag":"Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":[],"properties":[{"name":"days","type":"integer","required":false,"description":"After how many days the user should be deleted."},{"name":"wipe","type":"boolean","required":false,"description":"Deletes all medical data related to the user. If true, all medical data of the user will be deleted at the time of deletion. By default, this is false."}]}}}},"responses":{"200":{"description":"User account deletion confirmation."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"DELETE","path":"/auth/delete","summary":"Schedule user account deletion","description":"The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.\n<br>User deletion can be aborted by logging in to the account.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/delete' \\\n -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"days\": 30,\n    \"wipe\": false\n}'\n```\n","deprecated":false,"operationId":"AuthDeleteController_deleteUser","tag":"Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":[],"properties":[{"name":"days","type":"integer","required":false,"description":"After how many days the user should be deleted."},{"name":"wipe","type":"boolean","required":false,"description":"Deletes all medical data related to the user. If true, all medical data of the user will be deleted at the time of deletion. By default, this is false."}]}}}},"responses":{"200":{"description":"User account deletion confirmation."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"DELETE","path":"/auth/delete","summary":"Schedule user account deletion","description":"The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.\n<br>User deletion can be aborted by logging in to the account.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/delete' \\\n -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"days\": 30,\n    \"wipe\": false\n}'\n```\n","deprecated":false,"operationId":"AuthDeleteController_deleteUser","tag":"Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":[],"properties":[{"name":"days","type":"integer","required":false,"description":"After how many days the user should be deleted."},{"name":"wipe","type":"boolean","required":false,"description":"Deletes all medical data related to the user. If true, all medical data of the user will be deleted at the time of deletion. By default, this is false."}]}}}},"responses":{"200":{"description":"User account deletion confirmation."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"DELETE","path":"/auth/delete","summary":"Schedule user account deletion","description":"The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.\n<br>User deletion can be aborted by logging in to the account.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/delete' \\\n -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"days\": 30,\n    \"wipe\": false\n}'\n```\n","deprecated":false,"operationId":"AuthDeleteController_deleteUser","tag":"Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":[],"properties":[{"name":"days","type":"integer","required":false,"description":"After how many days the user should be deleted."},{"name":"wipe","type":"boolean","required":false,"description":"Deletes all medical data related to the user. If true, all medical data of the user will be deleted at the time of deletion. By default, this is false."}]}}}},"responses":{"200":{"description":"User account deletion confirmation."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Schedule user account deletion
 
-<span className="api-method delete">DELETE</span> `/auth/delete`
-
-<ApiBase inline={false} />
-
-The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.
-<br />User deletion can be aborted by logging in to the account.
-
-## Example cURL request
-
-```bash
-curl -X DELETE \
- --url 'https://api.dev.ovok.com/auth/delete' \
- -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \
- -H 'Content-Type: application/json' \
- -d '{
-    "days": 30,
-    "wipe": false
-}'
-```
-
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `days`: `integer` — After how many days the user should be deleted.
-- `wipe`: `boolean` — Deletes all medical data related to the user. If true, all medical data of the user will be deleted at the time of deletion. By default, this is false.
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` | User account deletion confirmation. |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

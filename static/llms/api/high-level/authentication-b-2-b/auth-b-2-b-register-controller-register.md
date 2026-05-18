@@ -2,54 +2,14 @@
 title: "Register an account"
 sidebar_label: "Register an account"
 description: "This API endpoint registers a user to a project."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/auth/b2b/register","summary":"Register an account","description":"This API endpoint registers a user to a project.\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/auth/b2b/register' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"email\": \"max.mustermann@example.com\",\n    \"password\": \"LyA{P.thDJw_E&#x3D;Nr\",\n    \"name\": \"Max\",\n    \"surname\": \"Mustermann\",\n    \"tenantId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\",\n    \"clientId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\"\n}'\n```\n","deprecated":false,"operationId":"AuthB2BRegisterController_register","tag":"Authentication - B2B","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantId","clientId"],"properties":[{"name":"email","type":"string","required":true,"description":"The email of the user registering, must be a valid email in order to send a verification email","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":"The name of the user registering."},{"name":"surname","type":"string","required":true,"description":"The surname of the user registering."},{"name":"tenantId","type":"string","required":true,"description":"ID of the parent project.","format":"uuid"},{"name":"clientId","type":"string","required":true,"description":"ID of the client.","format":"uuid"}]}}}},"responses":{"200":{"description":"Login response with tokens and IDs."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/auth/b2b/register","summary":"Register an account","description":"This API endpoint registers a user to a project.\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/auth/b2b/register' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"email\": \"max.mustermann@example.com\",\n    \"password\": \"LyA{P.thDJw_E&#x3D;Nr\",\n    \"name\": \"Max\",\n    \"surname\": \"Mustermann\",\n    \"tenantId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\",\n    \"clientId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\"\n}'\n```\n","deprecated":false,"operationId":"AuthB2BRegisterController_register","tag":"Authentication - B2B","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantId","clientId"],"properties":[{"name":"email","type":"string","required":true,"description":"The email of the user registering, must be a valid email in order to send a verification email","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":"The name of the user registering."},{"name":"surname","type":"string","required":true,"description":"The surname of the user registering."},{"name":"tenantId","type":"string","required":true,"description":"ID of the parent project.","format":"uuid"},{"name":"clientId","type":"string","required":true,"description":"ID of the client.","format":"uuid"}]}}}},"responses":{"200":{"description":"Login response with tokens and IDs."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/auth/b2b/register","summary":"Register an account","description":"This API endpoint registers a user to a project.\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/auth/b2b/register' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"email\": \"max.mustermann@example.com\",\n    \"password\": \"LyA{P.thDJw_E&#x3D;Nr\",\n    \"name\": \"Max\",\n    \"surname\": \"Mustermann\",\n    \"tenantId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\",\n    \"clientId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\"\n}'\n```\n","deprecated":false,"operationId":"AuthB2BRegisterController_register","tag":"Authentication - B2B","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantId","clientId"],"properties":[{"name":"email","type":"string","required":true,"description":"The email of the user registering, must be a valid email in order to send a verification email","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":"The name of the user registering."},{"name":"surname","type":"string","required":true,"description":"The surname of the user registering."},{"name":"tenantId","type":"string","required":true,"description":"ID of the parent project.","format":"uuid"},{"name":"clientId","type":"string","required":true,"description":"ID of the client.","format":"uuid"}]}}}},"responses":{"200":{"description":"Login response with tokens and IDs."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/auth/b2b/register","summary":"Register an account","description":"This API endpoint registers a user to a project.\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/auth/b2b/register' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"email\": \"max.mustermann@example.com\",\n    \"password\": \"LyA{P.thDJw_E&#x3D;Nr\",\n    \"name\": \"Max\",\n    \"surname\": \"Mustermann\",\n    \"tenantId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\",\n    \"clientId\": \"87ea5dfc-8b8e-384d-8489-79496e706390\"\n}'\n```\n","deprecated":false,"operationId":"AuthB2BRegisterController_register","tag":"Authentication - B2B","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantId","clientId"],"properties":[{"name":"email","type":"string","required":true,"description":"The email of the user registering, must be a valid email in order to send a verification email","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":"The name of the user registering."},{"name":"surname","type":"string","required":true,"description":"The surname of the user registering."},{"name":"tenantId","type":"string","required":true,"description":"ID of the parent project.","format":"uuid"},{"name":"clientId","type":"string","required":true,"description":"ID of the client.","format":"uuid"}]}}}},"responses":{"200":{"description":"Login response with tokens and IDs."},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Register an account
 
-<span className="api-method post">POST</span> `/auth/b2b/register`
-
-<ApiBase inline={false} />
-
-This API endpoint registers a user to a project.
-
-## Example cURL request
-
-```bash
-curl -X POST \
- --url 'https://api.dev.ovok.com/auth/b2b/register' \
- -H 'Content-Type: application/json' \
- -d '{
-    "email": "max.mustermann@example.com",
-    "password": "LyA{P.thDJw_E&#x3D;Nr",
-    "name": "Max",
-    "surname": "Mustermann",
-    "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
-    "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390"
-}'
-```
-
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `email`: `string` **(required)** — The email of the user registering, must be a valid email in order to send a verification email
-- `password`: `string` **(required)**
-- `name`: `string` **(required)** — The name of the user registering.
-- `surname`: `string` **(required)** — The surname of the user registering.
-- `tenantId`: `string` **(required)** — ID of the parent project.
-- `clientId`: `string` **(required)** — ID of the client.
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` | Login response with tokens and IDs. |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

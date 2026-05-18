@@ -339,6 +339,27 @@ html {
   box-shadow: none;
 }
 
+/* ─── Sidebar env-availability filter ───────────────────────────────── */
+
+/* The EnvFilterToggle button writes 'only-current' or 'all' onto
+   document.body. The DocSidebarItem/Link swizzle marks each link wrapper
+   with data-not-in-env when the link's docId doesn't include the active
+   env. Combine the two to hide/dim items per filter mode. */
+
+body[data-doc-filter='only-current'] .docs-sidebar-env-item[data-not-in-env] {
+  display: none;
+}
+
+body[data-doc-filter='all'] .docs-sidebar-env-item[data-not-in-env] {
+  opacity: 0.5;
+}
+
+body[data-doc-filter='all'] .docs-sidebar-env-item[data-not-in-env] :where(.menu__link) {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--ink-3) 40%, transparent);
+}
+
 /* ─── API method badges (rendered inline next to a path) ───────────── */
 
 .api-method {

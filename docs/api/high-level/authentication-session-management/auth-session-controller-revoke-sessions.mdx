@@ -2,42 +2,14 @@
 title: "Revoke sessions"
 sidebar_label: "Revoke sessions"
 description: "The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"DELETE","path":"/auth/session/{option}","summary":"Revoke sessions","description":"The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated.\nYou can specify if you'd like to revoke `all`, `current`, `other` or a specific session by providing the session ID.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/session/other' \\\n -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'\n```\n","deprecated":false,"operationId":"AuthSessionController_revokeSessions","tag":"Authentication - Session Management","parameters":[{"name":"option","in":"path","required":true,"type":null,"description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"DELETE","path":"/auth/session/{option}","summary":"Revoke sessions","description":"The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated.\nYou can specify if you'd like to revoke `all`, `current`, `other` or a specific session by providing the session ID.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/session/other' \\\n -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'\n```\n","deprecated":false,"operationId":"AuthSessionController_revokeSessions","tag":"Authentication - Session Management","parameters":[{"name":"option","in":"path","required":true,"type":null,"description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"DELETE","path":"/auth/session/{option}","summary":"Revoke sessions","description":"The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated.\nYou can specify if you'd like to revoke `all`, `current`, `other` or a specific session by providing the session ID.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/session/other' \\\n -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'\n```\n","deprecated":false,"operationId":"AuthSessionController_revokeSessions","tag":"Authentication - Session Management","parameters":[{"name":"option","in":"path","required":true,"type":null,"description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"DELETE","path":"/auth/session/{option}","summary":"Revoke sessions","description":"The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated.\nYou can specify if you'd like to revoke `all`, `current`, `other` or a specific session by providing the session ID.\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/auth/session/other' \\\n -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'\n```\n","deprecated":false,"operationId":"AuthSessionController_revokeSessions","tag":"Authentication - Session Management","parameters":[{"name":"option","in":"path","required":true,"type":null,"description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Revoke sessions
 
-<span className="api-method delete">DELETE</span> `/auth/session/{option}`
-
-<ApiBase inline={false} />
-
-The Delete Session API endpoint revokes session(s) from the Ovok platform. The access and refresh tokens for the sessions(s) will be invalidated.
-You can specify if you'd like to revoke `all`, `current`, `other` or a specific session by providing the session ID.
-
-## Example cURL request
-
-```bash
-curl -X DELETE \
- --url 'https://api.dev.ovok.com/auth/session/other' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'
-```
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `option` | path | `—` | **yes** |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

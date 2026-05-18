@@ -2,34 +2,14 @@
 title: "Copy a content"
 sidebar_label: "Copy a content"
 description: "Copy a content."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/cms/{type}/{language}/{key}/copy-from-parent-project","summary":"Copy a content","description":"Copy a content.","deprecated":false,"operationId":"CMSController_copySingleContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/cms/{type}/{language}/{key}/copy-from-parent-project","summary":"Copy a content","description":"Copy a content.","deprecated":false,"operationId":"CMSController_copySingleContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/cms/{type}/{language}/{key}/copy-from-parent-project","summary":"Copy a content","description":"Copy a content.","deprecated":false,"operationId":"CMSController_copySingleContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/cms/{type}/{language}/{key}/copy-from-parent-project","summary":"Copy a content","description":"Copy a content.","deprecated":false,"operationId":"CMSController_copySingleContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Copy a content
 
-<span className="api-method post">POST</span> `/cms/{type}/{language}/{key}/copy-from-parent-project`
-
-<ApiBase inline={false} />
-
-Copy a content.
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

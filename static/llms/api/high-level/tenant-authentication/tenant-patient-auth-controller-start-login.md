@@ -2,35 +2,14 @@
 title: "Patient - Login"
 sidebar_label: "Patient - Login"
 description: "Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/auth/tenant/Patient/login/start","summary":"Patient - Login","description":"Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.","deprecated":false,"operationId":"TenantPatientAuthController_startLogin","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","tenantCode","codeChallenge"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":"Tenant code, e.g. \"big-health-company\""},{"name":"codeChallenge","type":"string","required":true,"description":"A randomly generated text that is sent from client application, the client application should generate it using the codeVerifier from the challange"}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/auth/tenant/Patient/login/start","summary":"Patient - Login","description":"Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.","deprecated":false,"operationId":"TenantPatientAuthController_startLogin","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","tenantCode","codeChallenge"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":"Tenant code, e.g. \"big-health-company\""},{"name":"codeChallenge","type":"string","required":true,"description":"A randomly generated text that is sent from client application, the client application should generate it using the codeVerifier from the challange"}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/auth/tenant/Patient/login/start","summary":"Patient - Login","description":"Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.","deprecated":false,"operationId":"TenantPatientAuthController_startLogin","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","tenantCode","codeChallenge"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":"Tenant code, e.g. \"big-health-company\""},{"name":"codeChallenge","type":"string","required":true,"description":"A randomly generated text that is sent from client application, the client application should generate it using the codeVerifier from the challange"}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/auth/tenant/Patient/login/start","summary":"Patient - Login","description":"Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.","deprecated":false,"operationId":"TenantPatientAuthController_startLogin","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","tenantCode","codeChallenge"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":"Tenant code, e.g. \"big-health-company\""},{"name":"codeChallenge","type":"string","required":true,"description":"A randomly generated text that is sent from client application, the client application should generate it using the codeVerifier from the challange"}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Patient - Login
 
-<span className="api-method post">POST</span> `/auth/tenant/Patient/login/start`
-
-<ApiBase inline={false} />
-
-Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `email`: `string` **(required)**
-- `password`: `string` **(required)**
-- `tenantCode`: `string` **(required)** — Tenant code, e.g. "big-health-company"
-- `codeChallenge`: `string` **(required)** — A randomly generated text that is sent from client application, the client application should generate it using the codeVerifier from the challange
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

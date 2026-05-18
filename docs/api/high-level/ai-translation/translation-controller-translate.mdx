@@ -2,49 +2,14 @@
 title: "Translate"
 sidebar_label: "Translate"
 description: "AI Translation uses LLMs for translation."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/ai/translation","summary":"Translate","description":"AI Translation uses LLMs for translation.\n\n### Warning\n\nThe translation may fail or return hallucinated results due to the nature of LLMs.\n\n### Body Parameters\n\n| Parameter        | Type       | Description                                     | Example                                 |\n| ---------------- | ---------- | ----------------------------------------------- | --------------------------------------- |\n| `sourceLanguage` | `string`   | ISO 639-1 language code, or full language name. | `en-US`                                 |\n| `targetLanguage` | `string`   | ISO 639-1 language code, or full language name. | `de-DE`                                 |\n| `text`           | `string[]` | The text to translate.                          | `[\"Hello, world!\", \"How is ?\"]` |\n\n> String values in the `text` array can be in any format, including HTML, Markdown, or plain text and may contain variables with double curly braces.\n","deprecated":false,"operationId":"TranslationController_translate","tag":"AI Translation","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["sourceLanguage","targetLanguage","text"],"properties":[{"name":"sourceLanguage","type":"string","required":true,"description":""},{"name":"targetLanguage","type":"string","required":true,"description":""},{"name":"text","type":"array","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/ai/translation","summary":"Translate","description":"AI Translation uses LLMs for translation.\n\n### Warning\n\nThe translation may fail or return hallucinated results due to the nature of LLMs.\n\n### Body Parameters\n\n| Parameter        | Type       | Description                                     | Example                                 |\n| ---------------- | ---------- | ----------------------------------------------- | --------------------------------------- |\n| `sourceLanguage` | `string`   | ISO 639-1 language code, or full language name. | `en-US`                                 |\n| `targetLanguage` | `string`   | ISO 639-1 language code, or full language name. | `de-DE`                                 |\n| `text`           | `string[]` | The text to translate.                          | `[\"Hello, world!\", \"How is ?\"]` |\n\n> String values in the `text` array can be in any format, including HTML, Markdown, or plain text and may contain variables with double curly braces.\n","deprecated":false,"operationId":"TranslationController_translate","tag":"AI Translation","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["sourceLanguage","targetLanguage","text"],"properties":[{"name":"sourceLanguage","type":"string","required":true,"description":""},{"name":"targetLanguage","type":"string","required":true,"description":""},{"name":"text","type":"array","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/ai/translation","summary":"Translate","description":"AI Translation uses LLMs for translation.\n\n### Warning\n\nThe translation may fail or return hallucinated results due to the nature of LLMs.\n\n### Body Parameters\n\n| Parameter        | Type       | Description                                     | Example                                 |\n| ---------------- | ---------- | ----------------------------------------------- | --------------------------------------- |\n| `sourceLanguage` | `string`   | ISO 639-1 language code, or full language name. | `en-US`                                 |\n| `targetLanguage` | `string`   | ISO 639-1 language code, or full language name. | `de-DE`                                 |\n| `text`           | `string[]` | The text to translate.                          | `[\"Hello, world!\", \"How is ?\"]` |\n\n> String values in the `text` array can be in any format, including HTML, Markdown, or plain text and may contain variables with double curly braces.\n","deprecated":false,"operationId":"TranslationController_translate","tag":"AI Translation","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["sourceLanguage","targetLanguage","text"],"properties":[{"name":"sourceLanguage","type":"string","required":true,"description":""},{"name":"targetLanguage","type":"string","required":true,"description":""},{"name":"text","type":"array","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/ai/translation","summary":"Translate","description":"AI Translation uses LLMs for translation.\n\n### Warning\n\nThe translation may fail or return hallucinated results due to the nature of LLMs.\n\n### Body Parameters\n\n| Parameter        | Type       | Description                                     | Example                                 |\n| ---------------- | ---------- | ----------------------------------------------- | --------------------------------------- |\n| `sourceLanguage` | `string`   | ISO 639-1 language code, or full language name. | `en-US`                                 |\n| `targetLanguage` | `string`   | ISO 639-1 language code, or full language name. | `de-DE`                                 |\n| `text`           | `string[]` | The text to translate.                          | `[\"Hello, world!\", \"How is ?\"]` |\n\n> String values in the `text` array can be in any format, including HTML, Markdown, or plain text and may contain variables with double curly braces.\n","deprecated":false,"operationId":"TranslationController_translate","tag":"AI Translation","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["sourceLanguage","targetLanguage","text"],"properties":[{"name":"sourceLanguage","type":"string","required":true,"description":""},{"name":"targetLanguage","type":"string","required":true,"description":""},{"name":"text","type":"array","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Translate
 
-<span className="api-method post">POST</span> `/ai/translation`
-
-<ApiBase inline={false} />
-
-AI Translation uses LLMs for translation.
-
-### Warning
-
-The translation may fail or return hallucinated results due to the nature of LLMs.
-
-### Body Parameters
-
-| Parameter        | Type       | Description                                     | Example                                 |
-| ---------------- | ---------- | ----------------------------------------------- | --------------------------------------- |
-| `sourceLanguage` | `string`   | ISO 639-1 language code, or full language name. | `en-US`                                 |
-| `targetLanguage` | `string`   | ISO 639-1 language code, or full language name. | `de-DE`                                 |
-| `text`           | `string[]` | The text to translate.                          | `["Hello, world!", "How is ?"]` |
-
-> String values in the `text` array can be in any format, including HTML, Markdown, or plain text and may contain variables with double curly braces.
-
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `sourceLanguage`: `string` **(required)**
-- `targetLanguage`: `string` **(required)**
-- `text`: `array` **(required)**
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

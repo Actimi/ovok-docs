@@ -2,79 +2,14 @@
 title: "Get content by key and language"
 sidebar_label: "Get content by key and language"
 description: "# Get Content by Key and Language"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/cms/{type}/{language}/{key}","summary":"Get content by key and language","description":"# Get Content by Key and Language\n\nRetrieve a single CMS content entry by its unique key and language.\n<br>Returns the full content DTO including title, sections, author, date, and category.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code                                               | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\nReturns a `ContentDto` object:\n\n```json\n{\n  \"id\": \"composition-id\",\n  \"title\": \"My Blog\",\n  \"category\": \"123\",\n  \"section\": [\n    { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n  ],\n  \"language\": \"en-US\",\n  \"key\": \"article-my-blog-a1b2c3d4\",\n  \"type\": \"article\",\n  \"date\": \"2025-01-15T12:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/abc\",\n    \"display\": \"Dr. Smith\"\n  }\n}\n```\n\n**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.\n","deprecated":false,"operationId":"CMSController_getContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/cms/{type}/{language}/{key}","summary":"Get content by key and language","description":"# Get Content by Key and Language\n\nRetrieve a single CMS content entry by its unique key and language.\n<br>Returns the full content DTO including title, sections, author, date, and category.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code                                               | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\nReturns a `ContentDto` object:\n\n```json\n{\n  \"id\": \"composition-id\",\n  \"title\": \"My Blog\",\n  \"category\": \"123\",\n  \"section\": [\n    { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n  ],\n  \"language\": \"en-US\",\n  \"key\": \"article-my-blog-a1b2c3d4\",\n  \"type\": \"article\",\n  \"date\": \"2025-01-15T12:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/abc\",\n    \"display\": \"Dr. Smith\"\n  }\n}\n```\n\n**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.\n","deprecated":false,"operationId":"CMSController_getContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/cms/{type}/{language}/{key}","summary":"Get content by key and language","description":"# Get Content by Key and Language\n\nRetrieve a single CMS content entry by its unique key and language.\n<br>Returns the full content DTO including title, sections, author, date, and category.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code                                               | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\nReturns a `ContentDto` object:\n\n```json\n{\n  \"id\": \"composition-id\",\n  \"title\": \"My Blog\",\n  \"category\": \"123\",\n  \"section\": [\n    { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n  ],\n  \"language\": \"en-US\",\n  \"key\": \"article-my-blog-a1b2c3d4\",\n  \"type\": \"article\",\n  \"date\": \"2025-01-15T12:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/abc\",\n    \"display\": \"Dr. Smith\"\n  }\n}\n```\n\n**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.\n","deprecated":false,"operationId":"CMSController_getContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/cms/{type}/{language}/{key}","summary":"Get content by key and language","description":"# Get Content by Key and Language\n\nRetrieve a single CMS content entry by its unique key and language.\n<br>Returns the full content DTO including title, sections, author, date, and category.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code                                               | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\nReturns a `ContentDto` object:\n\n```json\n{\n  \"id\": \"composition-id\",\n  \"title\": \"My Blog\",\n  \"category\": \"123\",\n  \"section\": [\n    { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n  ],\n  \"language\": \"en-US\",\n  \"key\": \"article-my-blog-a1b2c3d4\",\n  \"type\": \"article\",\n  \"date\": \"2025-01-15T12:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/abc\",\n    \"display\": \"Dr. Smith\"\n  }\n}\n```\n\n**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.\n","deprecated":false,"operationId":"CMSController_getContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Get content by key and language
 
-<span className="api-method get">GET</span> `/cms/{type}/{language}/{key}`
-
-<ApiBase inline={false} />
-
-# Get Content by Key and Language
-
-Retrieve a single CMS content entry by its unique key and language.
-<br />Returns the full content DTO including title, sections, author, date, and category.
-
-## Path Parameters
-
-| Parameter  | Description                                                     | Example                      |
-| ---------- | --------------------------------------------------------------- | ---------------------------- |
-| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |
-| `language` | ISO language code                                               | `en-US`                      |
-| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |
-
-## Example cURL request
-
-```bash
-curl -X GET \
- --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \
- -H 'Authorization: Bearer <token>'
-```
-
-## Response
-
-Returns a `ContentDto` object:
-
-```json
-{
-  "id": "composition-id",
-  "title": "My Blog",
-  "category": "123",
-  "section": [
-    { "title": "Intro", "text": "Welcome text", "code": ["main-content"] }
-  ],
-  "language": "en-US",
-  "key": "article-my-blog-a1b2c3d4",
-  "type": "article",
-  "date": "2025-01-15T12:00:00.000Z",
-  "author": {
-    "reference": "Practitioner/abc",
-    "display": "Dr. Smith"
-  }
-}
-```
-
-**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

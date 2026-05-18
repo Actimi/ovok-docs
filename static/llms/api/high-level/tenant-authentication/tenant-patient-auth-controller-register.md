@@ -2,36 +2,14 @@
 title: "Patient - Register"
 sidebar_label: "Patient - Register"
 description: "Register a new user."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/auth/tenant/Patient/register","summary":"Patient - Register","description":"Register a new user.","deprecated":false,"operationId":"TenantPatientAuthController_register","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantCode"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":""},{"name":"surname","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/auth/tenant/Patient/register","summary":"Patient - Register","description":"Register a new user.","deprecated":false,"operationId":"TenantPatientAuthController_register","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantCode"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":""},{"name":"surname","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/auth/tenant/Patient/register","summary":"Patient - Register","description":"Register a new user.","deprecated":false,"operationId":"TenantPatientAuthController_register","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantCode"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":""},{"name":"surname","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/auth/tenant/Patient/register","summary":"Patient - Register","description":"Register a new user.","deprecated":false,"operationId":"TenantPatientAuthController_register","tag":"Tenant Authentication","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password","name","surname","tenantCode"],"properties":[{"name":"email","type":"string","required":true,"description":"","format":"email"},{"name":"password","type":"string","required":true,"description":""},{"name":"name","type":"string","required":true,"description":""},{"name":"surname","type":"string","required":true,"description":""},{"name":"tenantCode","type":"string","required":true,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Patient - Register
 
-<span className="api-method post">POST</span> `/auth/tenant/Patient/register`
-
-<ApiBase inline={false} />
-
-Register a new user.
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `email`: `string` **(required)**
-- `password`: `string` **(required)**
-- `name`: `string` **(required)**
-- `surname`: `string` **(required)**
-- `tenantCode`: `string` **(required)**
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

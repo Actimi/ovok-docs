@@ -2,38 +2,14 @@
 title: "Delete a single localization"
 sidebar_label: "Delete a single localization"
 description: "Delete a single localization by language and key"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"DELETE","path":"/localization/{language}/{key}","summary":"Delete a single localization","description":"Delete a single localization by language and key\n\nThe request doesn't return anything.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_deleteLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"DELETE","path":"/localization/{language}/{key}","summary":"Delete a single localization","description":"Delete a single localization by language and key\n\nThe request doesn't return anything.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_deleteLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"DELETE","path":"/localization/{language}/{key}","summary":"Delete a single localization","description":"Delete a single localization by language and key\n\nThe request doesn't return anything.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_deleteLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"DELETE","path":"/localization/{language}/{key}","summary":"Delete a single localization","description":"Delete a single localization by language and key\n\nThe request doesn't return anything.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_deleteLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Delete a single localization
 
-<span className="api-method delete">DELETE</span> `/localization/{language}/{key}`
-
-<ApiBase inline={false} />
-
-Delete a single localization by language and key
-
-The request doesn't return anything.
-
-> NOTE: The provided language must be enabled in the system by calling Locale APIs.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `key` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

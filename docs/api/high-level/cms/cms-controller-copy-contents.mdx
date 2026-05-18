@@ -2,33 +2,14 @@
 title: "Copy contents"
 sidebar_label: "Copy contents"
 description: "Copy contents."
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/cms/{type}/{language}/copy-from-parent-project","summary":"Copy contents","description":"Copy contents.","deprecated":false,"operationId":"CMSController_copyContents","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/cms/{type}/{language}/copy-from-parent-project","summary":"Copy contents","description":"Copy contents.","deprecated":false,"operationId":"CMSController_copyContents","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/cms/{type}/{language}/copy-from-parent-project","summary":"Copy contents","description":"Copy contents.","deprecated":false,"operationId":"CMSController_copyContents","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/cms/{type}/{language}/copy-from-parent-project","summary":"Copy contents","description":"Copy contents.","deprecated":false,"operationId":"CMSController_copyContents","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Copy contents
 
-<span className="api-method post">POST</span> `/cms/{type}/{language}/copy-from-parent-project`
-
-<ApiBase inline={false} />
-
-Copy contents.
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

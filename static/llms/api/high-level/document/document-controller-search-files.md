@@ -2,44 +2,14 @@
 title: "Search documents"
 sidebar_label: "Search documents"
 description: "File search"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/document","summary":"Search documents","description":"File search\n\nInformation such as id, contentType, fileName, public token.\n\n### Parameters\n\n| Parameter | In      | Description                                                     | Example |\n| --------- | ------- | --------------------------------------------------------------- | ------- |\n| `_count`  | `query` | Total amount of file informations per query                     | `10`    |\n| `_offset` | `query` | Total amount of file informations to be skipped (page \\* count) | `0`     |\n","deprecated":false,"operationId":"DocumentController_searchFiles","tag":"Document","parameters":[{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/document","summary":"Search documents","description":"File search\n\nInformation such as id, contentType, fileName, public token.\n\n### Parameters\n\n| Parameter | In      | Description                                                     | Example |\n| --------- | ------- | --------------------------------------------------------------- | ------- |\n| `_count`  | `query` | Total amount of file informations per query                     | `10`    |\n| `_offset` | `query` | Total amount of file informations to be skipped (page \\* count) | `0`     |\n","deprecated":false,"operationId":"DocumentController_searchFiles","tag":"Document","parameters":[{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/document","summary":"Search documents","description":"File search\n\nInformation such as id, contentType, fileName, public token.\n\n### Parameters\n\n| Parameter | In      | Description                                                     | Example |\n| --------- | ------- | --------------------------------------------------------------- | ------- |\n| `_count`  | `query` | Total amount of file informations per query                     | `10`    |\n| `_offset` | `query` | Total amount of file informations to be skipped (page \\* count) | `0`     |\n","deprecated":false,"operationId":"DocumentController_searchFiles","tag":"Document","parameters":[{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/document","summary":"Search documents","description":"File search\n\nInformation such as id, contentType, fileName, public token.\n\n### Parameters\n\n| Parameter | In      | Description                                                     | Example |\n| --------- | ------- | --------------------------------------------------------------- | ------- |\n| `_count`  | `query` | Total amount of file informations per query                     | `10`    |\n| `_offset` | `query` | Total amount of file informations to be skipped (page \\* count) | `0`     |\n","deprecated":false,"operationId":"DocumentController_searchFiles","tag":"Document","parameters":[{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""},{"name":"_sort","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Search documents
 
-<span className="api-method get">GET</span> `/document`
-
-<ApiBase inline={false} />
-
-File search
-
-Information such as id, contentType, fileName, public token.
-
-### Parameters
-
-| Parameter | In      | Description                                                     | Example |
-| --------- | ------- | --------------------------------------------------------------- | ------- |
-| `_count`  | `query` | Total amount of file informations per query                     | `10`    |
-| `_offset` | `query` | Total amount of file informations to be skipped (page \* count) | `0`     |
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `_count` | query | `string` | no |  |
-| `_offset` | query | `string` | no |  |
-| `_sort` | query | `string` | no |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

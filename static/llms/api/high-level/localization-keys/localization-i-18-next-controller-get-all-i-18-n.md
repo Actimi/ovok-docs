@@ -2,38 +2,14 @@
 title: "i18next - Get JSON"
 sidebar_label: "i18next - Get JSON"
 description: "Download the i18next JSON file for applications"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/localization/i18next/{language}","summary":"i18next - Get JSON","description":"Download the i18next JSON file for applications\n\nApplications require the i18next JSON file to be downloaded and used to initialize the i18next library.\nThe response is a JSON object with the i18next format.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_getAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/localization/i18next/{language}","summary":"i18next - Get JSON","description":"Download the i18next JSON file for applications\n\nApplications require the i18next JSON file to be downloaded and used to initialize the i18next library.\nThe response is a JSON object with the i18next format.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_getAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/localization/i18next/{language}","summary":"i18next - Get JSON","description":"Download the i18next JSON file for applications\n\nApplications require the i18next JSON file to be downloaded and used to initialize the i18next library.\nThe response is a JSON object with the i18next format.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_getAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/localization/i18next/{language}","summary":"i18next - Get JSON","description":"Download the i18next JSON file for applications\n\nApplications require the i18next JSON file to be downloaded and used to initialize the i18next library.\nThe response is a JSON object with the i18next format.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_getAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # i18next - Get JSON
 
-<span className="api-method get">GET</span> `/localization/i18next/{language}`
-
-<ApiBase inline={false} />
-
-Download the i18next JSON file for applications
-
-Applications require the i18next JSON file to be downloaded and used to initialize the i18next library.
-The response is a JSON object with the i18next format.
-
-> NOTE: The provided language must be enabled in the system by calling Locale APIs.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `language` | path | `string` | **yes** |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

@@ -25,19 +25,14 @@
     "label": "Authentication",
     "link": {
       "type": "doc",
-      "id": "api/high-level/authentication/auth-controller-refresh-token"
+      "id": "api/high-level/authentication/auth-me-controller-get-user-profile"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/authentication/auth-controller-refresh-token",
-        "label": "Refresh access token"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/authentication/auth-delete-controller-delete-user",
-        "label": "Schedule user account deletion"
+        "id": "api/high-level/authentication/auth-me-controller-get-user-profile",
+        "label": "Get account information"
       },
       {
         "type": "doc",
@@ -46,13 +41,18 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/authentication/auth-me-controller-get-user-profile",
-        "label": "Get account information"
+        "id": "api/high-level/authentication/auth-controller-refresh-token",
+        "label": "Refresh access token"
       },
       {
         "type": "doc",
         "id": "api/high-level/authentication/auth-register-controller-register",
         "label": "Register an account"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-delete-controller-delete-user",
+        "label": "Schedule user account deletion"
       }
     ]
   },
@@ -119,14 +119,14 @@
     "label": "CMS",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms/cms-controller-search-mapped-content"
+      "id": "api/high-level/cms/cms-controller-copy-single-content"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-search-mapped-content",
-        "label": "Search mapped content"
+        "id": "api/high-level/cms/cms-controller-copy-single-content",
+        "label": "Copy a content"
       },
       {
         "type": "doc",
@@ -135,23 +135,13 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-copy-single-content",
-        "label": "Copy a content"
-      },
-      {
-        "type": "doc",
         "id": "api/high-level/cms/cms-controller-create-content",
         "label": "Create content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-search-content",
-        "label": "Search content"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/cms/cms-controller-update-content",
-        "label": "Update content"
+        "id": "api/high-level/cms/cms-controller-delete-content",
+        "label": "Delete content"
       },
       {
         "type": "doc",
@@ -160,8 +150,18 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-delete-content",
-        "label": "Delete content"
+        "id": "api/high-level/cms/cms-controller-search-content",
+        "label": "Search content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-search-mapped-content",
+        "label": "Search mapped content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-update-content",
+        "label": "Update content"
       }
     ]
   },
@@ -170,24 +170,19 @@
     "label": "Document",
     "link": {
       "type": "doc",
-      "id": "api/high-level/document/document-controller-create-upload-credentials"
+      "id": "api/high-level/document/document-controller-delete-document"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/document/document-controller-create-upload-credentials",
-        "label": "Upload document - Generate credentials"
+        "id": "api/high-level/document/document-controller-delete-document",
+        "label": "Delete a document"
       },
       {
         "type": "doc",
-        "id": "api/high-level/document/document-controller-search-files",
-        "label": "Search documents"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/document/document-controller-get-public-file-url",
-        "label": "Get a document as public user"
+        "id": "api/high-level/document/document-controller-generate-replace-credentials",
+        "label": "Generate credentials for document file re…"
       },
       {
         "type": "doc",
@@ -196,8 +191,13 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/document/document-controller-delete-document",
-        "label": "Delete a document"
+        "id": "api/high-level/document/document-controller-get-public-file-url",
+        "label": "Get a document as public user"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-search-files",
+        "label": "Search documents"
       },
       {
         "type": "doc",
@@ -206,8 +206,8 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/document/document-controller-generate-replace-credentials",
-        "label": "Generate credentials for document file re…"
+        "id": "api/high-level/document/document-controller-create-upload-credentials",
+        "label": "Upload document - Generate credentials"
       }
     ]
   },
@@ -237,10 +237,25 @@
     "label": "Localization Keys",
     "link": {
       "type": "doc",
-      "id": "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n"
+      "id": "api/high-level/localization-keys/localization-controller-delete-localization"
     },
     "collapsed": true,
     "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-delete-localization",
+        "label": "Delete a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localization",
+        "label": "Get a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localizations",
+        "label": "Get all localizations"
+      },
       {
         "type": "doc",
         "id": "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n",
@@ -258,23 +273,8 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/localization-keys/localization-controller-get-localizations",
-        "label": "Get all localizations"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/localization-keys/localization-controller-get-localization",
-        "label": "Get a single localization"
-      },
-      {
-        "type": "doc",
         "id": "api/high-level/localization-keys/localization-controller-update-localization",
         "label": "Update a single localization"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/localization-keys/localization-controller-delete-localization",
-        "label": "Delete a single localization"
       }
     ]
   },
@@ -283,19 +283,19 @@
     "label": "Organization Code Information",
     "link": {
       "type": "doc",
-      "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations"
+      "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations",
-        "label": "Receive Organization Codes"
+        "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code",
+        "label": "Get Organization Code"
       },
       {
         "type": "doc",
-        "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code",
-        "label": "Get Organization Code"
+        "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations",
+        "label": "Receive Organization Codes"
       }
     ]
   },
@@ -335,34 +335,19 @@
     "label": "Tenant Authentication",
     "link": {
       "type": "doc",
-      "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login"
+      "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login",
-        "label": "Practitioner - Login"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login",
-        "label": "Practitioner - Exchange Token"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
-        "label": "Practitioner - MFA"
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login",
+        "label": "Patient - Exchange Token"
       },
       {
         "type": "doc",
         "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-start-login",
         "label": "Patient - Login"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login",
-        "label": "Patient - Exchange Token"
       },
       {
         "type": "doc",
@@ -373,6 +358,21 @@
         "type": "doc",
         "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-register",
         "label": "Patient - Register"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login",
+        "label": "Practitioner - Exchange Token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login",
+        "label": "Practitioner - Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
+        "label": "Practitioner - MFA"
       }
     ]
   }

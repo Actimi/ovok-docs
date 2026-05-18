@@ -2,83 +2,14 @@
 title: "Update content"
 sidebar_label: "Update content"
 description: "# Create Content"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"PUT","path":"/cms/{type}/{language}/{key}","summary":"Update content","description":"# Create Content\n\nCreate a new CMS content entry for a given content type and language.\n<br>The content is stored as a FHIR Composition resource scoped to the caller's project. A unique key is auto-generated from the title and used to link translations across languages.\n\n## Path Parameters\n\n| Parameter  | Description                                      | Example     |\n| ---------- | ------------------------------------------------ | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`) | `article`   |\n| `language` | ISO language code                                | `en-US`     |\n\n## Request Body\n\n| Field      | Type       | Description                                                  |\n| ---------- | ---------- | ------------------------------------------------------------ |\n| `title`    | `string`   | Title of the content entry                                   |\n| `category` | `string`   | Category identifier                                          |\n| `section`  | `array`    | Array of sections, each with `title`, `text`, and `code`     |\n| `code`     | `string`   | Optional code used for additional classification             |\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/cms/article/en-US' \\\n -H 'Authorization: Bearer <token>' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"title\": \"My Blog\",\n    \"category\": \"123\",\n    \"section\": [\n      { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n    ]\n}'\n```\n\n**Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.\n\n**Notes:** The same description is reused for the **Update content** (`PUT /:language/:key`) route. Updates follow the same body schema but target an existing key.\n","deprecated":false,"operationId":"CMSController_updateContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["title"],"properties":[{"name":"title","type":"string","required":true,"description":""},{"name":"category","type":"array","required":false,"description":""},{"name":"section","type":"array","required":false,"description":""},{"name":"code","type":"string","required":false,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"PUT","path":"/cms/{type}/{language}/{key}","summary":"Update content","description":"# Create Content\n\nCreate a new CMS content entry for a given content type and language.\n<br>The content is stored as a FHIR Composition resource scoped to the caller's project. A unique key is auto-generated from the title and used to link translations across languages.\n\n## Path Parameters\n\n| Parameter  | Description                                      | Example     |\n| ---------- | ------------------------------------------------ | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`) | `article`   |\n| `language` | ISO language code                                | `en-US`     |\n\n## Request Body\n\n| Field      | Type       | Description                                                  |\n| ---------- | ---------- | ------------------------------------------------------------ |\n| `title`    | `string`   | Title of the content entry                                   |\n| `category` | `string`   | Category identifier                                          |\n| `section`  | `array`    | Array of sections, each with `title`, `text`, and `code`     |\n| `code`     | `string`   | Optional code used for additional classification             |\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/cms/article/en-US' \\\n -H 'Authorization: Bearer <token>' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"title\": \"My Blog\",\n    \"category\": \"123\",\n    \"section\": [\n      { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n    ]\n}'\n```\n\n**Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.\n\n**Notes:** The same description is reused for the **Update content** (`PUT /:language/:key`) route. Updates follow the same body schema but target an existing key.\n","deprecated":false,"operationId":"CMSController_updateContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["title"],"properties":[{"name":"title","type":"string","required":true,"description":""},{"name":"category","type":"array","required":false,"description":""},{"name":"section","type":"array","required":false,"description":""},{"name":"code","type":"string","required":false,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"PUT","path":"/cms/{type}/{language}/{key}","summary":"Update content","description":"# Create Content\n\nCreate a new CMS content entry for a given content type and language.\n<br>The content is stored as a FHIR Composition resource scoped to the caller's project. A unique key is auto-generated from the title and used to link translations across languages.\n\n## Path Parameters\n\n| Parameter  | Description                                      | Example     |\n| ---------- | ------------------------------------------------ | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`) | `article`   |\n| `language` | ISO language code                                | `en-US`     |\n\n## Request Body\n\n| Field      | Type       | Description                                                  |\n| ---------- | ---------- | ------------------------------------------------------------ |\n| `title`    | `string`   | Title of the content entry                                   |\n| `category` | `string`   | Category identifier                                          |\n| `section`  | `array`    | Array of sections, each with `title`, `text`, and `code`     |\n| `code`     | `string`   | Optional code used for additional classification             |\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/cms/article/en-US' \\\n -H 'Authorization: Bearer <token>' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"title\": \"My Blog\",\n    \"category\": \"123\",\n    \"section\": [\n      { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n    ]\n}'\n```\n\n**Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.\n\n**Notes:** The same description is reused for the **Update content** (`PUT /:language/:key`) route. Updates follow the same body schema but target an existing key.\n","deprecated":false,"operationId":"CMSController_updateContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["title"],"properties":[{"name":"title","type":"string","required":true,"description":""},{"name":"category","type":"array","required":false,"description":""},{"name":"section","type":"array","required":false,"description":""},{"name":"code","type":"string","required":false,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"PUT","path":"/cms/{type}/{language}/{key}","summary":"Update content","description":"# Create Content\n\nCreate a new CMS content entry for a given content type and language.\n<br>The content is stored as a FHIR Composition resource scoped to the caller's project. A unique key is auto-generated from the title and used to link translations across languages.\n\n## Path Parameters\n\n| Parameter  | Description                                      | Example     |\n| ---------- | ------------------------------------------------ | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`) | `article`   |\n| `language` | ISO language code                                | `en-US`     |\n\n## Request Body\n\n| Field      | Type       | Description                                                  |\n| ---------- | ---------- | ------------------------------------------------------------ |\n| `title`    | `string`   | Title of the content entry                                   |\n| `category` | `string`   | Category identifier                                          |\n| `section`  | `array`    | Array of sections, each with `title`, `text`, and `code`     |\n| `code`     | `string`   | Optional code used for additional classification             |\n\n## Example cURL request\n\n```bash\ncurl -X POST \\\n --url 'https://api.dev.ovok.com/cms/article/en-US' \\\n -H 'Authorization: Bearer <token>' \\\n -H 'Content-Type: application/json' \\\n -d '{\n    \"title\": \"My Blog\",\n    \"category\": \"123\",\n    \"section\": [\n      { \"title\": \"Intro\", \"text\": \"Welcome text\", \"code\": [\"main-content\"] }\n    ]\n}'\n```\n\n**Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.\n\n**Notes:** The same description is reused for the **Update content** (`PUT /:language/:key`) route. Updates follow the same body schema but target an existing key.\n","deprecated":false,"operationId":"CMSController_updateContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["title"],"properties":[{"name":"title","type":"string","required":true,"description":""},{"name":"category","type":"array","required":false,"description":""},{"name":"section","type":"array","required":false,"description":""},{"name":"code","type":"string","required":false,"description":""}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Update content
 
-<span className="api-method put">PUT</span> `/cms/{type}/{language}/{key}`
-
-<ApiBase inline={false} />
-
-# Create Content
-
-Create a new CMS content entry for a given content type and language.
-<br />The content is stored as a FHIR Composition resource scoped to the caller's project. A unique key is auto-generated from the title and used to link translations across languages.
-
-## Path Parameters
-
-| Parameter  | Description                                      | Example     |
-| ---------- | ------------------------------------------------ | ----------- |
-| `type`     | Content type (e.g. `article`, `faq`, `exercise`) | `article`   |
-| `language` | ISO language code                                | `en-US`     |
-
-## Request Body
-
-| Field      | Type       | Description                                                  |
-| ---------- | ---------- | ------------------------------------------------------------ |
-| `title`    | `string`   | Title of the content entry                                   |
-| `category` | `string`   | Category identifier                                          |
-| `section`  | `array`    | Array of sections, each with `title`, `text`, and `code`     |
-| `code`     | `string`   | Optional code used for additional classification             |
-
-## Example cURL request
-
-```bash
-curl -X POST \
- --url 'https://api.dev.ovok.com/cms/article/en-US' \
- -H 'Authorization: Bearer <token>' \
- -H 'Content-Type: application/json' \
- -d '{
-    "title": "My Blog",
-    "category": "123",
-    "section": [
-      { "title": "Intro", "text": "Welcome text", "code": ["main-content"] }
-    ]
-}'
-```
-
-**Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.
-
-**Notes:** The same description is reused for the **Update content** (`PUT /:language/:key`) route. Updates follow the same body schema but target an existing key.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `title`: `string` **(required)**
-- `category`: `array`
-- `section`: `array`
-- `code`: `string`
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

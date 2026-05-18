@@ -2,46 +2,14 @@
 title: "i18next - Update JSON"
 sidebar_label: "i18next - Update JSON"
 description: "Update the i18next JSON file for applications"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"PATCH","path":"/localization/i18next/{language}","summary":"i18next - Update JSON","description":"Update the i18next JSON file for applications\n\nThe i18next JSON file is used to update the localization in a frontend application at runtime/compile time.\nThe request doesn't return anything and updating the i18next JSON file is an async process.\n\nNOTE: All pre-existing and matching localizations will be overwritten, pre-existing and non-matching localizations will not be affected and non-pre-existing localizations will be created.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_patchAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"PATCH","path":"/localization/i18next/{language}","summary":"i18next - Update JSON","description":"Update the i18next JSON file for applications\n\nThe i18next JSON file is used to update the localization in a frontend application at runtime/compile time.\nThe request doesn't return anything and updating the i18next JSON file is an async process.\n\nNOTE: All pre-existing and matching localizations will be overwritten, pre-existing and non-matching localizations will not be affected and non-pre-existing localizations will be created.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_patchAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"PATCH","path":"/localization/i18next/{language}","summary":"i18next - Update JSON","description":"Update the i18next JSON file for applications\n\nThe i18next JSON file is used to update the localization in a frontend application at runtime/compile time.\nThe request doesn't return anything and updating the i18next JSON file is an async process.\n\nNOTE: All pre-existing and matching localizations will be overwritten, pre-existing and non-matching localizations will not be affected and non-pre-existing localizations will be created.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_patchAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"PATCH","path":"/localization/i18next/{language}","summary":"i18next - Update JSON","description":"Update the i18next JSON file for applications\n\nThe i18next JSON file is used to update the localization in a frontend application at runtime/compile time.\nThe request doesn't return anything and updating the i18next JSON file is an async process.\n\nNOTE: All pre-existing and matching localizations will be overwritten, pre-existing and non-matching localizations will not be affected and non-pre-existing localizations will be created.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationI18NextController_patchAllI18n","tag":"Localization Keys","parameters":[{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object"}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # i18next - Update JSON
 
-<span className="api-method patch">PATCH</span> `/localization/i18next/{language}`
-
-<ApiBase inline={false} />
-
-Update the i18next JSON file for applications
-
-The i18next JSON file is used to update the localization in a frontend application at runtime/compile time.
-The request doesn't return anything and updating the i18next JSON file is an async process.
-
-NOTE: All pre-existing and matching localizations will be overwritten, pre-existing and non-matching localizations will not be affected and non-pre-existing localizations will be created.
-
-> NOTE: The provided language must be enabled in the system by calling Locale APIs.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `language` | path | `string` | **yes** |  |
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-`object`
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

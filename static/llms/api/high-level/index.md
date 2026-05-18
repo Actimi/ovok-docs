@@ -19,26 +19,25 @@ applications don't have to assemble them out of raw FHIR resources.
 ## Areas
 
 - **[AI Translation](/api/high-level/ai-translation/translation-controller-translate)** — 1 endpoint
-- **[Authentication](/api/high-level/authentication/auth-controller-refresh-token)** — 5 endpoints
+- **[Authentication](/api/high-level/authentication/auth-me-controller-get-user-profile)** — 5 endpoints
 - **[Authentication - B2B](/api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login)** — 2 endpoints
 - **[Authentication - Session Management](/api/high-level/authentication-session-management/auth-session-controller-find-all)** — 2 endpoints
 - **[Bots - Execute a custom script](/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post)** — 1 endpoint
-- **[CMS](/api/high-level/cms/cms-controller-search-mapped-content)** — 8 endpoints
-- **[Document](/api/high-level/document/document-controller-create-upload-credentials)** — 7 endpoints
+- **[CMS](/api/high-level/cms/cms-controller-copy-single-content)** — 8 endpoints
+- **[Document](/api/high-level/document/document-controller-delete-document)** — 7 endpoints
 - **[Localization](/api/high-level/localization/locale-controller-get-locale)** — 2 endpoints
-- **[Localization Keys](/api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n)** — 7 endpoints
-- **[Organization Code Information](/api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations)** — 2 endpoints
+- **[Localization Keys](/api/high-level/localization-keys/localization-controller-delete-localization)** — 7 endpoints
+- **[Organization Code Information](/api/high-level/organization-code-information/organization-code-controller-get-organization-code)** — 2 endpoints
 - **[Partner](/api/high-level/partner/partner-controller-health-check-0)** — 4 endpoints
-- **[Tenant Authentication](/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login)** — 7 endpoints
+- **[Tenant Authentication](/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login)** — 7 endpoints
 
 ## How endpoints are documented
 
-Each endpoint page lists:
-
-- **Method + path** with a coloured method badge.
-- **Parameters** — path, query, header and cookie, with types and requirements.
-- **Request body** — content-type and schema summary.
-- **Responses** — status code → description, from the spec.
+Every endpoint shows availability across all four release tiers
+(`dev` / `alpha` / `beta` / `final`). Switch the tier from the
+navbar — schemas, examples and responses update to match. If an
+endpoint isn't available in your selected tier, the page warns you
+loudly instead of pretending it is.
 
 The full machine-readable spec is at
 [`/openapi/ovok-api-public.yaml`](pathname:///openapi/ovok-api-public.yaml).

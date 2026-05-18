@@ -2,124 +2,14 @@
 title: "Upload document - Generate credentials"
 sidebar_label: "Upload document - Generate credentials"
 description: "Generate a file upload url and credentials"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/document","summary":"Upload document - Generate credentials","description":"Generate a file upload url and credentials\n\n### Parameters\n\n| Parameter     | In     | Description                                    | Example     |\n| ------------- | ------ | ---------------------------------------------- | ----------- |\n| `contentType` | `body` | The mime type of the file                      | `image/png` |\n| `fileName`    | `body` | The filename of the resource to be saved with. | `cat.png`   |\n\n### Response\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nBy using the credentials provided in the `uploadOptions`, you can use any http client to upload your file in http form field.\nAll of the `field` values in the `uploadOptions` should be provided as form data key value pairs, along with another form data field `file` with the value of actual file itself.\n\n```ts\nimport axios from 'axios';\nimport * as fs from 'fs';\nimport FormData from 'form-data';\n\nasync function uploadFileWithCredentials(filePath: string, uploadCredentialsResponse: any) {\n  const { url, fields } = uploadCredentialsResponse.uploadOptions;\n  const formData = new FormData();\n\n  for (const [key, value] of Object.entries(fields)) {\n    formData.append(key, value);\n  }\n\n  try {\n    const fileContent = fs.readFileSync(filePath);\n    formData.append('file', fileContent);\n\n    const response = await axios.post(url, formData, {\n      headers: formData.getHeaders(),\n    });\n    console.log('Upload successful:', response.status);\n  } catch (error: any) {\n    console.error('Upload failed:', error);\n  }\n}\n\nconst uploadCredentialsResponse = {\n  id: '12345',\n  lastUpdated: '2000-01-01T00:00:00.000Z',\n  author: {\n    reference: 'Practitioner/...',\n    display: 'Max Mustermann',\n  },\n  fileName: 'cat.png',\n  contentType: 'image/png',\n  uploadOptions: {\n    url: 'https://s3.eu-central-1.amazonaws.com/s...',\n    fields: {\n      bucket: 's...',\n      'X-Amz-Algorithm': 'A...',\n      'X-Amz-Credential': 'A...',\n      'X-Amz-Date': '2025...',\n      key: 'bi...',\n      Policy: 'ey...',\n      'X-Amz-Signature': 'a6...',\n    },\n  },\n};\n\nuploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);\n```\n","deprecated":false,"operationId":"DocumentController_createUploadCredentials","tag":"Document","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The name of the file."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"string","required":false,"description":"Whether the file is public. If true file will be publicly accessable with the token defined in the DocumentReference.extension","enum":["true","false"]}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/document","summary":"Upload document - Generate credentials","description":"Generate a file upload url and credentials\n\n### Parameters\n\n| Parameter     | In     | Description                                    | Example     |\n| ------------- | ------ | ---------------------------------------------- | ----------- |\n| `contentType` | `body` | The mime type of the file                      | `image/png` |\n| `fileName`    | `body` | The filename of the resource to be saved with. | `cat.png`   |\n\n### Response\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nBy using the credentials provided in the `uploadOptions`, you can use any http client to upload your file in http form field.\nAll of the `field` values in the `uploadOptions` should be provided as form data key value pairs, along with another form data field `file` with the value of actual file itself.\n\n```ts\nimport axios from 'axios';\nimport * as fs from 'fs';\nimport FormData from 'form-data';\n\nasync function uploadFileWithCredentials(filePath: string, uploadCredentialsResponse: any) {\n  const { url, fields } = uploadCredentialsResponse.uploadOptions;\n  const formData = new FormData();\n\n  for (const [key, value] of Object.entries(fields)) {\n    formData.append(key, value);\n  }\n\n  try {\n    const fileContent = fs.readFileSync(filePath);\n    formData.append('file', fileContent);\n\n    const response = await axios.post(url, formData, {\n      headers: formData.getHeaders(),\n    });\n    console.log('Upload successful:', response.status);\n  } catch (error: any) {\n    console.error('Upload failed:', error);\n  }\n}\n\nconst uploadCredentialsResponse = {\n  id: '12345',\n  lastUpdated: '2000-01-01T00:00:00.000Z',\n  author: {\n    reference: 'Practitioner/...',\n    display: 'Max Mustermann',\n  },\n  fileName: 'cat.png',\n  contentType: 'image/png',\n  uploadOptions: {\n    url: 'https://s3.eu-central-1.amazonaws.com/s...',\n    fields: {\n      bucket: 's...',\n      'X-Amz-Algorithm': 'A...',\n      'X-Amz-Credential': 'A...',\n      'X-Amz-Date': '2025...',\n      key: 'bi...',\n      Policy: 'ey...',\n      'X-Amz-Signature': 'a6...',\n    },\n  },\n};\n\nuploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);\n```\n","deprecated":false,"operationId":"DocumentController_createUploadCredentials","tag":"Document","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The name of the file."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"string","required":false,"description":"Whether the file is public. If true file will be publicly accessable with the token defined in the DocumentReference.extension","enum":["true","false"]}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/document","summary":"Upload document - Generate credentials","description":"Generate a file upload url and credentials\n\n### Parameters\n\n| Parameter     | In     | Description                                    | Example     |\n| ------------- | ------ | ---------------------------------------------- | ----------- |\n| `contentType` | `body` | The mime type of the file                      | `image/png` |\n| `fileName`    | `body` | The filename of the resource to be saved with. | `cat.png`   |\n\n### Response\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nBy using the credentials provided in the `uploadOptions`, you can use any http client to upload your file in http form field.\nAll of the `field` values in the `uploadOptions` should be provided as form data key value pairs, along with another form data field `file` with the value of actual file itself.\n\n```ts\nimport axios from 'axios';\nimport * as fs from 'fs';\nimport FormData from 'form-data';\n\nasync function uploadFileWithCredentials(filePath: string, uploadCredentialsResponse: any) {\n  const { url, fields } = uploadCredentialsResponse.uploadOptions;\n  const formData = new FormData();\n\n  for (const [key, value] of Object.entries(fields)) {\n    formData.append(key, value);\n  }\n\n  try {\n    const fileContent = fs.readFileSync(filePath);\n    formData.append('file', fileContent);\n\n    const response = await axios.post(url, formData, {\n      headers: formData.getHeaders(),\n    });\n    console.log('Upload successful:', response.status);\n  } catch (error: any) {\n    console.error('Upload failed:', error);\n  }\n}\n\nconst uploadCredentialsResponse = {\n  id: '12345',\n  lastUpdated: '2000-01-01T00:00:00.000Z',\n  author: {\n    reference: 'Practitioner/...',\n    display: 'Max Mustermann',\n  },\n  fileName: 'cat.png',\n  contentType: 'image/png',\n  uploadOptions: {\n    url: 'https://s3.eu-central-1.amazonaws.com/s...',\n    fields: {\n      bucket: 's...',\n      'X-Amz-Algorithm': 'A...',\n      'X-Amz-Credential': 'A...',\n      'X-Amz-Date': '2025...',\n      key: 'bi...',\n      Policy: 'ey...',\n      'X-Amz-Signature': 'a6...',\n    },\n  },\n};\n\nuploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);\n```\n","deprecated":false,"operationId":"DocumentController_createUploadCredentials","tag":"Document","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The name of the file."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"string","required":false,"description":"Whether the file is public. If true file will be publicly accessable with the token defined in the DocumentReference.extension","enum":["true","false"]}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/document","summary":"Upload document - Generate credentials","description":"Generate a file upload url and credentials\n\n### Parameters\n\n| Parameter     | In     | Description                                    | Example     |\n| ------------- | ------ | ---------------------------------------------- | ----------- |\n| `contentType` | `body` | The mime type of the file                      | `image/png` |\n| `fileName`    | `body` | The filename of the resource to be saved with. | `cat.png`   |\n\n### Response\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nBy using the credentials provided in the `uploadOptions`, you can use any http client to upload your file in http form field.\nAll of the `field` values in the `uploadOptions` should be provided as form data key value pairs, along with another form data field `file` with the value of actual file itself.\n\n```ts\nimport axios from 'axios';\nimport * as fs from 'fs';\nimport FormData from 'form-data';\n\nasync function uploadFileWithCredentials(filePath: string, uploadCredentialsResponse: any) {\n  const { url, fields } = uploadCredentialsResponse.uploadOptions;\n  const formData = new FormData();\n\n  for (const [key, value] of Object.entries(fields)) {\n    formData.append(key, value);\n  }\n\n  try {\n    const fileContent = fs.readFileSync(filePath);\n    formData.append('file', fileContent);\n\n    const response = await axios.post(url, formData, {\n      headers: formData.getHeaders(),\n    });\n    console.log('Upload successful:', response.status);\n  } catch (error: any) {\n    console.error('Upload failed:', error);\n  }\n}\n\nconst uploadCredentialsResponse = {\n  id: '12345',\n  lastUpdated: '2000-01-01T00:00:00.000Z',\n  author: {\n    reference: 'Practitioner/...',\n    display: 'Max Mustermann',\n  },\n  fileName: 'cat.png',\n  contentType: 'image/png',\n  uploadOptions: {\n    url: 'https://s3.eu-central-1.amazonaws.com/s...',\n    fields: {\n      bucket: 's...',\n      'X-Amz-Algorithm': 'A...',\n      'X-Amz-Credential': 'A...',\n      'X-Amz-Date': '2025...',\n      key: 'bi...',\n      Policy: 'ey...',\n      'X-Amz-Signature': 'a6...',\n    },\n  },\n};\n\nuploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);\n```\n","deprecated":false,"operationId":"DocumentController_createUploadCredentials","tag":"Document","parameters":[],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The name of the file."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"string","required":false,"description":"Whether the file is public. If true file will be publicly accessable with the token defined in the DocumentReference.extension","enum":["true","false"]}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Upload document - Generate credentials
 
-<span className="api-method post">POST</span> `/document`
-
-<ApiBase inline={false} />
-
-Generate a file upload url and credentials
-
-### Parameters
-
-| Parameter     | In     | Description                                    | Example     |
-| ------------- | ------ | ---------------------------------------------- | ----------- |
-| `contentType` | `body` | The mime type of the file                      | `image/png` |
-| `fileName`    | `body` | The filename of the resource to be saved with. | `cat.png`   |
-
-### Response
-
-```json
-{
-  "id": "12345",
-  "lastUpdated": "2000-01-01T00:00:00.000Z",
-  "author": {
-    "reference": "Practitioner/...",
-    "display": "Max Mustermann"
-  },
-  "fileName": "cat.png",
-  "contentType": "image/png",
-  "uploadOptions": {
-    "url": "https://s3.eu-central-1.amazonaws.com/s...",
-    "fields": {
-      "bucket": "s...",
-      "X-Amz-Algorithm": "A...",
-      "X-Amz-Credential": "A...",
-      "X-Amz-Date": "2025...",
-      "key": "bi...",
-      "Policy": "ey...",
-      "X-Amz-Signature": "a6..."
-    }
-  }
-}
-```
-
-By using the credentials provided in the `uploadOptions`, you can use any http client to upload your file in http form field.
-All of the `field` values in the `uploadOptions` should be provided as form data key value pairs, along with another form data field `file` with the value of actual file itself.
-
-```ts
-import axios from 'axios';
-import * as fs from 'fs';
-import FormData from 'form-data';
-
-async function uploadFileWithCredentials(filePath: string, uploadCredentialsResponse: any) {
-  const { url, fields } = uploadCredentialsResponse.uploadOptions;
-  const formData = new FormData();
-
-  for (const [key, value] of Object.entries(fields)) {
-    formData.append(key, value);
-  }
-
-  try {
-    const fileContent = fs.readFileSync(filePath);
-    formData.append('file', fileContent);
-
-    const response = await axios.post(url, formData, {
-      headers: formData.getHeaders(),
-    });
-    console.log('Upload successful:', response.status);
-  } catch (error: any) {
-    console.error('Upload failed:', error);
-  }
-}
-
-const uploadCredentialsResponse = {
-  id: '12345',
-  lastUpdated: '2000-01-01T00:00:00.000Z',
-  author: {
-    reference: 'Practitioner/...',
-    display: 'Max Mustermann',
-  },
-  fileName: 'cat.png',
-  contentType: 'image/png',
-  uploadOptions: {
-    url: 'https://s3.eu-central-1.amazonaws.com/s...',
-    fields: {
-      bucket: 's...',
-      'X-Amz-Algorithm': 'A...',
-      'X-Amz-Credential': 'A...',
-      'X-Amz-Date': '2025...',
-      key: 'bi...',
-      Policy: 'ey...',
-      'X-Amz-Signature': 'a6...',
-    },
-  },
-};
-
-uploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);
-```
-
-
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `fileName`: `string` **(required)** — The name of the file.
-- `contentType`: `string` **(required)** — The MIME type of the file.
-- `isPublic`: `string` — Whether the file is public. If true file will be publicly accessable with the token defined in the DocumentReference.extension
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

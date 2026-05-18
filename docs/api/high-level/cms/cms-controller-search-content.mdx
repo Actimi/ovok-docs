@@ -2,91 +2,14 @@
 title: "Search content"
 sidebar_label: "Search content"
 description: "# Search Content"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/cms/{type}/{language}","summary":"Search content","description":"# Search Content\n\nSearch and paginate CMS content entries for a given content type and language.\n<br>Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example     |\n| ---------- | --------------------------------------------------------------- | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |\n| `language` | ISO language code                                               | `en-US`     |\n\n## Query Parameters\n\n| Parameter  | Type     | Description                                  | Default |\n| ---------- | -------- | -------------------------------------------- | ------- |\n| `search`   | `string` | Free-text fuzzy search term                  | -       |\n| `code`     | `string` | Filter by content code                       | -       |\n| `_count`   | `number` | Page size                                    | `10`    |\n| `_offset`  | `number` | Number of items to skip                      | `0`     |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\n```json\n{\n  \"total\": 42,\n  \"resources\": [\n    {\n      \"id\": \"composition-id\",\n      \"title\": \"My Blog\",\n      \"category\": \"123\",\n      \"section\": [],\n      \"language\": \"en-US\",\n      \"key\": \"article-my-blog-a1b2c3d4\",\n      \"type\": \"article\",\n      \"date\": \"2025-01-15T12:00:00.000Z\",\n      \"author\": {\n        \"reference\": \"Practitioner/abc\",\n        \"display\": \"Dr. Smith\"\n      }\n    }\n  ]\n}\n```\n\n**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.\n","deprecated":false,"operationId":"CMSController_searchContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""},{"name":"code","in":"query","required":false,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/cms/{type}/{language}","summary":"Search content","description":"# Search Content\n\nSearch and paginate CMS content entries for a given content type and language.\n<br>Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example     |\n| ---------- | --------------------------------------------------------------- | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |\n| `language` | ISO language code                                               | `en-US`     |\n\n## Query Parameters\n\n| Parameter  | Type     | Description                                  | Default |\n| ---------- | -------- | -------------------------------------------- | ------- |\n| `search`   | `string` | Free-text fuzzy search term                  | -       |\n| `code`     | `string` | Filter by content code                       | -       |\n| `_count`   | `number` | Page size                                    | `10`    |\n| `_offset`  | `number` | Number of items to skip                      | `0`     |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\n```json\n{\n  \"total\": 42,\n  \"resources\": [\n    {\n      \"id\": \"composition-id\",\n      \"title\": \"My Blog\",\n      \"category\": \"123\",\n      \"section\": [],\n      \"language\": \"en-US\",\n      \"key\": \"article-my-blog-a1b2c3d4\",\n      \"type\": \"article\",\n      \"date\": \"2025-01-15T12:00:00.000Z\",\n      \"author\": {\n        \"reference\": \"Practitioner/abc\",\n        \"display\": \"Dr. Smith\"\n      }\n    }\n  ]\n}\n```\n\n**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.\n","deprecated":false,"operationId":"CMSController_searchContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""},{"name":"code","in":"query","required":false,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/cms/{type}/{language}","summary":"Search content","description":"# Search Content\n\nSearch and paginate CMS content entries for a given content type and language.\n<br>Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example     |\n| ---------- | --------------------------------------------------------------- | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |\n| `language` | ISO language code                                               | `en-US`     |\n\n## Query Parameters\n\n| Parameter  | Type     | Description                                  | Default |\n| ---------- | -------- | -------------------------------------------- | ------- |\n| `search`   | `string` | Free-text fuzzy search term                  | -       |\n| `code`     | `string` | Filter by content code                       | -       |\n| `_count`   | `number` | Page size                                    | `10`    |\n| `_offset`  | `number` | Number of items to skip                      | `0`     |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\n```json\n{\n  \"total\": 42,\n  \"resources\": [\n    {\n      \"id\": \"composition-id\",\n      \"title\": \"My Blog\",\n      \"category\": \"123\",\n      \"section\": [],\n      \"language\": \"en-US\",\n      \"key\": \"article-my-blog-a1b2c3d4\",\n      \"type\": \"article\",\n      \"date\": \"2025-01-15T12:00:00.000Z\",\n      \"author\": {\n        \"reference\": \"Practitioner/abc\",\n        \"display\": \"Dr. Smith\"\n      }\n    }\n  ]\n}\n```\n\n**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.\n","deprecated":false,"operationId":"CMSController_searchContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""},{"name":"code","in":"query","required":false,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/cms/{type}/{language}","summary":"Search content","description":"# Search Content\n\nSearch and paginate CMS content entries for a given content type and language.\n<br>Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example     |\n| ---------- | --------------------------------------------------------------- | ----------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |\n| `language` | ISO language code                                               | `en-US`     |\n\n## Query Parameters\n\n| Parameter  | Type     | Description                                  | Default |\n| ---------- | -------- | -------------------------------------------- | ------- |\n| `search`   | `string` | Free-text fuzzy search term                  | -       |\n| `code`     | `string` | Filter by content code                       | -       |\n| `_count`   | `number` | Page size                                    | `10`    |\n| `_offset`  | `number` | Number of items to skip                      | `0`     |\n\n## Example cURL request\n\n```bash\ncurl -X GET \\\n --url 'https://api.dev.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \\\n -H 'Authorization: Bearer <token>'\n```\n\n## Response\n\n```json\n{\n  \"total\": 42,\n  \"resources\": [\n    {\n      \"id\": \"composition-id\",\n      \"title\": \"My Blog\",\n      \"category\": \"123\",\n      \"section\": [],\n      \"language\": \"en-US\",\n      \"key\": \"article-my-blog-a1b2c3d4\",\n      \"type\": \"article\",\n      \"date\": \"2025-01-15T12:00:00.000Z\",\n      \"author\": {\n        \"reference\": \"Practitioner/abc\",\n        \"display\": \"Dr. Smith\"\n      }\n    }\n  ]\n}\n```\n\n**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.\n","deprecated":false,"operationId":"CMSController_searchContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"search","in":"query","required":false,"type":"string","description":""},{"name":"code","in":"query","required":false,"type":"string","description":""},{"name":"_count","in":"query","required":false,"type":"string","description":""},{"name":"_offset","in":"query","required":false,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Search content
 
-<span className="api-method get">GET</span> `/cms/{type}/{language}`
-
-<ApiBase inline={false} />
-
-# Search Content
-
-Search and paginate CMS content entries for a given content type and language.
-<br />Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.
-
-## Path Parameters
-
-| Parameter  | Description                                                     | Example     |
-| ---------- | --------------------------------------------------------------- | ----------- |
-| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |
-| `language` | ISO language code                                               | `en-US`     |
-
-## Query Parameters
-
-| Parameter  | Type     | Description                                  | Default |
-| ---------- | -------- | -------------------------------------------- | ------- |
-| `search`   | `string` | Free-text fuzzy search term                  | -       |
-| `code`     | `string` | Filter by content code                       | -       |
-| `_count`   | `number` | Page size                                    | `10`    |
-| `_offset`  | `number` | Number of items to skip                      | `0`     |
-
-## Example cURL request
-
-```bash
-curl -X GET \
- --url 'https://api.dev.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \
- -H 'Authorization: Bearer <token>'
-```
-
-## Response
-
-```json
-{
-  "total": 42,
-  "resources": [
-    {
-      "id": "composition-id",
-      "title": "My Blog",
-      "category": "123",
-      "section": [],
-      "language": "en-US",
-      "key": "article-my-blog-a1b2c3d4",
-      "type": "article",
-      "date": "2025-01-15T12:00:00.000Z",
-      "author": {
-        "reference": "Practitioner/abc",
-        "display": "Dr. Smith"
-      }
-    }
-  ]
-}
-```
-
-**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-| `search` | query | `string` | no |  |
-| `code` | query | `string` | no |  |
-| `_count` | query | `string` | no |  |
-| `_offset` | query | `string` | no |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

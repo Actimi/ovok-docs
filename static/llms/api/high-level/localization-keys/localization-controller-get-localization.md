@@ -2,38 +2,14 @@
 title: "Get a single localization"
 sidebar_label: "Get a single localization"
 description: "Get a single localization by language and key"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"GET","path":"/localization/{language}/{key}","summary":"Get a single localization","description":"Get a single localization by language and key\n\nThe response is a JSON object with the localization.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_getLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"GET","path":"/localization/{language}/{key}","summary":"Get a single localization","description":"Get a single localization by language and key\n\nThe response is a JSON object with the localization.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_getLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"GET","path":"/localization/{language}/{key}","summary":"Get a single localization","description":"Get a single localization by language and key\n\nThe response is a JSON object with the localization.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_getLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"GET","path":"/localization/{language}/{key}","summary":"Get a single localization","description":"Get a single localization by language and key\n\nThe response is a JSON object with the localization.\n\n> NOTE: The provided language must be enabled in the system by calling Locale APIs.\n","deprecated":false,"operationId":"LocalizationController_getLocalization","tag":"Localization Keys","parameters":[{"name":"key","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Get a single localization
 
-<span className="api-method get">GET</span> `/localization/{language}/{key}`
-
-<ApiBase inline={false} />
-
-Get a single localization by language and key
-
-The response is a JSON object with the localization.
-
-> NOTE: The provided language must be enabled in the system by calling Locale APIs.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `key` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

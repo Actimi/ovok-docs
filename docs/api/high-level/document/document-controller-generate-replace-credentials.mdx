@@ -2,82 +2,14 @@
 title: "Generate credentials for document file replacement"
 sidebar_label: "Generate credentials for document file re…"
 description: "Generate credentials for file replacement"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"POST","path":"/document/{id}","summary":"Generate credentials for document file replacement","description":"Generate credentials for file replacement\n\nThe file replacement follows the same pattern as file creation - you first get upload credentials, then upload directly to S3.\n\n### Parameters\n\n| Parameter     | In       | Description                                    | Example     |\n| ------------- | -------- | ---------------------------------------------- | ----------- |\n| `id`          | `params` | The id of the DocumentReference                | `023f2f-`   |\n| `fileName`    | `body`   | The filename of the resource to be saved with. | `cat.png`   |\n| `contentType` | `body`   | The mime type of the file                      | `image/png` |\n\n### Response\n\nSimilar to document creation, this endpoint returns upload credentials:\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nUse the credentials in `uploadOptions` to upload your replacement file directly to S3 using form data, exactly like the initial upload process.\n","deprecated":false,"operationId":"DocumentController_generateReplaceCredentials","tag":"Document","parameters":[{"name":"id","in":"path","required":true,"type":"string","description":"The id of the DocumentReference resource"}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The filename of the resource to be saved with."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"boolean","required":false,"description":"Whether the file should be public or private."}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"POST","path":"/document/{id}","summary":"Generate credentials for document file replacement","description":"Generate credentials for file replacement\n\nThe file replacement follows the same pattern as file creation - you first get upload credentials, then upload directly to S3.\n\n### Parameters\n\n| Parameter     | In       | Description                                    | Example     |\n| ------------- | -------- | ---------------------------------------------- | ----------- |\n| `id`          | `params` | The id of the DocumentReference                | `023f2f-`   |\n| `fileName`    | `body`   | The filename of the resource to be saved with. | `cat.png`   |\n| `contentType` | `body`   | The mime type of the file                      | `image/png` |\n\n### Response\n\nSimilar to document creation, this endpoint returns upload credentials:\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nUse the credentials in `uploadOptions` to upload your replacement file directly to S3 using form data, exactly like the initial upload process.\n","deprecated":false,"operationId":"DocumentController_generateReplaceCredentials","tag":"Document","parameters":[{"name":"id","in":"path","required":true,"type":"string","description":"The id of the DocumentReference resource"}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The filename of the resource to be saved with."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"boolean","required":false,"description":"Whether the file should be public or private."}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"POST","path":"/document/{id}","summary":"Generate credentials for document file replacement","description":"Generate credentials for file replacement\n\nThe file replacement follows the same pattern as file creation - you first get upload credentials, then upload directly to S3.\n\n### Parameters\n\n| Parameter     | In       | Description                                    | Example     |\n| ------------- | -------- | ---------------------------------------------- | ----------- |\n| `id`          | `params` | The id of the DocumentReference                | `023f2f-`   |\n| `fileName`    | `body`   | The filename of the resource to be saved with. | `cat.png`   |\n| `contentType` | `body`   | The mime type of the file                      | `image/png` |\n\n### Response\n\nSimilar to document creation, this endpoint returns upload credentials:\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nUse the credentials in `uploadOptions` to upload your replacement file directly to S3 using form data, exactly like the initial upload process.\n","deprecated":false,"operationId":"DocumentController_generateReplaceCredentials","tag":"Document","parameters":[{"name":"id","in":"path","required":true,"type":"string","description":"The id of the DocumentReference resource"}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The filename of the resource to be saved with."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"boolean","required":false,"description":"Whether the file should be public or private."}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"POST","path":"/document/{id}","summary":"Generate credentials for document file replacement","description":"Generate credentials for file replacement\n\nThe file replacement follows the same pattern as file creation - you first get upload credentials, then upload directly to S3.\n\n### Parameters\n\n| Parameter     | In       | Description                                    | Example     |\n| ------------- | -------- | ---------------------------------------------- | ----------- |\n| `id`          | `params` | The id of the DocumentReference                | `023f2f-`   |\n| `fileName`    | `body`   | The filename of the resource to be saved with. | `cat.png`   |\n| `contentType` | `body`   | The mime type of the file                      | `image/png` |\n\n### Response\n\nSimilar to document creation, this endpoint returns upload credentials:\n\n```json\n{\n  \"id\": \"12345\",\n  \"lastUpdated\": \"2000-01-01T00:00:00.000Z\",\n  \"author\": {\n    \"reference\": \"Practitioner/...\",\n    \"display\": \"Max Mustermann\"\n  },\n  \"fileName\": \"cat.png\",\n  \"contentType\": \"image/png\",\n  \"uploadOptions\": {\n    \"url\": \"https://s3.eu-central-1.amazonaws.com/s...\",\n    \"fields\": {\n      \"bucket\": \"s...\",\n      \"X-Amz-Algorithm\": \"A...\",\n      \"X-Amz-Credential\": \"A...\",\n      \"X-Amz-Date\": \"2025...\",\n      \"key\": \"bi...\",\n      \"Policy\": \"ey...\",\n      \"X-Amz-Signature\": \"a6...\"\n    }\n  }\n}\n```\n\nUse the credentials in `uploadOptions` to upload your replacement file directly to S3 using form data, exactly like the initial upload process.\n","deprecated":false,"operationId":"DocumentController_generateReplaceCredentials","tag":"Document","parameters":[{"name":"id","in":"path","required":true,"type":"string","description":"The id of the DocumentReference resource"}],"requestBody":{"description":"","required":true,"content":{"application/json":{"schema":{"type":"object","required":["fileName","contentType"],"properties":[{"name":"fileName","type":"string","required":true,"description":"The filename of the resource to be saved with."},{"name":"contentType","type":"string","required":true,"description":"The MIME type of the file."},{"name":"isPublic","type":"boolean","required":false,"description":"Whether the file should be public or private."}]}}}},"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Generate credentials for document file replacement
 
-<span className="api-method post">POST</span> `/document/{id}`
-
-<ApiBase inline={false} />
-
-Generate credentials for file replacement
-
-The file replacement follows the same pattern as file creation - you first get upload credentials, then upload directly to S3.
-
-### Parameters
-
-| Parameter     | In       | Description                                    | Example     |
-| ------------- | -------- | ---------------------------------------------- | ----------- |
-| `id`          | `params` | The id of the DocumentReference                | `023f2f-`   |
-| `fileName`    | `body`   | The filename of the resource to be saved with. | `cat.png`   |
-| `contentType` | `body`   | The mime type of the file                      | `image/png` |
-
-### Response
-
-Similar to document creation, this endpoint returns upload credentials:
-
-```json
-{
-  "id": "12345",
-  "lastUpdated": "2000-01-01T00:00:00.000Z",
-  "author": {
-    "reference": "Practitioner/...",
-    "display": "Max Mustermann"
-  },
-  "fileName": "cat.png",
-  "contentType": "image/png",
-  "uploadOptions": {
-    "url": "https://s3.eu-central-1.amazonaws.com/s...",
-    "fields": {
-      "bucket": "s...",
-      "X-Amz-Algorithm": "A...",
-      "X-Amz-Credential": "A...",
-      "X-Amz-Date": "2025...",
-      "key": "bi...",
-      "Policy": "ey...",
-      "X-Amz-Signature": "a6..."
-    }
-  }
-}
-```
-
-Use the credentials in `uploadOptions` to upload your replacement file directly to S3 using form data, exactly like the initial upload process.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** | The id of the DocumentReference resource |
-
-
-## Request body
-
-**Content-Type:** `application/json`
-
-- `fileName`: `string` **(required)** — The filename of the resource to be saved with.
-- `contentType`: `string` **(required)** — The MIME type of the file.
-- `isPublic`: `boolean` — Whether the file should be public or private.
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />

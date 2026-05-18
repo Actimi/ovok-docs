@@ -2,58 +2,14 @@
 title: "Delete content"
 sidebar_label: "Delete content"
 description: "# Delete Content"
+availableIn: ["dev","alpha","beta","final"]
 ---
+
+import EndpointDoc from '@site/src/components/EndpointDoc';
+
+export const variants = {"dev":{"method":"DELETE","path":"/cms/{type}/{language}/{key}","summary":"Delete content","description":"# Delete Content\n\nDelete a CMS content entry identified by its language and key.\n<br>If the specified language is the project's default language, all translations sharing the same key are deleted as well. If it is a non-default language, only that single translation is removed.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code of the content to delete                      | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n**Side Effects:** Deleting the default-language entry cascades to all related language variants. Deleting a non-default language entry only removes that single translation.\n\n**Notes:** The language provided in the path is validated against the project's configured locales before deletion proceeds.\n","deprecated":false,"operationId":"CMSController_deleteContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"alpha":{"method":"DELETE","path":"/cms/{type}/{language}/{key}","summary":"Delete content","description":"# Delete Content\n\nDelete a CMS content entry identified by its language and key.\n<br>If the specified language is the project's default language, all translations sharing the same key are deleted as well. If it is a non-default language, only that single translation is removed.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code of the content to delete                      | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n**Side Effects:** Deleting the default-language entry cascades to all related language variants. Deleting a non-default language entry only removes that single translation.\n\n**Notes:** The language provided in the path is validated against the project's configured locales before deletion proceeds.\n","deprecated":false,"operationId":"CMSController_deleteContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"beta":{"method":"DELETE","path":"/cms/{type}/{language}/{key}","summary":"Delete content","description":"# Delete Content\n\nDelete a CMS content entry identified by its language and key.\n<br>If the specified language is the project's default language, all translations sharing the same key are deleted as well. If it is a non-default language, only that single translation is removed.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code of the content to delete                      | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n**Side Effects:** Deleting the default-language entry cascades to all related language variants. Deleting a non-default language entry only removes that single translation.\n\n**Notes:** The language provided in the path is validated against the project's configured locales before deletion proceeds.\n","deprecated":false,"operationId":"CMSController_deleteContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}},"final":{"method":"DELETE","path":"/cms/{type}/{language}/{key}","summary":"Delete content","description":"# Delete Content\n\nDelete a CMS content entry identified by its language and key.\n<br>If the specified language is the project's default language, all translations sharing the same key are deleted as well. If it is a non-default language, only that single translation is removed.\n\n## Path Parameters\n\n| Parameter  | Description                                                     | Example                      |\n| ---------- | --------------------------------------------------------------- | ---------------------------- |\n| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |\n| `language` | ISO language code of the content to delete                      | `en-US`                      |\n| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |\n\n## Example cURL request\n\n```bash\ncurl -X DELETE \\\n --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \\\n -H 'Authorization: Bearer <token>'\n```\n\n**Side Effects:** Deleting the default-language entry cascades to all related language variants. Deleting a non-default language entry only removes that single translation.\n\n**Notes:** The language provided in the path is validated against the project's configured locales before deletion proceeds.\n","deprecated":false,"operationId":"CMSController_deleteContent","tag":"CMS","parameters":[{"name":"type","in":"path","required":true,"type":"string","description":""},{"name":"language","in":"path","required":true,"type":"string","description":""},{"name":"key","in":"path","required":true,"type":"string","description":"A key that is used to identify the content between languages."}],"requestBody":null,"responses":{"200":{"description":""},"400":{"description":"The request could not be operated by the server."},"401":{"description":"The resource owner or authorization server denied the request."},"404":{"description":"The requested resource could not be found."},"422":{"description":"The request could not be validated by the server."},"500":{"description":"The server encountered an unexpected condition. Please try again later."}}}};
+export const availableIn = ["dev","alpha","beta","final"];
 
 # Delete content
 
-<span className="api-method delete">DELETE</span> `/cms/{type}/{language}/{key}`
-
-<ApiBase inline={false} />
-
-# Delete Content
-
-Delete a CMS content entry identified by its language and key.
-<br />If the specified language is the project's default language, all translations sharing the same key are deleted as well. If it is a non-default language, only that single translation is removed.
-
-## Path Parameters
-
-| Parameter  | Description                                                     | Example                      |
-| ---------- | --------------------------------------------------------------- | ---------------------------- |
-| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |
-| `language` | ISO language code of the content to delete                      | `en-US`                      |
-| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |
-
-## Example cURL request
-
-```bash
-curl -X DELETE \
- --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \
- -H 'Authorization: Bearer <token>'
-```
-
-**Side Effects:** Deleting the default-language entry cascades to all related language variants. Deleting a non-default language entry only removes that single translation.
-
-**Notes:** The language provided in the path is validated against the project's configured locales before deletion proceeds.
-
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
-| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
-
-
-
-## Responses
-
-| Code | Description |
-| --- | --- |
-| `200` |  |
-| `400` | The request could not be operated by the server. |
-| `401` | The resource owner or authorization server denied the request. |
-| `404` | The requested resource could not be found. |
-| `422` | The request could not be validated by the server. |
-| `500` | The server encountered an unexpected condition. Please try again later. |
+<EndpointDoc variants={variants} availableIn={availableIn} />
