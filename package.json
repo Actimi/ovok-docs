@@ -32,6 +32,7 @@
   },
   "pnpm": {
     "overrides": {
+      "webpack": "5.97.1",
       "webpackbar": "6.0.1"
     }
   },
