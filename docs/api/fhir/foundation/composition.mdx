@@ -1,17 +1,15 @@
 ---
 title: Composition
 sidebar_label: Composition
-description: "The Clinical Document profile constrains Composition to specify a clinical document (matching CDA)."
+description: "A set of healthcare-related information that is assembled together into a single logical package that provides a single coherent statement of meaning, establish"
 ---
 
 # Composition
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="4">Trial Use 4</span>
 <span className="fhir-category">Foundation</span>
 
-The Clinical Document profile constrains Composition to specify a clinical document (matching CDA). 
-
-The base Composition is a general resource for compositions or documents about any kind of subject that might be encountered in healthcare including such things as guidelines, medicines, etc. A clinical document is focused on documents related to the provision of care process, where the subject is a patient, a group of patients, or a closely related concept. A clinical document has additional requirements around confidentiality that do not apply in the same way to other kinds of documents.
+A set of healthcare-related information that is assembled together into a single logical package that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement. A Composition defines the structure and narrative content necessary for a document. However, a Composition alone does not constitute a document. Rather, the Composition must be the first entry in a Bundle where Bundle.type=document, and any other resources referenced from Composition must be included as subsequent entries in the Bundle (for example Patient, Practitioner, Encounter, etc.).
 
 ## Endpoints
 
@@ -91,4 +89,4 @@ In addition to the
 
 - Official FHIR R5 spec: [`Composition`](https://hl7.org/fhir/R5/composition.html)
 - Element bindings & profiles: [`Composition` profile](https://hl7.org/fhir/R5/composition-definitions.html)
-- Maturity: **Trial Use 2** (FMM 2).
+- Maturity: **Trial Use 4** (FMM 4).

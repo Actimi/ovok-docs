@@ -506,16 +506,25 @@ function generateFhir() {
     }
   }
 
-  // Find all concrete resources in the spec
+  // Find all concrete *base* resources in the spec. The FHIR R5 package
+  // also ships dozens of constraint profiles (vital-signs Observation,
+  // transaction Bundle, document Composition, etc.) — they share the same
+  // `type` as their base resource and would otherwise produce duplicate
+  // sidebar entries pointing at the same generated MDX. Filter by
+  // derivation=specialization to get exactly one canonical resource per type.
   const resources = [];
+  const seenNames = new Set();
   for (const f of idx) {
     if (f.resourceType !== 'StructureDefinition') continue;
     if (f.kind !== 'resource') continue;
     if (f.type === 'Element' || f.type === 'BackboneElement') continue;
     const sd = readFhirJson(f.filename);
     if (sd.abstract) continue;
+    if (sd.derivation && sd.derivation !== 'specialization') continue;
     const name = sd.type ?? sd.id;
     if (!name) continue;
+    if (seenNames.has(name)) continue; // belt-and-suspenders against any stragglers
+    seenNames.add(name);
     resources.push({
       name,
       description: sd.description ?? '',

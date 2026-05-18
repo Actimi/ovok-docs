@@ -1,15 +1,15 @@
 ---
 title: PlanDefinition
 sidebar_label: PlanDefinition
-description: "Defines a PlanDefinition that implements the behavior for a CDS Hooks service"
+description: "This resource allows for the definition of various types of plans as a sharable, consumable, and executable artifact. The resource is general enough to support "
 ---
 
 # PlanDefinition
 
-<span className="fhir-maturity" data-level="3">Trial Use 3</span>
+<span className="fhir-maturity" data-level="4">Trial Use 4</span>
 <span className="fhir-category">Specialized — Quality & Testing</span>
 
-Defines a PlanDefinition that implements the behavior for a CDS Hooks service
+This resource allows for the definition of various types of plans as a sharable, consumable, and executable artifact. The resource is general enough to support the description of a broad range of clinical and non-clinical artifacts such as clinical decision support rules, order sets, protocols, and drug quality specifications.
 
 ## Endpoints
 
@@ -35,7 +35,6 @@ All calls expect FHIR-flavoured JSON
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `extension:cdsHooksEndpoint` | `Extension` | `1..1` | Service endpoint |
 | `url` | `uri` | `0..1` | Canonical identifier for this plan definition, represented as a URI (globally unique) |
 | `identifier` | `Identifier` | `0..*` | Additional identifier for the plan definition |
 | `version` | `string` | `0..1` | Business version of the plan definition |
@@ -109,4 +108,4 @@ In addition to the
 
 - Official FHIR R5 spec: [`PlanDefinition`](https://hl7.org/fhir/R5/plandefinition.html)
 - Element bindings & profiles: [`PlanDefinition` profile](https://hl7.org/fhir/R5/plandefinition-definitions.html)
-- Maturity: **Trial Use 3** (FMM 3).
+- Maturity: **Trial Use 4** (FMM 4).

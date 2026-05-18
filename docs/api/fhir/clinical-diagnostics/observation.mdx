@@ -1,7 +1,7 @@
 ---
 title: Observation
 sidebar_label: Observation
-description: "FHIR Oxygen Saturation Profile"
+description: "Measurements and simple assertions made about a patient, device or other subject."
 ---
 
 # Observation
@@ -9,7 +9,7 @@ description: "FHIR Oxygen Saturation Profile"
 <span className="fhir-maturity" data-level="5">Normative</span>
 <span className="fhir-category">Clinical — Diagnostics</span>
 
-FHIR Oxygen Saturation Profile
+Measurements and simple assertions made about a patient, device or other subject.
 
 ## Endpoints
 
@@ -40,19 +40,17 @@ All calls expect FHIR-flavoured JSON
 | `basedOn` | `Reference` | `0..*` | Fulfills plan, proposal or order |
 | `triggeredBy` | `BackboneElement` | `0..*` | Triggering observation(s) |
 | `partOf` | `Reference` | `0..*` | Part of referenced event |
-| `status` | `code` | `1..1` | registered | preliminary | final | amended + _modifier_ _must-support_ |
-| `category` | `CodeableConcept` | `1..*` | Classification of  type of observation _must-support_ |
-| `category:VSCat` | `CodeableConcept` | `1..1` | Classification of  type of observation _must-support_ |
-| `code` | `CodeableConcept` | `1..1` | Oxygen Saturation _must-support_ |
-| `subject` | `Reference` | `1..1` | Who and/or what the observation is about _must-support_ |
+| `status` | `code` | `1..1` | registered | preliminary | final | amended + _modifier_ |
+| `category` | `CodeableConcept` | `0..*` | Classification of  type of observation |
+| `code` | `CodeableConcept` | `1..1` | Type of observation (code / type) |
+| `subject` | `Reference` | `0..1` | Who and/or what the observation is about |
 | `focus` | `Reference` | `0..*` | What the observation is about, when it is not about the subject of record |
 | `encounter` | `Reference` | `0..1` | Healthcare event during which this observation is made |
-| `effective[x]` | `dateTime` / `Period` | `1..1` | Often just a dateTime for Vital Signs _must-support_ |
+| `effective[x]` | `dateTime` / `Period` / `Timing` / `instant` | `0..1` | Clinically relevant time/time-period for observation |
 | `issued` | `instant` | `0..1` | Date/Time this version was made available |
 | `performer` | `Reference` | `0..*` | Who is responsible for the observation |
-| `value[x]` | `Quantity` / `CodeableConcept` / `string` / `boolean` / `integer` / `Range` / `Ratio` / `SampledData` / `time` / `dateTime` / `Period` / `Attachment` / `Reference` | `0..1` | Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept. _must-support_ |
-| `value[x]:valueQuantity` | `Quantity` | `0..1` | Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept. _must-support_ |
-| `dataAbsentReason` | `CodeableConcept` | `0..1` | Why the result is missing _must-support_ |
+| `value[x]` | `Quantity` / `CodeableConcept` / `string` / `boolean` / `integer` / `Range` / `Ratio` / `SampledData` / `time` / `dateTime` / `Period` / `Attachment` / `Reference` | `0..1` | Actual result |
+| `dataAbsentReason` | `CodeableConcept` | `0..1` | Why the result is missing |
 | `interpretation` | `CodeableConcept` | `0..*` | High, low, normal, etc |
 | `note` | `Annotation` | `0..*` | Comments about the observation |
 | `bodySite` | `CodeableConcept` | `0..1` | Observed body part |
@@ -61,9 +59,9 @@ All calls expect FHIR-flavoured JSON
 | `specimen` | `Reference` | `0..1` | Specimen used for this observation |
 | `device` | `Reference` | `0..1` | A reference to the device that generates the measurements or the device settings for the device |
 | `referenceRange` | `BackboneElement` | `0..*` | Provides guide for interpretation |
-| `hasMember` | `Reference` | `0..*` | Used when reporting vital signs panel components |
+| `hasMember` | `Reference` | `0..*` | Related resource that belongs to the Observation group |
 | `derivedFrom` | `Reference` | `0..*` | Related resource from which the observation is made |
-| `component` | `BackboneElement` | `0..*` | Used when reporting systolic and diastolic blood pressure. _must-support_ |
+| `component` | `BackboneElement` | `0..*` | Component results |
 
 ## Resource-specific search parameters
 

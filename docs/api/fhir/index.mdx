@@ -19,7 +19,7 @@ history, type-history.
 
 ## What's documented here
 
-This section catalogues all **220** FHIR R5 resource types,
+This section catalogues all **158** FHIR R5 resource types,
 sourced directly from the official `hl7.fhir.r5.core` package. Each
 resource has its own page with:
 
@@ -52,19 +52,8 @@ resource has its own page with:
 - [AuditEvent](/api/fhir/foundation/audit-event) — A record of an event relevant for purposes such as operations, privacy, security, maintenance, and performance analysis.
 - [Basic](/api/fhir/foundation/basic) — Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing reso
 - [Binary](/api/fhir/foundation/binary) — A resource that represents the data of a single raw artifact as digital content accessible in its native format.  A Bina
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR transaction.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR search bundle.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR document.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR transaction response.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR batch bundle.
 - [Bundle](/api/fhir/foundation/bundle) — A container for a collection of resources.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR batch response.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a Subscription Notification Bundle.
-- [Bundle](/api/fhir/foundation/bundle) — This profile holds all the requirements and constraints related to a FHIR history bundle.
 - [Composition](/api/fhir/foundation/composition) — A set of healthcare-related information that is assembled together into a single logical package that provides a single 
-- [Composition](/api/fhir/foundation/composition) — Document Structure (For testing section templates)
-- [Composition](/api/fhir/foundation/composition) — A set of resources composed into a single coherent clinical statement with clinical attestation
-- [Composition](/api/fhir/foundation/composition) — The Clinical Document profile constrains Composition to specify a clinical document (matching CDA). 
 - [Consent](/api/fhir/foundation/consent) — A record of a healthcare consumer’s  choices  or choices made on their behalf by a third party, which permits or denies 
 - [DocumentReference](/api/fhir/foundation/document-reference) — A reference to a document of any kind for any purpose. While the term “document” implies a more narrow focus, for this r
 - [Linkage](/api/fhir/foundation/linkage) — Identifies two or more records (resource instances) that refer to the same real-world "occurrence".
@@ -74,7 +63,6 @@ resource has its own page with:
 - [Parameters](/api/fhir/foundation/parameters) — This resource is used to pass information into and back from an operation (whether invoked directly from REST or within 
 - [Permission](/api/fhir/foundation/permission) — Permission resource holds access rules for a given data and context.
 - [Provenance](/api/fhir/foundation/provenance) — Provenance of a resource is a record that describes entities and processes involved in producing and delivering or other
-- [Provenance](/api/fhir/foundation/provenance) — Guidance on using Provenance for related history elements to provide key events that have happened over the lifespan of 
 - [Subscription](/api/fhir/foundation/subscription) — The subscription resource describes a particular client's request to be notified about a SubscriptionTopic.
 - [SubscriptionStatus](/api/fhir/foundation/subscription-status) — The SubscriptionStatus resource describes the state of a Subscription during notifications. It is not persisted.
 - [SubscriptionTopic](/api/fhir/foundation/subscription-topic) — Describes a stream of resource state changes identified by trigger criteria and annotated with labels useful to filter p
@@ -84,8 +72,6 @@ resource has its own page with:
 *People, places and organisations participating in care.*
 
 - [Endpoint](/api/fhir/base/endpoint) — The technical details of an endpoint that can be used for electronic services, such as for web services providing XDS.b,
-- [Group](/api/fhir/base/group) — Enforces a descriptive group that can be used in definitional resources
-- [Group](/api/fhir/base/group) — Enforces an enumerated group, rather than a definitional group
 - [Group](/api/fhir/base/group) — Represents a defined collection of entities that may be discussed or acted upon collectively but which are not expected 
 - [HealthcareService](/api/fhir/base/healthcare-service) — The details of a healthcare service available at a location or in a catalog.  In the case where there is a hierarchy of 
 - [Location](/api/fhir/base/location) — Details and position information for a place where services are provided and resources and participants may be stored, f
@@ -104,7 +90,6 @@ resource has its own page with:
 - [AllergyIntolerance](/api/fhir/clinical-summary/allergy-intolerance) — Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure to 
 - [ClinicalImpression](/api/fhir/clinical-summary/clinical-impression) — A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning the 
 - [Condition](/api/fhir/clinical-summary/condition) — A clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept that has risen to a leve
-- [FamilyMemberHistory](/api/fhir/clinical-summary/family-member-history) — Adds additional information to a family member history supporting both the capture of mother/father relationships as wel
 - [FamilyMemberHistory](/api/fhir/clinical-summary/family-member-history) — Significant health conditions for a person related to the patient relevant in the context of care for the patient.
 - [Goal](/api/fhir/clinical-summary/goal) — Describes the intended objective(s) for a patient, group or organization care, for example, weight loss, restoring an ac
 - [Procedure](/api/fhir/clinical-summary/procedure) — An action that is or was performed on or for a patient, practitioner, device, organization, or location. For example, th
@@ -115,29 +100,12 @@ resource has its own page with:
 *Observations, reports, imaging, genomics.*
 
 - [BodyStructure](/api/fhir/clinical-diagnostics/body-structure) — Record details about an anatomical structure.  This resource may be used when a coded concept does not provide the neces
-- [DiagnosticReport](/api/fhir/clinical-diagnostics/diagnostic-report) — Lipid Lab Report
 - [DiagnosticReport](/api/fhir/clinical-diagnostics/diagnostic-report) — The findings and interpretation of diagnostic tests performed on patients, groups of patients, products, substances, dev
 - [GenomicStudy](/api/fhir/clinical-diagnostics/genomic-study) — A set of analyses performed to analyze and generate genomic data.
 - [ImagingSelection](/api/fhir/clinical-diagnostics/imaging-selection) — A selection of DICOM SOP instances and/or frames within a single Study and Series. This might include additional specifi
 - [ImagingStudy](/api/fhir/clinical-diagnostics/imaging-study) — Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which includ
 - [MolecularSequence](/api/fhir/clinical-diagnostics/molecular-sequence) — Representation of a molecular sequence.
 - [Observation](/api/fhir/clinical-diagnostics/observation) — Measurements and simple assertions made about a patient, device or other subject.
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Vital Signs Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Head Circumference Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — Triglyceride Result
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Respiratory Rate Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — HDL Cholesterol Result
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Vital Signs Panel Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — Describes how the lab report is used for a standard Lipid Profile - Cholesterol, Triglyceride and Cholesterol fractions.
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Heart Rate Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — This profile describes the direct or derived, qualitative or quantitative physiological measurement, setting, or calcula
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Blood Pressure Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Body Temperature Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — LDL Cholesterol Result
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Body Weight Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Body Height Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Body Mass Index (BMI) Profile
-- [Observation](/api/fhir/clinical-diagnostics/observation) — FHIR Oxygen Saturation Profile
 - [Questionnaire](/api/fhir/clinical-diagnostics/questionnaire) — A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide detaile
 - [QuestionnaireResponse](/api/fhir/clinical-diagnostics/questionnaire-response) — A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, correspond
 - [Specimen](/api/fhir/clinical-diagnostics/specimen) — A sample to be used for analysis.
@@ -170,11 +138,9 @@ resource has its own page with:
 - [EncounterHistory](/api/fhir/clinical-care-provision/encounter-history) — A record of significant events/milestones key data throughout the history of an Encounter
 - [EpisodeOfCare](/api/fhir/clinical-care-provision/episode-of-care) — An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. Th
 - [Flag](/api/fhir/clinical-care-provision/flag) — Prospective warnings of potential issues when providing care to the patient.
-- [GuidanceResponse](/api/fhir/clinical-care-provision/guidance-response) — Defines a GuidanceResponse that represents the response container for a CDS Hooks response
 - [GuidanceResponse](/api/fhir/clinical-care-provision/guidance-response) — A guidance response is the formal response to a guidance request, including any output parameters returned by the evalua
 - [NutritionIntake](/api/fhir/clinical-care-provision/nutrition-intake) — A record of food or fluid that is being consumed by a patient.  A NutritionIntake may indicate that the patient may be c
 - [NutritionOrder](/api/fhir/clinical-care-provision/nutrition-order) — A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
-- [RequestOrchestration](/api/fhir/clinical-care-provision/request-orchestration) — Defines a RequestOrchestration that can represent a CDS Hooks response
 - [RequestOrchestration](/api/fhir/clinical-care-provision/request-orchestration) — A set of related requests that can be used to capture intended activities that have inter-dependencies such as "give thi
 - [ServiceRequest](/api/fhir/clinical-care-provision/service-request) — A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
 - [SupplyDelivery](/api/fhir/clinical-care-provision/supply-delivery) — Record of delivery of what is supplied.
@@ -245,34 +211,17 @@ resource has its own page with:
 
 *Measures, definitions, test scripts and reports.*
 
-- [ActivityDefinition](/api/fhir/specialized-quality-testing/activity-definition) — Supports declaration of the ActivityDefinition metadata required by HL7 and other organizations that share and publish a
-- [ActivityDefinition](/api/fhir/specialized-quality-testing/activity-definition) — Enforces the minimum information set for the activity definition metadata required by HL7 and other organizations that s
 - [ActivityDefinition](/api/fhir/specialized-quality-testing/activity-definition) — This resource allows for the definition of some activity to be performed, independent of a particular patient, practitio
 - [EventDefinition](/api/fhir/specialized-quality-testing/event-definition) — The EventDefinition resource provides a reusable description of when a particular event can occur.
-- [Library](/api/fhir/specialized-quality-testing/library) — Represents a computable CQL logic library
 - [Library](/api/fhir/specialized-quality-testing/library) — The Library resource is a general-purpose container for knowledge asset definitions. It can be used to describe and expo
-- [Library](/api/fhir/specialized-quality-testing/library) — Represents a computable/executable FHIRPath logic library
-- [Library](/api/fhir/specialized-quality-testing/library) — Enforces the minimum information set for the library metadata required by HL7 and other organizations that share and pub
-- [Library](/api/fhir/specialized-quality-testing/library) — Represents an executable CQL logic library in translated ELM format
-- [Library](/api/fhir/specialized-quality-testing/library) — Represents a computable representation of a model information library
-- [Library](/api/fhir/specialized-quality-testing/library) — The module definition library profile sets the expectations for module definition libraries, including support for termi
-- [Library](/api/fhir/specialized-quality-testing/library) — The logic library profile sets the minimum expectations for computable and/or executable libraries, including support fo
-- [Library](/api/fhir/specialized-quality-testing/library) — Supports declaration of the library metadata required by HL7 and other organizations that share and publish libraries wi
 - [Measure](/api/fhir/specialized-quality-testing/measure) — The Measure resource provides the definition of a quality measure.
-- [Measure](/api/fhir/specialized-quality-testing/measure) — Supports declaration of the Measure metadata required by HL7 and other organizations that share and publish measures wit
-- [Measure](/api/fhir/specialized-quality-testing/measure) — Enforces the minimum information set for the measure metadata required by HL7 and other organizations that share and pub
 - [MeasureReport](/api/fhir/specialized-quality-testing/measure-report) — The MeasureReport resource contains the results of the calculation of a measure; and optionally a reference to the resou
 - [ObservationDefinition](/api/fhir/specialized-quality-testing/observation-definition) — Set of definitional characteristics for a kind of observation or measurement produced or consumed by an orderable health
-- [PlanDefinition](/api/fhir/specialized-quality-testing/plan-definition) — Defines a computable PlanDefinition that specifies a single library and requires all expressions referenced from the Pla
 - [PlanDefinition](/api/fhir/specialized-quality-testing/plan-definition) — This resource allows for the definition of various types of plans as a sharable, consumable, and executable artifact. Th
-- [PlanDefinition](/api/fhir/specialized-quality-testing/plan-definition) — Enforces the minimum information set for the plan definition metadata required by HL7 and other organizations that share
-- [PlanDefinition](/api/fhir/specialized-quality-testing/plan-definition) — Supports declaration of the PlanDefinition metadata required by HL7 and other organizations that share and publish pland
-- [PlanDefinition](/api/fhir/specialized-quality-testing/plan-definition) — Defines a PlanDefinition that implements the behavior for a CDS Hooks service
 - [SpecimenDefinition](/api/fhir/specialized-quality-testing/specimen-definition) — A kind of specimen with associated set of requirements.
 - [TestPlan](/api/fhir/specialized-quality-testing/test-plan) — A plan for executing testing on an artifact or specifications
 - [TestReport](/api/fhir/specialized-quality-testing/test-report) — A summary of information based on the results of executing a TestScript.
 - [TestScript](/api/fhir/specialized-quality-testing/test-script) — A structured set of tests against a FHIR server or client implementation to determine compliance against the FHIR specif
-- [TestScript](/api/fhir/specialized-quality-testing/test-script) — Enforces the minimum information set for the test script metadata required by HL7 and other organizations that share and
 
 ### Specialized — Medication Definition
 
@@ -297,20 +246,10 @@ resource has its own page with:
 *Code systems, value sets, mappings, naming.*
 
 - [CodeSystem](/api/fhir/terminology/code-system) — The CodeSystem resource is used to declare the existence of and describe a code system or code system supplement and its
-- [CodeSystem](/api/fhir/terminology/code-system) — Enforces the minimum information set for the code system metadata required by HL7 and other organizations that share and
-- [CodeSystem](/api/fhir/terminology/code-system) — Defines and enforces the minimum expectations for publication and distribution of a code system, typically as part of an
-- [ConceptMap](/api/fhir/terminology/concept-map) — Defines and enforces the minimum expectations for publication and distribution of a concept map, typically as part of an
 - [ConceptMap](/api/fhir/terminology/concept-map) — A statement of relationships from one set of concepts to one or more other concepts - either concepts in code systems, o
-- [ConceptMap](/api/fhir/terminology/concept-map) — Enforces the minimum information set for the concept map metadata required by HL7 and other organizations that share and
-- [NamingSystem](/api/fhir/terminology/naming-system) — Defines and enforces the minimum expectations for publication and distribution of a naming system, typically as part of 
-- [NamingSystem](/api/fhir/terminology/naming-system) — Enforces the minimum information set for the naming system metadata required by HL7 and other organizations that share a
 - [NamingSystem](/api/fhir/terminology/naming-system) — A curated namespace that issues unique symbols within that namespace for the identification of concepts, people, devices
 - [TerminologyCapabilities](/api/fhir/terminology/terminology-capabilities) — A TerminologyCapabilities resource documents a set of capabilities (behaviors) of a FHIR Terminology Server that may be 
 - [ValueSet](/api/fhir/terminology/value-set) — A ValueSet resource instance specifies a set of codes drawn from one or more code systems, intended for use in a particu
-- [ValueSet](/api/fhir/terminology/value-set) — Defines a computable value set as one that SHALL have an expression-based definition (i.e. a value set defined intension
-- [ValueSet](/api/fhir/terminology/value-set) — Defines an executable value set as one that SHALL have an expansion included, as well as a usage warning indicating the 
-- [ValueSet](/api/fhir/terminology/value-set) — Defines and enforces the minimum expectations for publication and distribution of a value set, typically as part of an a
-- [ValueSet](/api/fhir/terminology/value-set) — Enforces the minimum information set for the value set metadata required by HL7 and other organizations that share and p
 
 ### Conformance
 
@@ -318,7 +257,6 @@ resource has its own page with:
 
 - [ActorDefinition](/api/fhir/conformance/actor-definition) — The ActorDefinition resource is used to describe an actor - a human or an application that plays a role in data exchange
 - [ArtifactAssessment](/api/fhir/conformance/artifact-assessment) — This Resource provides one or more comments, classifiers or ratings about a Resource and supports attribution and rights
-- [ArtifactAssessment](/api/fhir/conformance/artifact-assessment) — Represents justification for a recommendation
 - [CapabilityStatement](/api/fhir/conformance/capability-statement) — A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server or Client for a particular version o
 - [Citation](/api/fhir/conformance/citation) — The Citation Resource enables reference to any knowledge artifact for purposes of identification and attribution. The Ci
 - [CompartmentDefinition](/api/fhir/conformance/compartment-definition) — A compartment definition that defines how resources are accessed on a server.
