@@ -478,10 +478,12 @@
   color: var(--ink-4);
 }
 
+.envPill[data-active][data-env='dev']    { color: var(--ink-2);      border-color: color-mix(in srgb, var(--ink-2) 30%, var(--line));      background: color-mix(in srgb, var(--ink-2) 8%, transparent); }
 .envPill[data-active][data-env='alpha']  { color: var(--signal-warn); border-color: color-mix(in srgb, var(--signal-warn) 30%, var(--line)); background: color-mix(in srgb, var(--signal-warn) 8%, transparent); }
 .envPill[data-active][data-env='beta']   { color: var(--ovok-deep);   border-color: color-mix(in srgb, var(--ovok-deep) 30%, var(--line));   background: color-mix(in srgb, var(--ovok-deep) 8%, transparent); }
 .envPill[data-active][data-env='final']  { color: var(--signal-ok);   border-color: color-mix(in srgb, var(--signal-ok) 30%, var(--line));   background: color-mix(in srgb, var(--signal-ok) 8%, transparent); }
 
+[data-theme='dark'] .envPill[data-active][data-env='dev']   { color: #c7c1b9; }
 [data-theme='dark'] .envPill[data-active][data-env='alpha'] { color: #e0a35a; }
 [data-theme='dark'] .envPill[data-active][data-env='beta']  { color: var(--ovok-light); }
 [data-theme='dark'] .envPill[data-active][data-env='final'] { color: #6cc593; }

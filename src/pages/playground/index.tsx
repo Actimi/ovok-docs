@@ -19,9 +19,9 @@ interface ManifestEntry {
   parameters: { name: string; in: string; required: boolean; type: string | null }[];
   bodyExample: unknown;
   deprecated: boolean;
-  /** Release tiers (alpha/beta/final) where this endpoint actually exists.
+  /** Release tiers (dev/alpha/beta/final) where this endpoint actually exists.
    *  Driven by per-env OpenAPI specs at generate time. */
-  availableIn?: ('alpha' | 'beta' | 'final')[];
+  availableIn?: ('dev' | 'alpha' | 'beta' | 'final')[];
 }
 
 interface HeaderRow { id: number; key: string; value: string }
@@ -207,7 +207,7 @@ function PlaygroundImpl(): JSX.Element {
     const q = query.trim().toLowerCase();
     let pool = manifest;
     if (onlyThisEnv) {
-      pool = pool.filter((e) => (e.availableIn ?? ['alpha', 'beta', 'final']).includes(env));
+      pool = pool.filter((e) => (e.availableIn ?? ['dev', 'alpha', 'beta', 'final']).includes(env));
     }
     if (!q) return pool;
     return pool.filter((e) =>
@@ -332,6 +332,7 @@ function PlaygroundImpl(): JSX.Element {
               value={env}
               onChange={(e) => setEnv(e.target.value as never)}
             >
+              <option value="dev">dev — sandbox</option>
               <option value="alpha">alpha — preview</option>
               <option value="beta">beta — pre-release</option>
               <option value="final">final — production</option>
@@ -384,7 +385,7 @@ function PlaygroundImpl(): JSX.Element {
                   <div key={tag} className={styles.pickerGroup}>
                     <div className={styles.pickerGroupLabel}>{tag}</div>
                     {items.map((e, i) => {
-                      const envs = e.availableIn ?? ['alpha', 'beta', 'final'];
+                      const envs = e.availableIn ?? ['dev', 'alpha', 'beta', 'final'];
                       const inCurrent = envs.includes(env);
                       return (
                         <button
@@ -402,7 +403,7 @@ function PlaygroundImpl(): JSX.Element {
                             <span className={styles.pickerItemSummary}>{e.summary}</span>
                           </span>
                           <span className={styles.envPills} aria-label={`Available in: ${envs.join(', ')}`}>
-                            {(['alpha', 'beta', 'final'] as const).map((k) => (
+                            {(['dev', 'alpha', 'beta', 'final'] as const).map((k) => (
                               <span
                                 key={k}
                                 className={styles.envPill}
