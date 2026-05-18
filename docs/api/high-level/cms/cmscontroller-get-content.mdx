@@ -36,22 +36,22 @@ curl -X GET \
 Returns a `ContentDto` object:
 
 ```json
-&#123;
+{
   "id": "composition-id",
   "title": "My Blog",
   "category": "123",
   "section": [
-    &#123; "title": "Intro", "text": "Welcome text", "code": ["main-content"] &#125;
+    { "title": "Intro", "text": "Welcome text", "code": ["main-content"] }
   ],
   "language": "en-US",
   "key": "article-my-blog-a1b2c3d4",
   "type": "article",
   "date": "2025-01-15T12:00:00.000Z",
-  "author": &#123;
+  "author": {
     "reference": "Practitioner/abc",
     "display": "Dr. Smith"
-  &#125;
-&#125;
+  }
+}
 ```
 
 **Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.

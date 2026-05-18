@@ -25,60 +25,60 @@ curl -X GET \
 ## Example JSON response
 
 ```json
-&#123;
+{
   "resourceType": "Bundle",
   "type": "searchset",
   "entry": [
-    &#123;
-      "resource": &#123;
+    {
+      "resource": {
         "resourceType": "Observation",
-        "subject": &#123;
+        "subject": {
           "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
           "display": "Max Mustermann"
-        &#125;,
-        "code": &#123;
+        },
+        "code": {
           "coding": [
-            &#123;
+            {
               "system": "http://loinc.org",
               "code": "131328"
-            &#125;
+            }
           ]
-        &#125;,
+        },
         "status": "amended",
         "id": "a4508b00-7854-4108-a903-57aa67eaa79e"
-      &#125;,
+      },
       "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
-    &#125;,
-    &#123;
-      "resource": &#123;
+    },
+    {
+      "resource": {
         "resourceType": "Observation",
         "status": "final",
-        "valueQuantity": &#123;
+        "valueQuantity": {
           "unit": "bpm",
           "value": 150
-        &#125;,
-        "code": &#123;
+        },
+        "code": {
           "coding": [
-            &#123;
+            {
               "system": "http://loinc.org",
               "code": "8883-1"
-            &#125;,
-            &#123;
+            },
+            {
               "system": "http://loinc.org",
               "code": "8886-4"
-            &#125;
+            }
           ]
-        &#125;,
-        "subject": &#123;
+        },
+        "subject": {
           "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
           "display": "Max Mustermann"
-        &#125;,
+        },
         "id": "32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
-      &#125;,
+      },
       "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
-    &#125;
+    }
   ]
-&#125;
+}
 ```
 
 

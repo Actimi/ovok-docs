@@ -29,17 +29,42 @@ const OUT_FHIR        = join(REPO_ROOT, 'docs/api/fhir');
 const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
 
 // ─── shared helpers ───────────────────────────────────────────────────
+/**
+ * Make narrative text safe for MDX without mangling code samples.
+ *
+ * MDX 3 reads `{...}` as a JS expression inside paragraphs, so braces in
+ * descriptions like `{"id": 1}` would otherwise crash the parser. Escaping
+ * naively also chews through fenced code blocks (```) and inline code
+ * (`foo`) — exactly where braces are most likely to appear and where the
+ * user expects to see them unchanged. This walker splits the text into
+ * code segments vs. narrative segments and only escapes the latter.
+ */
 function escapeMdx(text) {
   if (!text) return '';
-  return String(text)
+  const codeRegion = /(```[\s\S]*?```|`[^`\n]+`)/g;
+  let out = '';
+  let lastIndex = 0;
+  let m;
+  while ((m = codeRegion.exec(text)) !== null) {
+    out += escapeNarrative(text.slice(lastIndex, m.index));
+    out += m[0]; // leave the code region untouched
+    lastIndex = codeRegion.lastIndex;
+  }
+  out += escapeNarrative(text.slice(lastIndex));
+  return out;
+}
+
+function escapeNarrative(text) {
+  return text
     .replace(/<br\s*\/?>/gi, '<br />')
     .replace(/<hr\s*\/?>/gi, '<hr />')
     .replace(/<(?![a-zA-Z/])/g, '&lt;')
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
-    // Rewrite the FHIR spec's intra-doc markdown links (e.g. "request.html#history",
-    // "valueset.html") to absolute hl7.org/fhir/R5/ URLs so they don't become
-    // broken Docusaurus relative links.
+    // FHIR spec descriptions reference other resource pages via
+    // markdown links like `[foo](patient.html)`. Rewrite to absolute
+    // hl7.org/fhir/R5/ URLs so they don't resolve as broken
+    // Docusaurus relative links.
     .replace(/\]\(([a-zA-Z][a-zA-Z0-9_-]*\.html(?:#[^)]*)?)\)/g, '](https://hl7.org/fhir/R5/$1)');
 }
 

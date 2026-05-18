@@ -42,15 +42,15 @@ curl -X GET \
 ## Response
 
 ```json
-&#123;
+{
   "total": 1,
   "resources": [
-    &#123;
-      "source": &#123; "title": "My Blog", "language": "en-US", "key": "article-my-blog-a1b2c3d4" &#125;,
-      "target": &#123; "title": "Mein Blog", "language": "de-DE", "key": "article-my-blog-a1b2c3d4" &#125;
-    &#125;
+    {
+      "source": { "title": "My Blog", "language": "en-US", "key": "article-my-blog-a1b2c3d4" },
+      "target": { "title": "Mein Blog", "language": "de-DE", "key": "article-my-blog-a1b2c3d4" }
+    }
   ]
-&#125;
+}
 ```
 
 **Notes:** If a content key exists in the default language but has no translation yet, `target` will be absent from that entry. The reverse is also possible if orphaned translations exist.

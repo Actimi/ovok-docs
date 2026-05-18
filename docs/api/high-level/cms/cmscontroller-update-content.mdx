@@ -38,13 +38,13 @@ curl -X POST \
  --url 'https://api.dev.ovok.com/cms/article/en-US' \
  -H 'Authorization: Bearer <token>' \
  -H 'Content-Type: application/json' \
- -d '&#123;
+ -d '{
     "title": "My Blog",
     "category": "123",
     "section": [
-      &#123; "title": "Intro", "text": "Welcome text", "code": ["main-content"] &#125;
+      { "title": "Intro", "text": "Welcome text", "code": ["main-content"] }
     ]
-&#125;'
+}'
 ```
 
 **Side Effects:** A background job is enqueued for every other language configured in the project locale, so translation stubs can be generated automatically.

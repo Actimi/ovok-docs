@@ -42,10 +42,10 @@ curl -X GET \
 ## Response
 
 ```json
-&#123;
+{
   "total": 42,
   "resources": [
-    &#123;
+    {
       "id": "composition-id",
       "title": "My Blog",
       "category": "123",
@@ -54,13 +54,13 @@ curl -X GET \
       "key": "article-my-blog-a1b2c3d4",
       "type": "article",
       "date": "2025-01-15T12:00:00.000Z",
-      "author": &#123;
+      "author": {
         "reference": "Practitioner/abc",
         "display": "Dr. Smith"
-      &#125;
-    &#125;
+      }
+    }
   ]
-&#125;
+}
 ```
 
 **Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.

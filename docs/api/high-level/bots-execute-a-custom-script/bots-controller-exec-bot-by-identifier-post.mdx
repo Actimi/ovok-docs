@@ -16,14 +16,14 @@ This API executes a bot by its identifier.
 ## Example bot resource
 
 ```json
-&#123;
+{
   "resourceType": "Bot",
-  "identifier": [&#123;
+  "identifier": [{
     "system": "https://example.com",
     "value": "get-users"
-  &#125;],
+  }],
   ...
-&#125;
+}
 ```
 
 ## Example cURL request
@@ -35,10 +35,10 @@ curl -X POST \
  --url 'https://api.dev.ovok.com/bots?identifier=https://example.com|get-users' \
  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ' \
  -H 'Content-Type: application/json' \
- -d '&#123;
+ -d '{
     "parameter1": "value1",
     "parameter2": "value2"
-&#125;'
+}'
 ```
 
 **Note**: The `https://example.com|get-users` query parameter value consists of identifier's `system` and `value` properties merged by a single pipe `|` symbol, following the FHIR search parameter syntax.
