@@ -78,7 +78,13 @@ function escapeNarrative(text) {
 
 function slug(s) {
   return String(s)
+    // camelCase   → camel-Case
     .replace(/([a-z])([A-Z])/g, '$1-$2')
+    // ALLCAPS+Title → ALLCAPS-Title (e.g. "B2BRegister" → "B2B-Register")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+    // letter→digit and digit→letter (e.g. "B2B" → "B-2-B")
+    .replace(/([a-zA-Z])(\d)/g, '$1-$2')
+    .replace(/(\d)([a-zA-Z])/g, '$1-$2')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');

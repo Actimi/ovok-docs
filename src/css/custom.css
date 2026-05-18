@@ -235,8 +235,26 @@ code {
 /* ─── Navbar — flat, hairline border ────────────────────────────────── */
 
 .navbar {
-  backdrop-filter: saturate(180%) blur(8px);
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  /* Opaque in both themes: scrolled content used to ghost through the
+     12% transparent backdrop and read as a phantom-title artifact. */
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .navbar {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Anchor scroll-target offset so clicking a TOC link or hash lands
+   the heading clear of the sticky navbar instead of behind it. */
+html {
+  scroll-padding-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.markdown :where(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
 }
 
 .navbar__title {

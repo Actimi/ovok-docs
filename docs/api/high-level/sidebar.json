@@ -41,7 +41,7 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/authentication/auth-login-controller-login-v2",
+        "id": "api/high-level/authentication/auth-login-controller-login-v-2",
         "label": "Login"
       },
       {
@@ -61,18 +61,18 @@
     "label": "Authentication - B2B",
     "link": {
       "type": "doc",
-      "id": "api/high-level/authentication-b2b/auth-b2blogin-controller-login"
+      "id": "api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/authentication-b2b/auth-b2blogin-controller-login",
+        "id": "api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login",
         "label": "Login"
       },
       {
         "type": "doc",
-        "id": "api/high-level/authentication-b2b/auth-b2bregister-controller-register",
+        "id": "api/high-level/authentication-b-2-b/auth-b-2-b-register-controller-register",
         "label": "Register an account"
       }
     ]
@@ -119,48 +119,48 @@
     "label": "CMS",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms/cmscontroller-search-mapped-content"
+      "id": "api/high-level/cms/cms-controller-search-mapped-content"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-search-mapped-content",
+        "id": "api/high-level/cms/cms-controller-search-mapped-content",
         "label": "Search mapped content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-copy-contents",
+        "id": "api/high-level/cms/cms-controller-copy-contents",
         "label": "Copy contents"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-copy-single-content",
+        "id": "api/high-level/cms/cms-controller-copy-single-content",
         "label": "Copy a content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-create-content",
+        "id": "api/high-level/cms/cms-controller-create-content",
         "label": "Create content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-search-content",
+        "id": "api/high-level/cms/cms-controller-search-content",
         "label": "Search content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-update-content",
+        "id": "api/high-level/cms/cms-controller-update-content",
         "label": "Update content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-get-content",
+        "id": "api/high-level/cms/cms-controller-get-content",
         "label": "Get content by key and language"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cmscontroller-delete-content",
+        "id": "api/high-level/cms/cms-controller-delete-content",
         "label": "Delete content"
       }
     ]
@@ -237,18 +237,18 @@
     "label": "Localization Keys",
     "link": {
       "type": "doc",
-      "id": "api/high-level/localization-keys/localization-i18next-controller-get-all-i18n"
+      "id": "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/localization-keys/localization-i18next-controller-get-all-i18n",
+        "id": "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n",
         "label": "i18next - Get JSON"
       },
       {
         "type": "doc",
-        "id": "api/high-level/localization-keys/localization-i18next-controller-patch-all-i18n",
+        "id": "api/high-level/localization-keys/localization-i-18-next-controller-patch-all-i-18-n",
         "label": "i18next - Update JSON"
       },
       {
@@ -315,17 +315,17 @@
       },
       {
         "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-1-v1",
+        "id": "api/high-level/partner/partner-controller-health-check-1-v-1",
         "label": "GET /v1/partner/health-check"
       },
       {
         "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-2-v2",
+        "id": "api/high-level/partner/partner-controller-health-check-2-v-2",
         "label": "GET /v2/partner/health-check"
       },
       {
         "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-3-v3",
+        "id": "api/high-level/partner/partner-controller-health-check-3-v-3",
         "label": "GET /v3/partner/health-check"
       }
     ]
