@@ -1,12 +1,18 @@
 /**
  * Single source of truth for environment surfaces.
  *
- * Product names (alpha/beta/final) decouple the docs from internal
- * deployment terminology. Every public hostname follows the same
- * subdomain pattern across all three Ovok surfaces.
+ * Source branch in ovok-internal  →  docs branch  →  tier key here
+ *   sandbox                            dev            'dev'
+ *   development                        alpha          'alpha'
+ *   staging                            beta           'beta'
+ *   master                             final          'final'
+ *
+ * Product names ('dev'/'alpha'/'beta'/'final') decouple the docs from
+ * internal deployment terminology. Every public hostname follows the same
+ * subdomain pattern across all four surfaces.
  */
 
-export type EnvKey = 'alpha' | 'beta' | 'final';
+export type EnvKey = 'dev' | 'alpha' | 'beta' | 'final';
 export type Surface = 'api' | 'fhir' | 'console' | 'dashboard';
 
 export interface EnvConfig {
@@ -15,10 +21,23 @@ export interface EnvConfig {
   shortLabel: string;
   description: string;
   hosts: Record<Surface, string>;
-  maturity: 'preview' | 'pre-release' | 'production';
+  maturity: 'sandbox' | 'preview' | 'pre-release' | 'production';
 }
 
 export const ENVS: Record<EnvKey, EnvConfig> = {
+  dev: {
+    key: 'dev',
+    label: 'Dev — sandbox',
+    shortLabel: 'dev',
+    description: 'Sandbox tier. Internal experiments, feature flags, breaking changes daily.',
+    hosts: {
+      api:       'https://api.sandbox.ovok.com',
+      fhir:      'https://api.sandbox.ovok.com/fhir/R5',
+      console:   'https://console.sandbox.ovok.com',
+      dashboard: 'https://dashboard.sandbox.ovok.com',
+    },
+    maturity: 'sandbox',
+  },
   alpha: {
     key: 'alpha',
     label: 'Alpha — preview',
@@ -60,11 +79,11 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
   },
 };
 
-export const ENV_ORDER: EnvKey[] = ['alpha', 'beta', 'final'];
+export const ENV_ORDER: EnvKey[] = ['dev', 'alpha', 'beta', 'final'];
 export const DEFAULT_ENV: EnvKey = 'alpha';
 export const STORAGE_KEY = 'ovok-docs:env';
 export const CHANGE_EVENT = 'ovok-docs:env-change';
 
 export function isEnvKey(value: unknown): value is EnvKey {
-  return value === 'alpha' || value === 'beta' || value === 'final';
+  return value === 'dev' || value === 'alpha' || value === 'beta' || value === 'final';
 }
