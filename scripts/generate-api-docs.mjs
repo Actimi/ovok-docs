@@ -337,10 +337,95 @@ The full machine-readable spec is at
   mkdirSync(STATIC_OPENAPI, { recursive: true });
   writeIfChanged(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
 
+  // Endpoint manifest consumed by the Playground — flat list of public ops
+  // with body examples synthesised from the OpenAPI schemas so the user
+  // has something to mutate instead of an empty textarea.
+  const STATIC_DATA = join(REPO_ROOT, 'static/data');
+  mkdirSync(STATIC_DATA, { recursive: true });
+  const manifest = [];
+  for (const tag of sortedTags) {
+    for (const { method, path: p, op } of tagGroups.get(tag)) {
+      manifest.push(buildManifestEntry(tag, method, p, op, deref));
+    }
+  }
+  // FHIR custom ops — dedupe across /fhir/, /R4/, /R5/ variants; pick R5.
+  const byHandler = new Map();
+  for (const entry of fhirCustomOps) {
+    const opid = entry.op.operationId ?? `${entry.method}-${entry.path}`;
+    const k = opid.replace(/\[\d+\]$/, '');
+    if (!byHandler.has(k)) byHandler.set(k, []);
+    byHandler.get(k).push(entry);
+  }
+  for (const variants of byHandler.values()) {
+    const canonical = variants.find((v) => v.path.includes('/R5/')) ?? variants[0];
+    manifest.push(buildManifestEntry('FHIR custom operations', canonical.method, canonical.path, canonical.op, deref));
+  }
+  writeIfChanged(join(STATIC_DATA, 'endpoints.json'), JSON.stringify(manifest, null, 2));
+
   return {
     tags: sortedTags.length,
     operations: sortedTags.reduce((n, t) => n + tagGroups.get(t).length, 0),
   };
+}
+
+function buildManifestEntry(tag, method, path, op, deref) {
+  let bodyExample = null;
+  const body = op.requestBody ? deref(op.requestBody) : null;
+  if (body?.content) {
+    const json = body.content['application/json'];
+    if (json) {
+      bodyExample = json.example
+        ?? (json.examples && Object.values(json.examples)[0]?.value)
+        ?? null;
+      if (!bodyExample && json.schema) bodyExample = exampleFromSchema(deref(json.schema), deref, 0);
+    }
+  }
+  return {
+    method,
+    path,
+    summary: op.summary?.trim() || `${method} ${path}`,
+    description: (op.description ?? '').split('\n')[0].slice(0, 200),
+    tag,
+    operationId: op.operationId,
+    parameters: (op.parameters ?? []).map((p) => {
+      const sch = deref(p.schema) ?? {};
+      return { name: p.name, in: p.in, required: !!p.required, type: sch.type ?? null };
+    }),
+    bodyExample,
+    deprecated: !!op.deprecated,
+  };
+}
+
+function exampleFromSchema(schema, deref, depth) {
+  if (!schema || depth > 4) return null;
+  const s = deref(schema);
+  if (s.example !== undefined) return s.example;
+  if (s.enum && s.enum.length) return s.enum[0];
+  if (s.type === 'object' && s.properties) {
+    const out = {};
+    for (const key of Object.keys(s.properties).slice(0, 12)) {
+      const v = exampleFromSchema(deref(s.properties[key]), deref, depth + 1);
+      out[key] = v ?? exampleForType(deref(s.properties[key])?.type);
+    }
+    return out;
+  }
+  if (s.type === 'array') {
+    const item = exampleFromSchema(deref(s.items), deref, depth + 1);
+    return item == null ? [] : [item];
+  }
+  return exampleForType(s.type);
+}
+
+function exampleForType(t) {
+  switch (t) {
+    case 'string':  return 'string';
+    case 'number':
+    case 'integer': return 0;
+    case 'boolean': return false;
+    case 'array':   return [];
+    case 'object':  return {};
+    default:        return null;
+  }
 }
 
 // ─── FHIR R5 — drive everything from the official spec cache ──────────
