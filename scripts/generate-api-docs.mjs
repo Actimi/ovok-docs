@@ -13,7 +13,7 @@
  * clicking the category label lands on the first item of the group.
  */
 
-import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -95,9 +95,47 @@ function shortenLabel(s, max = 42) {
   return s.slice(0, max - 1) + '…';
 }
 
-function ensureCleanDir(path) {
-  rmSync(path, { recursive: true, force: true });
+/**
+ * Files written during this gen run. After generation we sweep each output
+ * dir and delete any file *not* in this set — the soft equivalent of
+ * "delete then recreate" that preserves byte-identical files. Docusaurus'
+ * watcher invalidates a route's compile cache whenever a file in the docs
+ * tree mutates, so keeping unchanged files untouched keeps dev mode fast.
+ */
+const WRITTEN_FILES = new Set();
+
+function ensureDir(path) {
   mkdirSync(path, { recursive: true });
+}
+
+function writeIfChanged(path, content) {
+  WRITTEN_FILES.add(path);
+  if (existsSync(path)) {
+    try {
+      if (readFileSync(path, 'utf8') === content) return false;
+    } catch { /* fall through to write */ }
+  }
+  writeFileSync(path, content);
+  return true;
+}
+
+function sweepOrphans(dir) {
+  if (!existsSync(dir)) return 0;
+  let removed = 0;
+  const stack = [dir];
+  while (stack.length) {
+    const cur = stack.pop();
+    let entries;
+    try { entries = readdirSync(cur, { withFileTypes: true }); } catch { continue; }
+    for (const ent of entries) {
+      const full = join(cur, ent.name);
+      if (ent.isDirectory()) stack.push(full);
+      else if (!WRITTEN_FILES.has(full)) {
+        try { rmSync(full); removed++; } catch {}
+      }
+    }
+  }
+  return removed;
 }
 
 // ─── high-level (OpenAPI → per-endpoint MDX) ──────────────────────────
@@ -196,7 +234,7 @@ function generateHighLevel() {
   globalThis.__OVOK_FHIR_CUSTOM__.renderRequestBody = renderRequestBody;
   globalThis.__OVOK_FHIR_CUSTOM__.renderResponses = renderResponses;
 
-  ensureCleanDir(OUT_HIGH);
+  ensureDir(OUT_HIGH);
   const sidebarItems = [{ type: 'doc', id: 'api/high-level/index', label: 'Overview' }];
   const firstEndpointSlugByTag = new Map();
 
@@ -235,7 +273,7 @@ function generateHighLevel() {
       body.push(renderRequestBody(op.requestBody));
       body.push(renderResponses(op.responses));
 
-      writeFileSync(join(tagDir, `${opSlug}.mdx`), body.join('\n'));
+      writeIfChanged(join(tagDir, `${opSlug}.mdx`), body.join('\n'));
 
       const id = `api/high-level/${tagSlug}/${opSlug}`;
       opItems.push({ type: 'doc', id, label: opLabel });
@@ -258,7 +296,7 @@ function generateHighLevel() {
     .map((t) => `- **[${t}](/api/high-level/${firstEndpointSlugByTag.get(t)})** — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
     .join('\n');
 
-  writeFileSync(join(OUT_HIGH, 'index.mdx'),
+  writeIfChanged(join(OUT_HIGH, 'index.mdx'),
 `---
 title: High Level API
 sidebar_position: 1
@@ -294,10 +332,10 @@ The full machine-readable spec is at
 [\`/openapi/ovok-api-public.yaml\`](pathname:///openapi/ovok-api-public.yaml).
 `);
 
-  writeFileSync(join(OUT_HIGH, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
+  writeIfChanged(join(OUT_HIGH, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
 
   mkdirSync(STATIC_OPENAPI, { recursive: true });
-  writeFileSync(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
+  writeIfChanged(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
 
   return {
     tags: sortedTags.length,
@@ -412,13 +450,13 @@ function generateFhir() {
     byCategory.get(r.category).push(r);
   }
 
-  ensureCleanDir(OUT_FHIR);
+  ensureDir(OUT_FHIR);
 
   // Per-resource pages
   for (const r of resources) {
     const dir = join(OUT_FHIR, slug(r.category));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
+    writeIfChanged(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
   }
 
   // Custom operations (from the OpenAPI spec, routed here by generateHighLevel)
@@ -446,7 +484,7 @@ function generateFhir() {
       })),
     });
   }
-  writeFileSync(join(OUT_FHIR, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
+  writeIfChanged(join(OUT_FHIR, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
 
   // Index page — group by category
   const categoryBlocks = [...categoryOrder, 'Other']
@@ -461,7 +499,7 @@ function generateFhir() {
     })
     .join('\n');
 
-  writeFileSync(join(OUT_FHIR, 'index.mdx'),
+  writeIfChanged(join(OUT_FHIR, 'index.mdx'),
 `---
 title: FHIR API
 sidebar_position: 1
@@ -579,7 +617,7 @@ function generateFhirCustomOps() {
     body.push(renderRequestBody(op.requestBody));
     body.push(renderResponses(op.responses));
 
-    writeFileSync(join(dir, `${opSlug}.mdx`), body.join('\n'));
+    writeIfChanged(join(dir, `${opSlug}.mdx`), body.join('\n'));
     const id = `api/fhir/custom-operations/${opSlug}`;
     sidebarItems.push({ type: 'doc', id, label: title.length > 42 ? title.slice(0, 41) + '…' : title });
     if (!firstId) firstId = id;
@@ -613,7 +651,7 @@ function generateFhirCustomOps() {
     }).join('\n'),
     '',
   ].join('\n');
-  writeFileSync(join(dir, 'index.mdx'), indexBody);
+  writeIfChanged(join(dir, 'index.mdx'), indexBody);
 
   return {
     type: 'category',
@@ -710,7 +748,9 @@ ${searchRows}
 // ─── run ──────────────────────────────────────────────────────────────
 const hl = generateHighLevel();
 const fhir = generateFhir();
+const orphans = sweepOrphans(OUT_HIGH) + sweepOrphans(OUT_FHIR) + sweepOrphans(STATIC_OPENAPI);
 
 console.log(`High Level API → ${hl.operations} endpoints in ${hl.tags} groups → ${OUT_HIGH}`);
 console.log(`FHIR API       → ${fhir.resources} resources in ${fhir.categories} categories → ${OUT_FHIR}`);
 console.log(`Static spec    → ${STATIC_OPENAPI}/ovok-api-public.yaml`);
+if (orphans > 0) console.log(`Swept ${orphans} orphan file${orphans === 1 ? '' : 's'}`);
