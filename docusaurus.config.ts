@@ -39,24 +39,9 @@ const config: Config = {
           'Ovok is the API platform for digital health teams. Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface.',
       },
     },
-    {
-      tagName: 'meta',
-      attributes: { name: 'theme-color', content: '#694D98' },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:type',
-        content: 'website',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:site_name',
-        content: 'Ovok',
-      },
-    },
+    { tagName: 'meta', attributes: { name: 'theme-color', content: '#694D98' } },
+    { tagName: 'meta', attributes: { property: 'og:type', content: 'website' } },
+    { tagName: 'meta', attributes: { property: 'og:site_name', content: 'Ovok' } },
     {
       tagName: 'meta',
       attributes: {
@@ -72,14 +57,8 @@ const config: Config = {
           'Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface. One Console, one API, three release tiers.',
       },
     },
-    {
-      tagName: 'meta',
-      attributes: { name: 'twitter:card', content: 'summary_large_image' },
-    },
-    {
-      tagName: 'link',
-      attributes: { rel: 'canonical', href: 'https://docs.ovok.com' },
-    },
+    { tagName: 'meta', attributes: { name: 'twitter:card', content: 'summary_large_image' } },
+    { tagName: 'link', attributes: { rel: 'canonical', href: 'https://docs.ovok.com' } },
     {
       tagName: 'script',
       attributes: { type: 'application/ld+json' },
@@ -89,11 +68,7 @@ const config: Config = {
         headline: 'Ovok — The API platform for digital health teams',
         description:
           'Documentation for Ovok: the Console, the Data Dashboard, the API, and the release tiers you ship against.',
-        publisher: {
-          '@type': 'Organization',
-          name: 'Actimi',
-          url: 'https://actimi.com',
-        },
+        publisher: { '@type': 'Organization', name: 'Actimi', url: 'https://actimi.com' },
         inLanguage: 'en',
       }),
     },
@@ -125,10 +100,7 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-        sitemap: {
-          changefreq: 'weekly',
-          priority: 0.7,
-        },
+        sitemap: { changefreq: 'weekly', priority: 0.7 },
       } satisfies Preset.Options,
     ],
   ],
@@ -136,7 +108,11 @@ const config: Config = {
   themeConfig: {
     image: 'img/ovok-social-card.png',
     metadata: [
-      { name: 'keywords', content: 'digital health, FHIR API, healthcare platform, patient apps, clinical workflows, healthcare integrations, Ovok, Actimi' },
+      {
+        name: 'keywords',
+        content:
+          'digital health, FHIR API, healthcare platform, patient apps, clinical workflows, healthcare integrations, Ovok, Actimi',
+      },
       { name: 'author', content: 'Actimi GmbH' },
       { name: 'robots', content: 'index, follow' },
     ],
@@ -145,36 +121,16 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },
-    mermaid: {
-      theme: { light: 'neutral', dark: 'dark' },
-    },
+    mermaid: { theme: { light: 'neutral', dark: 'dark' } },
     navbar: {
       title: 'Ovok',
-      logo: {
-        alt: 'Ovok',
-        src: 'img/logo.svg',
-      },
+      logo: { alt: 'Ovok', src: 'img/logo.svg' },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'docs',
-          position: 'left',
-          label: 'Docs',
-        },
-        {
-          type: 'custom-envSwitcher',
-          position: 'right',
-        },
-        {
-          href: 'https://console.ovok.com',
-          label: 'Console',
-          position: 'right',
-        },
-        {
-          href: 'https://dashboard.ovok.com',
-          label: 'Data Dashboard',
-          position: 'right',
-        },
+        { type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs' },
+        { type: 'docSidebar', sidebarId: 'api',  position: 'left', label: 'API' },
+        { type: 'custom-envSwitcher', position: 'right' },
+        { href: 'https://console.ovok.com',   label: 'Console',         position: 'right' },
+        { href: 'https://dashboard.ovok.com', label: 'Data Dashboard',  position: 'right' },
       ],
     },
     footer: {
@@ -193,6 +149,12 @@ const config: Config = {
           items: [
             { label: 'Console', to: '/surfaces/console' },
             { label: 'Data Dashboard', to: '/surfaces/data-dashboard' },
+          ],
+        },
+        {
+          title: 'API',
+          items: [
+            { label: 'Reference', to: '/api/reference' },
           ],
         },
         {

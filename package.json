@@ -5,8 +5,9 @@
   "description": "Documentation site for the Ovok platform.",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
+    "start": "pnpm run gen:api && docusaurus start",
+    "build": "pnpm run gen:api && docusaurus build",
+    "gen:api": "node scripts/generate-api-docs.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -29,6 +30,8 @@
     "@docusaurus/module-type-aliases": "^3.7.0",
     "@docusaurus/tsconfig": "^3.7.0",
     "@docusaurus/types": "^3.7.0",
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.1",
     "typescript": "~5.5.2"
   },
   "pnpm": {
@@ -38,7 +41,11 @@
     }
   },
   "browserslist": {
-    "production": [">0.5%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 3 chrome version",
       "last 3 firefox version",

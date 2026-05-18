@@ -321,6 +321,37 @@ code {
   box-shadow: none;
 }
 
+/* ─── API method badges (rendered inline next to a path) ───────────── */
+
+.api-method {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: var(--paper-quiet);
+  color: var(--ink-2);
+}
+
+.api-method.get     { color: #2f6f47; border-color: color-mix(in srgb, #2f6f47 30%, var(--line)); }
+.api-method.post    { color: #694D98; border-color: color-mix(in srgb, #694D98 30%, var(--line)); }
+.api-method.put     { color: #b5751f; border-color: color-mix(in srgb, #b5751f 30%, var(--line)); }
+.api-method.patch   { color: #8a6f1f; border-color: color-mix(in srgb, #8a6f1f 30%, var(--line)); }
+.api-method.delete  { color: #a4393f; border-color: color-mix(in srgb, #a4393f 30%, var(--line)); }
+.api-method.head,
+.api-method.options { color: var(--ink-3); }
+
+[data-theme='dark'] .api-method.get    { color: #6cc593; }
+[data-theme='dark'] .api-method.post   { color: var(--ovok-light); }
+[data-theme='dark'] .api-method.put    { color: #e0a35a; }
+[data-theme='dark'] .api-method.patch  { color: #d4b066; }
+[data-theme='dark'] .api-method.delete { color: #e07a80; }
+
 /* ─── Scrollbar (subtle) ────────────────────────────────────────────── */
 
 @media (pointer: fine) {

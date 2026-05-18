@@ -2,6 +2,7 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "@site/*": ["./*"]
     }
@@ -9,7 +10,8 @@
   "include": [
     "src/",
     "docusaurus.config.ts",
-    "sidebars.ts"
+    "sidebars.ts",
+    "docs/api/reference/sidebar.json"
   ],
   "exclude": ["node_modules", "build", ".docusaurus"]
 }

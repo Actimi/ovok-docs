@@ -1,0 +1,51 @@
+---
+title: Organization Code Information
+description: Organization Code Information endpoints in the Ovok public API.
+sidebar_label: Organization Code Information
+---
+
+# Organization Code Information
+
+2 endpoints.
+
+<ApiBase inline={false} />
+
+### Get Organization Code {#organizationcodecontroller-getorganizationcode}
+<span className="api-method get">GET</span> `/organizations/code`
+Get organization code
+
+**Responses**
+
+| Code | Description |
+| --- | --- |
+| `200` |  |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |
+
+---
+### Receive Organization Codes {#organizationcodecontroller-sendemailoforganizations}
+<span className="api-method post">POST</span> `/organizations/code/email`
+Receive organization codes to your email
+
+**Request body**
+
+Content-Type: `application/json`
+
+- `email`: `string` **(required)**
+
+
+**Responses**
+
+| Code | Description |
+| --- | --- |
+| `200` |  |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |
+
+---
