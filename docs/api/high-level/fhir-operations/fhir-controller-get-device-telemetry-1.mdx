@@ -1,0 +1,116 @@
+---
+title: "Get device telemetry"
+sidebar_label: "Get device telemetry"
+description: "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observati"
+---
+
+# Get device telemetry
+
+<span className="api-method get">GET</span> `/fhir/R4/Device/{id}/telemetry`
+
+<ApiBase inline={false} />
+
+Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, heart rate (when a fresh value is cached), respiratory rate (when a fresh value is cached), and sleep status. Each Observation uses its own `effectiveInstant` so clients can reason about staleness per metric.
+
+## Example cURL request
+
+```bash
+curl -X GET \
+ 'https://api.dev.ovok.com/fhir/R4/Device/87ea5dfc-8b8e-384d-8489-79496e706390/telemetry' \
+ -H 'Authorization: Bearer <token>'
+```
+
+## Example JSON response
+
+```json
+&#123;
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 4,
+  "entry": [
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "id": "presence",
+        "status": "final",
+        "code": &#123;
+          "coding": [
+            &#123;
+              "system": "https://sleepiz.com/fhir/CodeSystem/observation-codes",
+              "code": "presence-detection",
+              "display": "Presence detection"
+            &#125;
+          ]
+        &#125;,
+        "subject": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "device": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "effectiveInstant": "2026-04-22T10:00:00.000Z",
+        "valueBoolean": true
+      &#125;
+    &#125;,
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "id": "heartRate",
+        "status": "final",
+        "code": &#123;
+          "coding": [&#123; "system": "http://loinc.org", "code": "8867-4", "display": "Heart rate" &#125;]
+        &#125;,
+        "subject": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "device": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "effectiveInstant": "2026-04-22T10:00:00.000Z",
+        "valueQuantity": &#123; "value": 72, "unit": "beats/min", "system": "http://unitsofmeasure.org", "code": "/min" &#125;
+      &#125;
+    &#125;,
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "id": "respiratoryRate",
+        "status": "final",
+        "code": &#123;
+          "coding": [&#123; "system": "http://loinc.org", "code": "9279-1", "display": "Respiratory rate" &#125;]
+        &#125;,
+        "subject": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "device": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "effectiveInstant": "2026-04-22T10:00:00.000Z",
+        "valueQuantity": &#123; "value": 14, "unit": "breaths/min", "system": "http://unitsofmeasure.org", "code": "/min" &#125;
+      &#125;
+    &#125;,
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "id": "sleep",
+        "status": "final",
+        "code": &#123;
+          "coding": [&#123; "system": "http://loinc.org", "code": "107145-5", "display": "Sleep status" &#125;]
+        &#125;,
+        "subject": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "device": &#123; "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" &#125;,
+        "effectiveInstant": "2026-04-22T10:00:00.000Z",
+        "valueCodeableConcept": &#123; "text": "asleep" &#125;
+      &#125;
+    &#125;
+  ]
+&#125;
+```
+
+
+
+## Parameters
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `id` | path | `string` | **yes** |  |
+
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` |  |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |

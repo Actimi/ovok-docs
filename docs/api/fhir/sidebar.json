@@ -7,11 +7,15 @@
   {
     "type": "category",
     "label": "Foundation",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/foundation/audit-event"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/foundation/auditevent",
+        "id": "api/fhir/foundation/audit-event",
         "label": "AuditEvent"
       },
       {
@@ -41,7 +45,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/documentreference",
+        "id": "api/fhir/foundation/document-reference",
         "label": "DocumentReference"
       },
       {
@@ -56,12 +60,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/messageheader",
+        "id": "api/fhir/foundation/message-header",
         "label": "MessageHeader"
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/operationoutcome",
+        "id": "api/fhir/foundation/operation-outcome",
         "label": "OperationOutcome"
       },
       {
@@ -86,12 +90,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/subscriptionstatus",
+        "id": "api/fhir/foundation/subscription-status",
         "label": "SubscriptionStatus"
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/subscriptiontopic",
+        "id": "api/fhir/foundation/subscription-topic",
         "label": "SubscriptionTopic"
       }
     ]
@@ -99,6 +103,10 @@
   {
     "type": "category",
     "label": "Base",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/base/endpoint"
+    },
     "collapsed": true,
     "items": [
       {
@@ -113,7 +121,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/base/healthcareservice",
+        "id": "api/fhir/base/healthcare-service",
         "label": "HealthcareService"
       },
       {
@@ -128,7 +136,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/base/organizationaffiliation",
+        "id": "api/fhir/base/organization-affiliation",
         "label": "OrganizationAffiliation"
       },
       {
@@ -148,12 +156,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/base/practitionerrole",
+        "id": "api/fhir/base/practitioner-role",
         "label": "PractitionerRole"
       },
       {
         "type": "doc",
-        "id": "api/fhir/base/relatedperson",
+        "id": "api/fhir/base/related-person",
         "label": "RelatedPerson"
       }
     ]
@@ -161,16 +169,20 @@
   {
     "type": "category",
     "label": "Clinical — Summary",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/clinical-summary/allergy-intolerance"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/clinical-summary/allergyintolerance",
+        "id": "api/fhir/clinical-summary/allergy-intolerance",
         "label": "AllergyIntolerance"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-summary/clinicalimpression",
+        "id": "api/fhir/clinical-summary/clinical-impression",
         "label": "ClinicalImpression"
       },
       {
@@ -180,7 +192,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-summary/familymemberhistory",
+        "id": "api/fhir/clinical-summary/family-member-history",
         "label": "FamilyMemberHistory"
       },
       {
@@ -195,7 +207,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-summary/riskassessment",
+        "id": "api/fhir/clinical-summary/risk-assessment",
         "label": "RiskAssessment"
       }
     ]
@@ -203,36 +215,40 @@
   {
     "type": "category",
     "label": "Clinical — Diagnostics",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/clinical-diagnostics/body-structure"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/bodystructure",
+        "id": "api/fhir/clinical-diagnostics/body-structure",
         "label": "BodyStructure"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/diagnosticreport",
+        "id": "api/fhir/clinical-diagnostics/diagnostic-report",
         "label": "DiagnosticReport"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/genomicstudy",
+        "id": "api/fhir/clinical-diagnostics/genomic-study",
         "label": "GenomicStudy"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/imagingselection",
+        "id": "api/fhir/clinical-diagnostics/imaging-selection",
         "label": "ImagingSelection"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/imagingstudy",
+        "id": "api/fhir/clinical-diagnostics/imaging-study",
         "label": "ImagingStudy"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/molecularsequence",
+        "id": "api/fhir/clinical-diagnostics/molecular-sequence",
         "label": "MolecularSequence"
       },
       {
@@ -247,7 +263,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/questionnaireresponse",
+        "id": "api/fhir/clinical-diagnostics/questionnaire-response",
         "label": "QuestionnaireResponse"
       },
       {
@@ -260,11 +276,15 @@
   {
     "type": "category",
     "label": "Clinical — Medications",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/clinical-medications/formulary-item"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/formularyitem",
+        "id": "api/fhir/clinical-medications/formulary-item",
         "label": "FormularyItem"
       },
       {
@@ -274,12 +294,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/immunizationevaluation",
+        "id": "api/fhir/clinical-medications/immunization-evaluation",
         "label": "ImmunizationEvaluation"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/immunizationrecommendation",
+        "id": "api/fhir/clinical-medications/immunization-recommendation",
         "label": "ImmunizationRecommendation"
       },
       {
@@ -289,27 +309,27 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/medicationadministration",
+        "id": "api/fhir/clinical-medications/medication-administration",
         "label": "MedicationAdministration"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/medicationdispense",
+        "id": "api/fhir/clinical-medications/medication-dispense",
         "label": "MedicationDispense"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/medicationknowledge",
+        "id": "api/fhir/clinical-medications/medication-knowledge",
         "label": "MedicationKnowledge"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/medicationrequest",
+        "id": "api/fhir/clinical-medications/medication-request",
         "label": "MedicationRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-medications/medicationstatement",
+        "id": "api/fhir/clinical-medications/medication-statement",
         "label": "MedicationStatement"
       }
     ]
@@ -317,16 +337,20 @@
   {
     "type": "category",
     "label": "Clinical — Care Provision",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/clinical-care-provision/care-plan"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/careplan",
+        "id": "api/fhir/clinical-care-provision/care-plan",
         "label": "CarePlan"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/careteam",
+        "id": "api/fhir/clinical-care-provision/care-team",
         "label": "CareTeam"
       },
       {
@@ -336,12 +360,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/communicationrequest",
+        "id": "api/fhir/clinical-care-provision/communication-request",
         "label": "CommunicationRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/devicerequest",
+        "id": "api/fhir/clinical-care-provision/device-request",
         "label": "DeviceRequest"
       },
       {
@@ -351,12 +375,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/encounterhistory",
+        "id": "api/fhir/clinical-care-provision/encounter-history",
         "label": "EncounterHistory"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/episodeofcare",
+        "id": "api/fhir/clinical-care-provision/episode-of-care",
         "label": "EpisodeOfCare"
       },
       {
@@ -366,42 +390,42 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/guidanceresponse",
+        "id": "api/fhir/clinical-care-provision/guidance-response",
         "label": "GuidanceResponse"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/nutritionintake",
+        "id": "api/fhir/clinical-care-provision/nutrition-intake",
         "label": "NutritionIntake"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/nutritionorder",
+        "id": "api/fhir/clinical-care-provision/nutrition-order",
         "label": "NutritionOrder"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/requestorchestration",
+        "id": "api/fhir/clinical-care-provision/request-orchestration",
         "label": "RequestOrchestration"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/servicerequest",
+        "id": "api/fhir/clinical-care-provision/service-request",
         "label": "ServiceRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/supplydelivery",
+        "id": "api/fhir/clinical-care-provision/supply-delivery",
         "label": "SupplyDelivery"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/supplyrequest",
+        "id": "api/fhir/clinical-care-provision/supply-request",
         "label": "SupplyRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/visionprescription",
+        "id": "api/fhir/clinical-care-provision/vision-prescription",
         "label": "VisionPrescription"
       }
     ]
@@ -409,6 +433,10 @@
   {
     "type": "category",
     "label": "Workflow",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/workflow/appointment"
+    },
     "collapsed": true,
     "items": [
       {
@@ -418,7 +446,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/workflow/appointmentresponse",
+        "id": "api/fhir/workflow/appointment-response",
         "label": "AppointmentResponse"
       },
       {
@@ -443,7 +471,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/workflow/verificationresult",
+        "id": "api/fhir/workflow/verification-result",
         "label": "VerificationResult"
       }
     ]
@@ -451,6 +479,10 @@
   {
     "type": "category",
     "label": "Financial",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/financial/account"
+    },
     "collapsed": true,
     "items": [
       {
@@ -460,12 +492,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/chargeitem",
+        "id": "api/fhir/financial/charge-item",
         "label": "ChargeItem"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/chargeitemdefinition",
+        "id": "api/fhir/financial/charge-item-definition",
         "label": "ChargeItemDefinition"
       },
       {
@@ -475,7 +507,7 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/claimresponse",
+        "id": "api/fhir/financial/claim-response",
         "label": "ClaimResponse"
       },
       {
@@ -490,37 +522,37 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/coverageeligibilityrequest",
+        "id": "api/fhir/financial/coverage-eligibility-request",
         "label": "CoverageEligibilityRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/coverageeligibilityresponse",
+        "id": "api/fhir/financial/coverage-eligibility-response",
         "label": "CoverageEligibilityResponse"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/enrollmentrequest",
+        "id": "api/fhir/financial/enrollment-request",
         "label": "EnrollmentRequest"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/enrollmentresponse",
+        "id": "api/fhir/financial/enrollment-response",
         "label": "EnrollmentResponse"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/explanationofbenefit",
+        "id": "api/fhir/financial/explanation-of-benefit",
         "label": "ExplanationOfBenefit"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/insuranceplan",
+        "id": "api/fhir/financial/insurance-plan",
         "label": "InsurancePlan"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/insuranceproduct",
+        "id": "api/fhir/financial/insurance-product",
         "label": "InsuranceProduct"
       },
       {
@@ -530,12 +562,12 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/paymentnotice",
+        "id": "api/fhir/financial/payment-notice",
         "label": "PaymentNotice"
       },
       {
         "type": "doc",
-        "id": "api/fhir/financial/paymentreconciliation",
+        "id": "api/fhir/financial/payment-reconciliation",
         "label": "PaymentReconciliation"
       }
     ]
@@ -543,26 +575,30 @@
   {
     "type": "category",
     "label": "Specialized — Public Health & Research",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/specialized-public-health-research/adverse-event"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/adverseevent",
+        "id": "api/fhir/specialized-public-health-research/adverse-event",
         "label": "AdverseEvent"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/biologicallyderivedproduct",
+        "id": "api/fhir/specialized-public-health-research/biologically-derived-product",
         "label": "BiologicallyDerivedProduct"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/biologicallyderivedproductdispense",
+        "id": "api/fhir/specialized-public-health-research/biologically-derived-product-dispense",
         "label": "BiologicallyDerivedProductDispense"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/detectedissue",
+        "id": "api/fhir/specialized-public-health-research/detected-issue",
         "label": "DetectedIssue"
       },
       {
@@ -572,27 +608,27 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/evidencereport",
+        "id": "api/fhir/specialized-public-health-research/evidence-report",
         "label": "EvidenceReport"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/evidencevariable",
+        "id": "api/fhir/specialized-public-health-research/evidence-variable",
         "label": "EvidenceVariable"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/nutritionproduct",
+        "id": "api/fhir/specialized-public-health-research/nutrition-product",
         "label": "NutritionProduct"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/researchstudy",
+        "id": "api/fhir/specialized-public-health-research/research-study",
         "label": "ResearchStudy"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/researchsubject",
+        "id": "api/fhir/specialized-public-health-research/research-subject",
         "label": "ResearchSubject"
       },
       {
@@ -605,6 +641,10 @@
   {
     "type": "category",
     "label": "Specialized — Devices",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/specialized-devices/device"
+    },
     "collapsed": true,
     "items": [
       {
@@ -614,27 +654,27 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/deviceassociation",
+        "id": "api/fhir/specialized-devices/device-association",
         "label": "DeviceAssociation"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/devicedefinition",
+        "id": "api/fhir/specialized-devices/device-definition",
         "label": "DeviceDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/devicedispense",
+        "id": "api/fhir/specialized-devices/device-dispense",
         "label": "DeviceDispense"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/devicemetric",
+        "id": "api/fhir/specialized-devices/device-metric",
         "label": "DeviceMetric"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/deviceusage",
+        "id": "api/fhir/specialized-devices/device-usage",
         "label": "DeviceUsage"
       }
     ]
@@ -642,16 +682,20 @@
   {
     "type": "category",
     "label": "Specialized — Quality & Testing",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/specialized-quality-testing/activity-definition"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/activitydefinition",
+        "id": "api/fhir/specialized-quality-testing/activity-definition",
         "label": "ActivityDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/eventdefinition",
+        "id": "api/fhir/specialized-quality-testing/event-definition",
         "label": "EventDefinition"
       },
       {
@@ -666,37 +710,37 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/measurereport",
+        "id": "api/fhir/specialized-quality-testing/measure-report",
         "label": "MeasureReport"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/observationdefinition",
+        "id": "api/fhir/specialized-quality-testing/observation-definition",
         "label": "ObservationDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/plandefinition",
+        "id": "api/fhir/specialized-quality-testing/plan-definition",
         "label": "PlanDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/specimendefinition",
+        "id": "api/fhir/specialized-quality-testing/specimen-definition",
         "label": "SpecimenDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/testplan",
+        "id": "api/fhir/specialized-quality-testing/test-plan",
         "label": "TestPlan"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/testreport",
+        "id": "api/fhir/specialized-quality-testing/test-report",
         "label": "TestReport"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/testscript",
+        "id": "api/fhir/specialized-quality-testing/test-script",
         "label": "TestScript"
       }
     ]
@@ -704,16 +748,20 @@
   {
     "type": "category",
     "label": "Specialized — Medication Definition",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/specialized-medication-definition/administrable-product-definition"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/administrableproductdefinition",
+        "id": "api/fhir/specialized-medication-definition/administrable-product-definition",
         "label": "AdministrableProductDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/clinicalusedefinition",
+        "id": "api/fhir/specialized-medication-definition/clinical-use-definition",
         "label": "ClinicalUseDefinition"
       },
       {
@@ -723,52 +771,52 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/manufactureditemdefinition",
+        "id": "api/fhir/specialized-medication-definition/manufactured-item-definition",
         "label": "ManufacturedItemDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/medicinalproductdefinition",
+        "id": "api/fhir/specialized-medication-definition/medicinal-product-definition",
         "label": "MedicinalProductDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/packagedproductdefinition",
+        "id": "api/fhir/specialized-medication-definition/packaged-product-definition",
         "label": "PackagedProductDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/regulatedauthorization",
+        "id": "api/fhir/specialized-medication-definition/regulated-authorization",
         "label": "RegulatedAuthorization"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substancedefinition",
+        "id": "api/fhir/specialized-medication-definition/substance-definition",
         "label": "SubstanceDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substancenucleicacid",
+        "id": "api/fhir/specialized-medication-definition/substance-nucleic-acid",
         "label": "SubstanceNucleicAcid"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substancepolymer",
+        "id": "api/fhir/specialized-medication-definition/substance-polymer",
         "label": "SubstancePolymer"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substanceprotein",
+        "id": "api/fhir/specialized-medication-definition/substance-protein",
         "label": "SubstanceProtein"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substancereferenceinformation",
+        "id": "api/fhir/specialized-medication-definition/substance-reference-information",
         "label": "SubstanceReferenceInformation"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substancesourcematerial",
+        "id": "api/fhir/specialized-medication-definition/substance-source-material",
         "label": "SubstanceSourceMaterial"
       }
     ]
@@ -776,31 +824,35 @@
   {
     "type": "category",
     "label": "Terminology",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/terminology/code-system"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/terminology/codesystem",
+        "id": "api/fhir/terminology/code-system",
         "label": "CodeSystem"
       },
       {
         "type": "doc",
-        "id": "api/fhir/terminology/conceptmap",
+        "id": "api/fhir/terminology/concept-map",
         "label": "ConceptMap"
       },
       {
         "type": "doc",
-        "id": "api/fhir/terminology/namingsystem",
+        "id": "api/fhir/terminology/naming-system",
         "label": "NamingSystem"
       },
       {
         "type": "doc",
-        "id": "api/fhir/terminology/terminologycapabilities",
+        "id": "api/fhir/terminology/terminology-capabilities",
         "label": "TerminologyCapabilities"
       },
       {
         "type": "doc",
-        "id": "api/fhir/terminology/valueset",
+        "id": "api/fhir/terminology/value-set",
         "label": "ValueSet"
       }
     ]
@@ -808,21 +860,25 @@
   {
     "type": "category",
     "label": "Conformance",
+    "link": {
+      "type": "doc",
+      "id": "api/fhir/conformance/actor-definition"
+    },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/conformance/actordefinition",
+        "id": "api/fhir/conformance/actor-definition",
         "label": "ActorDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/artifactassessment",
+        "id": "api/fhir/conformance/artifact-assessment",
         "label": "ArtifactAssessment"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/capabilitystatement",
+        "id": "api/fhir/conformance/capability-statement",
         "label": "CapabilityStatement"
       },
       {
@@ -832,37 +888,37 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/compartmentdefinition",
+        "id": "api/fhir/conformance/compartment-definition",
         "label": "CompartmentDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/conditiondefinition",
+        "id": "api/fhir/conformance/condition-definition",
         "label": "ConditionDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/examplescenario",
+        "id": "api/fhir/conformance/example-scenario",
         "label": "ExampleScenario"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/graphdefinition",
+        "id": "api/fhir/conformance/graph-definition",
         "label": "GraphDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/implementationguide",
+        "id": "api/fhir/conformance/implementation-guide",
         "label": "ImplementationGuide"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/messagedefinition",
+        "id": "api/fhir/conformance/message-definition",
         "label": "MessageDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/operationdefinition",
+        "id": "api/fhir/conformance/operation-definition",
         "label": "OperationDefinition"
       },
       {
@@ -872,17 +928,17 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/searchparameter",
+        "id": "api/fhir/conformance/search-parameter",
         "label": "SearchParameter"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/structuredefinition",
+        "id": "api/fhir/conformance/structure-definition",
         "label": "StructureDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/structuremap",
+        "id": "api/fhir/conformance/structure-map",
         "label": "StructureMap"
       }
     ]

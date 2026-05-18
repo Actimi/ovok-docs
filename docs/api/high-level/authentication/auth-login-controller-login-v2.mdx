@@ -1,0 +1,50 @@
+---
+title: "Login"
+sidebar_label: "Login"
+description: "The Login API endpoint facilitates the authentication process, allowing users to obtain a JWT (JSON Web Token) for subsequent authorized requests."
+---
+
+# Login
+
+<span className="api-method post">POST</span> `/v2/auth/login`
+
+<ApiBase inline={false} />
+
+The Login API endpoint facilitates the authentication process, allowing users to obtain a JWT (JSON Web Token) for subsequent authorized requests.
+<br />This API is crucial for secure access to Ovok services.
+
+## Example cURL request
+
+```bash
+curl -X POST \
+ --url 'https://api.dev.ovok.com/auth/login' \
+ -H 'Content-Type: application/json' \
+ -d '&#123;
+    "email": "john.doe@mail.com",
+    "password": "password1234",
+    "clientId": "5e505642-9024-474d-9434-e5a44f505cc5"
+&#125;'
+```
+
+
+
+
+## Request body
+
+**Content-Type:** `application/json`
+
+- `email`: `string` **(required)** — The user's email address.
+- `password`: `string` **(required)** — The user's password.
+- `clientId`: `string` **(required)** — The client ID from the ClientApplication resource.
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` | Access token, refresh token and expiration time. |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |

@@ -1,0 +1,80 @@
+---
+title: "Get content by key and language"
+sidebar_label: "Get content by key and language"
+description: "# Get Content by Key and Language"
+---
+
+# Get content by key and language
+
+<span className="api-method get">GET</span> `/cms/{type}/{language}/{key}`
+
+<ApiBase inline={false} />
+
+# Get Content by Key and Language
+
+Retrieve a single CMS content entry by its unique key and language.
+<br />Returns the full content DTO including title, sections, author, date, and category.
+
+## Path Parameters
+
+| Parameter  | Description                                                     | Example                      |
+| ---------- | --------------------------------------------------------------- | ---------------------------- |
+| `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`                    |
+| `language` | ISO language code                                               | `en-US`                      |
+| `key`      | Unique content key that links translations across languages     | `article-my-blog-a1b2c3d4`  |
+
+## Example cURL request
+
+```bash
+curl -X GET \
+ --url 'https://api.dev.ovok.com/cms/article/en-US/article-my-blog-a1b2c3d4' \
+ -H 'Authorization: Bearer <token>'
+```
+
+## Response
+
+Returns a `ContentDto` object:
+
+```json
+&#123;
+  "id": "composition-id",
+  "title": "My Blog",
+  "category": "123",
+  "section": [
+    &#123; "title": "Intro", "text": "Welcome text", "code": ["main-content"] &#125;
+  ],
+  "language": "en-US",
+  "key": "article-my-blog-a1b2c3d4",
+  "type": "article",
+  "date": "2025-01-15T12:00:00.000Z",
+  "author": &#123;
+    "reference": "Practitioner/abc",
+    "display": "Dr. Smith"
+  &#125;
+&#125;
+```
+
+**Notes:** Returns `404 Not Found` if no content matches the given type, language, and key within the caller's project.
+
+
+
+## Parameters
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `type` | path | `string` | **yes** |  |
+| `language` | path | `string` | **yes** |  |
+| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
+
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` |  |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |

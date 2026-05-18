@@ -1,0 +1,105 @@
+---
+title: "Get last observations"
+sidebar_label: "Get last observations"
+description: "This endpoint allows users to fetch patient informations, specifically observations."
+---
+
+# Get last observations
+
+<span className="api-method get">GET</span> `/fhir/R4/Observation/$lastn`
+
+<ApiBase inline={false} />
+
+This endpoint allows users to fetch patient informations, specifically observations.
+
+## Example cURL request
+
+```bash
+curl -X GET \
+ -G 'https://api.dev.ovok.com/fhir/Observation/$lastn' \
+ -d 'patient=Patient/e70f3aec-d37e-453d-887b-72654c26b3fe' \
+ -d 'max=2' \
+ -d 'code=131328,8886-4'
+```
+
+## Example JSON response
+
+```json
+&#123;
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "entry": [
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "subject": &#123;
+          "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+          "display": "Max Mustermann"
+        &#125;,
+        "code": &#123;
+          "coding": [
+            &#123;
+              "system": "http://loinc.org",
+              "code": "131328"
+            &#125;
+          ]
+        &#125;,
+        "status": "amended",
+        "id": "a4508b00-7854-4108-a903-57aa67eaa79e"
+      &#125;,
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
+    &#125;,
+    &#123;
+      "resource": &#123;
+        "resourceType": "Observation",
+        "status": "final",
+        "valueQuantity": &#123;
+          "unit": "bpm",
+          "value": 150
+        &#125;,
+        "code": &#123;
+          "coding": [
+            &#123;
+              "system": "http://loinc.org",
+              "code": "8883-1"
+            &#125;,
+            &#123;
+              "system": "http://loinc.org",
+              "code": "8886-4"
+            &#125;
+          ]
+        &#125;,
+        "subject": &#123;
+          "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+          "display": "Max Mustermann"
+        &#125;,
+        "id": "32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+      &#125;,
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+    &#125;
+  ]
+&#125;
+```
+
+
+
+## Parameters
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `patient` | query | `string` | no | Patient reference. |
+| `max` | query | `string` | no | Maximum number of observations to return. |
+| `code` | query | `string` | no | Observation code(s) with comma separated values, e.g. "131328,8886-4". |
+
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` |  |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |

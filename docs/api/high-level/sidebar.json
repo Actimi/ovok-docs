@@ -5,68 +5,446 @@
     "label": "Overview"
   },
   {
-    "type": "doc",
-    "id": "api/high-level/ai-translation",
-    "label": "AI Translation"
+    "type": "category",
+    "label": "AI Translation",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/ai-translation/translation-controller-translate"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/ai-translation/translation-controller-translate",
+        "label": "Translate"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/authentication",
-    "label": "Authentication"
+    "type": "category",
+    "label": "Authentication",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication/auth-controller-refresh-token"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-controller-refresh-token",
+        "label": "Refresh access token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-delete-controller-delete-user",
+        "label": "Schedule user account deletion"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-login-controller-login-v2",
+        "label": "Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-me-controller-get-user-profile",
+        "label": "Get account information"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-register-controller-register",
+        "label": "Register an account"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/authentication-b2b",
-    "label": "Authentication - B2B"
+    "type": "category",
+    "label": "Authentication - B2B",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication-b2b/auth-b2blogin-controller-login"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-b2b/auth-b2blogin-controller-login",
+        "label": "Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-b2b/auth-b2bregister-controller-register",
+        "label": "Register an account"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/authentication-session-management",
-    "label": "Authentication - Session Management"
+    "type": "category",
+    "label": "Authentication - Session Management",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication-session-management/auth-session-controller-find-all"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-session-management/auth-session-controller-find-all",
+        "label": "Get all sessions"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-session-management/auth-session-controller-revoke-sessions",
+        "label": "Revoke sessions"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/bots-execute-a-custom-script",
-    "label": "Bots - Execute a custom script"
+    "type": "category",
+    "label": "Bots - Execute a custom script",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post",
+        "label": "Execute a bot with request body"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/cms",
-    "label": "CMS"
+    "type": "category",
+    "label": "CMS",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/cms/cmscontroller-search-mapped-content"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-search-mapped-content",
+        "label": "Search mapped content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-copy-contents",
+        "label": "Copy contents"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-copy-single-content",
+        "label": "Copy a content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-create-content",
+        "label": "Create content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-search-content",
+        "label": "Search content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-update-content",
+        "label": "Update content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-get-content",
+        "label": "Get content by key and language"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cmscontroller-delete-content",
+        "label": "Delete content"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/document",
-    "label": "Document"
+    "type": "category",
+    "label": "Document",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/document/document-controller-create-upload-credentials"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-create-upload-credentials",
+        "label": "Upload document - Generate credentials"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-search-files",
+        "label": "Search documents"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-get-public-file-url",
+        "label": "Get a document as public user"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-get-file-url",
+        "label": "Get a document as authenticated user"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-delete-document",
+        "label": "Delete a document"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-update-document-metadata",
+        "label": "Update document metadata"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-generate-replace-credentials",
+        "label": "Generate credentials for document file re…"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/fhir-operations",
-    "label": "FHIR Operations"
+    "type": "category",
+    "label": "FHIR Operations",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/fhir-operations/fhir-controller-get-patient-last-observation-0"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-patient-last-observation-0",
+        "label": "Get last observations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-patient-last-observation-1",
+        "label": "Get last observations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-patient-last-observation-2",
+        "label": "Get last observations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-device-telemetry-0",
+        "label": "Get device telemetry"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-device-telemetry-1",
+        "label": "Get device telemetry"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-get-device-telemetry-2",
+        "label": "Get device telemetry"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-populate-questionnaire-0",
+        "label": "Populate questionnaire"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-populate-questionnaire-1",
+        "label": "Populate questionnaire"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-populate-questionnaire-2",
+        "label": "Populate questionnaire"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-extract-observations-from-questionnaire-response-0",
+        "label": "Extract observations from questionnaire r…"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-extract-observations-from-questionnaire-response-1",
+        "label": "Extract observations from questionnaire r…"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/fhir-operations/fhir-controller-extract-observations-from-questionnaire-response-2",
+        "label": "Extract observations from questionnaire r…"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/localization",
-    "label": "Localization"
+    "type": "category",
+    "label": "Localization",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/localization/locale-controller-get-locale"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/localization/locale-controller-get-locale",
+        "label": "Get available locales"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization/locale-controller-patch-locale",
+        "label": "Update the available locales"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/localization-keys",
-    "label": "Localization Keys"
+    "type": "category",
+    "label": "Localization Keys",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/localization-keys/localization-i18next-controller-get-all-i18n"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-i18next-controller-get-all-i18n",
+        "label": "i18next - Get JSON"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-i18next-controller-patch-all-i18n",
+        "label": "i18next - Update JSON"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-mapped-controller-map-localizations",
+        "label": "Mapped Localizations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localizations",
+        "label": "Get all localizations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localization",
+        "label": "Get a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-update-localization",
+        "label": "Update a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-delete-localization",
+        "label": "Delete a single localization"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/organization-code-information",
-    "label": "Organization Code Information"
+    "type": "category",
+    "label": "Organization Code Information",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations",
+        "label": "Receive Organization Codes"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code",
+        "label": "Get Organization Code"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/partner",
-    "label": "Partner"
+    "type": "category",
+    "label": "Partner",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/partner/partner-controller-health-check-0"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/partner/partner-controller-health-check-0",
+        "label": "GET /partner/health-check"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/partner/partner-controller-health-check-1-v1",
+        "label": "GET /v1/partner/health-check"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/partner/partner-controller-health-check-2-v2",
+        "label": "GET /v2/partner/health-check"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/partner/partner-controller-health-check-3-v3",
+        "label": "GET /v3/partner/health-check"
+      }
+    ]
   },
   {
-    "type": "doc",
-    "id": "api/high-level/tenant-authentication",
-    "label": "Tenant Authentication"
+    "type": "category",
+    "label": "Tenant Authentication",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login",
+        "label": "Practitioner - Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login",
+        "label": "Practitioner - Exchange Token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
+        "label": "Practitioner - MFA"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-start-login",
+        "label": "Patient - Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login",
+        "label": "Patient - Exchange Token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start",
+        "label": "Patient - MFA"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-register",
+        "label": "Patient - Register"
+      }
+    ]
   }
 ]

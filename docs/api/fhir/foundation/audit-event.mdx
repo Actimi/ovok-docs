@@ -1,0 +1,63 @@
+---
+title: AuditEvent
+sidebar_label: AuditEvent
+description: Record of system actions for security and audit. FHIR R5 resource, served by the Ovok FHIR API.
+---
+
+# AuditEvent
+
+<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-category">Foundation</span>
+
+Record of system actions for security and audit.
+
+## Endpoints
+
+The standard FHIR R5 interactions for `AuditEvent` are mounted under your
+selected release tier:
+
+<ApiBase surface="fhir" path="/AuditEvent" inline={false} />
+
+| Interaction | Method | Path |
+| --- | --- | --- |
+| Read         | `GET`    | `/AuditEvent/[id]` |
+| Vread        | `GET`    | `/AuditEvent/[id]/_history/[vid]` |
+| Update       | `PUT`    | `/AuditEvent/[id]` |
+| Patch        | `PATCH`  | `/AuditEvent/[id]` |
+| Delete       | `DELETE` | `/AuditEvent/[id]` |
+| Create       | `POST`   | `/AuditEvent` |
+| Search       | `GET`    | `/AuditEvent?...` |
+| History      | `GET`    | `/AuditEvent/[id]/_history` |
+| Type-history | `GET`    | `/AuditEvent/_history` |
+
+All calls expect FHIR-flavoured JSON
+(`Content-Type: application/fhir+json`) and accept the standard
+`Accept: application/fhir+json` header.
+
+## Common search parameters
+
+Every searchable FHIR R5 resource accepts the universal search
+parameters below, in addition to its own. See the official spec link
+for the resource-specific set.
+
+| Parameter | Meaning |
+| --- | --- |
+| `_id` | Logical id of the resource |
+| `_lastUpdated` | When the resource version last changed |
+| `_profile` | Profiles this resource claims to conform to |
+| `_security` | Security labels applied to the resource |
+| `_source` | Source system identifier |
+| `_tag` | Tags applied to the resource |
+| `_text` | Free-text search over narrative |
+| `_summary` | Subset of the response (`true`, `text`, `data`, `count`, `false`) |
+| `_elements` | Comma-separated list of elements to include |
+| `_include` | Pull in referenced resources |
+| `_revinclude` | Pull in resources that reference this one |
+| `_sort` | Server sort order |
+| `_count` | Max number of matches per page |
+
+## Reference
+
+- Official FHIR R5 spec: [`AuditEvent`](https://hl7.org/fhir/R5/auditevent.html)
+- Search parameters: [`AuditEvent` search params](https://hl7.org/fhir/R5/auditevent.html#search)
+- Resource maturity: **Normative** (FMM 5).

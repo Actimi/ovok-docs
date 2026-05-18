@@ -1,0 +1,45 @@
+---
+title: "Refresh access token"
+sidebar_label: "Refresh access token"
+description: "By making a POST request to this endpoint you can refresh the access token, ensuring uninterrupted access to protected resources."
+---
+
+# Refresh access token
+
+<span className="api-method post">POST</span> `/auth/refresh-token`
+
+<ApiBase inline={false} />
+
+By making a POST request to this endpoint you can refresh the access token, ensuring uninterrupted access to protected resources.
+
+## Example cURL request
+
+```bash
+curl -X POST \
+ --url 'https://api.dev.ovok.com/auth/refresh-token' \
+ -H 'Content-Type: application/json' \
+ -d '&#123;
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ"
+&#125;'
+```
+
+
+
+
+## Request body
+
+**Content-Type:** `application/json`
+
+- `refresh_token`: `string` **(required)** — Refresh token.
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` | Access token, refresh token and expiration time. |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |
