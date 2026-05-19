@@ -71,6 +71,40 @@ const config: Config = {
     { tagName: 'meta', attributes: { name: 'theme-color', content: '#694D98' } },
     { tagName: 'meta', attributes: { property: 'og:type', content: 'website' } },
     { tagName: 'meta', attributes: { property: 'og:site_name', content: 'Ovok' } },
+
+    // Font loading: connect early to Google's font servers, then ask for
+    // just the 4 weights actually used (down from variable 300..700) and
+    // load the stylesheet asynchronously so it doesn't gate first paint.
+    // FOIT is mitigated by display=swap on the URL.
+    { tagName: 'link', attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        as: 'style',
+        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap',
+        media: 'print',
+        onload: "this.media='all'",
+      },
+    },
+    {
+      // Final fallback so users with JS disabled still get the fonts.
+      tagName: 'noscript',
+      attributes: {},
+      innerHTML:
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap">',
+    },
     {
       tagName: 'script',
       attributes: { type: 'application/ld+json' },
@@ -102,18 +136,9 @@ const config: Config = {
     },
   ],
 
-  stylesheets: [
-    { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
-    {
-      href: 'https://fonts.gstatic.com',
-      rel: 'preconnect',
-      crossorigin: 'anonymous' as const,
-    },
-    {
-      href: 'https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap',
-      rel: 'stylesheet',
-    },
-  ],
+  // Font loading is moved into headTags below so the stylesheet can use
+  // the rel="preload" + media="print" + onload swap pattern (loads in
+  // parallel with the rest of the page instead of blocking first paint).
 
   presets: [
     [
