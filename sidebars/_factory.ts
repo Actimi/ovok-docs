@@ -35,6 +35,21 @@ export function buildSidebar(envKey: string): SidebarsConfig {
     });
   }
 
+  if (existsAny(path.join(envDir, 'cms'))) {
+    items.push({
+      type: 'category',
+      label: 'Content (CMS)',
+      collapsed: false,
+      items: [
+        'cms/index',
+        'cms/enable',
+        'cms/authoring',
+        'cms/public-delivery',
+        'cms/api-keys',
+      ],
+    });
+  }
+
   const highLevelJson = path.join(envDir, 'api', 'high-level', 'sidebar.json');
   if (fs.existsSync(highLevelJson)) {
     items.push({
