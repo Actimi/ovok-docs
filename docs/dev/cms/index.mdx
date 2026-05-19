@@ -37,10 +37,10 @@ model — copy, configuration, marketing, media.
 
 ```mermaid
 flowchart LR
-  Editor[Editor in Console] -->|writes| Payload[Payload tenant]
-  App[Your app / website] -->|reads| Delivery[/v1/public/cms]
+  Editor["Editor in Console"] -->|writes| Payload["Payload tenant"]
+  App["Your app / website"] -->|reads| Delivery["/v1/public/cms"]
   Delivery --> Payload
-  Console[Console settings] -->|enables| Provision[POST /v1/cms/ensure-tenant]
+  Console["Console settings"] -->|enables| Provision["POST /v1/cms/ensure-tenant"]
   Provision --> Payload
 ```
 
