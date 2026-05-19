@@ -2,10 +2,16 @@ name: Vercel Deployment
 
 # One Vercel project hosts the docs site. The env switcher inside the
 # site is the user-facing selection between dev / alpha / beta / final —
-# the four ovok-docs branches all deploy into the SAME project:
+# the ovok-docs branches all deploy into the SAME project:
 #
-#   final           → production deployment (docs.ovok.com)
-#   dev/alpha/beta  → preview deployments (auto-named by Vercel)
+#   dev             → production deployment (only sandbox docs released
+#                     right now; final/alpha/beta come back when the
+#                     ovok-internal PR merges through development → master)
+#   alpha/beta/final → preview deployments (auto-named by Vercel) until
+#                     one of them is promoted to production
+#
+# When `final` is recreated and ready to take over docs.ovok.com,
+# swap the two branch names in the case below.
 #
 # Skip-if-missing: workflow stays green even before VERCEL_TOKEN /
 # VERCEL_ORG_ID / VERCEL_PROJECT_ID are configured — it just logs a
@@ -44,8 +50,10 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          # final is the production branch; dev/alpha/beta become previews.
-          if [ "$GITHUB_REF_NAME" = "final" ]; then
+          # dev is the production branch while only sandbox docs are
+          # released; everything else becomes a preview deploy. Flip to
+          # `final` when production-tier docs come back online.
+          if [ "$GITHUB_REF_NAME" = "dev" ]; then
             echo "target=production" >> "$GITHUB_OUTPUT"
           else
             echo "target=preview" >> "$GITHUB_OUTPUT"
