@@ -5,8 +5,9 @@
   "description": "Documentation site for the Ovok platform.",
   "scripts": {
     "docusaurus": "docusaurus",
+    "postinstall": "pnpm run gen:api",
     "start": "pnpm run gen:api && docusaurus start",
-    "build": "pnpm run gen:api && docusaurus build",
+    "build": "docusaurus build",
     "gen:api": "node scripts/fetch-fhir-r5.mjs && node scripts/generate-api-docs.mjs && node scripts/generate-llms-bundle.mjs",
     "gen:llms": "node scripts/generate-llms-bundle.mjs",
     "gen:fhir-fetch": "node scripts/fetch-fhir-r5.mjs --force",
