@@ -71,6 +71,17 @@ function escapeNarrative(text) {
     .replace(/\]\(([a-zA-Z][a-zA-Z0-9_-]*\.html(?:#[^)]*)?)\)/g, '](https://hl7.org/fhir/R5/$1)');
 }
 
+/**
+ * MDX 3 evaluates `{ident}` as a JSX expression anywhere outside code
+ * blocks — including markdown headings. Endpoint paths like `/{path}` or
+ * `/{typeSlug}/items` break the SSR build with "ident is not defined".
+ * Use this for short strings (titles, paths) where escapeMdx's
+ * code-region preservation isn't needed.
+ */
+function escapeBraces(text) {
+  return String(text ?? '').replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
+}
+
 function slug(s) {
   return String(s)
     .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -226,7 +237,7 @@ function emitHighLevelForEnv(envKey, spec) {
         `description: ${JSON.stringify(desc.slice(0, 160))}`,
         '---',
         '',
-        `# ${title}`,
+        `# ${escapeBraces(title)}`,
         '',
         `<span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
         '',
@@ -307,7 +318,7 @@ The machine-readable spec for this tier is at
       `description: ${JSON.stringify(((op.description && op.description.split('\n')[0]) || `${method} ${path}`).slice(0, 160))}`,
       '---',
       '',
-      `# ${title}`,
+      `# ${escapeBraces(title)}`,
       '',
       '**Available paths**',
       '',

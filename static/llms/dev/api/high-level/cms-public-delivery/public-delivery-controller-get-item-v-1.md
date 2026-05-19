@@ -4,7 +4,7 @@ sidebar_label: "GET /v1/public/cms/{typeSlug}/items/{idOr…"
 description: "GET /v1/public/cms/{typeSlug}/items/{idOrSlug}"
 ---
 
-# GET /v1/public/cms/{typeSlug}/items/{idOrSlug}
+# GET /v1/public/cms/&#123;typeSlug&#125;/items/&#123;idOrSlug&#125;
 
 <span className="api-method get">GET</span> `/v1/public/cms/{typeSlug}/items/{idOrSlug}`
 

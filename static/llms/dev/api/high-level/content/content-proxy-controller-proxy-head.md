@@ -4,7 +4,7 @@ sidebar_label: "HEAD /v1/content/{path}"
 description: "HEAD /v1/content/{path}"
 ---
 
-# HEAD /v1/content/{path}
+# HEAD /v1/content/&#123;path&#125;
 
 <span className="api-method head">HEAD</span> `/v1/content/{path}`
 

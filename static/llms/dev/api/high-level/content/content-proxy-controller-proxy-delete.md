@@ -4,7 +4,7 @@ sidebar_label: "DELETE /v1/content/{path}"
 description: "DELETE /v1/content/{path}"
 ---
 
-# DELETE /v1/content/{path}
+# DELETE /v1/content/&#123;path&#125;
 
 <span className="api-method delete">DELETE</span> `/v1/content/{path}`
 
