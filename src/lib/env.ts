@@ -84,11 +84,12 @@ export const ENV_ORDER: EnvKey[] = ['dev', 'alpha', 'beta', 'final'];
 export const DEFAULT_ENV: EnvKey = 'dev';
 
 /**
- * Released tiers — only these have their own docs folder + URL today.
- * As more get merged through ovok-internal's branch train, append to
- * this list and the env switcher will start linking to them.
+ * Which tiers are actually released today is computed at build time by
+ * docusaurus.config.ts (scans docs/ for env folders that contain an
+ * intro page) and exposed to client components via
+ * siteConfig.customFields.releasedEnvs. The EnvSwitcher reads from
+ * there — there is intentionally no static list here.
  */
-export const RELEASED_ENVS: EnvKey[] = ['dev'];
 
 export function isEnvKey(value: unknown): value is EnvKey {
   return value === 'dev' || value === 'alpha' || value === 'beta' || value === 'final';

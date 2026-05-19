@@ -1,6 +1,30 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+/**
+ * Env folders are auto-discovered. Each release tier owns a folder under
+ * docs/<env>/ that lands when its source branch in ovok-internal merges
+ * through and the publish-ovok-docs workflow writes the freshly-built
+ * spec + generated MDX. The first push that creates the folder is enough
+ * for the env to show up here — no config edits required.
+ *
+ * The order is fixed (dev → alpha → beta → final) so the switcher always
+ * lists tiers in maturity order regardless of which arrived first.
+ */
+const ALL_ENVS = ['dev', 'alpha', 'beta', 'final'] as const;
+type EnvKey = (typeof ALL_ENVS)[number];
+
+const DOCS_DIR = path.join(__dirname, 'docs');
+const RELEASED_ENVS: EnvKey[] = ALL_ENVS.filter((env) => {
+  const envDir = path.join(DOCS_DIR, env);
+  return (
+    fs.existsSync(path.join(envDir, 'intro.md')) ||
+    fs.existsSync(path.join(envDir, 'intro.mdx'))
+  );
+});
 
 const config: Config = {
   title: 'Ovok',
@@ -113,21 +137,23 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'dev',
-        path: 'docs/dev',
-        routeBasePath: '/dev',
-        sidebarPath: './sidebars/dev.ts',
-        editUrl: 'https://github.com/Actimi/ovok-docs/tree/dev/',
-      },
-    ],
-    // alpha / beta / final plugin instances are added here as the
-    // corresponding ovok-internal branches merge through and produce
-    // their per-env spec + docs folder. Until then only `dev` is wired.
-  ],
+  plugins: RELEASED_ENVS.map((env) => [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: env,
+      path: `docs/${env}`,
+      routeBasePath: `/${env}`,
+      sidebarPath: `./sidebars/${env}.ts`,
+      editUrl: 'https://github.com/Actimi/ovok-docs/tree/dev/',
+    },
+  ]),
+
+  customFields: {
+    // Released envs are exposed to client components (e.g. EnvSwitcher)
+    // via siteConfig.customFields so the switcher reflects whatever
+    // tiers have folders on disk, with no source edits required.
+    releasedEnvs: RELEASED_ENVS,
+  },
 
   themeConfig: {
     image: 'img/ovok-social-card.png',

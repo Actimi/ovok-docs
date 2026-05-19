@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useHistory, useLocation } from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useEnv } from '@site/src/lib/useEnv';
-import { ENV_ORDER, ENVS, RELEASED_ENVS, rewriteEnvInPath, type EnvKey } from '@site/src/lib/env';
+import { ENV_ORDER, ENVS, isEnvKey, rewriteEnvInPath, type EnvKey } from '@site/src/lib/env';
 import styles from './EnvSwitcher.module.css';
 
 interface Props {
@@ -15,6 +16,16 @@ export default function EnvSwitcher({ mobile = false }: Props): JSX.Element {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Released envs come from siteConfig.customFields.releasedEnvs, which
+  // docusaurus.config.ts populates by scanning docs/ at build time. This
+  // means a new docs/<env>/ folder lights up the switcher automatically.
+  const { siteConfig } = useDocusaurusContext();
+  const releasedEnvs = useMemo<EnvKey[]>(() => {
+    const raw = siteConfig.customFields?.releasedEnvs;
+    if (!Array.isArray(raw)) return ['dev'];
+    return raw.filter(isEnvKey);
+  }, [siteConfig.customFields]);
 
   useEffect(() => {
     if (!open) return;
@@ -59,7 +70,7 @@ export default function EnvSwitcher({ mobile = false }: Props): JSX.Element {
           {ENV_ORDER.map((key) => {
             const item = ENVS[key];
             const selected = key === env;
-            const released = RELEASED_ENVS.includes(key);
+            const released = releasedEnvs.includes(key);
             return (
               <button
                 key={key}

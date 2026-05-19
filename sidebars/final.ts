@@ -1,3 +1,3 @@
 import { buildSidebar } from './_factory';
 
-export default buildSidebar('dev');
+export default buildSidebar('final');
