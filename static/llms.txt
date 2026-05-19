@@ -1,9 +1,9 @@
 # Ovok Documentation
 
-This site exposes a per-page Markdown twin of every doc page at /llms/<path>.md.
-Use these for AI-assisted documentation lookup. Manifest: /llms/manifest.json
+Every doc page is mirrored as raw markdown at /llms<url>.md.
+Manifest: /llms/manifest.json
 
-- /index.md
+- /dev.md
 - /dev/api/fhir/base/endpoint.md
 - /dev/api/fhir/base/group.md
 - /dev/api/fhir/base/healthcare-service.md
