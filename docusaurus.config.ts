@@ -175,8 +175,8 @@ const config: Config = {
         { type: 'docSidebar', sidebarId: 'docs', docsPluginId: 'dev', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { type: 'custom-envSwitcher', position: 'right' },
-        { href: 'https://console.ovok.com',   label: 'Console',         position: 'right' },
-        { href: 'https://dashboard.ovok.com', label: 'Data Dashboard',  position: 'right' },
+        { type: 'custom-envLink', surface: 'console',   label: 'Console',        position: 'right' },
+        { type: 'custom-envLink', surface: 'dashboard', label: 'Data Dashboard', position: 'right' },
       ],
     },
     footer: {
