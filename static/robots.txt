@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Raw markdown twins for AI crawlers (one per doc page).
+# The manifest enumerates every page; llms.txt is the index per llmstxt.org.
+Allow: /llms/
+Allow: /llms.txt
+
+Sitemap: https://docs.ovok.com/sitemap.xml

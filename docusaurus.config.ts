@@ -63,46 +63,41 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Site-wide head tags only. Per-page tags (canonical, og:title,
+  // og:description, twitter:card, keywords) are emitted by Docusaurus
+  // automatically from each MDX file's frontmatter — duplicating them
+  // here would override or shadow the per-page versions.
   headTags: [
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'description',
-        content:
-          'Ovok is the API platform for digital health teams. Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface.',
-      },
-    },
     { tagName: 'meta', attributes: { name: 'theme-color', content: '#694D98' } },
     { tagName: 'meta', attributes: { property: 'og:type', content: 'website' } },
     { tagName: 'meta', attributes: { property: 'og:site_name', content: 'Ovok' } },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:title',
-        content: 'Ovok — The API platform for digital health teams',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:description',
-        content:
-          'Build patient-facing apps, clinical workflows and partner integrations on a single, FHIR-native surface. One Console, one API, three release tiers.',
-      },
-    },
-    { tagName: 'meta', attributes: { name: 'twitter:card', content: 'summary_large_image' } },
-    { tagName: 'link', attributes: { rel: 'canonical', href: 'https://docs.ovok.com' } },
     {
       tagName: 'script',
       attributes: { type: 'application/ld+json' },
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: 'Ovok — The API platform for digital health teams',
-        description:
-          'Documentation for Ovok: the Console, the Data Dashboard, the API, and the release tiers you ship against.',
-        publisher: { '@type': 'Organization', name: 'Actimi', url: 'https://actimi.com' },
+        '@type': 'Organization',
+        name: 'Ovok',
+        url: 'https://docs.ovok.com',
+        logo: 'https://docs.ovok.com/img/logo.svg',
+        parentOrganization: { '@type': 'Organization', name: 'Actimi GmbH', url: 'https://actimi.com' },
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Ovok Docs',
+        url: 'https://docs.ovok.com',
         inLanguage: 'en',
+        publisher: { '@type': 'Organization', name: 'Actimi GmbH' },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: { '@type': 'EntryPoint', urlTemplate: 'https://docs.ovok.com/search?q={query}' },
+          'query-input': 'required name=query',
+        },
       }),
     },
   ],
