@@ -116,6 +116,20 @@
   color: var(--ovok-deep);
 }
 
+.item[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.item[data-disabled]:hover {
+  background: transparent;
+}
+
+.item[data-disabled] .itemHint {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
 [data-theme='dark'] .item[data-selected] {
   color: var(--ovok-light);
 }

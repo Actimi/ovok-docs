@@ -1,15 +1,16 @@
 /**
  * Single source of truth for environment surfaces.
  *
- * Source branch in ovok-internal  →  docs branch  →  tier key here
- *   sandbox                            dev            'dev'
- *   development                        alpha          'alpha'
- *   staging                            beta           'beta'
- *   master                             final          'final'
+ * Each release tier owns its own folder under docs/ and serves at its own
+ * URL prefix. The env switcher is a *router* — it rewrites the first path
+ * segment to navigate between equivalent pages in different tiers.
  *
- * Product names ('dev'/'alpha'/'beta'/'final') decouple the docs from
- * internal deployment terminology. Every public hostname follows the same
- * subdomain pattern across all four surfaces.
+ *   tier   source branch    docs folder            URL prefix
+ *   ────   ──────────────   ────────────────       ─────────────
+ *   dev    sandbox          docs/dev/              /dev/...
+ *   alpha  development      docs/alpha/            /alpha/...
+ *   beta   staging          docs/beta/             /beta/...
+ *   final  master           docs/final/            /final/...   (or /)
  */
 
 export type EnvKey = 'dev' | 'alpha' | 'beta' | 'final';
@@ -80,10 +81,29 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
 };
 
 export const ENV_ORDER: EnvKey[] = ['dev', 'alpha', 'beta', 'final'];
-export const DEFAULT_ENV: EnvKey = 'alpha';
-export const STORAGE_KEY = 'ovok-docs:env';
-export const CHANGE_EVENT = 'ovok-docs:env-change';
+export const DEFAULT_ENV: EnvKey = 'dev';
+
+/**
+ * Released tiers — only these have their own docs folder + URL today.
+ * As more get merged through ovok-internal's branch train, append to
+ * this list and the env switcher will start linking to them.
+ */
+export const RELEASED_ENVS: EnvKey[] = ['dev'];
 
 export function isEnvKey(value: unknown): value is EnvKey {
   return value === 'dev' || value === 'alpha' || value === 'beta' || value === 'final';
+}
+
+/** Pull the env from a URL pathname like "/dev/api/high-level/foo" → "dev". */
+export function envFromPathname(pathname: string): EnvKey | null {
+  const first = pathname.split('/').filter(Boolean)[0];
+  return isEnvKey(first) ? first : null;
+}
+
+/** Swap a pathname's env prefix to a target env, preserving the rest. */
+export function rewriteEnvInPath(pathname: string, target: EnvKey): string {
+  const segments = pathname.split('/').filter(Boolean);
+  const restStart = isEnvKey(segments[0]) ? 1 : 0;
+  const rest = segments.slice(restStart).join('/');
+  return `/${target}${rest ? `/${rest}` : ''}`;
 }

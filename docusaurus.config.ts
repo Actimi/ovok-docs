@@ -100,11 +100,10 @@ const config: Config = {
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          routeBasePath: '/',
-          editUrl: 'https://github.com/Actimi/ovok-docs/tree/alpha/',
-        },
+        // The classic preset's built-in docs plugin is disabled; each env
+        // gets its own plugin instance below so they stay completely
+        // independent (own sidebar, own URL prefix, own MDX tree).
+        docs: false,
         blog: false,
         theme: {
           customCss: './src/css/custom.css',
@@ -112,6 +111,22 @@ const config: Config = {
         sitemap: { changefreq: 'weekly', priority: 0.7 },
       } satisfies Preset.Options,
     ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'dev',
+        path: 'docs/dev',
+        routeBasePath: '/dev',
+        sidebarPath: './sidebars/dev.ts',
+        editUrl: 'https://github.com/Actimi/ovok-docs/tree/dev/',
+      },
+    ],
+    // alpha / beta / final plugin instances are added here as the
+    // corresponding ovok-internal branches merge through and produce
+    // their per-env spec + docs folder. Until then only `dev` is wired.
   ],
 
   themeConfig: {
@@ -135,7 +150,8 @@ const config: Config = {
       title: 'Ovok',
       logo: { alt: 'Ovok', src: 'img/logo.svg' },
       items: [
-        { type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs' },
+        // docSidebar with docsPluginId targets the dev instance for the Docs link.
+        { type: 'docSidebar', sidebarId: 'docs', docsPluginId: 'dev', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { type: 'custom-envSwitcher', position: 'right' },
         { href: 'https://console.ovok.com',   label: 'Console',         position: 'right' },
@@ -148,23 +164,23 @@ const config: Config = {
         {
           title: 'Product',
           items: [
-            { label: 'Introduction', to: '/' },
-            { label: 'Platform overview', to: '/platform/overview' },
-            { label: 'Release tiers', to: '/platform/environments' },
+            { label: 'Introduction', to: '/dev' },
+            { label: 'Platform overview', to: '/dev/platform/overview' },
+            { label: 'Release tiers', to: '/dev/platform/environments' },
           ],
         },
         {
           title: 'Surfaces',
           items: [
-            { label: 'Console', to: '/surfaces/console' },
-            { label: 'Data Dashboard', to: '/surfaces/data-dashboard' },
+            { label: 'Console', to: '/dev/surfaces/console' },
+            { label: 'Data Dashboard', to: '/dev/surfaces/data-dashboard' },
           ],
         },
         {
           title: 'API',
           items: [
-            { label: 'High Level API', to: '/api/high-level' },
-            { label: 'FHIR API',       to: '/api/fhir' },
+            { label: 'High Level API', to: '/dev/api/high-level' },
+            { label: 'FHIR API',       to: '/dev/api/fhir' },
           ],
         },
         {

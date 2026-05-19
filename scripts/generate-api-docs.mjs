@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 /**
- * Generate the two API sections of the Ovok docs:
+ * Per-env doc generator.
  *
- *   docs/api/high-level/   one MDX per OpenAPI endpoint, grouped per tag.
- *                          Source: openapi/ovok-api-public.yaml.
+ *   docs/{env}/api/high-level/   one MDX per OpenAPI endpoint, grouped per tag.
+ *                                Source: openapi/{env}-public.yaml (or
+ *                                openapi/ovok-api-public.yaml as a primary fallback).
  *
- *   docs/api/fhir/         one MDX per FHIR R5 resource, grouped per module.
- *                          Sources: .fhir-cache/package/ (real FHIR R5 spec)
- *                          + data/fhir-r5-resources.json (category mapping).
+ *   docs/{env}/api/fhir/         one MDX per FHIR R5 resource, plus custom ops
+ *                                from that env's spec. Resource set is the same
+ *                                across envs (FHIR R5 is universal).
  *
- * Sidebar nodes carry a `link.type=doc` pointing at the first child page so
- * clicking the category label lands on the first item of the group.
+ * Each env gets a completely independent docs tree. No union, no per-endpoint
+ * variants, no availability badges. The env switcher in the UI navigates
+ * between equivalent paths in different env folders.
+ *
+ * Today only `dev` is released (per the "release sandbox now" plan). When
+ * alpha/beta/final come online via the merge train, their per-env specs
+ * become available and this script emits their folders too.
  */
 
-import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -21,11 +27,7 @@ import yaml from 'js-yaml';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 
-// Primary spec drives the docs pages (sidebar + per-endpoint MDX).
-// The env-specific specs (when present) drive the cross-env availability
-// matrix consumed by the Playground picker — so users can see "this
-// endpoint ships in alpha + beta but not final yet" at a glance.
-const SPEC_PATH       = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
+const PRIMARY_SPEC    = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
 const ENV_SPEC_PATHS  = {
   dev:   join(REPO_ROOT, 'openapi/dev-public.yaml'),
   alpha: join(REPO_ROOT, 'openapi/alpha-public.yaml'),
@@ -34,29 +36,16 @@ const ENV_SPEC_PATHS  = {
 };
 const FHIR_DATA_PATH  = join(REPO_ROOT, 'data/fhir-r5-resources.json');
 const FHIR_CACHE      = join(REPO_ROOT, '.fhir-cache/package');
-const OUT_HIGH        = join(REPO_ROOT, 'docs/api/high-level');
-const OUT_FHIR        = join(REPO_ROOT, 'docs/api/fhir');
+const DOCS_ROOT       = join(REPO_ROOT, 'docs');
 const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
+const STATIC_DATA     = join(REPO_ROOT, 'static/data');
 
-// Paths starting with these prefixes are custom operations layered on top
-// of the FHIR API rather than high-level platform endpoints. They get
-// routed to docs/api/fhir/custom-operations/ instead of docs/api/high-level/.
+const ALL_ENVS_ORDERED = ['dev', 'alpha', 'beta', 'final'];
+const HTTP_METHODS = new Set(['get', 'post', 'put', 'patch', 'delete', 'head', 'options']);
 const FHIR_PATH_PREFIXES = ['/fhir/', '/R4/', '/R5/'];
-function isFhirCustomOpPath(path) {
-  return FHIR_PATH_PREFIXES.some((p) => path.startsWith(p));
-}
+const isFhirCustomOpPath = (p) => FHIR_PATH_PREFIXES.some((prefix) => p.startsWith(prefix));
 
 // ─── shared helpers ───────────────────────────────────────────────────
-/**
- * Make narrative text safe for MDX without mangling code samples.
- *
- * MDX 3 reads `{...}` as a JS expression inside paragraphs, so braces in
- * descriptions like `{"id": 1}` would otherwise crash the parser. Escaping
- * naively also chews through fenced code blocks (```) and inline code
- * (`foo`) — exactly where braces are most likely to appear and where the
- * user expects to see them unchanged. This walker splits the text into
- * code segments vs. narrative segments and only escapes the latter.
- */
 function escapeMdx(text) {
   if (!text) return '';
   const codeRegion = /(```[\s\S]*?```|`[^`\n]+`)/g;
@@ -65,7 +54,7 @@ function escapeMdx(text) {
   let m;
   while ((m = codeRegion.exec(text)) !== null) {
     out += escapeNarrative(text.slice(lastIndex, m.index));
-    out += m[0]; // leave the code region untouched
+    out += m[0];
     lastIndex = codeRegion.lastIndex;
   }
   out += escapeNarrative(text.slice(lastIndex));
@@ -79,20 +68,13 @@ function escapeNarrative(text) {
     .replace(/<(?![a-zA-Z/])/g, '&lt;')
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
-    // FHIR spec descriptions reference other resource pages via
-    // markdown links like `[foo](patient.html)`. Rewrite to absolute
-    // hl7.org/fhir/R5/ URLs so they don't resolve as broken
-    // Docusaurus relative links.
     .replace(/\]\(([a-zA-Z][a-zA-Z0-9_-]*\.html(?:#[^)]*)?)\)/g, '](https://hl7.org/fhir/R5/$1)');
 }
 
 function slug(s) {
   return String(s)
-    // camelCase   → camel-Case
     .replace(/([a-z])([A-Z])/g, '$1-$2')
-    // ALLCAPS+Title → ALLCAPS-Title (e.g. "B2BRegister" → "B2B-Register")
     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
-    // letter→digit and digit→letter (e.g. "B2B" → "B-2-B")
     .replace(/([a-zA-Z])(\d)/g, '$1-$2')
     .replace(/(\d)([a-zA-Z])/g, '$1-$2')
     .toLowerCase()
@@ -101,29 +83,17 @@ function slug(s) {
 }
 
 function shortenLabel(s, max = 42) {
-  if (s.length <= max) return s;
-  return s.slice(0, max - 1) + '…';
+  return s.length <= max ? s : s.slice(0, max - 1) + '…';
 }
 
-/**
- * Files written during this gen run. After generation we sweep each output
- * dir and delete any file *not* in this set — the soft equivalent of
- * "delete then recreate" that preserves byte-identical files. Docusaurus'
- * watcher invalidates a route's compile cache whenever a file in the docs
- * tree mutates, so keeping unchanged files untouched keeps dev mode fast.
- */
 const WRITTEN_FILES = new Set();
 
-function ensureDir(path) {
-  mkdirSync(path, { recursive: true });
-}
+function ensureDir(p) { mkdirSync(p, { recursive: true }); }
 
 function writeIfChanged(path, content) {
   WRITTEN_FILES.add(path);
   if (existsSync(path)) {
-    try {
-      if (readFileSync(path, 'utf8') === content) return false;
-    } catch { /* fall through to write */ }
+    try { if (readFileSync(path, 'utf8') === content) return false; } catch { /* fall through */ }
   }
   writeFileSync(path, content);
   return true;
@@ -148,21 +118,6 @@ function sweepOrphans(dir) {
   return removed;
 }
 
-// ─── high-level (union of all env specs → per-endpoint MDX) ───────────
-//
-// Key design decision: each endpoint page is a *union* across the four
-// release tiers. The page exists if the endpoint exists in ANY env. The
-// React component <EndpointDoc /> switches the rendered spec (path,
-// parameters, body schema, responses) based on the active env, and shows
-// a hard warning when the endpoint isn't available in the active tier.
-// This way `docs.ovok.com` (= final) can be the only public deploy and
-// still let users discover + read dev-only endpoints with the tier
-// selector — without the "go visit the preview URL" workaround.
-
-const ALL_ENVS_ORDERED = ['dev', 'alpha', 'beta', 'final'];
-const CANONICAL_PRIORITY = ['final', 'beta', 'alpha', 'dev']; // for picking sidebar metadata
-const HTTP_METHODS = new Set(['get', 'post', 'put', 'patch', 'delete', 'head', 'options']);
-
 function makeDeref(spec) {
   function resolveRef(ref) {
     return ref.replace(/^#\//, '').split('/').reduce((obj, key) => obj?.[key], spec);
@@ -180,362 +135,154 @@ function makeDeref(spec) {
   return deref;
 }
 
-// Convert an OpenAPI Schema Object into a JSON-safe summary the React
-// renderer can walk. Only top-level properties are kept — same depth
-// the old markdown summary produced — but as structured data instead
-// of bullet-point markdown so the component can render proper tables.
-function summariseSchemaJson(schema, deref, depth = 0) {
-  if (!schema || depth > 3) return null;
-  const s = deref(schema);
-  if (!s || typeof s !== 'object') return null;
-  if (s.type === 'object' && s.properties) {
-    return {
-      type: 'object',
-      required: s.required ?? [],
-      properties: Object.entries(s.properties).map(([name, prop]) => {
-        const p = deref(prop) ?? {};
-        return {
-          name,
-          type: p.type ?? (prop.$ref ? prop.$ref.split('/').pop() : null),
-          required: (s.required ?? []).includes(name),
-          description: p.description ?? '',
-          enum: p.enum,
-          format: p.format,
-        };
-      }),
-    };
-  }
-  if (s.type === 'array' && s.items) {
-    const inner = deref(s.items) ?? {};
-    return {
-      type: 'array',
-      items: {
-        type: inner.type ?? (s.items.$ref ? s.items.$ref.split('/').pop() : null),
-      },
-    };
-  }
-  if (s.enum) return { type: 'enum', values: s.enum };
-  if (s.type) return { type: s.type };
-  return null;
-}
+// ─── per-env High-Level + custom FHIR ops ─────────────────────────────
+function emitHighLevelForEnv(envKey, spec) {
+  const deref = makeDeref(spec);
+  const envRoot = join(DOCS_ROOT, envKey);
+  const outHigh = join(envRoot, 'api/high-level');
+  const outFhirCustom = join(envRoot, 'api/fhir/custom-operations');
 
-// Per-env operation → JSON-safe slice. Gets serialised into the MDX as
-// part of the `variants` export so SSR carries the data and the React
-// component switches between envs client-side.
-function serializeOpVariant(op, deref) {
-  const out = {
-    summary: op.summary?.trim() ?? null,
-    description: op.description ?? '',
-    deprecated: !!op.deprecated,
-    operationId: op.operationId ?? null,
-    tag: (op.tags?.[0] ?? '').trim() || 'Uncategorized',
-    parameters: (op.parameters ?? []).map((p) => {
-      const sch = deref(p.schema) ?? {};
-      return {
-        name: p.name,
-        in: p.in,
-        required: !!p.required,
-        type: sch.type ?? (p.schema?.$ref ? p.schema.$ref.split('/').pop() : null),
-        description: p.description ?? '',
-      };
-    }),
-    requestBody: null,
-    responses: {},
-  };
-  if (op.requestBody) {
-    const body = deref(op.requestBody);
-    const content = {};
-    for (const [mime, media] of Object.entries(body.content ?? {})) {
-      content[mime] = { schema: summariseSchemaJson(media.schema, deref) };
-    }
-    out.requestBody = {
-      description: body.description ?? '',
-      required: !!body.required,
-      content,
-    };
-  }
-  for (const [code, res] of Object.entries(op.responses ?? {})) {
-    const r = deref(res);
-    out.responses[code] = { description: r.description ?? '' };
-  }
-  return out;
-}
-
-function generateHighLevel() {
-  // Primary spec drives FHIR custom ops + the downloadable YAML. The
-  // four env-specific specs drive the union model below.
-  const primarySpec = yaml.load(readFileSync(SPEC_PATH, 'utf8'));
-  const primaryDeref = makeDeref(primarySpec);
-
-  const envSpecs = {};
-  const envDerefs = {};
-  for (const [env, p] of Object.entries(ENV_SPEC_PATHS)) {
-    if (!existsSync(p)) continue;
-    envSpecs[env] = yaml.load(readFileSync(p, 'utf8'));
-    envDerefs[env] = makeDeref(envSpecs[env]);
-  }
-  // Local-dev fallback: no per-env specs → treat the primary spec as if
-  // it shipped to every tier so the docs site renders complete locally.
-  if (Object.keys(envSpecs).length === 0) {
-    for (const env of ALL_ENVS_ORDERED) {
-      envSpecs[env] = primarySpec;
-      envDerefs[env] = primaryDeref;
-    }
-  }
-
-  // FHIR custom ops are still primary-spec-only — env-aware handling for
-  // those is a separate concern; for now they keep their existing shape.
+  const tagGroups = new Map();
   const fhirCustomOps = [];
-  for (const [path, methods] of Object.entries(primarySpec.paths ?? {})) {
-    if (!isFhirCustomOpPath(path)) continue;
+  for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
       if (!HTTP_METHODS.has(method)) continue;
-      fhirCustomOps.push({ method: method.toUpperCase(), path, op });
+      const entry = { method: method.toUpperCase(), path, op };
+      if (isFhirCustomOpPath(path)) { fhirCustomOps.push(entry); continue; }
+      const tag = (op.tags?.[0] ?? 'Uncategorized').trim();
+      if (!tagGroups.has(tag)) tagGroups.set(tag, []);
+      tagGroups.get(tag).push(entry);
     }
-  }
-  globalThis.__OVOK_FHIR_CUSTOM__ = {
-    ops: fhirCustomOps,
-    deref: primaryDeref,
-    renderParamsTable: (params) => {
-      if (!params || params.length === 0) return '';
-      const rows = params.map((p) => {
-        const sch = primaryDeref(p.schema) ?? {};
-        const type = sch.type ?? (sch.$ref ? sch.$ref.split('/').pop() : '—');
-        const required = p.required ? '**yes**' : 'no';
-        return `| \`${p.name}\` | ${p.in} | \`${type}\` | ${required} | ${escapeMdx(p.description ?? '').replace(/\n+/g, ' ')} |`;
-      });
-      return ['', '## Parameters', '', '| Name | In | Type | Required | Description |', '| --- | --- | --- | --- | --- |', ...rows, ''].join('\n');
-    },
-    renderRequestBody: (body) => {
-      if (!body) return '';
-      const b = primaryDeref(body);
-      const blocks = ['', '## Request body', ''];
-      if (b.description) blocks.push(escapeMdx(b.description), '');
-      for (const [mime, media] of Object.entries(b.content ?? {})) {
-        blocks.push(`**Content-Type:** \`${mime}\``, '');
-        const s = primaryDeref(media.schema);
-        if (s?.type === 'object' && s.properties) {
-          blocks.push(Object.entries(s.properties).map(([n, p]) => {
-            const dp = primaryDeref(p) ?? {};
-            const t = dp.type ?? (p.$ref ? p.$ref.split('/').pop() : '—');
-            const req = s.required?.includes(n) ? ' **(required)**' : '';
-            const desc = dp.description ? ` — ${escapeMdx(dp.description).replace(/\n+/g, ' ')}` : '';
-            return `- \`${n}\`: \`${t}\`${req}${desc}`;
-          }).join('\n'), '');
-        }
-      }
-      return blocks.join('\n');
-    },
-    renderResponses: (responses) => {
-      if (!responses) return '';
-      const rows = Object.entries(responses).map(([code, res]) => {
-        const r = primaryDeref(res);
-        const desc = escapeMdx(r.description ?? '').replace(/\n+/g, ' ');
-        return `| \`${code}\` | ${desc} |`;
-      });
-      return ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
-    },
-  };
-
-  // ── Build the union ──────────────────────────────────────────────
-  // Each (METHOD, path) tuple becomes one endpoint entry whose `variants`
-  // map carries the serialised op for each env that contains it.
-  const union = new Map();
-  for (const env of ALL_ENVS_ORDERED) {
-    const spec = envSpecs[env];
-    const d = envDerefs[env];
-    if (!spec) continue;
-    for (const [path, methods] of Object.entries(spec.paths ?? {})) {
-      if (isFhirCustomOpPath(path)) continue;
-      for (const [method, op] of Object.entries(methods)) {
-        if (!HTTP_METHODS.has(method)) continue;
-        const M = method.toUpperCase();
-        const key = `${M} ${path}`;
-        if (!union.has(key)) {
-          union.set(key, { method: M, path, variants: {}, firstSeenIn: env });
-        }
-        union.get(key).variants[env] = serializeOpVariant(op, d);
-      }
-    }
-  }
-
-  // Pick canonical variant per endpoint for sidebar metadata (tag, label).
-  // Priority: final > beta > alpha > dev — i.e. the most-stable version
-  // dictates how the endpoint shows up in the sidebar.
-  function canonical(entry) {
-    for (const env of CANONICAL_PRIORITY) {
-      if (entry.variants[env]) return { env, variant: entry.variants[env] };
-    }
-    return { env: entry.firstSeenIn, variant: Object.values(entry.variants)[0] };
-  }
-
-  // Group by tag (canonical variant's tag).
-  const tagGroups = new Map();
-  for (const entry of union.values()) {
-    const { variant } = canonical(entry);
-    const tag = variant.tag || 'Uncategorized';
-    if (!tagGroups.has(tag)) tagGroups.set(tag, []);
-    tagGroups.get(tag).push(entry);
   }
   const sortedTags = [...tagGroups.keys()].sort((a, b) => a.localeCompare(b));
 
-  // Per-endpoint MDX with inline `variants` export. SSR ships the data;
-  // the EndpointDoc component picks the right variant client-side.
-  ensureDir(OUT_HIGH);
-  const sidebarItems = [{ type: 'doc', id: 'api/high-level/index', label: 'Overview' }];
+  function renderParams(params) {
+    if (!params || params.length === 0) return '';
+    const rows = params.map((p) => {
+      const sch = deref(p.schema) ?? {};
+      const type = sch.type ?? (sch.$ref ? sch.$ref.split('/').pop() : '—');
+      const required = p.required ? '**yes**' : 'no';
+      return `| \`${p.name}\` | ${p.in} | \`${type}\` | ${required} | ${escapeMdx(p.description ?? '').replace(/\n+/g, ' ')} |`;
+    });
+    return ['', '## Parameters', '', '| Name | In | Type | Required | Description |', '| --- | --- | --- | --- | --- |', ...rows, ''].join('\n');
+  }
+  function renderRequestBody(body) {
+    if (!body) return '';
+    const b = deref(body);
+    const blocks = ['', '## Request body', ''];
+    if (b.description) blocks.push(escapeMdx(b.description), '');
+    for (const [mime, media] of Object.entries(b.content ?? {})) {
+      blocks.push(`**Content-Type:** \`${mime}\``, '');
+      const s = deref(media.schema);
+      if (s?.type === 'object' && s.properties) {
+        blocks.push(Object.entries(s.properties).map(([n, p]) => {
+          const dp = deref(p) ?? {};
+          const t = dp.type ?? (p.$ref ? p.$ref.split('/').pop() : '—');
+          const req = s.required?.includes(n) ? ' **(required)**' : '';
+          const desc = dp.description ? ` — ${escapeMdx(dp.description).replace(/\n+/g, ' ')}` : '';
+          return `- \`${n}\`: \`${t}\`${req}${desc}`;
+        }).join('\n'), '');
+      } else if (s?.type === 'array') {
+        const inner = deref(s.items) ?? {};
+        blocks.push(`Array of \`${inner.type ?? 'object'}\``, '');
+      } else if (s?.type) {
+        blocks.push(`\`${s.type}\``, '');
+      }
+    }
+    return blocks.join('\n');
+  }
+  function renderResponses(responses) {
+    if (!responses) return '';
+    const rows = Object.entries(responses).map(([code, res]) => {
+      const r = deref(res);
+      return `| \`${code}\` | ${escapeMdx(r.description ?? '').replace(/\n+/g, ' ')} |`;
+    });
+    return ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
+  }
+
+  ensureDir(outHigh);
+  const hlSidebar = [{ type: 'doc', id: `api/high-level/index`, label: 'Overview' }];
   const firstEndpointSlugByTag = new Map();
-  const envMap = {}; // docId → availableIn[] (for sidebar filter)
 
   for (const tag of sortedTags) {
-    const entries = tagGroups.get(tag);
-    // Stable order by canonical summary then path
-    entries.sort((a, b) => {
-      const av = canonical(a).variant;
-      const bv = canonical(b).variant;
-      return (av.summary ?? a.path).localeCompare(bv.summary ?? b.path);
-    });
-
+    const ops = tagGroups.get(tag);
+    ops.sort((a, b) => (a.op.summary ?? a.path).localeCompare(b.op.summary ?? b.path));
     const tagSlug = slug(tag);
-    const tagDir = join(OUT_HIGH, tagSlug);
-    mkdirSync(tagDir, { recursive: true });
+    const tagDir = join(outHigh, tagSlug);
+    ensureDir(tagDir);
 
     const opItems = [];
     let firstId = null;
-
-    for (const entry of entries) {
-      const { variant } = canonical(entry);
-      const availableIn = Object.keys(entry.variants);
-      const opIdHint = variant.operationId || `${entry.method}-${entry.path}`;
+    for (const { method, path, op } of ops) {
+      const opIdHint = op.operationId || `${method}-${path}`;
       const opSlug = slug(opIdHint) || 'endpoint';
-      const title = variant.summary || `${entry.method} ${entry.path}`;
+      const title = op.summary?.trim() || `${method} ${path}`;
       const opLabel = shortenLabel(title);
-      const rawDesc = (variant.description && String(variant.description).split('\n')[0].trim()) ||
-                      `${entry.method} ${entry.path}`;
-      const docId = `api/high-level/${tagSlug}/${opSlug}`;
-      envMap[docId] = availableIn;
-
-      // SEO: Docusaurus' `unlisted: true` frontmatter emits a noindex
-      // robots meta and drops the page from the sitemap. We mark endpoints
-      // that haven't reached final as unlisted so search engines surface
-      // only production endpoints; the pages remain reachable via direct
-      // URL or sidebar (when the filter allows).
-      const inFinal = availableIn.includes('final');
-      const fmLines = [
+      const desc = (op.description && String(op.description).split('\n')[0].trim()) || `${method} ${path}`;
+      const body = [
         '---',
         `title: ${JSON.stringify(title)}`,
         `sidebar_label: ${JSON.stringify(opLabel)}`,
-        `description: ${JSON.stringify(rawDesc.slice(0, 160))}`,
-        `availableIn: ${JSON.stringify(availableIn)}`,
-      ];
-      if (!inFinal) fmLines.push('unlisted: true');
-      fmLines.push('---', '');
-
-      // Build the per-endpoint payload: method, path can differ per env,
-      // so include them inside each variant object.
-      const variantsForMdx = {};
-      for (const [env, v] of Object.entries(entry.variants)) {
-        variantsForMdx[env] = { method: entry.method, path: entry.path, ...v };
-      }
-
-      const body = [
-        ...fmLines,
-        `import EndpointDoc from '@site/src/components/EndpointDoc';`,
-        '',
-        `export const variants = ${JSON.stringify(variantsForMdx)};`,
-        `export const availableIn = ${JSON.stringify(availableIn)};`,
+        `description: ${JSON.stringify(desc.slice(0, 160))}`,
+        '---',
         '',
         `# ${title}`,
         '',
-        `<EndpointDoc variants={variants} availableIn={availableIn} />`,
+        `<span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
+        '',
+        '<ApiBase inline={false} />',
         '',
       ];
-
+      if (op.description) body.push(escapeMdx(op.description), '');
+      if (op.deprecated) body.push(':::warning Deprecated', 'This endpoint is deprecated. Migrate before the next major release.', ':::', '');
+      body.push(renderParams(op.parameters));
+      body.push(renderRequestBody(op.requestBody));
+      body.push(renderResponses(op.responses));
       writeIfChanged(join(tagDir, `${opSlug}.mdx`), body.join('\n'));
-
+      const docId = `api/high-level/${tagSlug}/${opSlug}`;
       opItems.push({ type: 'doc', id: docId, label: opLabel });
-      if (!firstId) {
-        firstId = docId;
-        firstEndpointSlugByTag.set(tag, `${tagSlug}/${opSlug}`);
-      }
+      if (!firstId) { firstId = docId; firstEndpointSlugByTag.set(tag, `${tagSlug}/${opSlug}`); }
     }
-
-    sidebarItems.push({
-      type: 'category',
-      label: tag,
-      link: { type: 'doc', id: firstId },
-      collapsed: true,
-      items: opItems,
-    });
+    hlSidebar.push({ type: 'category', label: tag, link: { type: 'doc', id: firstId }, collapsed: true, items: opItems });
   }
 
-  // Index page
   const tagSummary = sortedTags
-    .map((t) => `- **[${t}](/api/high-level/${firstEndpointSlugByTag.get(t)})** — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
+    .map((t) => `- **[${t}](/${envKey}/api/high-level/${firstEndpointSlugByTag.get(t)})** — ${tagGroups.get(t).length} endpoint${tagGroups.get(t).length === 1 ? '' : 's'}`)
     .join('\n');
 
-  writeIfChanged(join(OUT_HIGH, 'index.mdx'),
+  writeIfChanged(join(outHigh, 'index.mdx'),
 `---
 title: High Level API
 sidebar_position: 1
 sidebar_label: Overview
-description: The Ovok platform API — auth, projects, content, billing, devices, signals. The convenience layer that sits in front of the FHIR data plane.
+description: The Ovok platform API on the ${envKey} tier — auth, projects, content, billing, devices, signals.
 ---
 
 # High Level API
 
-The High Level API is the convenience layer that sits in front of the
-FHIR data plane. It exposes platform concepts — projects, members,
-billing, content, devices, signals — as a coherent REST surface so
-applications don't have to assemble them out of raw FHIR resources.
+The convenience layer that sits in front of the FHIR data plane.
+Platform concepts — projects, members, billing, content, devices,
+signals — exposed as a coherent REST surface.
 
 <ApiBase inline={false} />
-
-> Looking for raw FHIR access? See the [FHIR API](/api/fhir).
 
 ## Areas
 
 ${tagSummary}
 
-## How endpoints are documented
+## Tier
 
-Every endpoint shows availability across all four release tiers
-(\`dev\` / \`alpha\` / \`beta\` / \`final\`). Switch the tier from the
-navbar — schemas, examples and responses update to match. If an
-endpoint isn't available in your selected tier, the page warns you
-loudly instead of pretending it is.
+You're viewing the **${envKey}** tier. Switch tiers from the navbar to
+see the equivalent docs for another release surface.
 
-The full machine-readable spec is at
-[\`/openapi/ovok-api-public.yaml\`](pathname:///openapi/ovok-api-public.yaml).
+The machine-readable spec for this tier is at
+[\`/openapi/${envKey}-public.yaml\`](pathname:///openapi/${envKey}-public.yaml).
 `);
 
-  writeIfChanged(join(OUT_HIGH, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
+  writeIfChanged(join(outHigh, 'sidebar.json'), JSON.stringify(hlSidebar, null, 2));
 
-  mkdirSync(STATIC_OPENAPI, { recursive: true });
-  writeIfChanged(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(SPEC_PATH));
-
-  // Doc id → availableIn[], consumed by the sidebar swizzle for filtering.
-  const STATIC_DATA = join(REPO_ROOT, 'static/data');
-  mkdirSync(STATIC_DATA, { recursive: true });
-  writeIfChanged(join(STATIC_DATA, 'endpoint-env-map.json'), JSON.stringify(envMap, null, 2));
-
-  // Playground manifest — flat list of every endpoint with body examples
-  // synthesised from the canonical variant's schema. availableIn comes
-  // straight from the union (Object.keys(entry.variants)).
-  const manifest = [];
-  for (const tag of sortedTags) {
-    for (const entry of tagGroups.get(tag)) {
-      const { env: canonicalEnv, variant } = canonical(entry);
-      const op = envSpecs[canonicalEnv].paths[entry.path][entry.method.toLowerCase()];
-      const d = envDerefs[canonicalEnv];
-      const mEntry = buildManifestEntry(tag, entry.method, entry.path, op, d);
-      mEntry.availableIn = Object.keys(entry.variants);
-      manifest.push(mEntry);
-    }
-  }
-  // FHIR custom ops — dedupe across /fhir/, /R4/, /R5/ variants; pick R5.
-  // FHIR custom ops aren't part of the env-union model — they exist in
-  // whichever envs the primary spec marks them in, which we approximate
-  // as "wherever any env spec has the same path".
+  // ── FHIR custom operations from this env's spec ──
+  ensureDir(outFhirCustom);
   const byHandler = new Map();
   for (const entry of fhirCustomOps) {
     const opid = entry.op.operationId ?? `${entry.method}-${entry.path}`;
@@ -543,359 +290,21 @@ The full machine-readable spec is at
     if (!byHandler.has(k)) byHandler.set(k, []);
     byHandler.get(k).push(entry);
   }
-  const envSpecsPresent = Object.keys(envSpecs);
-  function fhirAvailability(method, path) {
-    if (envSpecsPresent.length === 0) return [...ALL_ENVS_ORDERED];
-    return ALL_ENVS_ORDERED.filter((e) => {
-      const methods = envSpecs[e]?.paths?.[path];
-      return methods && methods[method.toLowerCase()];
-    });
-  }
-  for (const variants of byHandler.values()) {
-    const canonicalEntry = variants.find((v) => v.path.includes('/R5/')) ?? variants[0];
-    const mEntry = buildManifestEntry('FHIR custom operations', canonicalEntry.method, canonicalEntry.path, canonicalEntry.op, primaryDeref);
-    const envs = new Set();
-    for (const v of variants) fhirAvailability(v.method, v.path).forEach((e) => envs.add(e));
-    mEntry.availableIn = ALL_ENVS_ORDERED.filter((e) => envs.has(e));
-    if (mEntry.availableIn.length === 0) mEntry.availableIn = [...ALL_ENVS_ORDERED];
-    manifest.push(mEntry);
-  }
-  writeIfChanged(join(STATIC_DATA, 'endpoints.json'), JSON.stringify(manifest, null, 2));
-
-  console.log(`Union built from envs: ${envSpecsPresent.length ? envSpecsPresent.join(', ') : '(primary only, treated as all four)'}`);
-
-  return {
-    tags: sortedTags.length,
-    operations: sortedTags.reduce((n, t) => n + tagGroups.get(t).length, 0),
-  };
-}
-
-function buildManifestEntry(tag, method, path, op, deref) {
-  let bodyExample = null;
-  const body = op.requestBody ? deref(op.requestBody) : null;
-  if (body?.content) {
-    const json = body.content['application/json'];
-    if (json) {
-      bodyExample = json.example
-        ?? (json.examples && Object.values(json.examples)[0]?.value)
-        ?? null;
-      if (!bodyExample && json.schema) bodyExample = exampleFromSchema(deref(json.schema), deref, 0);
-    }
-  }
-  return {
-    method,
-    path,
-    summary: op.summary?.trim() || `${method} ${path}`,
-    description: (op.description ?? '').split('\n')[0].slice(0, 200),
-    tag,
-    operationId: op.operationId,
-    parameters: (op.parameters ?? []).map((p) => {
-      const sch = deref(p.schema) ?? {};
-      return { name: p.name, in: p.in, required: !!p.required, type: sch.type ?? null };
-    }),
-    bodyExample,
-    deprecated: !!op.deprecated,
-  };
-}
-
-function exampleFromSchema(schema, deref, depth) {
-  if (!schema || depth > 4) return null;
-  const s = deref(schema);
-  if (s.example !== undefined) return s.example;
-  if (s.enum && s.enum.length) return s.enum[0];
-  if (s.type === 'object' && s.properties) {
-    const out = {};
-    for (const key of Object.keys(s.properties).slice(0, 12)) {
-      const v = exampleFromSchema(deref(s.properties[key]), deref, depth + 1);
-      out[key] = v ?? exampleForType(deref(s.properties[key])?.type);
-    }
-    return out;
-  }
-  if (s.type === 'array') {
-    const item = exampleFromSchema(deref(s.items), deref, depth + 1);
-    return item == null ? [] : [item];
-  }
-  return exampleForType(s.type);
-}
-
-function exampleForType(t) {
-  switch (t) {
-    case 'string':  return 'string';
-    case 'number':
-    case 'integer': return 0;
-    case 'boolean': return false;
-    case 'array':   return [];
-    case 'object':  return {};
-    default:        return null;
-  }
-}
-
-// ─── FHIR R5 — drive everything from the official spec cache ──────────
-const MATURITY_LABEL = {
-  0: 'Draft', 1: 'Trial Use 1', 2: 'Trial Use 2',
-  3: 'Trial Use 3', 4: 'Trial Use 4', 5: 'Normative',
-};
-
-const FMM_EXT = 'http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm';
-
-function loadFhirIndex() {
-  if (!existsSync(FHIR_CACHE)) {
-    throw new Error(`FHIR cache missing at ${FHIR_CACHE} — run scripts/fetch-fhir-r5.mjs first`);
-  }
-  const idx = JSON.parse(readFileSync(join(FHIR_CACHE, '.index.json'), 'utf8'));
-  return idx.files ?? [];
-}
-
-function readFhirJson(filename) {
-  return JSON.parse(readFileSync(join(FHIR_CACHE, filename), 'utf8'));
-}
-
-function fmmFromSd(sd) {
-  for (const ext of sd.extension ?? []) {
-    if (ext.url === FMM_EXT) {
-      const v = ext.valueInteger;
-      if (typeof v === 'number') return v;
-    }
-  }
-  return null;
-}
-
-function topLevelElements(sd) {
-  const elements = sd.snapshot?.element ?? sd.differential?.element ?? [];
-  const out = [];
-  const skipSet = new Set(['id', 'meta', 'implicitRules', 'language', 'text', 'contained', 'extension', 'modifierExtension']);
-  for (const e of elements) {
-    const id = e.id ?? e.path;
-    if (!id) continue;
-    const parts = id.split('.');
-    if (parts.length !== 2) continue;
-    const [_, field] = parts;
-    if (skipSet.has(field)) continue;
-    const types = (e.type ?? []).map((t) => t.code).filter(Boolean);
-    out.push({
-      name: field,
-      types,
-      cardinality: `${e.min ?? 0}..${e.max ?? '*'}`,
-      short: e.short ?? '',
-      isModifier: !!e.isModifier,
-      mustSupport: !!e.mustSupport,
-      isSummary: !!e.isSummary,
-    });
-  }
-  return out;
-}
-
-function generateFhir() {
-  const catalog = JSON.parse(readFileSync(FHIR_DATA_PATH, 'utf8'));
-  const categoryOf = Object.fromEntries(catalog.resources.map((r) => [r.name, r.category]));
-  const categoryOrder = Object.keys(catalog.categories);
-  const idx = loadFhirIndex();
-
-  // Index search params by base resource
-  const searchByBase = new Map();
-  for (const f of idx) {
-    if (f.resourceType !== 'SearchParameter') continue;
-    const sp = readFhirJson(f.filename);
-    const bases = sp.base ?? [];
-    for (const base of bases) {
-      if (!searchByBase.has(base)) searchByBase.set(base, []);
-      searchByBase.get(base).push({
-        code: sp.code,
-        type: sp.type,
-        description: (sp.description ?? '').replace(/^Multiple Resources:[\s\S]*?\* \[[^\]]+\][^:]*:\s*/m, '').split('\n')[0],
-        expression: sp.expression ?? '',
-      });
-    }
-  }
-
-  // Find all concrete *base* resources in the spec. The FHIR R5 package
-  // also ships dozens of constraint profiles (vital-signs Observation,
-  // transaction Bundle, document Composition, etc.) — they share the same
-  // `type` as their base resource and would otherwise produce duplicate
-  // sidebar entries pointing at the same generated MDX. Filter by
-  // derivation=specialization to get exactly one canonical resource per type.
-  const resources = [];
-  const seenNames = new Set();
-  for (const f of idx) {
-    if (f.resourceType !== 'StructureDefinition') continue;
-    if (f.kind !== 'resource') continue;
-    if (f.type === 'Element' || f.type === 'BackboneElement') continue;
-    const sd = readFhirJson(f.filename);
-    if (sd.abstract) continue;
-    if (sd.derivation && sd.derivation !== 'specialization') continue;
-    const name = sd.type ?? sd.id;
-    if (!name) continue;
-    if (seenNames.has(name)) continue; // belt-and-suspenders against any stragglers
-    seenNames.add(name);
-    resources.push({
-      name,
-      description: sd.description ?? '',
-      purpose: sd.purpose ?? '',
-      maturity: fmmFromSd(sd) ?? 0,
-      elements: topLevelElements(sd),
-      searchParams: searchByBase.get(name) ?? [],
-      category: categoryOf[name] ?? 'Other',
-    });
-  }
-  resources.sort((a, b) => a.name.localeCompare(b.name));
-
-  // Group by category
-  const byCategory = new Map();
-  for (const r of resources) {
-    if (!byCategory.has(r.category)) byCategory.set(r.category, []);
-    byCategory.get(r.category).push(r);
-  }
-
-  ensureDir(OUT_FHIR);
-
-  // Per-resource pages
-  for (const r of resources) {
-    const dir = join(OUT_FHIR, slug(r.category));
-    mkdirSync(dir, { recursive: true });
-    writeIfChanged(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r));
-  }
-
-  // Custom operations (from the OpenAPI spec, routed here by generateHighLevel)
-  const customOpsCategory = generateFhirCustomOps();
-
-  // Sidebar
-  const sidebarItems = [{ type: 'doc', id: 'api/fhir/index', label: 'Overview' }];
-  if (customOpsCategory) sidebarItems.push(customOpsCategory);
-  const seenCategories = new Set();
-  for (const category of [...categoryOrder, 'Other']) {
-    const items = byCategory.get(category);
-    if (!items) continue;
-    seenCategories.add(category);
-    items.sort((a, b) => a.name.localeCompare(b.name));
-    const firstId = `api/fhir/${slug(category)}/${slug(items[0].name)}`;
-    sidebarItems.push({
-      type: 'category',
-      label: category,
-      link: { type: 'doc', id: firstId },
-      collapsed: true,
-      items: items.map((r) => ({
-        type: 'doc',
-        id: `api/fhir/${slug(category)}/${slug(r.name)}`,
-        label: r.name,
-      })),
-    });
-  }
-  writeIfChanged(join(OUT_FHIR, 'sidebar.json'), JSON.stringify(sidebarItems, null, 2));
-
-  // Index page — group by category
-  const categoryBlocks = [...categoryOrder, 'Other']
-    .filter((cat) => byCategory.has(cat))
-    .map((cat) => {
-      const items = [...byCategory.get(cat)].sort((a, b) => a.name.localeCompare(b.name));
-      const lines = items
-        .map((r) => `- [${r.name}](/api/fhir/${slug(cat)}/${slug(r.name)}) — ${escapeMdx(r.description.split('\n')[0]).slice(0, 120)}`)
-        .join('\n');
-      const blurb = catalog.categories[cat] ?? 'Resources outside the standard FHIR R5 module decomposition.';
-      return `### ${cat}\n\n*${escapeMdx(blurb)}*\n\n${lines}\n`;
-    })
-    .join('\n');
-
-  writeIfChanged(join(OUT_FHIR, 'index.mdx'),
-`---
-title: FHIR API
-sidebar_position: 1
-sidebar_label: Overview
-description: The Ovok FHIR API exposes every FHIR R5 resource — Patient, Observation, Encounter, CarePlan and the rest — under one host, with the standard set of FHIR interactions on each.
----
-
-# FHIR API
-
-The FHIR API is the raw data plane. Every FHIR R5 resource type is
-mounted under \`/fhir/R5/\` on the API host with the standard set of
-REST interactions — read, vread, update, patch, delete, create, search,
-history, type-history.
-
-<ApiBase surface="fhir" inline={false} />
-
-> Looking for higher-level workflows (auth, projects, billing, content)?
-> See the [High Level API](/api/high-level).
-
-## What's documented here
-
-This section catalogues all **${resources.length}** FHIR R5 resource types,
-sourced directly from the official \`hl7.fhir.r5.core\` package. Each
-resource has its own page with:
-
-- **Top-level elements** with their type, cardinality and short description.
-- **Resource-specific search parameters** with their type and the
-  expression they evaluate against.
-- **Standard interaction table** — every REST verb the resource supports.
-- **Maturity badge** from the HL7 FHIR Maturity Model (FMM 0–5).
-
-## Conventions
-
-- **Path** — \`/fhir/R5/<Resource>/[id]\` for instance-level interactions,
-  \`/fhir/R5/<Resource>?...\` for searching.
-- **Wire format** — \`application/fhir+json\` for both request and response.
-- **Versioning** — every write returns the new \`Resource.meta.versionId\`;
-  use it with the read endpoint's \`_vread\` form to fetch a historical version.
-- **Universal search params** — all resources accept
-  [\`_id\`, \`_lastUpdated\`, \`_profile\`, \`_security\`, \`_source\`, \`_tag\`,
-  \`_text\`, \`_summary\`, \`_elements\`, \`_include\`, \`_revinclude\`,
-  \`_sort\`, \`_count\`](https://hl7.org/fhir/R5/search.html).
-- **Maturity** — each resource carries an HL7 FHIR Maturity Model (FMM)
-  level. \`5\` is *Normative* (stable forever). \`0\`–\`4\` are *Trial Use*.
-
-## Resources by category
-
-${categoryBlocks}
-`);
-
-  return { resources: resources.length, categories: seenCategories.size };
-}
-
-function generateFhirCustomOps() {
-  const { ops, renderParamsTable, renderRequestBody, renderResponses } =
-    globalThis.__OVOK_FHIR_CUSTOM__ ?? {};
-  if (!ops || ops.length === 0) return null;
-
-  // Dedupe by operationId prefix (NestJS suffixes [0]/[1]/[2] when one
-  // handler is mounted under multiple paths — /fhir, /fhir/R4, /fhir/R5).
-  const byHandler = new Map();
-  for (const entry of ops) {
-    const opid = entry.op.operationId ?? `${entry.method}-${entry.path}`;
-    const key = opid.replace(/\[\d+\]$/, '');
-    if (!byHandler.has(key)) byHandler.set(key, { key, variants: [] });
-    byHandler.get(key).variants.push(entry);
-  }
-
-  // Build a stable ordering: keep first-seen order from the spec.
-  const handlers = [...byHandler.values()];
-  handlers.sort((a, b) => {
-    const ax = ops.findIndex((o) => (o.op.operationId ?? '').replace(/\[\d+\]$/, '') === a.key);
-    const bx = ops.findIndex((o) => (o.op.operationId ?? '').replace(/\[\d+\]$/, '') === b.key);
-    return ax - bx;
-  });
-
-  const dir = join(OUT_FHIR, 'custom-operations');
-  mkdirSync(dir, { recursive: true });
-
-  const sidebarItems = [];
-  let firstId = null;
-
-  for (const { key, variants } of handlers) {
-    // Pick the canonical R5 variant if present, otherwise the first.
+  const customOpsSidebar = [];
+  let firstCustomId = null;
+  for (const [key, variants] of byHandler.entries()) {
     const canonical = variants.find((v) => v.path.includes('/R5/')) ?? variants[0];
     const { method, path, op } = canonical;
-
     const opSlug = slug(key);
     const title = op.summary?.trim() || `${method} ${path}`;
-    const desc = (op.description && String(op.description).split('\n')[0].trim()) || `${method} ${path}`;
-
     const pathLines = variants
       .map((v) => `- <span className="api-method ${v.method.toLowerCase()}">${v.method}</span> \`${v.path}\``)
       .join('\n');
-
     const body = [
       '---',
       `title: ${JSON.stringify(title)}`,
-      `sidebar_label: ${JSON.stringify(title.length > 42 ? title.slice(0, 41) + '…' : title)}`,
-      `description: ${JSON.stringify(desc.slice(0, 160))}`,
+      `sidebar_label: ${JSON.stringify(shortenLabel(title))}`,
+      `description: ${JSON.stringify(((op.description && op.description.split('\n')[0]) || `${method} ${path}`).slice(0, 160))}`,
       '---',
       '',
       `# ${title}`,
@@ -908,59 +317,118 @@ function generateFhirCustomOps() {
       '',
     ];
     if (op.description) body.push(escapeMdx(op.description), '');
-    if (op.deprecated) body.push(':::warning Deprecated', 'This endpoint is deprecated. Migrate before the next major release.', ':::', '');
-    body.push(renderParamsTable(op.parameters));
+    body.push(renderParams(op.parameters));
     body.push(renderRequestBody(op.requestBody));
     body.push(renderResponses(op.responses));
-
-    writeIfChanged(join(dir, `${opSlug}.mdx`), body.join('\n'));
+    writeIfChanged(join(outFhirCustom, `${opSlug}.mdx`), body.join('\n'));
     const id = `api/fhir/custom-operations/${opSlug}`;
-    sidebarItems.push({ type: 'doc', id, label: title.length > 42 ? title.slice(0, 41) + '…' : title });
-    if (!firstId) firstId = id;
+    customOpsSidebar.push({ type: 'doc', id, label: shortenLabel(title) });
+    if (!firstCustomId) firstCustomId = id;
+  }
+  if (customOpsSidebar.length > 0) {
+    writeIfChanged(join(outFhirCustom, 'index.mdx'),
+`---
+title: Custom operations
+sidebar_label: Overview
+description: Ovok-specific operations layered on top of the FHIR API on the ${envKey} tier.
+---
+
+# Custom FHIR operations
+
+Ovok layers a handful of named operations on top of standard FHIR
+resources. Each is mounted at \`/fhir/\`, \`/fhir/R4/\` and \`/fhir/R5/\`.
+
+<ApiBase inline={false} />
+
+## Operations
+${customOpsSidebar.map((s) => `- [${s.label}](/${envKey}/api/fhir/custom-operations/${s.id.split('/').pop()})`).join('\n')}
+`);
   }
 
-  // Write a category index page so the category landing has context.
-  const indexBody = [
-    '---',
-    'title: Custom operations',
-    'sidebar_label: Overview',
-    'description: Ovok-specific operations layered on top of the FHIR API — $lastn, $populate, $extract, telemetry projections and more.',
-    '---',
-    '',
-    '# Custom FHIR operations',
-    '',
-    'Ovok layers a handful of named operations on top of standard FHIR resources.',
-    'These are not part of the FHIR R5 specification — they are Ovok extensions.',
-    'Every one of them is mounted under all three release tiers and supports the',
-    '`/fhir/`, `/fhir/R4/` and `/fhir/R5/` path forms.',
-    '',
-    '<ApiBase inline={false} />',
-    '',
-    '## Available operations',
-    '',
-    handlers.map(({ key, variants }) => {
-      const op = variants[0].op;
-      const title = op.summary?.trim() || key;
-      return `- **[${title}](/api/fhir/custom-operations/${slug(key)})** — ${
-        ((op.description && String(op.description).split('\n')[0].trim()) || '').slice(0, 100)
-      }`;
-    }).join('\n'),
-    '',
-  ].join('\n');
-  writeIfChanged(join(dir, 'index.mdx'), indexBody);
-
   return {
-    type: 'category',
-    label: 'Custom operations',
-    link: { type: 'doc', id: firstId ?? 'api/fhir/custom-operations/index' },
-    collapsed: false,
-    items: [{ type: 'doc', id: 'api/fhir/custom-operations/index', label: 'Overview' }, ...sidebarItems],
+    tags: sortedTags.length,
+    endpoints: sortedTags.reduce((n, t) => n + tagGroups.get(t).length, 0),
+    customOps: customOpsSidebar.length,
+    customOpsSidebar,
+    firstCustomId,
   };
 }
 
-function fhirResourcePage(r) {
-  const { name, category, maturity, elements, searchParams, description } = r;
+// ─── FHIR R5 resources (from cache; identical across envs) ────────────
+const MATURITY_LABEL = { 0: 'Draft', 1: 'Trial Use 1', 2: 'Trial Use 2', 3: 'Trial Use 3', 4: 'Trial Use 4', 5: 'Normative' };
+const FMM_EXT = 'http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm';
 
+function loadFhirResources() {
+  if (!existsSync(FHIR_CACHE)) {
+    throw new Error(`FHIR cache missing at ${FHIR_CACHE} — run scripts/fetch-fhir-r5.mjs first`);
+  }
+  const idx = JSON.parse(readFileSync(join(FHIR_CACHE, '.index.json'), 'utf8'));
+  const catalog = JSON.parse(readFileSync(FHIR_DATA_PATH, 'utf8'));
+  const categoryOf = Object.fromEntries(catalog.resources.map((r) => [r.name, r.category]));
+
+  const searchByBase = new Map();
+  for (const f of idx.files) {
+    if (f.resourceType !== 'SearchParameter') continue;
+    const sp = JSON.parse(readFileSync(join(FHIR_CACHE, f.filename), 'utf8'));
+    for (const base of sp.base ?? []) {
+      if (!searchByBase.has(base)) searchByBase.set(base, []);
+      searchByBase.get(base).push({
+        code: sp.code,
+        type: sp.type,
+        description: (sp.description ?? '').replace(/^Multiple Resources:[\s\S]*?\* \[[^\]]+\][^:]*:\s*/m, '').split('\n')[0],
+      });
+    }
+  }
+
+  const resources = [];
+  const seen = new Set();
+  for (const f of idx.files) {
+    if (f.resourceType !== 'StructureDefinition' || f.kind !== 'resource') continue;
+    if (f.type === 'Element' || f.type === 'BackboneElement') continue;
+    const sd = JSON.parse(readFileSync(join(FHIR_CACHE, f.filename), 'utf8'));
+    if (sd.abstract) continue;
+    if (sd.derivation && sd.derivation !== 'specialization') continue;
+    const name = sd.type ?? sd.id;
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    const fmm = (sd.extension ?? []).find((e) => e.url === FMM_EXT)?.valueInteger ?? 0;
+    resources.push({
+      name,
+      description: sd.description ?? '',
+      maturity: fmm,
+      elements: extractTopLevelElements(sd),
+      searchParams: searchByBase.get(name) ?? [],
+      category: categoryOf[name] ?? 'Other',
+    });
+  }
+  resources.sort((a, b) => a.name.localeCompare(b.name));
+  return { resources, categoryOrder: Object.keys(catalog.categories), categoryBlurbs: catalog.categories };
+}
+
+function extractTopLevelElements(sd) {
+  const elements = sd.snapshot?.element ?? sd.differential?.element ?? [];
+  const skip = new Set(['id', 'meta', 'implicitRules', 'language', 'text', 'contained', 'extension', 'modifierExtension']);
+  const out = [];
+  for (const e of elements) {
+    const id = e.id ?? e.path;
+    if (!id) continue;
+    const parts = id.split('.');
+    if (parts.length !== 2) continue;
+    if (skip.has(parts[1])) continue;
+    out.push({
+      name: parts[1],
+      types: (e.type ?? []).map((t) => t.code).filter(Boolean),
+      cardinality: `${e.min ?? 0}..${e.max ?? '*'}`,
+      short: e.short ?? '',
+      isModifier: !!e.isModifier,
+      mustSupport: !!e.mustSupport,
+    });
+  }
+  return out;
+}
+
+function fhirResourcePage(r, envKey) {
+  const { name, category, maturity, elements, searchParams, description } = r;
   const elementRows = elements.length === 0
     ? '_No top-level elements beyond the resource base._'
     : [
@@ -968,30 +436,22 @@ function fhirResourcePage(r) {
         '| --- | --- | --- | --- |',
         ...elements.map((e) => {
           const typeCol = e.types.length ? e.types.map((t) => `\`${t}\``).join(' / ') : '—';
-          const tags = [
-            e.isModifier ? ' _modifier_' : '',
-            e.mustSupport ? ' _must-support_' : '',
-          ].join('');
+          const tags = [e.isModifier ? ' _modifier_' : '', e.mustSupport ? ' _must-support_' : ''].join('');
           return `| \`${e.name}\` | ${typeCol} | \`${e.cardinality}\` | ${escapeMdx(e.short).replace(/\n+/g, ' ')}${tags} |`;
         }),
       ].join('\n');
-
   const searchRows = searchParams.length === 0
-    ? '_No resource-specific search parameters defined. Universal parameters still apply._'
+    ? '_No resource-specific search parameters defined._'
     : [
         '| Parameter | Type | Description |',
         '| --- | --- | --- |',
-        ...[...searchParams]
-          .sort((a, b) => a.code.localeCompare(b.code))
+        ...[...searchParams].sort((a, b) => a.code.localeCompare(b.code))
           .map((sp) => `| \`${sp.code}\` | \`${sp.type}\` | ${escapeMdx(sp.description).replace(/\n+/g, ' ').slice(0, 200)} |`),
       ].join('\n');
-
-  const blurb = description.split('\n')[0].trim();
-
   return `---
 title: ${name}
 sidebar_label: ${name}
-description: ${JSON.stringify(blurb.slice(0, 160) || `${name} FHIR R5 resource on the Ovok API.`)}
+description: ${JSON.stringify((description.split('\n')[0] || `${name} FHIR R5 resource.`).slice(0, 160))}
 ---
 
 # ${name}
@@ -1017,36 +477,232 @@ ${escapeMdx(description)}
 | History      | \`GET\`    | \`/fhir/R5/${name}/[id]/_history\` |
 | Type-history | \`GET\`    | \`/fhir/R5/${name}/_history\` |
 
-All calls expect FHIR-flavoured JSON
-(\`Content-Type: application/fhir+json\`) and accept the standard
-\`Accept: application/fhir+json\` header.
-
 ## Top-level elements
 
 ${elementRows}
 
 ## Resource-specific search parameters
 
-In addition to the
-[universal FHIR search parameters](https://hl7.org/fhir/R5/search.html#all),
-\`${name}\` supports the parameters below.
-
 ${searchRows}
 
 ## Reference
 
 - Official FHIR R5 spec: [\`${name}\`](https://hl7.org/fhir/R5/${name.toLowerCase()}.html)
-- Element bindings & profiles: [\`${name}\` profile](https://hl7.org/fhir/R5/${name.toLowerCase()}-definitions.html)
 - Maturity: **${MATURITY_LABEL[maturity] ?? 'Unspecified'}** (FMM ${maturity}).
 `;
 }
 
-// ─── run ──────────────────────────────────────────────────────────────
-const hl = generateHighLevel();
-const fhir = generateFhir();
-const orphans = sweepOrphans(OUT_HIGH) + sweepOrphans(OUT_FHIR) + sweepOrphans(STATIC_OPENAPI);
+function emitFhirForEnv(envKey, fhirData, customOpsInfo) {
+  const { resources, categoryOrder, categoryBlurbs } = fhirData;
+  const fhirRoot = join(DOCS_ROOT, envKey, 'api/fhir');
+  ensureDir(fhirRoot);
 
-console.log(`High Level API → ${hl.operations} endpoints in ${hl.tags} groups → ${OUT_HIGH}`);
-console.log(`FHIR API       → ${fhir.resources} resources in ${fhir.categories} categories → ${OUT_FHIR}`);
-console.log(`Static spec    → ${STATIC_OPENAPI}/ovok-api-public.yaml`);
-if (orphans > 0) console.log(`Swept ${orphans} orphan file${orphans === 1 ? '' : 's'}`);
+  const byCategory = new Map();
+  for (const r of resources) {
+    if (!byCategory.has(r.category)) byCategory.set(r.category, []);
+    byCategory.get(r.category).push(r);
+  }
+  for (const r of resources) {
+    const dir = join(fhirRoot, slug(r.category));
+    ensureDir(dir);
+    writeIfChanged(join(dir, `${slug(r.name)}.mdx`), fhirResourcePage(r, envKey));
+  }
+
+  const sidebar = [{ type: 'doc', id: `api/fhir/index`, label: 'Overview' }];
+  if (customOpsInfo && customOpsInfo.firstCustomId) {
+    sidebar.push({
+      type: 'category',
+      label: 'Custom operations',
+      link: { type: 'doc', id: customOpsInfo.firstCustomId },
+      collapsed: false,
+      items: [
+        { type: 'doc', id: `api/fhir/custom-operations/index`, label: 'Overview' },
+        ...customOpsInfo.customOpsSidebar,
+      ],
+    });
+  }
+  for (const cat of [...categoryOrder, 'Other']) {
+    const items = byCategory.get(cat);
+    if (!items) continue;
+    items.sort((a, b) => a.name.localeCompare(b.name));
+    const firstId = `api/fhir/${slug(cat)}/${slug(items[0].name)}`;
+    sidebar.push({
+      type: 'category',
+      label: cat,
+      link: { type: 'doc', id: firstId },
+      collapsed: true,
+      items: items.map((r) => ({ type: 'doc', id: `api/fhir/${slug(cat)}/${slug(r.name)}`, label: r.name })),
+    });
+  }
+  writeIfChanged(join(fhirRoot, 'sidebar.json'), JSON.stringify(sidebar, null, 2));
+
+  const categoryBlocks = [...categoryOrder, 'Other']
+    .filter((cat) => byCategory.has(cat))
+    .map((cat) => {
+      const items = [...byCategory.get(cat)].sort((a, b) => a.name.localeCompare(b.name));
+      const lines = items.map((r) => `- [${r.name}](/${envKey}/api/fhir/${slug(cat)}/${slug(r.name)}) — ${escapeMdx(r.description.split('\n')[0]).slice(0, 120)}`).join('\n');
+      const blurb = categoryBlurbs[cat] ?? 'Resources outside the standard FHIR R5 module decomposition.';
+      return `### ${cat}\n\n*${escapeMdx(blurb)}*\n\n${lines}\n`;
+    })
+    .join('\n');
+
+  writeIfChanged(join(fhirRoot, 'index.mdx'),
+`---
+title: FHIR API
+sidebar_position: 1
+sidebar_label: Overview
+description: The Ovok FHIR API on the ${envKey} tier — every FHIR R5 resource at /fhir/R5/.
+---
+
+# FHIR API
+
+The FHIR R5 data plane on the **${envKey}** tier. Every FHIR R5 resource
+type is mounted under \`/fhir/R5/\` with the standard set of REST interactions.
+
+<ApiBase surface="fhir" inline={false} />
+
+## What's documented here
+
+${resources.length} FHIR R5 resource types, sourced from the official
+\`hl7.fhir.r5.core\` package. Each carries its top-level elements, search
+parameters and a link to the official FHIR spec.
+
+## Resources by category
+
+${categoryBlocks}
+`);
+
+  return { resources: resources.length, categories: byCategory.size };
+}
+
+// ─── run ──────────────────────────────────────────────────────────────
+const envSpecs = {};
+for (const [env, p] of Object.entries(ENV_SPEC_PATHS)) {
+  if (existsSync(p)) envSpecs[env] = yaml.load(readFileSync(p, 'utf8'));
+}
+if (Object.keys(envSpecs).length === 0) {
+  if (!existsSync(PRIMARY_SPEC)) {
+    console.error(`No spec found at ${PRIMARY_SPEC} or env-specific paths.`);
+    process.exit(1);
+  }
+  envSpecs.dev = yaml.load(readFileSync(PRIMARY_SPEC, 'utf8'));
+}
+
+const fhirData = loadFhirResources();
+
+const summary = [];
+for (const envKey of ALL_ENVS_ORDERED) {
+  if (!envSpecs[envKey]) continue;
+  const hl = emitHighLevelForEnv(envKey, envSpecs[envKey]);
+  const fhir = emitFhirForEnv(envKey, fhirData, hl);
+  summary.push({ envKey, ...hl, ...fhir });
+}
+
+ensureDir(STATIC_OPENAPI);
+if (existsSync(PRIMARY_SPEC)) {
+  writeIfChanged(join(STATIC_OPENAPI, 'ovok-api-public.yaml'), readFileSync(PRIMARY_SPEC));
+}
+for (const [env, p] of Object.entries(ENV_SPEC_PATHS)) {
+  if (existsSync(p)) writeIfChanged(join(STATIC_OPENAPI, `${env}-public.yaml`), readFileSync(p));
+}
+
+// Playground manifest — one entry per unique (method, path) across envs.
+// availableIn[] tells the picker which tiers ship the endpoint; body
+// example + parameters come from the canonical (most-stable available)
+// variant so the picker can pre-fill JSON for POST/PUT/PATCH.
+ensureDir(STATIC_DATA);
+const CANONICAL_PRIORITY = ['final', 'beta', 'alpha', 'dev'];
+
+function exampleFromSchema(schema, deref, depth) {
+  if (!schema || depth > 4) return null;
+  const s = deref(schema);
+  if (!s) return null;
+  if (s.example !== undefined) return s.example;
+  if (s.enum && s.enum.length) return s.enum[0];
+  if (s.type === 'object' && s.properties) {
+    const out = {};
+    for (const k of Object.keys(s.properties).slice(0, 12)) {
+      const v = exampleFromSchema(deref(s.properties[k]), deref, depth + 1);
+      out[k] = v ?? exampleForType(deref(s.properties[k])?.type);
+    }
+    return out;
+  }
+  if (s.type === 'array') {
+    const item = exampleFromSchema(deref(s.items), deref, depth + 1);
+    return item == null ? [] : [item];
+  }
+  return exampleForType(s.type);
+}
+function exampleForType(t) {
+  switch (t) {
+    case 'string':  return 'string';
+    case 'number':
+    case 'integer': return 0;
+    case 'boolean': return false;
+    case 'array':   return [];
+    case 'object':  return {};
+    default:        return null;
+  }
+}
+
+function buildManifestRow(method, path, op, deref) {
+  let bodyExample = null;
+  const body = op.requestBody ? deref(op.requestBody) : null;
+  if (body?.content) {
+    const json = body.content['application/json'];
+    if (json) {
+      bodyExample = json.example
+        ?? (json.examples && Object.values(json.examples)[0]?.value)
+        ?? null;
+      if (!bodyExample && json.schema) bodyExample = exampleFromSchema(deref(json.schema), deref, 0);
+    }
+  }
+  return {
+    method: method.toUpperCase(),
+    path,
+    summary: op.summary?.trim() ?? `${method.toUpperCase()} ${path}`,
+    description: (op.description ?? '').split('\n')[0].slice(0, 200),
+    tag: (op.tags?.[0] ?? 'Uncategorized').trim(),
+    operationId: op.operationId ?? null,
+    parameters: (op.parameters ?? []).map((p) => {
+      const sch = deref(p.schema) ?? {};
+      return { name: p.name, in: p.in, required: !!p.required, type: sch.type ?? null };
+    }),
+    bodyExample,
+    deprecated: !!op.deprecated,
+  };
+}
+
+const byKey = new Map(); // `${METHOD} ${path}` → { row, availableIn[] }
+for (const envKey of CANONICAL_PRIORITY) {
+  const spec = envSpecs[envKey];
+  if (!spec) continue;
+  const deref = makeDeref(spec);
+  for (const [path, methods] of Object.entries(spec.paths ?? {})) {
+    for (const [method, op] of Object.entries(methods)) {
+      if (!HTTP_METHODS.has(method)) continue;
+      const key = `${method.toUpperCase()} ${path}`;
+      if (!byKey.has(key)) {
+        // First time we see this endpoint — capture canonical variant.
+        byKey.set(key, { row: buildManifestRow(method, path, op, deref), availableIn: [] });
+      }
+      byKey.get(key).availableIn.push(envKey);
+    }
+  }
+}
+const manifest = [...byKey.values()].map(({ row, availableIn }) => ({
+  ...row,
+  availableIn: ['dev', 'alpha', 'beta', 'final'].filter((e) => availableIn.includes(e)),
+}));
+writeIfChanged(join(STATIC_DATA, 'endpoints.json'), JSON.stringify(manifest, null, 2));
+
+// Sweep orphans only inside the env folders we emitted, plus static/openapi.
+for (const { envKey } of summary) {
+  sweepOrphans(join(DOCS_ROOT, envKey, 'api'));
+}
+sweepOrphans(STATIC_OPENAPI);
+
+for (const s of summary) {
+  console.log(`${s.envKey.padEnd(6)} → ${s.endpoints} endpoints in ${s.tags} tags, ${s.customOps} custom FHIR ops, ${s.resources} FHIR R5 resources`);
+}
+console.log(`Manifest: ${manifest.length} endpoints in static/data/endpoints.json`);
