@@ -31,15 +31,22 @@ The page URL is `/settings/general`.
 
 ## 2. Find the Payload CMS section
 
-Scroll to the section titled **Payload CMS**. You'll see:
+Scroll to the section titled **Payload CMS** (eyebrow: CONTENT). It
+looks like this:
 
+> **CONTENT**
 > **Payload CMS**
 >
-> Opt this project into the new Payload-backed CMS. Flipping on triggers
-> tenant provisioning + adds a CMS line item to your Stripe subscription.
+> Opt this project into the new Payload-backed CMS. Flipping on
+> triggers tenant provisioning + adds a CMS line item to your Stripe
+> subscription. The legacy FHIR-backed `/cms/*` surface is unaffected.
 >
-> ☐ **Enable Payload CMS** — Provisions a Payload tenant and starts CMS
-> billing for this project.
+> ☐ **Enable Payload CMS** — Provisions a Payload tenant and starts
+> CMS billing for this project.
+> *Config key: `CONTENT_ENABLED`*
+
+The card next to it is **Custom mailing** (`MAILING_ENABLED`) — a
+separate, independent toggle. Don't flip it by accident.
 
 ## 3. Flip the toggle
 
