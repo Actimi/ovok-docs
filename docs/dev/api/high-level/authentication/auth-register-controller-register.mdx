@@ -17,7 +17,7 @@ The Register API endpoint allows users to create a new account on the Ovok platf
 
 ```bash
 curl -X POST \
- --url 'https://api.dev.ovok.com/auth/register' \
+ --url 'https://api.sandbox.ovok.com/auth/register' \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "john.doe@mail.com",

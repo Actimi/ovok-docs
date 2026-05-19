@@ -16,11 +16,11 @@ This API endpoint registers a user to a project.
 
 ```bash
 curl -X POST \
- --url 'https://api.dev.ovok.com/auth/b2b/register' \
+ --url 'https://api.sandbox.ovok.com/auth/b2b/register' \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "max.mustermann@example.com",
-    "password": "LyA{P.thDJw_E&#x3D;Nr",
+    "password": "uSi-WdG0-7QT&gt;IRW",
     "name": "Max",
     "surname": "Mustermann",
     "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",

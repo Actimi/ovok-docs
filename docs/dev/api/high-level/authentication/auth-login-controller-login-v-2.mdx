@@ -17,7 +17,7 @@ The Login API endpoint facilitates the authentication process, allowing users to
 
 ```bash
 curl -X POST \
- --url 'https://api.dev.ovok.com/auth/login' \
+ --url 'https://api.sandbox.ovok.com/auth/login' \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "john.doe@mail.com",

@@ -20,7 +20,7 @@ This endpoint allows users to fetch patient informations, specifically observati
 
 ```bash
 curl -X GET \
- -G 'https://api.dev.ovok.com/fhir/Observation/$lastn' \
+ -G 'https://api.sandbox.ovok.com/fhir/Observation/$lastn' \
  -d 'patient=Patient/e70f3aec-d37e-453d-887b-72654c26b3fe' \
  -d 'max=2' \
  -d 'code=131328,8886-4'

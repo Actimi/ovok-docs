@@ -16,11 +16,11 @@ This API endpoint logs a user in to a project.
 
 ```bash
 curl -X POST \
- --url 'https://api.dev.ovok.com/auth/b2b/login' \
+ --url 'https://api.sandbox.ovok.com/auth/b2b/login' \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "max.mustermann@example.com",
-    "password": "LyA{P.thDJw_E&#x3D;Nr",
+    "password": "uSi-WdG0-7QT&gt;IRW",
     "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
     "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
 }'

@@ -1,24 +1,15 @@
 ---
-title: "Copy contents"
-sidebar_label: "Copy contents"
-description: "Copy contents."
+title: "OPTIONS /v1/content/{path}"
+sidebar_label: "OPTIONS /v1/content/{path}"
+description: "OPTIONS /v1/content/{path}"
 ---
 
-# Copy contents
+# OPTIONS /v1/content/{path}
 
-<span className="api-method post">POST</span> `/cms/{type}/{language}/copy-from-parent-project`
+<span className="api-method options">OPTIONS</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 
-Copy contents.
-
-
-## Parameters
-
-| Name | In | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `type` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
 
 
 

@@ -116,52 +116,103 @@
   },
   {
     "type": "category",
-    "label": "CMS",
+    "label": "CMS Public Delivery",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms/cms-controller-copy-single-content"
+      "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-copy-single-content",
-        "label": "Copy a content"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
+        "label": "GET /v1/public/cms/{typeSlug}/items"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-copy-contents",
-        "label": "Copy contents"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
+        "label": "GET /v1/public/cms/{typeSlug}/items/{idOr…"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Content",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/content/content-proxy-controller-proxy-get"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-get",
+        "label": "GET /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-create-content",
-        "label": "Create content"
+        "id": "api/high-level/content/content-proxy-controller-proxy-post",
+        "label": "POST /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-delete-content",
-        "label": "Delete content"
+        "id": "api/high-level/content/content-proxy-controller-proxy-put",
+        "label": "PUT /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-get-content",
-        "label": "Get content by key and language"
+        "id": "api/high-level/content/content-proxy-controller-proxy-delete",
+        "label": "DELETE /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-search-content",
-        "label": "Search content"
+        "id": "api/high-level/content/content-proxy-controller-proxy-patch",
+        "label": "PATCH /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-search-mapped-content",
-        "label": "Search mapped content"
+        "id": "api/high-level/content/content-proxy-controller-proxy-options",
+        "label": "OPTIONS /v1/content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms/cms-controller-update-content",
-        "label": "Update content"
+        "id": "api/high-level/content/content-proxy-controller-proxy-head",
+        "label": "HEAD /v1/content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-get",
+        "label": "GET /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-post",
+        "label": "POST /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-put",
+        "label": "PUT /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-delete",
+        "label": "DELETE /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-patch",
+        "label": "PATCH /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-options",
+        "label": "OPTIONS /v1/content/{path}"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/content/content-proxy-controller-proxy-head",
+        "label": "HEAD /v1/content/{path}"
       }
     ]
   },

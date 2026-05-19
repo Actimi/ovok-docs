@@ -16,7 +16,7 @@ By making a POST request to this endpoint you can refresh the access token, ensu
 
 ```bash
 curl -X POST \
- --url 'https://api.dev.ovok.com/auth/refresh-token' \
+ --url 'https://api.sandbox.ovok.com/auth/refresh-token' \
  -H 'Content-Type: application/json' \
  -d '{
     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ"
