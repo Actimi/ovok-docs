@@ -422,3 +422,104 @@ html {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ─── Inline screenshots in walkthroughs ─────────────────────────────────
+   Walkthrough captures are ~1500×800. Displayed at full content width
+   they crowd the reading flow; capped at ~720px they read as inline
+   illustrations next to the prose instead of dominating the page.
+   ───────────────────────────────────────────────────────────────────── */
+
+.markdown img:where([src*="console-"], [src*="dashboard-"]) {
+  display: block;
+  max-width: min(100%, 720px);
+  height: auto;
+  margin: 2rem auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 1px 0 var(--line-quiet),
+    0 6px 20px -14px rgba(22, 18, 20, 0.18),
+    0 20px 48px -28px var(--ovok-glow-2);
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+
+.markdown img:where([src*="console-"], [src*="dashboard-"]):hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 var(--line-quiet),
+    0 10px 28px -14px rgba(22, 18, 20, 0.22),
+    0 24px 56px -28px var(--ovok-glow-2);
+}
+
+/* Dark mode — tight inner ring instead of a warm border, and pure-black
+   shadows so the bright screenshot doesn't glow against dark canvas. */
+[data-theme='dark'] .markdown img:where([src*="console-"], [src*="dashboard-"]) {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 6px 24px -16px rgba(0, 0, 0, 0.6),
+    0 16px 48px -24px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .markdown img:where([src*="console-"], [src*="dashboard-"]):hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 10px 32px -14px rgba(0, 0, 0, 0.7),
+    0 20px 56px -24px rgba(0, 0, 0, 0.55);
+}
+
+/* Wrapped <a><img> opt-in for click-to-zoom. */
+.theme-doc-markdown .markdown a:has(> img) {
+  display: block;
+  cursor: zoom-in;
+  text-decoration: none;
+  max-width: min(100%, 720px);
+  margin: 2rem auto;
+}
+.theme-doc-markdown .markdown a:has(> img) img {
+  margin: 0;
+}
+
+/* Logos and inline icons opt out of the framed treatment — they're not
+   illustrations of a step, they're visual nouns inside prose. */
+.markdown img:where([src*="console-"], [src*="dashboard-"])[src$=".svg"],
+.markdown img:where([src*="console-"], [src*="dashboard-"])[width] {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  margin: 1rem auto;
+}
+
+/* Admonition images stay compact — they're aids to a callout, not the
+   focus. */
+.theme-doc-markdown .markdown .admonition img,
+.theme-doc-markdown .markdown :where(.theme-admonition, .alert) img {
+  margin: 0.5rem 0;
+  border: none;
+  box-shadow: none;
+  border-radius: var(--radius-sm);
+  max-width: 100%;
+}
+
+/* Caption convention — *italic text* right under an image becomes a
+   small editorial caption rendered in the display serif. */
+.markdown img:where([src*="console-"], [src*="dashboard-"]) + em,
+.theme-doc-markdown .markdown p:has(> img) + p > em:only-child {
+  display: block;
+  text-align: center;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  color: var(--ink-3);
+  font-size: 0.92rem;
+  margin: -1.25rem auto 2rem;
+  max-width: 60ch;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .markdown img:where([src*="console-"], [src*="dashboard-"]),
+  .theme-doc-markdown .markdown a:has(> img) {
+    margin: 1.25rem auto;
+    border-radius: var(--radius-sm);
+  }
+}
