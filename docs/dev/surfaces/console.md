@@ -60,6 +60,8 @@ switcher; everything else looks the same.
 Open `console.sandbox.ovok.com`. The landing page is the **Welcome
 back.** sign-in card.
 
+![Console sign-in card with Email and Password fields and a Continue button](/img/walkthrough/console-01-login.png)
+
 - **Email** field — your Ovok account email
 - **Password** field — minimum 8 characters
 - **Continue →** button (or press `⌘ ↵` / `Ctrl ↵`)
@@ -79,6 +81,8 @@ After sign-in, the **Step 2 · Pick a project** card lists every
 project your account can administer. Each row shows a project icon,
 display name, and slug:
 
+![Step 2 Pick a project card listing Super Admin, Migration-Demo-1, Pulsene, Somnisense](/img/walkthrough/console-02-project-picker.png)
+
 ```
 Super Admin           super-admin
 Migration-Demo-1      migrationdemo1
@@ -92,6 +96,8 @@ bottom signs you out.
 ### 3. Project Overview
 
 `/overview` is the dashboard for the picked project. Anatomy:
+
+![Migration-Demo-1 overview with Plan, Team, Content, Active sessions stat cards plus Quick actions and at-a-glance panels](/img/walkthrough/console-03-overview.png)
 
 - **Top bar** — project switcher (project name + slug + arrow icon),
   global search (`⌘K`), API status pill, profile dropdown.
@@ -130,6 +136,8 @@ lives in the Data Dashboard."*
 From the left sidebar, click **Settings**. The default tab is
 **Overview**, which surfaces two read-only cards:
 
+![Settings Overview tab with Identity and Your access cards and a Jump-to grid](/img/walkthrough/console-04-settings-overview.png)
+
 - **Identity · Project references** — Medplum Project ID, Display
   Name, Slug, Tenant Code. Each value has a copy-to-clipboard icon.
 - **Your access · How you're seated here** — Role, Profile resource
@@ -146,6 +154,8 @@ keys**.
 Where you flip per-project feature toggles. The page is a stack of
 section cards; each card has an eyebrow, title, description, a
 labeled toggle, and the underlying config key in monospace.
+
+![Settings General tab with Payload CMS toggle off, Custom mailing toggle off, and Patient sign-in section below](/img/walkthrough/console-05-settings-general.png)
 
 **Content section — Payload CMS**
 
@@ -176,6 +186,8 @@ Payload CMS toggle.
 
 This is the **CMS API keys** screen. Eyebrow *"PUBLIC DELIVERY"*,
 title *"CMS API keys"*.
+
+![Settings API keys tab with CMS API keys card and empty Keys panel offering a New API key button](/img/walkthrough/console-06-api-keys.png)
 
 > Long-lived bearers for the public read-only delivery API
 > (`/v1/public/cms/<slug>/items`). Consumers send the key in

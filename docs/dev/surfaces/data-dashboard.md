@@ -79,6 +79,8 @@ Open `dashboard.sandbox.ovok.com`. The sign-in flow is two cards:
    checkbox, and the **Sign In** button. A **Reset Password** link
    sits below.
 
+![Data Dashboard sign-in password card with read-only email row, Password field, Remember me, Sign In button, and Reset Password link](/img/walkthrough/dashboard-01-signin.png)
+
 Magic-link / SSO flows surface from the email step when your tenant
 opts in.
 
@@ -90,10 +92,14 @@ shows the project name and the owner. A search field filters the
 list; a **Create a new project** link at the bottom is admin-only and
 spins up a fresh project (and its tenant) for you.
 
+![Choose a Project card listing Test ECH, Telepress, Super Admin, Pulsene V2, Hartmannn, Pulsene, Maifar Test, EasyCareHub Super, Kinderspitex, Test project 1, with a Create a new project link at the bottom](/img/walkthrough/dashboard-02-project-picker.png)
+
 ### 3. The resource workspace
 
 You land on `/Patient?_count=20&_fields=_lastUpdated,name,birthDate,email,gender&_sort=-_lastUpdated`
 — a tabular Patient browser. Anatomy:
+
+![Data Dashboard Patient list view with Fields, Filters, New, Export, Delete, Bulk toolbar and empty No results state](/img/walkthrough/dashboard-03-patient-list.png)
 
 - **Top bar** — Ovok logo (links home), a search field, profile
   dropdown.
@@ -110,6 +116,8 @@ Empty state on the table reads **"No results"**.
 
 The URL is the contract. Navigate to any FHIR resource the project
 supports by visiting `/<ResourceType>`:
+
+![Data Dashboard with the top search field showing the query Practitioner, navigating to the Practitioner resource list](/img/walkthrough/dashboard-04-search.png)
 
 ```
 /Patient
