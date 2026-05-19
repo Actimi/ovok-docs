@@ -19,6 +19,18 @@ This is the same surface the Console uses internally. You can call it
 from your own backend any time you need to script content moves
 (seed data, programmatic publishes, migrations).
 
+For the UI side of the same API — collection browser, edit form, media
+library, drafts and publishing — open the **Content** section of the
+Console once CMS is enabled. See [Enable CMS](/dev/cms/enable).
+
+:::info Screenshots of the Payload admin UI
+The Payload-backed authoring surface (collections list, item edit
+form, media uploader, publish flow) is captured on a CMS-enabled
+project. Until your project flips `CONTENT_ENABLED` on, the
+`/v1/content/*` proxy returns `403` and the Console's `Content`
+section shows the **Payload CMS · OFF** card.
+:::
+
 :::info When to use the Content API vs Public delivery
 - **Content API** (`/v1/content/*`) — writes and admin reads. Requires
   a project JWT. Use from trusted backends, the Console, CI jobs.

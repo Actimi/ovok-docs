@@ -28,6 +28,10 @@ Send the API key as a bearer token in `Authorization`. Each key is
 bound to exactly one project — the surface never returns content from
 a different project, regardless of which `typeSlug` you ask for.
 
+Mint keys from the Console at **Settings → API keys → CMS**:
+
+![Console Settings API keys tab with CMS API keys card and a New API key button](/img/walkthrough/console-06-api-keys.png)
+
 ```http
 GET /v1/public/cms/pages/items HTTP/1.1
 Host: api.sandbox.ovok.com
