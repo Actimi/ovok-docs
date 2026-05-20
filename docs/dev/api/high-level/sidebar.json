@@ -119,19 +119,19 @@
     "label": "CMS Public Delivery",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1"
+      "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
-        "label": "Get a published item"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
+        "label": "GET /v1/public/cms/{typeSlug}/items"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
-        "label": "List published items"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
+        "label": "GET /v1/public/cms/{typeSlug}/items/{idOr…"
       }
     ]
   },
@@ -424,6 +424,47 @@
         "type": "doc",
         "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
         "label": "Practitioner - MFA"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Wearables (Early Access)",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/wearables-early-access/wearables-controller-list-connections-v-1"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-list-connections-v-1",
+        "label": "[Early Access] List wearable connections"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-revoke-v-1",
+        "label": "[Early Access] Revoke a wearable connecti…"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-start-connect-v-1",
+        "label": "[Early Access] Start a wearable OAuth flow"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-oauth-callback-v-1",
+        "label": "[Early Access] Wearable OAuth callback"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1",
+        "label": "[Early Access] Wearable webhook ingress"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1",
+        "label": "[Early Access] Wearable webhook subscript…"
       }
     ]
   }

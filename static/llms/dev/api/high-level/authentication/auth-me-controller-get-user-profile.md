@@ -16,7 +16,7 @@ This API fetches the user profile information.
 
 ```bash
 curl -X GET \
- --url 'https://api.sandbox.ovok.com/auth/me' \
+ --url 'https://api.dev.ovok.com/auth/me' \
  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ'
 ```
 

@@ -16,11 +16,11 @@ This API endpoint registers a user to a project.
 
 ```bash
 curl -X POST \
- --url 'https://api.sandbox.ovok.com/auth/b2b/register' \
+ --url 'https://api.dev.ovok.com/auth/b2b/register' \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "max.mustermann@example.com",
-    "password": "&amp;}Y^R-1HJX+Xh21{",
+    "password": "3gM&lt;,I!zQTs$@6g.",
     "name": "Max",
     "surname": "Mustermann",
     "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -67,8 +67,8 @@ curl -X POST \
 
 ```json
 {
-  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
-  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
+  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c",
+  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c",
   "expiresIn": 3600,
   "project": {
     "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",

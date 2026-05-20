@@ -16,7 +16,7 @@ By making a POST request to this endpoint you can refresh the access token, ensu
 
 ```bash
 curl -X POST \
- --url 'https://api.sandbox.ovok.com/auth/refresh-token' \
+ --url 'https://api.dev.ovok.com/auth/refresh-token' \
  -H 'Content-Type: application/json' \
  -d '{
     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ"
@@ -55,8 +55,8 @@ curl -X POST \
 
 ```json
 {
-  "access_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
-  "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
+  "access_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c",
+  "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c",
   "expires_in": 3600
 }
 ```

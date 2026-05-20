@@ -32,7 +32,7 @@ The bot identifier is provided in the query, while additional parameters are sen
 
 ```bash
 curl -X POST \
- --url 'https://api.sandbox.ovok.com/bots?identifier=https://example.com|get-users' \
+ --url 'https://api.dev.ovok.com/bots?identifier=https://example.com|get-users' \
  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzMzY0NDIsImV4cCI6MTczMTM0MDA0Mn0.MQbovtK2tKu8Zj6_7vaqSVXWunIG8-iuwa6JEXCqXAQ' \
  -H 'Content-Type: application/json' \
  -d '{

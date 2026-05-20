@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
+      "password": "3gM<,I!zQTs$@6g.",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
+      "password": "3gM<,I!zQTs$@6g.",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
+      "password": "3gM<,I!zQTs$@6g.",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
+      "password": "3gM<,I!zQTs$@6g.",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
-      "codeChallenge": "1TmNIoZUQHb7OUZMuX3vqGabXCjOLKCK"
+      "password": "3gM<,I!zQTs$@6g.",
+      "codeChallenge": "FSXINwXWNSJ7BEjxRkFkdiV9VLgi2ZqY"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "Tzj9rMDJH4HwTXw8fc8fW97YlBHQ6E8R",
-      "codeVerifier": "cP5SiIzvuIBVpJDloIKpK2OUdzw4KJHuQduiMGsx0oNGrhIhHMVqnx6SkbcJJkbr",
+      "sessionCode": "LRvTyaqdt9Xa6yYhh9N0N0HdOibmltft",
+      "codeVerifier": "Cws17CAP7OyYfxcXGcvldnYoBqowozgKYa79wtNxX9TFxOMmCOv9x0Ui5vsXJDaa",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
-      "codeChallenge": "xJhQ8pPXfx1QehTjArUKhFegDeQNTjHr",
+      "password": "3gM<,I!zQTs$@6g.",
+      "codeChallenge": "FVFz59G0cjDwd3whqQBjktVT4gNA3Omz",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "hNORhz8IotLDpngABT78TioELndpIavG",
-      "codeVerifier": "eUksHCCjvEPdKbbOhXBP9T0VTJpGT5ahQGagxD47QIMadbmJa2RSQKqA4gFUvOSt"
+      "sessionCode": "K6EScuAiPDjKbnHKADHTZZw9XpaHZEIx",
+      "codeVerifier": "3OM6Hxhtj752r17qXodlW52CpzlsQJRft3DMN5zdEXetpKpz3QX9ekUCma70n5VS"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "&}Y^R-1HJX+Xh21{",
+      "password": "3gM<,I!zQTs$@6g.",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -1859,8 +1859,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items",
-    "summary": "List published items",
-    "description": "List published items from a CMS collection. Authenticates with a project-scoped API key (Authorization: Bearer …). Drafts and unpublished items are filtered out server-side.",
+    "summary": "GET /v1/public/cms/{typeSlug}/items",
+    "description": "",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_listItems_v1",
     "parameters": [
@@ -1904,8 +1904,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "summary": "Get a published item",
-    "description": "Fetch a single published item by id or slug. Authenticates with a project-scoped API key. Returns 404 for drafts, unpublished items, or items in another project.",
+    "summary": "GET /v1/public/cms/{typeSlug}/items/{idOrSlug}",
+    "description": "",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_getItem_v1",
     "parameters": [
@@ -1930,6 +1930,134 @@
       {
         "name": "depth",
         "in": "query",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/v1/wearables/{provider}/connect",
+    "summary": "[Early Access] Start a wearable OAuth flow",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_startConnect_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "patientId": "string",
+      "redirectUri": "string"
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/wearables/{provider}/callback",
+    "summary": "[Early Access] Wearable OAuth callback",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_oauthCallback_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/wearables/{provider}/connections/{patientId}",
+    "summary": "[Early Access] Revoke a wearable connection",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_revoke_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "patientId",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/wearables/connections",
+    "summary": "[Early Access] List wearable connections",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_listConnections_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/wearables/{provider}/webhook",
+    "summary": "[Early Access] Wearable webhook subscription verification",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_webhookVerify_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/v1/wearables/{provider}/webhook",
+    "summary": "[Early Access] Wearable webhook ingress",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearablesController_webhookIngress_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
         "required": true,
         "type": "string"
       }
