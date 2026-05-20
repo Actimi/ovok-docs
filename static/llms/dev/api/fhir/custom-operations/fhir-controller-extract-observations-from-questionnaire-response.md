@@ -1,6 +1,6 @@
 ---
 title: "Extract observations from questionnaire response"
-sidebar_label: "Extract observations from questionnaire r…"
+sidebar_label: "Extract observations from questionnaire response"
 description: "This endpoint builds Observations based on the provided QuestionnaireResponse."
 ---
 
@@ -142,7 +142,7 @@ curl -X POST \
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |

@@ -1,6 +1,6 @@
 ---
 title: "Generate credentials for document file replacement"
-sidebar_label: "Generate credentials for document file re…"
+sidebar_label: "Generate credentials for document file replacement"
 description: "Generate credentials for file replacement"
 ---
 
@@ -77,7 +77,7 @@ Use the credentials in `uploadOptions` to upload your replacement file directly 
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -89,10 +89,15 @@ Use the credentials in `uploadOptions` to upload your replacement file directly 
 
 - `id`: `string` **(required)** — The ID of the DocumentReference resource.
 - `meta`: `object` — The metadata of the document.
+  - `lastUpdated`: `string` **(required)** — The last updated date of the document.
 - `author`: `object` — The author of the document.
+  - `reference`: `string` — The reference of the author.
+  - `display`: `string` — The display name of the author.
 - `fileName`: `string` — The name of the document.
 - `contentType`: `string` — The content type of the document.
 - `uploadOptions`: `object` — The upload options of the document.
+  - `url`: `string` **(required)** — The upload URL of the document.
+  - `fields`: `object` **(required)** — The fields of the document.
 - `publicToken`: `string` — The public token of the document.
 
 **Example**

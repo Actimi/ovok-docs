@@ -32,7 +32,7 @@ curl '<APP_BASE_URL>/v1/wearables/connections' \
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -44,4 +44,10 @@ curl '<APP_BASE_URL>/v1/wearables/connections' \
 
 All wearable connections for the caller’s project.
 
-- `connections`: `array` **(required)**
+- `connections`: `object[]` **(required)**
+  - `id`: `string` **(required)** — Endpoint resource id holding the connection.
+  - `provider`: `string` **(required)**
+  - `patientId`: `string` **(required)**
+  - `remoteUserId`: `string` **(required)** — Provider-assigned user id (athlete_id, user_id…).
+  - `expiresAt`: `number` **(required)** — Epoch ms when the current access token expires.
+  - `scopes`: `string[]` **(required)**

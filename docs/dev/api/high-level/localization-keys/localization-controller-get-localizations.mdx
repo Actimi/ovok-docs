@@ -46,7 +46,7 @@ All query parameters are FHIR query parameteters and therefore optional.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -57,4 +57,11 @@ All query parameters are FHIR query parameteters and therefore optional.
 ### `200` → `PaginatedSearchResponseDto` (`application/json`)
 
 - `total`: `number` **(required)**
-- `resources`: `array` **(required)**
+- `resources`: `object[]` **(required)**
+  - `id`: `string`
+  - `key`: `string` **(required)** — Dot-separated localization key. Alphanumerics, `_`, `-`, `.` only. Hierarchical convention recommended (e.g. `home.screen.title`).
+  - `language`: `string` **(required)** — BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant.
+  - `value`: `string` **(required)**
+  - `author`: `object` **(required)**
+  - `date`: `string`
+  - `projectId`: `string`

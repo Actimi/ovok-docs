@@ -33,7 +33,7 @@ The request doesn't return anything.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -48,6 +48,8 @@ The request doesn't return anything.
 - `language`: `string` **(required)** — BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant.
 - `value`: `string` **(required)**
 - `author`: `object` **(required)**
+  - `reference`: `string` **(required)**
+  - `display`: `string`
 - `date`: `string`
 - `projectId`: `string`
 

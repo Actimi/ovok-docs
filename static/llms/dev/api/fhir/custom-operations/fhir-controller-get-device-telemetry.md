@@ -112,7 +112,7 @@ curl -X GET \
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -125,7 +125,9 @@ curl -X GET \
 - `resourceType`: `string` **(required)**
 - `type`: `string` **(required)**
 - `total`: `number`
-- `entry`: `array` **(required)**
+- `entry`: `object[]` **(required)**
+  - `resource`: `object` **(required)**
+  - `fullUrl`: `string`
 
 **Example**
 

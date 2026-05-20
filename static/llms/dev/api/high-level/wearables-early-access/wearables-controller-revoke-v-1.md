@@ -1,6 +1,6 @@
 ---
 title: "[Early Access] Revoke a wearable connection"
-sidebar_label: "[Early Access] Revoke a wearable connecti…"
+sidebar_label: "[Early Access] Revoke a wearable connection"
 description: "**Early Access** — interfaces may change without notice."
 ---
 
@@ -39,7 +39,7 @@ Returns `{ ok: true }` whether or not a connection existed (idempotent).
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |

@@ -37,7 +37,7 @@ curl -X DELETE \
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -47,7 +47,13 @@ curl -X DELETE \
 
 ### `200` → `SessionsResponseDto` (`application/json`)
 
-- `sessions`: `array` **(required)**
+- `sessions`: `object[]` **(required)**
+  - `id`: `string` **(required)**
+  - `lastUpdated`: `string` **(required)**
+  - `authMethod`: `string` **(required)**
+  - `remoteAddress`: `string` **(required)**
+  - `browser`: `string` **(required)**
+  - `os`: `string` **(required)**
 
 **Example**
 

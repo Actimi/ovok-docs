@@ -31,7 +31,7 @@
       {
         "type": "doc",
         "id": "api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries",
-        "label": "Expand Observation SampledData to a {t,v}…"
+        "label": "Expand Observation SampledData to a {t,v} time-series"
       },
       {
         "type": "doc",
@@ -56,7 +56,7 @@
       {
         "type": "doc",
         "id": "api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response",
-        "label": "Extract observations from questionnaire r…"
+        "label": "Extract observations from questionnaire response"
       }
     ]
   },

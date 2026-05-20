@@ -14,9 +14,9 @@ resources. Each is mounted at `/fhir/`, `/fhir/R4/` and `/fhir/R5/`.
 ## Operations
 - [Get last observations](/dev/api/fhir/custom-operations/fhir-controller-get-patient-last-observation)
 - [Get device telemetry](/dev/api/fhir/custom-operations/fhir-controller-get-device-telemetry)
-- [Expand Observation SampledData to a &#123;t,v&#125;…](/dev/api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries)
+- [Expand Observation SampledData to a &#123;t,v&#125; time-series](/dev/api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries)
 - [Get device telemetry history](/dev/api/fhir/custom-operations/fhir-controller-get-device-telemetry-history)
 - [Create Patient with Signals linking](/dev/api/fhir/custom-operations/fhir-controller-create-patient)
 - [Update patient threshold](/dev/api/fhir/custom-operations/fhir-controller-update-patient-threshold)
 - [Populate questionnaire](/dev/api/fhir/custom-operations/fhir-controller-populate-questionnaire)
-- [Extract observations from questionnaire r…](/dev/api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response)
+- [Extract observations from questionnaire response](/dev/api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response)

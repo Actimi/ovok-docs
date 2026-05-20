@@ -1,6 +1,6 @@
 ---
 title: "Expand Observation SampledData to a {t,v} time-series"
-sidebar_label: "Expand Observation SampledData to a {t,v}…"
+sidebar_label: "Expand Observation SampledData to a {t,v} time-series"
 description: "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations who"
 ---
 
@@ -30,7 +30,7 @@ Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON ti
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -45,4 +45,10 @@ Expanded &#123;timestamp, value&#125; view of an Observation's SampledData. Retu
 - `observationId`: `string` **(required)**
 - `effectiveStart`: `string` **(required)** — ISO-8601 anchor for the first sample (t0).
 - `periodMs`: `number` **(required)** — Milliseconds between consecutive samples.
-- `series`: `array` **(required)**
+- `series`: `object[]` **(required)**
+  - `code`: `string` **(required)** — For component-bearing Observations the component primary code (LOINC etc.). Null for series taken from the root SampledData.
+  - `unit`: `string` **(required)** — Display unit from SampledData.origin.unit.
+  - `origin`: `number` **(required)** — Base value (data points are added to this after factor scaling).
+  - `dimension`: `integer` **(required)** — Which interleaved dimension this series represents. 0..dimensions-1.
+  - `count`: `integer` **(required)**
+  - `points`: `object[]` **(required)**

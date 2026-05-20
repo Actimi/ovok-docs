@@ -31,14 +31,17 @@ List published items from a CMS collection. Authenticates with a project-scoped 
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 
 
 ### `200` → `PublicDeliveryListResponseDto` (`application/json`)
 
 Paginated envelope of published items in a CMS collection. Items in `docs` follow the project-defined collection schema; the envelope fields (`totalDocs`, `limit`, `totalPages`, `page`) are fixed.
 
-- `docs`: `array` **(required)** — Published items in the current page, oldest-first unless sorted otherwise.
+- `docs`: `object[]` **(required)** — Published items in the current page, oldest-first unless sorted otherwise.
+  - `id`: `string` **(required)** — Stable Payload item id.
+  - `slug`: `string` — Slug for the item, when the collection defines a `slug` field.
+  - `publishedAt`: `string` — ISO-8601 timestamp the item was last published. Items without this field are filtered out of the response.
 - `totalDocs`: `integer` **(required)** — Total matching items across all pages.
 - `limit`: `integer` **(required)** — Items per page (caller-supplied, capped at 100 server-side).
 - `totalPages`: `integer` **(required)** — Total page count at the current limit.

@@ -1,6 +1,6 @@
 ---
 title: "[Early Access] Wearable webhook subscription verification"
-sidebar_label: "[Early Access] Wearable webhook subscript…"
+sidebar_label: "[Early Access] Wearable webhook subscription verification"
 description: "**Early Access** — interfaces may change without notice."
 ---
 
@@ -41,7 +41,7 @@ Returns `400` when the token does not match.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |

@@ -21,7 +21,7 @@ Fetch the enabled locales and the default locale for localization.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -31,7 +31,7 @@ Fetch the enabled locales and the default locale for localization.
 
 ### `200` → `LocaleBodyDto` (`application/json`)
 
-- `languages`: `array` **(required)** — At least one locale code. Used to register a project's active locale set.
+- `languages`: `string[]` **(required)** — At least one locale code. Used to register a project's active locale set.
 - `defaultLanguage`: `string` **(required)** — The locale to fall back to when a request omits or specifies an unmapped one.
 
 **Example**

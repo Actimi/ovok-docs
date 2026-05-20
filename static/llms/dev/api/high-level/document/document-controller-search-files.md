@@ -39,7 +39,7 @@ Information such as id, contentType, fileName, public token.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -50,7 +50,14 @@ Information such as id, contentType, fileName, public token.
 ### `200` → `GetSearchFilesResponseDto` (`application/json`)
 
 - `total`: `number` **(required)** — Total number of documents in the system.
-- `resources`: `array` **(required)**
+- `resources`: `object[]` **(required)**
+  - `id`: `string` **(required)** — The ID of the DocumentReference resource.
+  - `meta`: `object` — The metadata of the document.
+  - `author`: `object` — The author of the document.
+  - `fileName`: `string` — The name of the document.
+  - `contentType`: `string` — The content type of the document.
+  - `uploadOptions`: `object` — The upload options of the document.
+  - `publicToken`: `string` — The public token of the document.
 
 **Example**
 

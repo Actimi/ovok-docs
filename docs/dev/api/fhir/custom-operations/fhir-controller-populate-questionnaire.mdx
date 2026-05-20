@@ -296,7 +296,7 @@ Now you can use the response (QuestionnaireResponse) and POST it if you want to 
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -309,7 +309,7 @@ Now you can use the response (QuestionnaireResponse) and POST it if you want to 
 - `resourceType`: `string` **(required)**
 - `questionnaire`: `string` **(required)**
 - `subject`: `object` **(required)**
-- `item`: `array` **(required)**
+- `item`: `object[]` **(required)**
 
 _Additional properties allowed._
 

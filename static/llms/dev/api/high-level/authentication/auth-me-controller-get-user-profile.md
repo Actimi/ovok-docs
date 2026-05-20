@@ -41,11 +41,29 @@ curl -X GET \
 ### `200` → `ResponseMeDto` (`application/json`)
 
 - `project`: `object` **(required)**
+  - `resourceType`: `string` **(required)**
+  - `id`: `string` **(required)**
+  - `name`: `string` **(required)**
+  - `strictMode`: `boolean` **(required)**
 - `membership`: `object` **(required)**
+  - `resourceType`: `string` **(required)**
+  - `id`: `string` **(required)**
+  - `user`: `object` **(required)**
 - `profile`: `object` **(required)**
+  - `resourceType`: `string` **(required)**
+  - `id`: `string` **(required)**
+  - `name`: `object[]` **(required)**
+  - `telecom`: `object[]` **(required)**
 - `config`: `object` **(required)**
+  - `resourceType`: `string` **(required)**
+  - `menu`: `object[]` **(required)**
 - `accessPolicy`: `object` **(required)**
+  - `resourceType`: `string` **(required)**
+  - `resource`: `object[]` **(required)**
+  - `ipAccessRule`: `object[]` **(required)**
 - `security`: `object` **(required)**
+  - `mfaEnrolled`: `boolean` **(required)**
+  - `sessions`: `object[]` **(required)**
 
 **Example**
 

@@ -93,7 +93,14 @@ function slug(s) {
     .replace(/^-|-$/g, '');
 }
 
-function shortenLabel(s, max = 42) {
+/**
+ * Sidebar labels need to fit a ~280px sidebar at most viewports. 42 was
+ * too aggressive — anything past "[Early Access] Wearable…" got cut off,
+ * including the type of the operation it actually describes. 90 lets
+ * most real titles render in full and still keeps the truly long
+ * outliers from blowing up the column.
+ */
+function shortenLabel(s, max = 90) {
   return s.length <= max ? s : s.slice(0, max - 1) + '…';
 }
 
@@ -203,10 +210,12 @@ function emitHighLevelForEnv(envKey, spec) {
     return blocks.join('\n');
   }
   /**
-   * Render a response/request schema as a flat field list. Recurses one
-   * level deep for nested objects; deeper structures fall back to the
-   * named ref so the page doesn't explode. Arrays of objects render
-   * their item shape under "Array of <Name>".
+   * Render a response/request schema as a nested field list. Walks two
+   * levels deep so a property that is itself `array of <Object>` or a
+   * nested `object` enumerates its inner fields right under the parent
+   * (indented). Past two levels we stop and just show the named ref,
+   * which keeps the page bounded and avoids printing every leaf of a
+   * deeply nested DTO.
    */
   function renderSchemaFields(schema, depth = 0) {
     if (!schema) return '';
@@ -215,20 +224,60 @@ function emitHighLevelForEnv(envKey, spec) {
     if (s.type === 'array') {
       const inner = deref(s.items) ?? {};
       const innerName = s.items?.$ref ? s.items.$ref.split('/').pop() : (inner.type ?? 'object');
-      if (depth < 1 && inner.type === 'object' && inner.properties) {
+      if (depth < 2 && inner.type === 'object' && inner.properties) {
         return `Array of \`${innerName}\`:\n\n${renderSchemaFields(inner, depth + 1)}`;
       }
       return `Array of \`${innerName}\``;
     }
     if (s.type === 'object' && s.properties) {
       const required = new Set(s.required ?? []);
-      const lines = Object.entries(s.properties).map(([name, prop]) => {
+      const lines = Object.entries(s.properties).flatMap(([name, prop]) => {
         const p = deref(prop) ?? {};
         const refName = prop.$ref ? prop.$ref.split('/').pop() : null;
-        const type = refName ?? p.type ?? (p.items?.$ref ? `${p.items.$ref.split('/').pop()}[]` : p.type === 'array' ? `${deref(p.items)?.type ?? 'object'}[]` : '—');
+
+        // Compute the type label. The previous expression used `??` over
+        // `p.type` which short-circuited the array-of-X case — when
+        // `p.type === 'array'`, JS kept 'array' instead of falling through
+        // to the items-aware branches, so customers saw `connections: array`
+        // with no element shape.
+        let type;
+        if (refName) {
+          type = refName;
+        } else if (p.type === 'array') {
+          if (p.items?.$ref) {
+            type = `${p.items.$ref.split('/').pop()}[]`;
+          } else {
+            const innerDeref = deref(p.items) ?? {};
+            type = `${innerDeref.type ?? 'object'}[]`;
+          }
+        } else {
+          type = p.type ?? '—';
+        }
+
         const req = required.has(name) ? ' **(required)**' : '';
         const desc = p.description ? ` — ${escapeMdx(p.description).replace(/\n+/g, ' ')}` : '';
-        return `- \`${name}\`: \`${type}\`${req}${desc}`;
+        const primary = `- \`${name}\`: \`${type}\`${req}${desc}`;
+
+        // One level of nested expansion: when the property itself is a
+        // nested object with properties, or an array of objects with
+        // properties, recurse and indent so the inner shape sits under
+        // the parent. Past depth 1 we stop to keep pages bounded.
+        if (depth >= 1) return [primary];
+
+        const indent = (block) => block.split('\n').map((line) => `  ${line}`).join('\n');
+
+        if (p.type === 'object' && p.properties) {
+          const nested = renderSchemaFields(p, depth + 1);
+          if (nested) return [primary, indent(nested)];
+        }
+        if (p.type === 'array') {
+          const inner = deref(p.items) ?? {};
+          if (inner.type === 'object' && inner.properties) {
+            const nested = renderSchemaFields(inner, depth + 1);
+            if (nested) return [primary, indent(nested)];
+          }
+        }
+        return [primary];
       });
       return lines.join('\n');
     }
@@ -240,10 +289,20 @@ function emitHighLevelForEnv(envKey, spec) {
     if (!responses) return '';
 
     // Status code overview table — derefs each response for its
-    // description text (in case a response itself is a $ref).
+    // description text (in case a response itself is a $ref). 4xx/5xx
+    // descriptions come from a global decorator; success codes rarely
+    // get an upstream description, so fill those rows with a sensible
+    // default instead of leaving an empty cell next to the status code.
+    const defaultDescriptionFor = (code) => {
+      const n = Number(code);
+      if (n >= 200 && n < 300) return 'Success.';
+      if (n >= 300 && n < 400) return 'Redirect.';
+      return '';
+    };
     const rows = Object.entries(responses).map(([code, res]) => {
       const r = deref(res);
-      return `| \`${code}\` | ${escapeMdx(r.description ?? '').replace(/\n+/g, ' ')} |`;
+      const text = (r.description ?? '').trim() || defaultDescriptionFor(code);
+      return `| \`${code}\` | ${escapeMdx(text).replace(/\n+/g, ' ')} |`;
     });
     const blocks = ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''];
 

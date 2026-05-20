@@ -41,7 +41,7 @@ Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes 
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -56,6 +56,7 @@ Persisted patient threshold configuration. Stored as a FHIR CarePlan whose detai
 - `resourceType`: `string` **(required)** — Patient thresholds are persisted as a FHIR CarePlan.
 - `id`: `string` **(required)**
 - `subject`: `object` **(required)**
+  - `reference`: `string` **(required)**
 
 _Additional properties allowed._
 

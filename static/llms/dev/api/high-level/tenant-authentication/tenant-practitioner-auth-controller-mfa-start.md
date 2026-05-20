@@ -28,7 +28,7 @@ Login with MFA token. Success response contains a challenge token that can be us
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -40,7 +40,10 @@ Login with MFA token. Success response contains a challenge token that can be us
 
 - `nextStep`: `string` **(required)**
 - `sessionCode`: `string` **(required)**
-- `tenants`: `array` **(required)**
+- `tenants`: `object[]` **(required)**
+  - `project`: `—`
+  - `profile`: `—`
+  - `tenantCode`: `string` **(required)**
 
 **Example**
 

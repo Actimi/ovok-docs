@@ -55,6 +55,13 @@ curl -X DELETE \
 
 - `scheduled`: `string` — Has the user account been scheduled for deletion.
 - `user`: `object` — User resource.
+  - `resourceType`: `string` — Resource type.
+  - `id`: `string` — User ID.
+  - `firstName`: `string` **(required)** — First name.
+  - `lastName`: `string` **(required)** — Last name.
+  - `email`: `string` — Email.
+  - `project`: `object` — Project containing the User.
+  - `meta`: `object`
 
 **Example**
 

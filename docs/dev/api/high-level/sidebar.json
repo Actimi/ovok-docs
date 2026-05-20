@@ -233,7 +233,7 @@
       {
         "type": "doc",
         "id": "api/high-level/document/document-controller-generate-replace-credentials",
-        "label": "Generate credentials for document file re…"
+        "label": "Generate credentials for document file replacement"
       },
       {
         "type": "doc",
@@ -444,7 +444,7 @@
       {
         "type": "doc",
         "id": "api/high-level/wearables-early-access/wearables-controller-revoke-v-1",
-        "label": "[Early Access] Revoke a wearable connecti…"
+        "label": "[Early Access] Revoke a wearable connection"
       },
       {
         "type": "doc",
@@ -464,7 +464,7 @@
       {
         "type": "doc",
         "id": "api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1",
-        "label": "[Early Access] Wearable webhook subscript…"
+        "label": "[Early Access] Wearable webhook subscription verification"
       }
     ]
   }

@@ -59,7 +59,11 @@ curl -X POST \
 - `refreshToken`: `string` — Refresh token.
 - `expiresIn`: `integer` — Token expiration.
 - `project`: `object` **(required)**
+  - `reference`: `string` **(required)** — Reference of the project.
+  - `display`: `string` **(required)** — Display name of the project.
 - `profile`: `object` **(required)**
+  - `reference`: `string` **(required)** — Reference of the profile.
+  - `display`: `string` **(required)** — Display name of the profile.
 
 **Example**
 

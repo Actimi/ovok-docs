@@ -44,7 +44,7 @@ The translation may fail or return hallucinated results due to the nature of LLM
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -56,7 +56,7 @@ The translation may fail or return hallucinated results due to the nature of LLM
 
 - `sourceLanguage`: `string` **(required)**
 - `targetLanguage`: `string` **(required)**
-- `text`: `array` **(required)**
+- `text`: `string[]` **(required)**
 
 **Example**
 

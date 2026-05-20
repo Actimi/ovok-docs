@@ -30,7 +30,7 @@ Fetch a single published item by id or slug. Authenticates with a project-scoped
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 
 
 ### `200` → `PublicDeliveryItemResponseDto` (`application/json`)

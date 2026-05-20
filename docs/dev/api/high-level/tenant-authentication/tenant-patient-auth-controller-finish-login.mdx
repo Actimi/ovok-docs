@@ -28,7 +28,7 @@ Login with challenge token. Success response contains access and refresh tokens.
 
 | Code | Description |
 | --- | --- |
-| `200` |  |
+| `200` | Success. |
 | `400` | The request could not be operated by the server. |
 | `401` | The resource owner or authorization server denied the request. |
 | `404` | The requested resource could not be found. |
@@ -42,7 +42,11 @@ Login with challenge token. Success response contains access and refresh tokens.
 - `refreshToken`: `string` — Refresh token.
 - `expiresIn`: `integer` — Token expiration.
 - `project`: `object` **(required)**
+  - `reference`: `string` **(required)** — Reference of the project.
+  - `display`: `string` **(required)** — Display name of the project.
 - `profile`: `object` **(required)**
+  - `reference`: `string` **(required)** — Reference of the profile.
+  - `display`: `string` **(required)** — Display name of the profile.
 
 **Example**
 
