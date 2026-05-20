@@ -47,3 +47,38 @@ Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes 
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `PatientThresholdResponseDto` (`application/json`)
+
+Persisted patient threshold configuration. Stored as a FHIR CarePlan whose detail extensions encode per-observation min/max bounds. When `?updateOnSignals=true` was sent, the same configuration has been pushed to Signals (failures are logged, not surfaced — the saved CarePlan is still returned).
+
+- `resourceType`: `string` **(required)** — Patient thresholds are persisted as a FHIR CarePlan.
+- `id`: `string` **(required)**
+- `subject`: `object` **(required)**
+
+_Additional properties allowed._
+
+**Example**
+
+```json
+{
+  "resourceType": "CarePlan",
+  "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
+  "status": "active",
+  "intent": "plan",
+  "subject": {
+    "reference": "Patient/87ea5dfc-8b8e-384d-8489-79496e706390"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://ovok.com/fhir/CodeSystem/care-plan-category",
+          "code": "thresholds"
+        }
+      ]
+    }
+  ]
+}
+```

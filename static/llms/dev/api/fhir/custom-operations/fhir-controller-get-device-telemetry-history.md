@@ -40,3 +40,47 @@ Query observation history for a device from Signals. Defaults to the last 72 hou
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `DeviceTelemetryHistoryResponseDto` (`application/json`)
+
+Observation history for a Device, fetched via the Signals service. Defaults to the last 72 hours when `from`/`to` are omitted. Pagination and shape beyond the three fixed ids depend on the upstream Signals response.
+
+- `deviceId`: `string` **(required)** — FHIR Device id whose telemetry history was queried.
+- `patientId`: `string` **(required)** — FHIR Patient id linked to the Device.
+- `signalsPatientId`: `string` **(required)** — Internal Signals patient id used to fetch the history.
+
+_Additional properties allowed._
+
+**Example**
+
+```json
+{
+  "deviceId": "87ea5dfc-8b8e-384d-8489-79496e706390",
+  "patientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
+  "signalsPatientId": "signals-abc-123",
+  "page": 1,
+  "pageSize": 100,
+  "total": 4,
+  "entries": [
+    {
+      "resourceType": "Observation",
+      "status": "final",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8867-4",
+            "display": "Heart rate"
+          }
+        ]
+      },
+      "effectiveInstant": {},
+      "valueQuantity": {
+        "value": 72,
+        "unit": "beats/min"
+      }
+    }
+  ]
+}
+```

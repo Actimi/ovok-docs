@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "uSi-WdG0-7QT&gt;IRW",
+            "password": "&amp;}Y^R-1HJX+Xh21{",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "uSi-WdG0-7QT&gt;IRW",
+            "password": "&amp;}Y^R-1HJX+Xh21{",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -401,7 +401,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.sandbox.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +925,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.sandbox.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1050,7 +1050,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.sandbox.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -2228,6 +2228,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateTranslationResponseDto"
         "400":
           description: The request could not be operated by the server.
           content:
@@ -2625,7 +2629,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -2678,6 +2682,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedirectResponseDto"
         "400": *a38
         "401": *a39
         "404": *a40
@@ -2749,6 +2757,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedirectResponseDto"
         "400": *a38
         "401": *a39
         "404": *a40
@@ -2807,6 +2819,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentDeletedResponseDto"
         "400": *a38
         "401": *a39
         "404": *a40
@@ -3048,7 +3064,11 @@ paths:
             type: string
       responses:
         "200":
-          description: Bot response.
+          description: Bot response (shape depends on the bot).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BotExecResponseDto"
         "400":
           description: The request could not be operated by the server.
           content:
@@ -3943,6 +3963,93 @@ paths:
       summary: Get device telemetry
       tags:
         - FHIR Operations
+  /fhir/Observation/{id}:
+    get:
+      description: Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
+        get a JSON time-series instead of the raw FHIR resource. Useful for
+        plotting Observations whose values are stored as `valueSampledData` (ECG
+        traces, accelerometer streams, contiguous vital-sign batches). Requests
+        without the flag pass through to the standard FHIR GET.
+      operationId: FhirController_getObservationOrTimeseries[0]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
+      summary: Expand Observation SampledData to a {t,v} time-series
+      tags:
+        - FHIR Operations
+  /fhir/R4/Observation/{id}:
+    get:
+      description: Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
+        get a JSON time-series instead of the raw FHIR resource. Useful for
+        plotting Observations whose values are stored as `valueSampledData` (ECG
+        traces, accelerometer streams, contiguous vital-sign batches). Requests
+        without the flag pass through to the standard FHIR GET.
+      operationId: FhirController_getObservationOrTimeseries[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
+      summary: Expand Observation SampledData to a {t,v} time-series
+      tags:
+        - FHIR Operations
+  /fhir/R5/Observation/{id}:
+    get:
+      description: Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
+        get a JSON time-series instead of the raw FHIR resource. Useful for
+        plotting Observations whose values are stored as `valueSampledData` (ECG
+        traces, accelerometer streams, contiguous vital-sign batches). Requests
+        without the flag pass through to the standard FHIR GET.
+      operationId: FhirController_getObservationOrTimeseries[2]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
+      summary: Expand Observation SampledData to a {t,v} time-series
+      tags:
+        - FHIR Operations
   /fhir/Device/{id}/telemetry/history:
     get:
       description: Query observation history for a device from Signals. Defaults to
@@ -3989,6 +4096,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4043,6 +4154,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4097,6 +4212,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4120,6 +4239,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4143,6 +4266,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4166,6 +4293,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4200,6 +4331,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientThresholdResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4234,6 +4369,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientThresholdResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4268,6 +4407,10 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientThresholdResponseDto"
         "400": *a43
         "401": *a44
         "404": *a45
@@ -4489,7 +4632,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.sandbox.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -4780,7 +4923,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.sandbox.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5071,7 +5214,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.sandbox.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5227,7 +5370,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.sandbox.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
         ```
 
 
@@ -5384,7 +5527,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.sandbox.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
         ```
 
 
@@ -5541,7 +5684,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.sandbox.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
         ```
 
 
@@ -8455,6 +8598,9 @@ paths:
         - Localization Keys
   /v1/public/cms/{typeSlug}/items:
     get:
+      description: "List published items from a CMS collection. Authenticates with a
+        project-scoped API key (Authorization: Bearer …). Drafts and unpublished
+        items are filtered out server-side."
       operationId: PublicDeliveryController_listItems_v1
       parameters:
         - name: typeSlug
@@ -8485,10 +8631,18 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicDeliveryListResponseDto"
+      summary: List published items
       tags:
         - CMS Public Delivery
   /v1/public/cms/{typeSlug}/items/{idOrSlug}:
     get:
+      description: Fetch a single published item by id or slug. Authenticates with a
+        project-scoped API key. Returns 404 for drafts, unpublished items, or
+        items in another project.
       operationId: PublicDeliveryController_getItem_v1
       parameters:
         - name: typeSlug
@@ -8514,6 +8668,11 @@ paths:
       responses:
         "200":
           description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicDeliveryItemResponseDto"
+      summary: Get a published item
       tags:
         - CMS Public Delivery
 info:
@@ -8602,6 +8761,18 @@ components:
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
         admin: true
+    FhirResourceResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+      required:
+        - resourceType
+        - id
+      additionalProperties: true
+      description: A FHIR resource as stored in the FHIR API.
     RequestLoginV2Dto:
       type: object
       properties:
@@ -8629,7 +8800,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -8674,8 +8845,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -8722,7 +8893,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -8743,8 +8914,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -8764,8 +8935,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -8834,7 +9005,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -8900,7 +9071,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
     RequestDeleteDto:
       type: object
       properties:
@@ -8991,7 +9162,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-05-19T15:21:18.227Z
+        scheduled: 2026-05-20T08:09:23.839Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -9003,7 +9174,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-05-19T15:21:18.227Z
+            lastUpdated: 2026-05-20T08:09:23.839Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -9033,7 +9204,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -9219,8 +9390,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -9445,6 +9616,25 @@ components:
         security:
           mfaEnrolled: false
           sessions: []
+    MfaStatusResponseDto:
+      type: object
+      properties:
+        enrolled:
+          type: boolean
+        otpauthUrl:
+          type: string
+          description: otpauth:// URI for an authenticator app. Only present when
+            `enrolled=false`.
+        qrCodeDataUrl:
+          type: string
+          description: Pre-rendered data:image/png base64 QR code for the otpauth URI.
+            Only present when `enrolled=false`.
+      required:
+        - enrolled
+      additionalProperties: true
+      description: MFA enrolment status for the signed-in user. When not enrolled,
+        includes a fresh otpauth URI + QR so the dashboard can render an
+        authenticator-app pairing screen.
     MfaTokenDto:
       type: object
       properties:
@@ -9454,6 +9644,16 @@ components:
           maxLength: 10
       required:
         - token
+    OkResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - true
+      required:
+        - ok
+      description: 'Side-effect-only acknowledgement. Body is the literal `{ "ok": true }`.'
     RegisterDto:
       type: object
       properties:
@@ -9489,7 +9689,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -9587,8 +9787,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: y7F4X2PgX8
-        password: uSi-WdG0-7QT>IRW
+        secret: TNP4DtsMzY
+        password: "&}Y^R-1HJX+Xh21{"
     SessionsResponseDto:
       type: object
       properties:
@@ -9620,7 +9820,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-05-19T15:21:18.227Z
+              lastUpdated: 2026-05-20T08:09:23.839Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -9630,7 +9830,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-05-19T15:21:18.227Z
+            lastUpdated: 2026-05-20T08:09:23.839Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -9674,7 +9874,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -9694,7 +9894,7 @@ components:
       required:
         - tan
       example:
-        tan: jh577gapx86i
+        tan: 1GhmsIDyX8nQ
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -9714,8 +9914,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
-        codeChallenge: BoEm7YK8YyZEv8uzCF1FNfZ9nl24Xgt4
+        password: "&}Y^R-1HJX+Xh21{"
+        codeChallenge: 1TmNIoZUQHb7OUZMuX3vqGabXCjOLKCK
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -9754,7 +9954,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: maBihT2ga8v7iZcppsSAiE9xF4SoIA4Y
+        sessionCode: jAjCybp0uKYOP5uHxswqC7cSnmr9noZG
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -9770,8 +9970,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: bEPloTMzw9yXa7TqgfV9FcpXvTzHedaU
-        codeVerifier: D7qRrbxdMme5S9hQy6PWgFh7Ug3M7unWa4fFnSsFYd5HcSNfgRLEm5H2aQKr0F6i
+        sessionCode: Tzj9rMDJH4HwTXw8fc8fW97YlBHQ6E8R
+        codeVerifier: cP5SiIzvuIBVpJDloIKpK2OUdzw4KJHuQduiMGsx0oNGrhIhHMVqnx6SkbcJJkbr
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -9811,7 +10011,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: Mj808PS5K83DwR5GONGiEP9EGinFiFoB
+        sessionCode: xzFK8duv5dcnViQ9TBagco6wf2fErTg9
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -9835,8 +10035,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
-        codeChallenge: f73bPe8GH97YPMdxVVCLmsQTN8542n6U
+        password: "&}Y^R-1HJX+Xh21{"
+        codeChallenge: xJhQ8pPXfx1QehTjArUKhFegDeQNTjHr
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -9864,7 +10064,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: FZ60vsCpmLrp8kVNz1vGbbnLC63qi9aI
+        sessionCode: j0oOiPiWM7mtg5XsqnQnHpeK8eSolU4E
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -9876,8 +10076,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: I3wlLrJBVB1lD5DibsqBlU3zjSevAjn4
-        codeVerifier: 4D27lERYriQUwrIgaKi8V0EhnPW3HgH3cHo80XgIVnVcozNyYBpDWiPgT7UoXhLJ
+        sessionCode: hNORhz8IotLDpngABT78TioELndpIavG
+        codeVerifier: eUksHCCjvEPdKbbOhXBP9T0VTJpGT5ahQGagxD47QIMadbmJa2RSQKqA4gFUvOSt
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -9904,7 +10104,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: i4QoyhjRR8aBpsjn6M9ZKFrYOLLJeBTB
+        sessionCode: hMPAqGlLcLFDfgg9pauCBw29RJVAJOOJ
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -9927,7 +10127,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -10667,7 +10867,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -10683,7 +10883,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -10751,7 +10951,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-19T15:21:18.227Z
+            lastUpdated: 2026-05-20T08:09:23.839Z
         members:
           - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
             display: Dr. Max John Mustermann
@@ -10910,6 +11110,12 @@ components:
         members:
           - reference: Patient/1
             display: John Doe
+    NoContentResponseDto:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: Empty response body. The endpoint replies 2xx with no payload — do
+        not attempt to JSON-decode.
     SubProjectRequestBodyDto:
       type: object
       properties:
@@ -10921,6 +11127,17 @@ components:
         - name
       example:
         name: Actimi
+    SubProjectSuccessResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+      required:
+        - success
+      description: "Acknowledgement that the sub-tenant mutation completed. `success:
+        false` is currently unused — failures raise 4xx/5xx."
     SubProjectsResponseDto:
       type: object
       properties:
@@ -10971,6 +11188,28 @@ components:
         id: aa2c96da-cf00-c451-ef46-5f6115a45a20
         code: FHXQ-123
         project: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
+    EnsureTenantResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - true
+        tenantId:
+          type: string
+          description: Payload tenant id assigned to the project.
+        slug:
+          type: string
+          description: Slug used in the Payload admin URL for this tenant.
+        active:
+          type: boolean
+      required:
+        - ok
+        - tenantId
+        - slug
+        - active
+      description: Payload tenant assignment for the caller’s current project.
+        Returned both for fresh provisioning and the no-op idempotent case.
     AuthRequestDto:
       type: object
       properties:
@@ -11096,6 +11335,31 @@ components:
         sender: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
         mode: user
         replyTo: Communication/ade0d50c-9254-cf0c-9459-bbfe2398553c
+    CreatedChatMessageDto:
+      type: object
+      properties:
+        reference:
+          type: string
+        sender:
+          type: string
+        content:
+          type: string
+        sentAt:
+          type: string
+        mode:
+          type: string
+      required:
+        - reference
+        - sender
+        - content
+        - sentAt
+        - mode
+      example: &a61
+        reference: Communication/ade0d50c-9254-cf0c-9459-bbfe2398553c
+        sender: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
+        content: Hello, how are you?
+        sentAt: 2021-01-01T00:00:00.000Z
+        mode: user
     GetChatSessionsResponseDto:
       type: object
       properties:
@@ -11208,12 +11472,7 @@ components:
               - content
               - sentAt
               - mode
-            example:
-              reference: Communication/ade0d50c-9254-cf0c-9459-bbfe2398553c
-              sender: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-              content: Hello, how are you?
-              sentAt: 2021-01-01T00:00:00.000Z
-              mode: user
+            example: *a61
       required:
         - messages
       example:
@@ -11240,6 +11499,54 @@ components:
       example:
         text: Find me a patient with the name "John Doe"
         fhirVersion: R4
+    AIFhirSearchResponseDto:
+      type: object
+      properties:
+        markdown:
+          type: string
+          description: Human-readable answer rendered from the matched FHIR resources.
+        performance:
+          type: object
+          properties:
+            plan:
+              type: number
+              description: ms spent generating the search plan.
+            results:
+              type: number
+              description: ms spent fetching FHIR results.
+            markdown:
+              type: number
+              description: ms spent on the final markdown synthesis.
+          required:
+            - plan
+            - results
+            - markdown
+        plan:
+          type: object
+          additionalProperties: {}
+          description: Search plan that was executed against the FHIR server.
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Raw FHIR resources returned by the planner.
+      required:
+        - markdown
+        - performance
+        - plan
+        - results
+      description: AI-assisted FHIR query result. The `markdown` field is the
+        user-facing answer; `plan` + `results` are surfaced for debugging and
+        follow-up queries.
+    StreamedTextResponseDto:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: Streamed `text/plain; charset=utf-8` chunks. Body is not a JSON
+        document — consume the response as a UTF-8 byte stream and concatenate
+        chunks. SDK generators will see this DTO but the actual wire format is
+        text.
     AIFhirStreamRequestBodyDto:
       type: object
       properties:
@@ -11266,6 +11573,17 @@ components:
         - messages
       example:
         text: Find me a patient with the name "John Doe"
+    AIFhirBundleResponseDto:
+      type: object
+      properties:
+        result:
+          type: object
+          additionalProperties: {}
+          description: A FHIR Bundle (transaction/searchset) produced by the FHIR agent
+            for the supplied natural-language query.
+      required:
+        - result
+      description: Bundle response produced by the FHIR agent.
     CreateTranslationRequestDto:
       type: object
       properties:
@@ -11296,6 +11614,36 @@ components:
           - Doing well, thank you {{ anotherName }}. I am glad you picked up the
             phone.
           - <p>No worries sir, I will take <b>care</b> of it.</p>
+    CreateTranslationResponseDto:
+      type: object
+      properties:
+        sourceLanguage:
+          type: string
+          minLength: 2
+          maxLength: 100
+        targetLanguage:
+          type: string
+          minLength: 2
+          maxLength: 100
+        text:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 10000
+          minItems: 1
+      required:
+        - sourceLanguage
+        - targetLanguage
+        - text
+      example:
+        sourceLanguage: en
+        targetLanguage: de
+        text:
+          - Hallo {{ name }}, wie geht es Ihnen?
+          - Mir geht es gut, danke {{ anotherName }}. Ich freue mich, dass Sie
+            ans Telefon gegangen sind.
+          - <p>Keine Sorge, Sir, ich werde mich darum <b>kümmern</b>.</p>
     CarehubProjectUsersResponseDto:
       type: object
       properties:
@@ -11627,6 +11975,22 @@ components:
             state: NY
             postalCode: "12345"
             country: USA
+    CarehubProjectCreateChildResponseDto:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: New child project id.
+        success:
+          type: boolean
+          enum:
+            - true
+      required:
+        - projectId
+        - success
+      description: "Acknowledgement for child-project creation. The admin user is
+        auto-joined to the new project as a practitioner. `success: false` is
+        currently unreachable."
     CarehubProjectsResponseDto:
       type: object
       properties:
@@ -12723,6 +13087,16 @@ components:
             id: f6f4da8d-93e8-8a08-220e-03b7810451d3
             name: Example Project
             deviceCount: 0
+    CarehubProjectDeleteResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+      required:
+        - success
+      description: Acknowledgement that the child project was deleted.
     CarehubProjectDeviceCountsResponseDto:
       type: object
       properties:
@@ -13166,7 +13540,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-05-19T15:21:18.227Z
+        date: 2026-05-20T08:09:23.839Z
         settings:
           heartRate:
             enabled: true
@@ -13508,6 +13882,433 @@ components:
               values:
                 min: 60
                 max: 100
+    PatientThresholdDto:
+      type: object
+      properties:
+        id:
+          type: string
+        patientId:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - revoked
+        date:
+          type: string
+          format: date-time
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        settings:
+          type: object
+          properties:
+            heartRate:
+              type: object
+              properties:
+                period:
+                  default: &a62
+                    start: 09:00:00
+                    durationSeconds: 86400
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+            meanHeartRate:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - relative
+            respiratoryRate:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+            meanRespiratoryRate:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - relative
+            durationOfOutOfBed:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 1000000
+                  required:
+                    - enabled
+                    - max
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 100
+                  required:
+                    - enabled
+                    - max
+              required:
+                - mode
+                - enabled
+            sleepDuration:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+            numberOfTimesGettingOutOfBed:
+              type: object
+              properties:
+                period:
+                  default: *a62
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                    - durationSeconds
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+      required:
+        - patientId
+        - status
+        - settings
+      example:
+        id: "123"
+        patientId: patient-123
+        date: 2021-01-01T00:00:00.000Z
+        settings:
+          heartRate:
+            mode: patient
+            enabled: true
+            absolute:
+              enabled: true
+              min: 60
+              max: 100
+          meanHeartRate:
+            mode: organization
+            enabled: true
+            relative:
+              enabled: true
+              min: 0.8
+              max: 1.2
+            average: 65.5
     PatientThresholdBodyDto:
       type: object
       properties:
@@ -13539,9 +14340,7 @@ components:
               type: object
               properties:
                 period:
-                  default: &a61
-                    start: 09:00:00
-                    durationSeconds: 86400
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13600,7 +14399,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13660,7 +14459,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13720,7 +14519,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13779,7 +14578,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13845,7 +14644,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -13904,7 +14703,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a61
+                  default: *a62
                   type: object
                   properties:
                     start:
@@ -14127,7 +14926,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #y7F4X2PgX8"
+                  name: "Patient Monitor #TNP4DtsMzY"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -14240,7 +15039,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -14251,7 +15050,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -14410,7 +15209,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -14420,7 +15219,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -14433,7 +15232,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -14444,7 +15243,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-19T15:21:18.227Z
+                lastUpdated: 2026-05-20T08:09:23.839Z
     BinaryDto:
       type: object
       properties:
@@ -14767,7 +15566,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: &a79
+          enum: &a82
             - current
             - superseded
             - entered-in-error
@@ -14782,7 +15581,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: &a80
+          example: &a83
             - imagingreport
           description: A category assigned to the document reference.
           type: array
@@ -14856,6 +15655,46 @@ components:
     StreamableFile:
       type: object
       properties: {}
+    PublicResourceReadResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+      required:
+        - resourceType
+        - id
+      additionalProperties: true
+      description: The FHIR resource the public token resolves to. Token-scoped — the
+        response includes only the resource itself, no cross-resource
+        references.
+    PublicTokenMutateResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+          nullable: true
+          description: The new public-access token, or null after deleteToken (token is
+            removed from the resource).
+        resource:
+          type: object
+          properties:
+            resourceType:
+              type: string
+            id:
+              type: string
+          required:
+            - resourceType
+            - id
+          additionalProperties: true
+          description: A FHIR resource as stored in the FHIR API.
+      required:
+        - token
+        - resource
+      description: Result of a token mutation. `changeToken` rotates the token;
+        `deleteToken` removes it (token=null). The resource is returned with its
+        updated meta.extension list either way.
     PostFileUploadDto:
       type: object
       properties:
@@ -14932,11 +15771,11 @@ components:
           description: The public token of the document.
       required:
         - id
-      example: &a62
+      example: &a63
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -15000,7 +15839,7 @@ components:
                 description: The public token of the document.
             required:
               - id
-            example: *a62
+            example: *a63
       required:
         - total
         - resources
@@ -15010,7 +15849,25 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
+    RedirectResponseDto:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: "No JSON body — endpoint replies with HTTP 307 redirect to a
+        short-lived signed object-storage URL. Body is empty; follow the
+        `Location` header. The redirect target expires (typical TTL: a few
+        minutes)."
+    DocumentDeletedResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          enum:
+            - Document deleted successfully
+      required:
+        - message
+      description: Document deletion acknowledgement.
     UpdateDocumentMetadataDto:
       type: object
       properties:
@@ -15046,6 +15903,17 @@ components:
       example:
         fileName: new-cat.png
         contentType: image/png
+    BotExecResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Present when the bot returns a FHIR resource (often Parameters or
+            OperationOutcome).
+      additionalProperties: true
+      description: Whatever the bot script returns. Shape is bot-specific — typically
+        a FHIR Parameters/OperationOutcome resource or an arbitrary JSON object.
+        SDK consumers should treat this as `unknown` and narrow per bot.
     CarehubChangeHistoryResponseDto:
       type: object
       properties:
@@ -15230,7 +16098,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-05-19T15:21:18.227Z
+              admissionDate: 2026-05-20T08:09:23.839Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -15252,7 +16120,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-05-19T15:21:18.227Z
+            admissionDate: 2026-05-20T08:09:23.839Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -15439,25 +16307,61 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1779204078227
+                ts: 1779264563839
               effectiveHeartRate:
                 value: 74
-                ts: 1779204078227
+                ts: 1779264563839
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1779204078227
+                ts: 1779264563839
               effectiveSleepStatus:
                 value: asleep
-                ts: 1779204078227
+                ts: 1779264563839
               lastMeasurementTime:
-                value: 2026-05-19T15:21:18.227Z
-                ts: 1779204078227
+                value: 2026-05-20T08:09:23.839Z
+                ts: 1779264563839
               lastActivityTime:
-                value: 2026-05-19T15:21:18.227Z
-                ts: 1779204078227
+                value: 2026-05-20T08:09:23.839Z
+                ts: 1779264563839
               name:
                 value: Sleepiz/3001472
                 ts: null
+    FhirBundleResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Bundle
+        type:
+          type: string
+        total:
+          type: integer
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+              resource:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                  id:
+                    type: string
+                required:
+                  - resourceType
+                  - id
+                additionalProperties: true
+                description: A FHIR resource as stored in the FHIR API.
+            additionalProperties: true
+      required:
+        - resourceType
+        - type
+      additionalProperties: true
+      description: A FHIR Bundle (typically searchset or transaction-response).
     CarehubPatientResponseDto:
       type: object
       properties:
@@ -15743,6 +16647,33 @@ components:
         gender: male
         birthDate: 1990-01-01
         residentState: discharged
+    DeviceAssignmentProjectsResponseDto:
+      type: object
+      properties:
+        total:
+          type: integer
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              project:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                required:
+                  - name
+            required:
+              - project
+      required:
+        - total
+        - resources
+      description: Projects (current + parent + children) a device can be reassigned
+        to. The dashboard renders these as the options in the "move device"
+        picker.
     CarehubAssignDeviceDto:
       type: object
       properties:
@@ -15763,6 +16694,27 @@ components:
         deviceId: "123"
         projectId: "456"
         locationId: "789"
+    DeviceAssignProjectResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          enum:
+            - true
+        deviceId:
+          type: string
+        projectId:
+          type: string
+        locationId:
+          type: string
+          nullable: true
+      required:
+        - success
+        - projectId
+        - locationId
+      description: "Acknowledgement that the device was moved to the target project
+        (and optionally pinned to a Location). `success: false` is currently
+        unreachable — failures raise 4xx/5xx."
     CarehubDeviceListResponseDto:
       type: object
       properties:
@@ -15836,8 +16788,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-05-19T15:21:18.227Z
-              createdAt: 2026-05-19T15:21:18.227Z
+              lastActivityTime: 2026-05-20T08:09:23.839Z
+              createdAt: 2026-05-20T08:09:23.839Z
       required:
         - total
         - page
@@ -16126,22 +17078,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1779204078227
+                  ts: 1779264563839
                 effectiveHeartRate:
                   value: 74
-                  ts: 1779204078227
+                  ts: 1779264563839
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1779204078227
+                  ts: 1779264563839
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1779204078227
+                  ts: 1779264563839
                 lastMeasurementTime:
-                  value: 2026-05-19T15:21:18.227Z
-                  ts: 1779204078227
+                  value: 2026-05-20T08:09:23.839Z
+                  ts: 1779264563839
                 lastActivityTime:
-                  value: 2026-05-19T15:21:18.227Z
-                  ts: 1779204078227
+                  value: 2026-05-20T08:09:23.839Z
+                  ts: 1779264563839
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -16166,7 +17118,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-05-19T15:21:18.227Z
+                admissionDate: 2026-05-20T08:09:23.839Z
                 dischargeDate: null
       required:
         - total
@@ -16383,22 +17335,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1779204078227
+              ts: 1779264563839
             effectiveHeartRate:
               value: 74
-              ts: 1779204078227
+              ts: 1779264563839
             effectiveRespiratoryRate:
               value: 16
-              ts: 1779204078227
+              ts: 1779264563839
             effectiveSleepStatus:
               value: asleep
-              ts: 1779204078227
+              ts: 1779264563839
             lastMeasurementTime:
-              value: 2026-05-19T15:21:18.227Z
-              ts: 1779204078227
+              value: 2026-05-20T08:09:23.839Z
+              ts: 1779264563839
             lastActivityTime:
-              value: 2026-05-19T15:21:18.227Z
-              ts: 1779204078227
+              value: 2026-05-20T08:09:23.839Z
+              ts: 1779264563839
             name:
               value: Sleepiz/3001472
               ts: null
@@ -16445,9 +17397,9 @@ components:
       required:
         - name
       example:
-        name: "Patient Monitor Device #y7F4X2PgX8"
+        name: "Patient Monitor Device #TNP4DtsMzY"
         status: active
-        thingsboardId: TB_DEVICE_y7F4X2PgX8
+        thingsboardId: TB_DEVICE_TNP4DtsMzY
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
         patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -17859,13 +18811,828 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-05-19T15:21:18.227Z
+          created: 2026-05-20T08:09:23.839Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-05-20T15:21:18Z
+        expiresAt: 2026-05-21T08:09:23Z
+    MappedContentSearchResponseDto:
+      type: object
+      properties:
+        total:
+          type: integer
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                      display:
+                        type: string
+                    required:
+                      - reference
+                  key:
+                    type: string
+                    description: A random UUID that is used to identify the content, not ID!
+                  language:
+                    type: string
+                    enum:
+                      - Cy-az-AZ
+                      - Cy-sr-SP
+                      - Cy-uz-UZ
+                      - Lt-az-AZ
+                      - Lt-sr-SP
+                      - Lt-uz-UZ
+                      - aa
+                      - ab
+                      - ae
+                      - af
+                      - af-ZA
+                      - ak
+                      - am
+                      - an
+                      - ar
+                      - ar-AE
+                      - ar-BH
+                      - ar-DZ
+                      - ar-EG
+                      - ar-IQ
+                      - ar-JO
+                      - ar-KW
+                      - ar-LB
+                      - ar-LY
+                      - ar-MA
+                      - ar-OM
+                      - ar-QA
+                      - ar-SA
+                      - ar-SY
+                      - ar-TN
+                      - ar-YE
+                      - as
+                      - av
+                      - ay
+                      - az
+                      - ba
+                      - be
+                      - be-BY
+                      - bg
+                      - bg-BG
+                      - bh
+                      - bi
+                      - bm
+                      - bn
+                      - bo
+                      - br
+                      - bs
+                      - ca
+                      - ca-ES
+                      - ce
+                      - ch
+                      - co
+                      - cr
+                      - cs
+                      - cs-CZ
+                      - cu
+                      - cv
+                      - cy
+                      - da
+                      - da-DK
+                      - de
+                      - de-AT
+                      - de-CH
+                      - de-DE
+                      - de-LI
+                      - de-LU
+                      - div-MV
+                      - dv
+                      - dz
+                      - ee
+                      - el
+                      - el-GR
+                      - en
+                      - en-AU
+                      - en-BZ
+                      - en-CA
+                      - en-CB
+                      - en-GB
+                      - en-IE
+                      - en-JM
+                      - en-NZ
+                      - en-PH
+                      - en-TT
+                      - en-US
+                      - en-ZA
+                      - en-ZW
+                      - eo
+                      - es
+                      - es-AR
+                      - es-BO
+                      - es-CL
+                      - es-CO
+                      - es-CR
+                      - es-DO
+                      - es-EC
+                      - es-ES
+                      - es-GT
+                      - es-HN
+                      - es-MX
+                      - es-NI
+                      - es-PA
+                      - es-PE
+                      - es-PR
+                      - es-PY
+                      - es-SV
+                      - es-UY
+                      - es-VE
+                      - et
+                      - et-EE
+                      - eu
+                      - eu-ES
+                      - fa
+                      - fa-IR
+                      - ff
+                      - fi
+                      - fi-FI
+                      - fj
+                      - fo
+                      - fo-FO
+                      - fr
+                      - fr-BE
+                      - fr-CA
+                      - fr-CH
+                      - fr-FR
+                      - fr-LU
+                      - fr-MC
+                      - fy
+                      - ga
+                      - gd
+                      - gl
+                      - gl-ES
+                      - gn
+                      - gu
+                      - gu-IN
+                      - gv
+                      - ha
+                      - he
+                      - he-IL
+                      - hi
+                      - hi-IN
+                      - ho
+                      - hr
+                      - hr-HR
+                      - ht
+                      - hu
+                      - hu-HU
+                      - hy
+                      - hy-AM
+                      - hz
+                      - ia
+                      - id
+                      - id-ID
+                      - ie
+                      - ig
+                      - ii
+                      - ik
+                      - io
+                      - is
+                      - is-IS
+                      - it
+                      - it-CH
+                      - it-IT
+                      - iu
+                      - ja
+                      - ja-JP
+                      - jv
+                      - ka
+                      - ka-GE
+                      - kg
+                      - ki
+                      - kj
+                      - kk
+                      - kk-KZ
+                      - kl
+                      - km
+                      - kn
+                      - kn-IN
+                      - ko
+                      - ko-KR
+                      - kr
+                      - ks
+                      - ku
+                      - kv
+                      - kw
+                      - ky
+                      - ky-KZ
+                      - la
+                      - lb
+                      - lg
+                      - li
+                      - ln
+                      - lo
+                      - lt
+                      - lt-LT
+                      - lu
+                      - lv
+                      - lv-LV
+                      - mg
+                      - mh
+                      - mi
+                      - mk
+                      - mk-MK
+                      - ml
+                      - mn
+                      - mn-MN
+                      - mr
+                      - mr-IN
+                      - ms
+                      - ms-BN
+                      - ms-MY
+                      - mt
+                      - my
+                      - na
+                      - nb
+                      - nb-NO
+                      - nd
+                      - ne
+                      - ng
+                      - nl
+                      - nl-BE
+                      - nl-NL
+                      - nn
+                      - nn-NO
+                      - no
+                      - nr
+                      - nv
+                      - ny
+                      - oc
+                      - oj
+                      - om
+                      - or
+                      - os
+                      - pa
+                      - pa-IN
+                      - pi
+                      - pl
+                      - pl-PL
+                      - ps
+                      - pt
+                      - pt-BR
+                      - pt-PT
+                      - qu
+                      - rm
+                      - rn
+                      - ro
+                      - ro-RO
+                      - ru
+                      - ru-RU
+                      - rw
+                      - sa
+                      - sa-IN
+                      - sc
+                      - sd
+                      - se
+                      - sg
+                      - si
+                      - sk
+                      - sk-SK
+                      - sl
+                      - sl-SI
+                      - sm
+                      - sn
+                      - so
+                      - sq
+                      - sq-AL
+                      - sr
+                      - ss
+                      - st
+                      - su
+                      - sv
+                      - sv-FI
+                      - sv-SE
+                      - sw
+                      - sw-KE
+                      - ta
+                      - ta-IN
+                      - te
+                      - te-IN
+                      - tg
+                      - th
+                      - th-TH
+                      - ti
+                      - tk
+                      - tl
+                      - tn
+                      - to
+                      - tr
+                      - tr-TR
+                      - ts
+                      - tt
+                      - tt-RU
+                      - tw
+                      - ty
+                      - ug
+                      - uk
+                      - uk-UA
+                      - ur
+                      - ur-PK
+                      - uz
+                      - ve
+                      - vi
+                      - vi-VN
+                      - vo
+                      - wa
+                      - wo
+                      - xh
+                      - yi
+                      - yo
+                      - za
+                      - zh
+                      - zh-CHS
+                      - zh-CHT
+                      - zh-CN
+                      - zh-HK
+                      - zh-MO
+                      - zh-SG
+                      - zh-TW
+                      - zu
+                  date:
+                    type: string
+                  projectId:
+                    type: string
+                    format: uuid
+                  type:
+                    type: string
+                    enum:
+                      - blog
+                      - video
+                      - audio
+                      - template
+                      - export-template
+                  code:
+                    type: string
+                  category:
+                    type: array
+                    items:
+                      type: string
+                  section:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        text:
+                          type: string
+                        extension:
+                          type: object
+                          additionalProperties:
+                            type: string
+                        code:
+                          type: array
+                          items:
+                            type: string
+                            minLength: 1
+                required:
+                  - title
+                  - author
+                  - key
+                  - language
+                  - date
+                  - type
+                example: &a64
+                  id: "123"
+                  title: My Blog
+                  author:
+                    reference: "123"
+                    display: John Doe
+                  date: 2021-01-01
+                  project: "123"
+                  type: blog
+                  category:
+                    - "123"
+                    - "456"
+                  section:
+                    - title: My Blog
+                      text: My Blog Text
+                      extension:
+                        covert-media: http://example.com/extensionValue
+                description: The default-language source content, if present.
+              target:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                      display:
+                        type: string
+                    required:
+                      - reference
+                  key:
+                    type: string
+                    description: A random UUID that is used to identify the content, not ID!
+                  language:
+                    type: string
+                    enum:
+                      - Cy-az-AZ
+                      - Cy-sr-SP
+                      - Cy-uz-UZ
+                      - Lt-az-AZ
+                      - Lt-sr-SP
+                      - Lt-uz-UZ
+                      - aa
+                      - ab
+                      - ae
+                      - af
+                      - af-ZA
+                      - ak
+                      - am
+                      - an
+                      - ar
+                      - ar-AE
+                      - ar-BH
+                      - ar-DZ
+                      - ar-EG
+                      - ar-IQ
+                      - ar-JO
+                      - ar-KW
+                      - ar-LB
+                      - ar-LY
+                      - ar-MA
+                      - ar-OM
+                      - ar-QA
+                      - ar-SA
+                      - ar-SY
+                      - ar-TN
+                      - ar-YE
+                      - as
+                      - av
+                      - ay
+                      - az
+                      - ba
+                      - be
+                      - be-BY
+                      - bg
+                      - bg-BG
+                      - bh
+                      - bi
+                      - bm
+                      - bn
+                      - bo
+                      - br
+                      - bs
+                      - ca
+                      - ca-ES
+                      - ce
+                      - ch
+                      - co
+                      - cr
+                      - cs
+                      - cs-CZ
+                      - cu
+                      - cv
+                      - cy
+                      - da
+                      - da-DK
+                      - de
+                      - de-AT
+                      - de-CH
+                      - de-DE
+                      - de-LI
+                      - de-LU
+                      - div-MV
+                      - dv
+                      - dz
+                      - ee
+                      - el
+                      - el-GR
+                      - en
+                      - en-AU
+                      - en-BZ
+                      - en-CA
+                      - en-CB
+                      - en-GB
+                      - en-IE
+                      - en-JM
+                      - en-NZ
+                      - en-PH
+                      - en-TT
+                      - en-US
+                      - en-ZA
+                      - en-ZW
+                      - eo
+                      - es
+                      - es-AR
+                      - es-BO
+                      - es-CL
+                      - es-CO
+                      - es-CR
+                      - es-DO
+                      - es-EC
+                      - es-ES
+                      - es-GT
+                      - es-HN
+                      - es-MX
+                      - es-NI
+                      - es-PA
+                      - es-PE
+                      - es-PR
+                      - es-PY
+                      - es-SV
+                      - es-UY
+                      - es-VE
+                      - et
+                      - et-EE
+                      - eu
+                      - eu-ES
+                      - fa
+                      - fa-IR
+                      - ff
+                      - fi
+                      - fi-FI
+                      - fj
+                      - fo
+                      - fo-FO
+                      - fr
+                      - fr-BE
+                      - fr-CA
+                      - fr-CH
+                      - fr-FR
+                      - fr-LU
+                      - fr-MC
+                      - fy
+                      - ga
+                      - gd
+                      - gl
+                      - gl-ES
+                      - gn
+                      - gu
+                      - gu-IN
+                      - gv
+                      - ha
+                      - he
+                      - he-IL
+                      - hi
+                      - hi-IN
+                      - ho
+                      - hr
+                      - hr-HR
+                      - ht
+                      - hu
+                      - hu-HU
+                      - hy
+                      - hy-AM
+                      - hz
+                      - ia
+                      - id
+                      - id-ID
+                      - ie
+                      - ig
+                      - ii
+                      - ik
+                      - io
+                      - is
+                      - is-IS
+                      - it
+                      - it-CH
+                      - it-IT
+                      - iu
+                      - ja
+                      - ja-JP
+                      - jv
+                      - ka
+                      - ka-GE
+                      - kg
+                      - ki
+                      - kj
+                      - kk
+                      - kk-KZ
+                      - kl
+                      - km
+                      - kn
+                      - kn-IN
+                      - ko
+                      - ko-KR
+                      - kr
+                      - ks
+                      - ku
+                      - kv
+                      - kw
+                      - ky
+                      - ky-KZ
+                      - la
+                      - lb
+                      - lg
+                      - li
+                      - ln
+                      - lo
+                      - lt
+                      - lt-LT
+                      - lu
+                      - lv
+                      - lv-LV
+                      - mg
+                      - mh
+                      - mi
+                      - mk
+                      - mk-MK
+                      - ml
+                      - mn
+                      - mn-MN
+                      - mr
+                      - mr-IN
+                      - ms
+                      - ms-BN
+                      - ms-MY
+                      - mt
+                      - my
+                      - na
+                      - nb
+                      - nb-NO
+                      - nd
+                      - ne
+                      - ng
+                      - nl
+                      - nl-BE
+                      - nl-NL
+                      - nn
+                      - nn-NO
+                      - no
+                      - nr
+                      - nv
+                      - ny
+                      - oc
+                      - oj
+                      - om
+                      - or
+                      - os
+                      - pa
+                      - pa-IN
+                      - pi
+                      - pl
+                      - pl-PL
+                      - ps
+                      - pt
+                      - pt-BR
+                      - pt-PT
+                      - qu
+                      - rm
+                      - rn
+                      - ro
+                      - ro-RO
+                      - ru
+                      - ru-RU
+                      - rw
+                      - sa
+                      - sa-IN
+                      - sc
+                      - sd
+                      - se
+                      - sg
+                      - si
+                      - sk
+                      - sk-SK
+                      - sl
+                      - sl-SI
+                      - sm
+                      - sn
+                      - so
+                      - sq
+                      - sq-AL
+                      - sr
+                      - ss
+                      - st
+                      - su
+                      - sv
+                      - sv-FI
+                      - sv-SE
+                      - sw
+                      - sw-KE
+                      - ta
+                      - ta-IN
+                      - te
+                      - te-IN
+                      - tg
+                      - th
+                      - th-TH
+                      - ti
+                      - tk
+                      - tl
+                      - tn
+                      - to
+                      - tr
+                      - tr-TR
+                      - ts
+                      - tt
+                      - tt-RU
+                      - tw
+                      - ty
+                      - ug
+                      - uk
+                      - uk-UA
+                      - ur
+                      - ur-PK
+                      - uz
+                      - ve
+                      - vi
+                      - vi-VN
+                      - vo
+                      - wa
+                      - wo
+                      - xh
+                      - yi
+                      - yo
+                      - za
+                      - zh
+                      - zh-CHS
+                      - zh-CHT
+                      - zh-CN
+                      - zh-HK
+                      - zh-MO
+                      - zh-SG
+                      - zh-TW
+                      - zu
+                  date:
+                    type: string
+                  projectId:
+                    type: string
+                    format: uuid
+                  type:
+                    type: string
+                    enum:
+                      - blog
+                      - video
+                      - audio
+                      - template
+                      - export-template
+                  code:
+                    type: string
+                  category:
+                    type: array
+                    items:
+                      type: string
+                  section:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        text:
+                          type: string
+                        extension:
+                          type: object
+                          additionalProperties:
+                            type: string
+                        code:
+                          type: array
+                          items:
+                            type: string
+                            minLength: 1
+                required:
+                  - title
+                  - author
+                  - key
+                  - language
+                  - date
+                  - type
+                example: *a64
+                description: The translated content in the requested language, if present.
+      required:
+        - total
+        - resources
+      description: Paginated source ↔ target content pairs used by the dashboard's
+        translation editor. Either side can be missing — a target without a
+        source means the default language item has been deleted, a source
+        without a target means no translation exists yet.
+    CopyContentsResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success
+      description: "Acknowledgement that the child project copied content from its
+        parent project. `success: false` is currently unused — failure paths
+        raise 400."
     ContentBodyDto:
       type: object
       properties:
@@ -18297,23 +20064,405 @@ components:
         - language
         - date
         - type
-      example:
-        id: "123"
-        title: My Blog
-        author:
-          reference: "123"
-          display: John Doe
-        date: 2021-01-01
-        project: "123"
-        type: blog
-        category:
-          - "123"
-          - "456"
-        section:
-          - title: My Blog
-            text: My Blog Text
-            extension:
-              covert-media: http://example.com/extensionValue
+      example: *a64
+    ContentSearchResponseDto:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total matches across all pages (before slicing by offset/count).
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              author:
+                type: object
+                properties:
+                  reference:
+                    type: string
+                  display:
+                    type: string
+                required:
+                  - reference
+              key:
+                type: string
+                description: A random UUID that is used to identify the content, not ID!
+              language:
+                type: string
+                enum:
+                  - Cy-az-AZ
+                  - Cy-sr-SP
+                  - Cy-uz-UZ
+                  - Lt-az-AZ
+                  - Lt-sr-SP
+                  - Lt-uz-UZ
+                  - aa
+                  - ab
+                  - ae
+                  - af
+                  - af-ZA
+                  - ak
+                  - am
+                  - an
+                  - ar
+                  - ar-AE
+                  - ar-BH
+                  - ar-DZ
+                  - ar-EG
+                  - ar-IQ
+                  - ar-JO
+                  - ar-KW
+                  - ar-LB
+                  - ar-LY
+                  - ar-MA
+                  - ar-OM
+                  - ar-QA
+                  - ar-SA
+                  - ar-SY
+                  - ar-TN
+                  - ar-YE
+                  - as
+                  - av
+                  - ay
+                  - az
+                  - ba
+                  - be
+                  - be-BY
+                  - bg
+                  - bg-BG
+                  - bh
+                  - bi
+                  - bm
+                  - bn
+                  - bo
+                  - br
+                  - bs
+                  - ca
+                  - ca-ES
+                  - ce
+                  - ch
+                  - co
+                  - cr
+                  - cs
+                  - cs-CZ
+                  - cu
+                  - cv
+                  - cy
+                  - da
+                  - da-DK
+                  - de
+                  - de-AT
+                  - de-CH
+                  - de-DE
+                  - de-LI
+                  - de-LU
+                  - div-MV
+                  - dv
+                  - dz
+                  - ee
+                  - el
+                  - el-GR
+                  - en
+                  - en-AU
+                  - en-BZ
+                  - en-CA
+                  - en-CB
+                  - en-GB
+                  - en-IE
+                  - en-JM
+                  - en-NZ
+                  - en-PH
+                  - en-TT
+                  - en-US
+                  - en-ZA
+                  - en-ZW
+                  - eo
+                  - es
+                  - es-AR
+                  - es-BO
+                  - es-CL
+                  - es-CO
+                  - es-CR
+                  - es-DO
+                  - es-EC
+                  - es-ES
+                  - es-GT
+                  - es-HN
+                  - es-MX
+                  - es-NI
+                  - es-PA
+                  - es-PE
+                  - es-PR
+                  - es-PY
+                  - es-SV
+                  - es-UY
+                  - es-VE
+                  - et
+                  - et-EE
+                  - eu
+                  - eu-ES
+                  - fa
+                  - fa-IR
+                  - ff
+                  - fi
+                  - fi-FI
+                  - fj
+                  - fo
+                  - fo-FO
+                  - fr
+                  - fr-BE
+                  - fr-CA
+                  - fr-CH
+                  - fr-FR
+                  - fr-LU
+                  - fr-MC
+                  - fy
+                  - ga
+                  - gd
+                  - gl
+                  - gl-ES
+                  - gn
+                  - gu
+                  - gu-IN
+                  - gv
+                  - ha
+                  - he
+                  - he-IL
+                  - hi
+                  - hi-IN
+                  - ho
+                  - hr
+                  - hr-HR
+                  - ht
+                  - hu
+                  - hu-HU
+                  - hy
+                  - hy-AM
+                  - hz
+                  - ia
+                  - id
+                  - id-ID
+                  - ie
+                  - ig
+                  - ii
+                  - ik
+                  - io
+                  - is
+                  - is-IS
+                  - it
+                  - it-CH
+                  - it-IT
+                  - iu
+                  - ja
+                  - ja-JP
+                  - jv
+                  - ka
+                  - ka-GE
+                  - kg
+                  - ki
+                  - kj
+                  - kk
+                  - kk-KZ
+                  - kl
+                  - km
+                  - kn
+                  - kn-IN
+                  - ko
+                  - ko-KR
+                  - kr
+                  - ks
+                  - ku
+                  - kv
+                  - kw
+                  - ky
+                  - ky-KZ
+                  - la
+                  - lb
+                  - lg
+                  - li
+                  - ln
+                  - lo
+                  - lt
+                  - lt-LT
+                  - lu
+                  - lv
+                  - lv-LV
+                  - mg
+                  - mh
+                  - mi
+                  - mk
+                  - mk-MK
+                  - ml
+                  - mn
+                  - mn-MN
+                  - mr
+                  - mr-IN
+                  - ms
+                  - ms-BN
+                  - ms-MY
+                  - mt
+                  - my
+                  - na
+                  - nb
+                  - nb-NO
+                  - nd
+                  - ne
+                  - ng
+                  - nl
+                  - nl-BE
+                  - nl-NL
+                  - nn
+                  - nn-NO
+                  - no
+                  - nr
+                  - nv
+                  - ny
+                  - oc
+                  - oj
+                  - om
+                  - or
+                  - os
+                  - pa
+                  - pa-IN
+                  - pi
+                  - pl
+                  - pl-PL
+                  - ps
+                  - pt
+                  - pt-BR
+                  - pt-PT
+                  - qu
+                  - rm
+                  - rn
+                  - ro
+                  - ro-RO
+                  - ru
+                  - ru-RU
+                  - rw
+                  - sa
+                  - sa-IN
+                  - sc
+                  - sd
+                  - se
+                  - sg
+                  - si
+                  - sk
+                  - sk-SK
+                  - sl
+                  - sl-SI
+                  - sm
+                  - sn
+                  - so
+                  - sq
+                  - sq-AL
+                  - sr
+                  - ss
+                  - st
+                  - su
+                  - sv
+                  - sv-FI
+                  - sv-SE
+                  - sw
+                  - sw-KE
+                  - ta
+                  - ta-IN
+                  - te
+                  - te-IN
+                  - tg
+                  - th
+                  - th-TH
+                  - ti
+                  - tk
+                  - tl
+                  - tn
+                  - to
+                  - tr
+                  - tr-TR
+                  - ts
+                  - tt
+                  - tt-RU
+                  - tw
+                  - ty
+                  - ug
+                  - uk
+                  - uk-UA
+                  - ur
+                  - ur-PK
+                  - uz
+                  - ve
+                  - vi
+                  - vi-VN
+                  - vo
+                  - wa
+                  - wo
+                  - xh
+                  - yi
+                  - yo
+                  - za
+                  - zh
+                  - zh-CHS
+                  - zh-CHT
+                  - zh-CN
+                  - zh-HK
+                  - zh-MO
+                  - zh-SG
+                  - zh-TW
+                  - zu
+              date:
+                type: string
+              projectId:
+                type: string
+                format: uuid
+              type:
+                type: string
+                enum:
+                  - blog
+                  - video
+                  - audio
+                  - template
+                  - export-template
+              code:
+                type: string
+              category:
+                type: array
+                items:
+                  type: string
+              section:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    text:
+                      type: string
+                    extension:
+                      type: object
+                      additionalProperties:
+                        type: string
+                    code:
+                      type: array
+                      items:
+                        type: string
+                        minLength: 1
+            required:
+              - title
+              - author
+              - key
+              - language
+              - date
+              - type
+            example: *a64
+      required:
+        - total
+        - resources
+      description: Paginated CMS content list. Sorted by `date` desc when no `search`
+        term is supplied; otherwise sorted by Fuse fuzzy-match relevance.
     CarehubAssignmentCandidatesResponseDto:
       type: object
       properties:
@@ -18461,7 +20610,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #y7F4X2PgX8"
+              deviceName: "Patient Monitor Device #TNP4DtsMzY"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -18486,6 +20635,48 @@ components:
             patientName: Maxi
             deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
             patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
+    AdminLocationListResponseDto:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 'Coarse total: when the page is full we return `offset + pageSize +
+            1` (so the UI knows "there are more"), otherwise the exact count.'
+        page:
+          type: integer
+        count:
+          type: integer
+          description: Page size used for this response.
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              floor:
+                type: string
+              room:
+                type: string
+              bed:
+                type: string
+              organizationId:
+                type: string
+              organizationName:
+                type: string
+            required:
+              - id
+              - name
+      required:
+        - total
+        - page
+        - count
+        - resources
+      description: Admin-scoped paginated list of locations for an arbitrary project.
+        Used by the cross-project carehub admin UI; ordinary users hit the
+        project-scoped variant instead.
     AdminCreateLocationDto:
       type: object
       properties:
@@ -18514,6 +20705,20 @@ components:
         floor: "2"
         room: "18"
         organizationId: 123e4567-e89b-12d3-a456-426614174000
+    AdminLocationCreateResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        projectId:
+          type: string
+      required:
+        - id
+        - name
+        - projectId
+      description: Newly-created Location identifier surfaced to the admin UI.
     CarehubLocationResponseDto:
       type: object
       properties:
@@ -18542,7 +20747,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #y7F4X2PgX8"
+        deviceName: "Patient Monitor Device #TNP4DtsMzY"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -18988,7 +21193,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-19T15:21:18.227Z
+            lastUpdated: 2026-05-20T08:09:23.839Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -18998,7 +21203,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-05-19T15:21:18.227Z
+            lastUpdated: 2026-05-20T08:09:23.839Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -19467,7 +21672,7 @@ components:
                 format: date-time
             required:
               - commId
-            example: &a63
+            example: &a65
               commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Jane Doe
@@ -19484,9 +21689,9 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-05-19T15:21:18.227Z
+              authoredOn: 2026-05-20T08:09:23.839Z
               alertCount: 5
-              occurrenceDateTime: 2026-05-19T15:21:18.227Z
+              occurrenceDateTime: 2026-05-20T08:09:23.839Z
       required:
         - total
         - page
@@ -19499,7 +21704,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-05-19T15:21:18.227Z
+            authoredOn: 2026-05-20T08:09:23.839Z
             type: hr
     CarehubNotificationResponseDto:
       type: object
@@ -19556,7 +21761,7 @@ components:
           format: date-time
       required:
         - commId
-      example: *a63
+      example: *a65
     MedicalSettingsNotificationsConsentDto:
       type: object
       properties:
@@ -19582,6 +21787,17 @@ components:
         - message
         - version
         - environment
+    CarehubSupportResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          description: True when the support email was queued for delivery.
+      required:
+        - ok
+      description: "Acknowledgement that the support email was queued for delivery.
+        `ok: false` is currently unreachable — service-level failures raise
+        4xx/5xx instead."
     CarehubUserDeleteResponseDto:
       type: object
       properties:
@@ -19651,6 +21867,114 @@ components:
             - dataPoints
             - stats
       description: Trends data grouped by graph type and device ID
+    CarehubHealthResponseDto:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - healthy
+            - degraded
+            - unhealthy
+        environment:
+          type: string
+        version:
+          type: string
+          nullable: true
+        uptimeSeconds:
+          type: number
+        timestamp:
+          type: string
+        endpoints:
+          type: object
+          properties:
+            api:
+              type: string
+            fhir:
+              type: string
+          required:
+            - api
+            - fhir
+        externalSystems:
+          type: object
+          properties:
+            medplum:
+              type: object
+              properties: {}
+              additionalProperties: true
+            redis:
+              type: object
+              properties: {}
+              additionalProperties: true
+          required:
+            - medplum
+            - redis
+          additionalProperties: true
+        cache:
+          type: object
+          properties: {}
+          additionalProperties: true
+        ovok:
+          type: object
+          properties: {}
+          additionalProperties: true
+        system:
+          type: object
+          properties: {}
+          additionalProperties: true
+        observability:
+          type: object
+          properties:
+            signoz:
+              type: string
+              nullable: true
+          required:
+            - signoz
+      required:
+        - status
+        - environment
+        - version
+        - uptimeSeconds
+        - timestamp
+        - endpoints
+        - externalSystems
+        - observability
+      additionalProperties: true
+      description: "Aggregated CareHub health: pipeline gauges, FHIR server stats,
+        Redis status, optional system + cache metrics. `status` summarizes the
+        worst of the dependency states."
+    RequestSignatureResponseDto:
+      type: object
+      properties:
+        numberOfPages:
+          type: integer
+          description: Pages in the generated PDF.
+        title:
+          type: string
+          nullable: true
+        author:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        documentId:
+          type: string
+          description: Documenso document id for the upload — used to poll signing status.
+        email:
+          type: string
+          description: Email Documenso will send the signing invite to (extracted from the
+            Consent resource).
+      required:
+        - numberOfPages
+        - title
+        - author
+        - subject
+        - documentId
+        - email
+      description: Acknowledgement that the Consent PDF has been generated and
+        uploaded to Documenso for signing. Documenso emails the signer
+        separately; check `documentId` for the signing status afterwards.
     DocumensoDocumentStatusDto:
       type: object
       properties:
@@ -20225,6 +22549,188 @@ components:
               effectiveInstant: 2026-04-22T10:00:00.000Z
               valueCodeableConcept:
                 text: asleep
+    ObservationTimeseriesResponseDto:
+      type: object
+      properties:
+        observationId:
+          type: string
+        effectiveStart:
+          type: string
+          description: ISO-8601 anchor for the first sample (t0).
+        periodMs:
+          type: number
+          description: Milliseconds between consecutive samples.
+        series:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                nullable: true
+                description: For component-bearing Observations the component primary code
+                  (LOINC etc.). Null for series taken from the root SampledData.
+              unit:
+                type: string
+                nullable: true
+                description: Display unit from SampledData.origin.unit.
+              origin:
+                type: number
+                description: Base value (data points are added to this after factor scaling).
+              dimension:
+                type: integer
+                description: Which interleaved dimension this series represents.
+                  0..dimensions-1.
+              count:
+                type: integer
+              points:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    t:
+                      type: string
+                      description: ISO-8601 UTC timestamp for this sample.
+                    v:
+                      oneOf:
+                        - type: number
+                        - type: string
+                          enum:
+                            - E
+                        - type: string
+                          enum:
+                            - L
+                        - type: string
+                          enum:
+                            - U
+                      description: Numeric value after factor + origin offset are applied, or a
+                        preserved E/L/U token from the source SampledData.
+                  required:
+                    - t
+                    - v
+            required:
+              - code
+              - unit
+              - origin
+              - dimension
+              - count
+              - points
+      required:
+        - observationId
+        - effectiveStart
+        - periodMs
+        - series
+      description: Expanded {timestamp, value} view of an Observation's SampledData.
+        Returned when GET Observation/:id is called with ?asTimeseries=true. One
+        entry per (component × dimension) combination; the root SampledData (if
+        any) emits one entry with code=null.
+    DeviceTelemetryHistoryResponseDto:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          description: FHIR Device id whose telemetry history was queried.
+        patientId:
+          type: string
+          description: FHIR Patient id linked to the Device.
+        signalsPatientId:
+          type: string
+          description: Internal Signals patient id used to fetch the history.
+      required:
+        - deviceId
+        - patientId
+        - signalsPatientId
+      additionalProperties: true
+      description: Observation history for a Device, fetched via the Signals service.
+        Defaults to the last 72 hours when `from`/`to` are omitted. Pagination
+        and shape beyond the three fixed ids depend on the upstream Signals
+        response.
+      example:
+        deviceId: 87ea5dfc-8b8e-384d-8489-79496e706390
+        patientId: 87ea5dfc-8b8e-384d-8489-79496e706390
+        signalsPatientId: signals-abc-123
+        page: 1
+        pageSize: 100
+        total: 4
+        entries:
+          - resourceType: Observation
+            status: final
+            code:
+              coding:
+                - system: http://loinc.org
+                  code: 8867-4
+                  display: Heart rate
+            effectiveInstant: 2026-04-22T10:00:00.000Z
+            valueQuantity:
+              value: 72
+              unit: beats/min
+    PatientResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Patient
+        id:
+          type: string
+      required:
+        - resourceType
+        - id
+      additionalProperties: true
+      description: A FHIR Patient resource as stored in the FHIR API. When created
+        with `?withSignals=true` the resource is re-read after Signals
+        provisioning so any identifiers stamped by the link step are reflected.
+      example:
+        resourceType: Patient
+        id: 87ea5dfc-8b8e-384d-8489-79496e706390
+        meta:
+          versionId: "1"
+          lastUpdated: 2026-05-19T12:00:00.000Z
+        name:
+          - given:
+              - Ada
+            family: Lovelace
+        birthDate: 1815-12-10
+        gender: female
+    PatientThresholdResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - CarePlan
+          description: Patient thresholds are persisted as a FHIR CarePlan.
+        id:
+          type: string
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+          required:
+            - reference
+          additionalProperties: true
+      required:
+        - resourceType
+        - id
+        - subject
+      additionalProperties: true
+      description: Persisted patient threshold configuration. Stored as a FHIR
+        CarePlan whose detail extensions encode per-observation min/max bounds.
+        When `?updateOnSignals=true` was sent, the same configuration has been
+        pushed to Signals (failures are logged, not surfaced — the saved
+        CarePlan is still returned).
+      example:
+        resourceType: CarePlan
+        id: 87ea5dfc-8b8e-384d-8489-79496e706390
+        status: active
+        intent: plan
+        subject:
+          reference: Patient/87ea5dfc-8b8e-384d-8489-79496e706390
+        category:
+          - coding:
+              - system: https://ovok.com/fhir/CodeSystem/care-plan-category
+                code: thresholds
     PopulateBodyRequestDto:
       type: object
       properties:
@@ -20811,7 +23317,7 @@ components:
                   - language
                   - value
                   - author
-                example: &a64
+                example: &a66
                   key: home.title
                   language: en
                   value: Home
@@ -21169,7 +23675,7 @@ components:
                   - language
                   - value
                   - author
-                example: *a64
+                example: *a66
             required:
               - source
       required:
@@ -21532,7 +24038,7 @@ components:
               - language
               - value
               - author
-            example: *a64
+            example: *a66
       required:
         - total
         - resources
@@ -21886,7 +24392,7 @@ components:
         - language
         - value
         - author
-      example: *a64
+      example: *a66
     LocalizationRequestBodyDto:
       type: object
       properties:
@@ -21896,6 +24402,182 @@ components:
         - value
       example:
         value: Home
+    CmsApiKeyListResponseDto:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Basic resource id holding this key.
+          label:
+            type: string
+            description: Human-readable label set at issuance.
+          prefix:
+            type: string
+            description: First few cleartext characters — surfaced so the dashboard can
+              identify the key without storing the secret.
+          createdAt:
+            type: string
+          lastUsedAt:
+            type: string
+            nullable: true
+        required:
+          - id
+          - label
+          - prefix
+          - createdAt
+          - lastUsedAt
+      description: Issued CMS API keys for the caller’s current project. The cleartext
+        secret is NEVER returned here — only `prefix` and `lastUsedAt` for
+        identification.
+    CmsApiKeyCreateResponseDto:
+      type: object
+      properties:
+        key:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Basic resource id holding this key.
+            label:
+              type: string
+              description: Human-readable label set at issuance.
+            prefix:
+              type: string
+              description: First few cleartext characters — surfaced so the dashboard can
+                identify the key without storing the secret.
+            createdAt:
+              type: string
+            lastUsedAt:
+              type: string
+              nullable: true
+          required:
+            - id
+            - label
+            - prefix
+            - createdAt
+            - lastUsedAt
+        secret:
+          type: string
+          description: Cleartext API key. Echoed back ONCE — store it now; it is not
+            recoverable from the server afterwards.
+      required:
+        - key
+        - secret
+      description: Newly-issued CMS API key plus its one-time cleartext secret.
+    PublicDeliveryListResponseDto:
+      type: object
+      properties:
+        docs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Stable Payload item id.
+              slug:
+                type: string
+                description: Slug for the item, when the collection defines a `slug` field.
+              publishedAt:
+                type: string
+                description: ISO-8601 timestamp the item was last published. Items without this
+                  field are filtered out of the response.
+            required:
+              - id
+            additionalProperties: true
+            description: Published CMS item. Shape is project- and collection-specific — the
+              documented fields are the envelope guaranteed by the delivery API;
+              everything else comes from the Payload collection schema.
+            example: &a67
+              id: 87ea5dfc-8b8e-384d-8489-79496e706390
+              slug: welcome-banner
+              publishedAt: 2026-05-01T12:00:00.000Z
+              title: Welcome to Ovok
+              body: Long-form content authored in the Console.
+          description: Published items in the current page, oldest-first unless sorted
+            otherwise.
+        totalDocs:
+          type: integer
+          minimum: 0
+          description: Total matching items across all pages.
+        limit:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: Items per page (caller-supplied, capped at 100 server-side).
+        totalPages:
+          type: integer
+          minimum: 0
+          description: Total page count at the current limit.
+        page:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: 1-indexed current page.
+        pagingCounter:
+          type: integer
+          description: 1-indexed position of the first item on this page across the full
+            result set.
+        hasPrevPage:
+          type: boolean
+        hasNextPage:
+          type: boolean
+        prevPage:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          nullable: true
+        nextPage:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          nullable: true
+      required:
+        - docs
+        - totalDocs
+        - limit
+        - totalPages
+        - page
+      description: Paginated envelope of published items in a CMS collection. Items in
+        `docs` follow the project-defined collection schema; the envelope fields
+        (`totalDocs`, `limit`, `totalPages`, `page`) are fixed.
+      example:
+        docs:
+          - id: 87ea5dfc-8b8e-384d-8489-79496e706390
+            slug: welcome-banner
+            publishedAt: 2026-05-01T12:00:00.000Z
+            title: Welcome to Ovok
+        totalDocs: 1
+        limit: 20
+        totalPages: 1
+        page: 1
+        pagingCounter: 1
+        hasPrevPage: false
+        hasNextPage: false
+        prevPage: null
+        nextPage: null
+    PublicDeliveryItemResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Stable Payload item id.
+        slug:
+          type: string
+          description: Slug for the item, when the collection defines a `slug` field.
+        publishedAt:
+          type: string
+          description: ISO-8601 timestamp the item was last published. Items without this
+            field are filtered out of the response.
+      required:
+        - id
+      additionalProperties: true
+      description: Published CMS item. Shape is project- and collection-specific — the
+        documented fields are the envelope guaranteed by the delivery API;
+        everything else comes from the Payload collection schema.
+      example: *a67
     ProjectListResponseDto:
       type: object
       properties:
@@ -21928,6 +24610,23 @@ components:
       required:
         - projects
       description: All Medplum projects the caller is a member of.
+    TenantCodeResponseDto:
+      type: object
+      properties:
+        tenantCode:
+          type: string
+          nullable: true
+          description: Short tenant code on file, or null when not assigned yet.
+        projectId:
+          type: string
+      required:
+        - tenantCode
+        - projectId
+      description: Tenant code lookup for the caller’s current project. Tenant codes
+        are short, project-scoped identifiers used in URLs.
+      example:
+        tenantCode: acme
+        projectId: 7cb8a325-…
     ProjectFeaturesResponseDto:
       type: object
       properties:
@@ -21958,6 +24657,31 @@ components:
           - bots
           - cron
           - websocket-subscriptions
+    CmsLocalesResponseDto:
+      type: object
+      properties:
+        locales:
+          type: array
+          items:
+            type: string
+          description: BCP-47 codes ordered as configured. Empty when the project has none
+            set yet.
+        default:
+          type: string
+          description: The project default locale — equal to `locales[0]` (or "" when no
+            locales are configured).
+      required:
+        - locales
+        - default
+      description: CMS locale configuration for the caller’s current project. Public
+        content delivery falls back to `default` when a requested locale has no
+        value on file.
+      example:
+        locales:
+          - en
+          - de
+          - fr
+        default: en
     CmsLocalesBodyDto:
       type: object
       properties:
@@ -21977,6 +24701,59 @@ components:
           - en
           - de
           - fr
+    MembersListResponseDto:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: ProjectMembership resource id.
+          email:
+            type: string
+            nullable: true
+          displayName:
+            type: string
+            nullable: true
+          firstName:
+            type: string
+            nullable: true
+          lastName:
+            type: string
+            nullable: true
+          admin:
+            type: boolean
+          profileType:
+            type: string
+            enum:
+              - Practitioner
+              - Patient
+              - RelatedPerson
+            nullable: true
+          profileId:
+            type: string
+            nullable: true
+          pending:
+            type: boolean
+            description: True when the user has never completed the invite (no password set
+              yet).
+          invitedAt:
+            type: string
+            nullable: true
+            description: ISO-8601 timestamp of the invite, or null when not known.
+        required:
+          - id
+          - email
+          - displayName
+          - firstName
+          - lastName
+          - admin
+          - profileType
+          - profileId
+          - pending
+          - invitedAt
+      description: Team members on the caller’s current project, including pending
+        invites (users who have not completed their first sign-in).
     InviteMemberBodyDto:
       type: object
       properties:
@@ -22005,6 +24782,56 @@ components:
         firstName: Alex
         lastName: Lee
         admin: false
+    MemberResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ProjectMembership resource id.
+        email:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        admin:
+          type: boolean
+        profileType:
+          type: string
+          enum:
+            - Practitioner
+            - Patient
+            - RelatedPerson
+          nullable: true
+        profileId:
+          type: string
+          nullable: true
+        pending:
+          type: boolean
+          description: True when the user has never completed the invite (no password set
+            yet).
+        invitedAt:
+          type: string
+          nullable: true
+          description: ISO-8601 timestamp of the invite, or null when not known.
+      required:
+        - id
+        - email
+        - displayName
+        - firstName
+        - lastName
+        - admin
+        - profileType
+        - profileId
+        - pending
+        - invitedAt
+      description: A team member on the caller’s current project — admin or practitioner.
     UpdateMemberBodyDto:
       type: object
       properties:
@@ -22075,7 +24902,7 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: uSi-WdG0-7QT>IRW
+        password: "&}Y^R-1HJX+Xh21{"
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -22202,13 +25029,20 @@ components:
     AttachPlanRequestDto:
       type: object
       properties:
-        productId:
+        tier:
           type: string
-          description: Stripe product id to subscribe the caller’s project to.
+          enum:
+            - free
+            - startup
+            - growth
+            - enterprise
+          description: Tier to subscribe the caller’s project to.
       required:
-        - productId
-      description: Picks a Stripe plan for the caller's project. Used by the
-        dashboard's billing gate after signup.
+        - tier
+      description: Pick a usage-based billing tier for the caller's project. Used by
+        the dashboard's billing gate after signup. Enterprise is not self-serve
+        — clients should send users to a contact-sales flow instead of calling
+        this endpoint with tier='enterprise'.
     AttachPlanResponseDto:
       type: object
       properties:
@@ -22217,15 +25051,280 @@ components:
           description: Stripe subscription id.
         status:
           type: string
-          description: Subscription status — typically "trialing".
+          description: Subscription status — typically "trialing" or "active".
         trialEnd:
           type: string
           nullable: true
-          description: ISO timestamp when the trial ends.
+          description: ISO timestamp when the trial ends, or null.
+        tier:
+          type: string
+          enum:
+            - free
+            - startup
+            - growth
+            - enterprise
       required:
         - id
         - status
         - trialEnd
+        - tier
+    TiersResponseDto:
+      type: object
+      properties:
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                enum:
+                  - free
+                  - startup
+                  - growth
+                  - enterprise
+              label:
+                type: string
+              description:
+                type: string
+              monthlyIncludedRequests:
+                type: integer
+              hardCap:
+                type: boolean
+              selfServe:
+                type: boolean
+              displayFlatFee:
+                type: string
+              displayOverage:
+                type: string
+            required:
+              - name
+              - label
+              - description
+              - monthlyIncludedRequests
+              - hardCap
+              - selfServe
+              - displayFlatFee
+              - displayOverage
+        mode:
+          type: string
+          enum:
+            - stripe
+            - internal
+        currentTier:
+          type: string
+          enum:
+            - free
+            - startup
+            - growth
+            - enterprise
+          nullable: true
+        currentUsage:
+          type: integer
+      required:
+        - tiers
+        - mode
+        - currentTier
+        - currentUsage
+      description: Self-serve billing tiers + the caller's current tier and
+        current-period FHIR-API request count. The dashboard renders this on
+        /billing/choose-plan and /billing. Internal projects (carehub etc.) get
+        mode='internal' and currentTier=null — UI should hide the picker.
+    InvoicesResponseDto:
+      discriminator:
+        propertyName: mode
+      oneOf:
+        - type: object
+          properties:
+            mode:
+              type: string
+              enum:
+                - internal
+            hasMore:
+              type: boolean
+              enum:
+                - false
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  number:
+                    type: string
+                    nullable: true
+                  status:
+                    type: string
+                    nullable: true
+                  amountDue:
+                    type: integer
+                    description: Amount due in the smallest currency unit (cents for USD).
+                  amountPaid:
+                    type: integer
+                    description: Amount paid in the smallest currency unit.
+                  currency:
+                    type: string
+                    description: ISO-4217 lowercase currency code, as returned by Stripe.
+                  createdAt:
+                    type: string
+                    description: ISO-8601 UTC timestamp.
+                  periodStart:
+                    type: string
+                    nullable: true
+                    description: Billing period start (ISO-8601) or null when Stripe omitted it.
+                  periodEnd:
+                    type: string
+                    nullable: true
+                    description: Billing period end (ISO-8601) or null when Stripe omitted it.
+                  hostedInvoiceUrl:
+                    type: string
+                    nullable: true
+                    description: Login-gated Stripe-hosted invoice page. Null until Stripe finalizes
+                      the invoice.
+                  invoicePdf:
+                    type: string
+                    nullable: true
+                    description: Direct PDF link (also login-gated through Stripe).
+                required:
+                  - id
+                  - number
+                  - status
+                  - amountDue
+                  - amountPaid
+                  - currency
+                  - createdAt
+                  - periodStart
+                  - periodEnd
+                  - hostedInvoiceUrl
+                  - invoicePdf
+              minItems: 0
+              maxItems: 0
+          required:
+            - mode
+            - hasMore
+            - data
+        - type: object
+          properties:
+            mode:
+              type: string
+              enum:
+                - stripe
+            hasMore:
+              type: boolean
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  number:
+                    type: string
+                    nullable: true
+                  status:
+                    type: string
+                    nullable: true
+                  amountDue:
+                    type: integer
+                    description: Amount due in the smallest currency unit (cents for USD).
+                  amountPaid:
+                    type: integer
+                    description: Amount paid in the smallest currency unit.
+                  currency:
+                    type: string
+                    description: ISO-4217 lowercase currency code, as returned by Stripe.
+                  createdAt:
+                    type: string
+                    description: ISO-8601 UTC timestamp.
+                  periodStart:
+                    type: string
+                    nullable: true
+                    description: Billing period start (ISO-8601) or null when Stripe omitted it.
+                  periodEnd:
+                    type: string
+                    nullable: true
+                    description: Billing period end (ISO-8601) or null when Stripe omitted it.
+                  hostedInvoiceUrl:
+                    type: string
+                    nullable: true
+                    description: Login-gated Stripe-hosted invoice page. Null until Stripe finalizes
+                      the invoice.
+                  invoicePdf:
+                    type: string
+                    nullable: true
+                    description: Direct PDF link (also login-gated through Stripe).
+                required:
+                  - id
+                  - number
+                  - status
+                  - amountDue
+                  - amountPaid
+                  - currency
+                  - createdAt
+                  - periodStart
+                  - periodEnd
+                  - hostedInvoiceUrl
+                  - invoicePdf
+          required:
+            - mode
+            - hasMore
+            - data
+      description: Paginated invoice list. Internal projects have no Stripe customer,
+        so they get `mode='internal'` and an empty list — UI should hide the
+        invoices panel. Pass the last invoice id back as `startingAfter` for the
+        next page when `hasMore=true`.
+    PaymentMethodsResponseDto:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          brand:
+            type: string
+            nullable: true
+            description: Stripe card brand (visa, mastercard, …) or null when not surfaced.
+          last4:
+            type: string
+            nullable: true
+          expMonth:
+            type: integer
+            nullable: true
+          expYear:
+            type: integer
+            nullable: true
+          isDefault:
+            type: boolean
+            description: True when this method is the customer's invoice default — i.e. the
+              source Stripe uses to charge the subscription.
+        required:
+          - id
+          - brand
+          - last4
+          - expMonth
+          - expYear
+          - isDefault
+      description: Card payment methods attached to the project's Stripe customer.
+        Only cards are returned (SEPA/ACH are filtered) because the dashboard
+        only renders card UI. Internal projects (no Stripe customer) get an
+        empty array.
+    SetupIntentResponseDto:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+          nullable: true
+          description: Single-use Stripe Elements client_secret. Null in unusual error
+            paths.
+        intentId:
+          type: string
+      required:
+        - clientSecret
+        - intentId
+      description: A Stripe SetupIntent for collecting a new card client-side. The
+        dashboard mounts Stripe Elements with `clientSecret`, confirms, and the
+        resulting PaymentMethod is attached to the customer.
     ProjectSettingsResponseDto:
       type: object
       properties:
@@ -22393,7 +25492,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a65
+      example: &a68
         name: John
         surname: Doe
         dateOfBirth: 1990-01-01
@@ -22483,7 +25582,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a65
+            example: *a68
       required:
         - total
         - resources
@@ -22527,7 +25626,7 @@ components:
         photo:
           type: string
           format: uri
-      example: &a66
+      example: &a69
         name: John
         surname: Doe
         email: john.doe@example.com
@@ -22575,7 +25674,7 @@ components:
               photo:
                 type: string
                 format: uri
-            example: *a66
+            example: *a69
       required:
         - total
         - resources
@@ -22638,7 +25737,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a67
+      example: &a70
         name: Organization 1
         email: organization1@example.com
         phone: "+491234567890"
@@ -22703,7 +25802,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a67
+            example: *a70
       required:
         - total
         - resources
@@ -22756,7 +25855,7 @@ components:
           type: string
         device:
           type: string
-      examples: &a68
+      examples: &a71
         - subject: Patient/123
           code: 8867-4
           data:
@@ -22821,7 +25920,7 @@ components:
                 type: string
               device:
                 type: string
-            examples: *a68
+            examples: *a71
       required:
         - total
         - resources
@@ -23234,8 +26333,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -23364,17 +26463,17 @@ components:
         - comment
         - videoCallParticipants
         - passphrase
-      example: &a69
+      example: &a72
         status: booked
-        start: 2026-05-19T15:21:18Z
-        end: 2026-05-20T15:21:18Z
+        start: 2026-05-20T08:09:23Z
+        end: 2026-05-21T08:09:23Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: y7F4X2PgX8
+        passphrase: TNP4DtsMzY
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -23454,18 +26553,18 @@ components:
           - comment
           - videoCallParticipants
           - passphrase
-        example: *a69
+        example: *a72
       example:
         - status: booked
-          start: 2026-05-19T15:21:18Z
-          end: 2026-05-20T15:21:18Z
+          start: 2026-05-20T08:09:23Z
+          end: 2026-05-21T08:09:23Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: y7F4X2PgX8
+          passphrase: TNP4DtsMzY
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
@@ -23653,7 +26752,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a72
+          enum: &a75
             - proposed
             - pending
             - booked
@@ -23685,7 +26784,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: &a73
+          example: &a76
             - CONSULTATION
           description: The service that is performed during the appointment.
           type: array
@@ -23878,7 +26977,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a70
+          enum: &a73
             - active
             - inactive
             - on-hold
@@ -23887,7 +26986,7 @@ components:
           description: Status of the account.
         type:
           type: string
-          enum: &a71
+          enum: &a74
             - _ActAccountCode
             - ACCTRECEIVABLE
             - CASH
@@ -23932,11 +27031,11 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a70
+          enum: *a73
           description: Status of the account.
         type:
           type: string
-          enum: *a71
+          enum: *a74
           description: Type of the account. See
             https://hl7.org/fhir/valueset-account-type.html
         name:
@@ -24052,7 +27151,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a72
+          enum: *a75
           description: Status of the appointment.
         participant:
           description: The participants of the appointment.
@@ -24074,7 +27173,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: *a73
+          example: *a76
           description: The service that is performed during the appointment.
           type: array
           items:
@@ -24149,7 +27248,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: &a74
+          enum: &a77
             - active
             - inactive
             - entered-in-error
@@ -24217,7 +27316,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: *a74
+          enum: *a77
           description: Status of the device availability.
         distinctIdentifier:
           type: string
@@ -24318,7 +27417,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a75
+          enum: &a78
             - active
             - suspended
             - inactive
@@ -24346,7 +27445,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a75
+          enum: *a78
           description: Status of the location.
         name:
           type: string
@@ -24424,7 +27523,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: &a76
+          example: &a79
             - 11111-1
           description: Specific service to be performed during the appointment.
           type: array
@@ -24450,7 +27549,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a75
+          enum: *a78
           description: Status of the location.
         name:
           type: string
@@ -24512,7 +27611,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a76
+          example: *a79
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -24537,7 +27636,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a76
+          example: *a79
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -24688,7 +27787,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: &a77
+          enum: &a80
             - male
             - female
             - other
@@ -24712,7 +27811,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: &a78
+          items: &a81
             type: string
             enum:
               - en
@@ -24746,7 +27845,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a77
+          enum: *a80
           description: Gender of the patient.
         birthDate:
           type: string
@@ -24766,7 +27865,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a78
+          items: *a81
         managingOrganization:
           type: string
           example: abc123
@@ -24823,7 +27922,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a77
+          enum: *a80
           description: Gender of the patient.
         birthDate:
           type: string
@@ -24843,7 +27942,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a78
+          items: *a81
         managingOrganization:
           type: string
           example: abc123
@@ -24866,7 +27965,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: *a79
+          enum: *a82
           description: The status of the document reference.
         content:
           description: Attachment data.
@@ -24878,7 +27977,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: *a80
+          example: *a83
           description: A category assigned to the document reference.
           type: array
           items:
@@ -25057,7 +28156,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a81
+          enum: &a84
             - registered
             - preliminary
             - final
@@ -25078,7 +28177,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: &a82
+          items: &a85
             type: string
             enum:
               - activity
@@ -25111,14 +28210,14 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: &a83
+          items: &a86
             type: string
             enum:
               - low
               - normal
               - high
         note:
-          example: &a84
+          example: &a87
             - Patient is doing well.
           description: Observation note.
           type: array
@@ -25150,7 +28249,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a81
+          enum: *a84
           description: Status of the observation.
         code:
           type: string
@@ -25163,7 +28262,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: *a82
+          items: *a85
         subject:
           description: Who the observation is about.
           allOf:
@@ -25185,9 +28284,9 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: *a83
+          items: *a86
         note:
-          example: *a84
+          example: *a87
           description: Observation note.
           type: array
           items:
@@ -25314,7 +28413,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a85
+          enum: &a88
             - active
             - draft
             - retired
@@ -25329,7 +28428,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: &a86
+          example: &a89
             - 11111-1
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
@@ -25353,7 +28452,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a85
+          enum: *a88
           description: Status of the Questionnaire.
         name:
           type: string
@@ -25364,7 +28463,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: *a86
+          example: *a89
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
           type: array
@@ -25430,3 +28529,139 @@ components:
           nullable: true
       required:
         - ok
+    RedisHealthResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+      required:
+        - ok
+      description: Redis ping result. `false` when the Redis instance is unreachable.
+    FhirServerHealthResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        version:
+          type: string
+          description: FHIR server build version.
+        platform:
+          type: string
+          description: Host platform (linux, darwin, …).
+        runtime:
+          type: string
+          description: Node.js runtime version.
+        postgres:
+          type: boolean
+        redis:
+          type: boolean
+      required:
+        - ok
+        - version
+        - platform
+        - runtime
+        - postgres
+        - redis
+      description: FHIR server health summary, including its own Postgres/Redis status
+        checks.
+    EmailHealthResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        skipped:
+          type: boolean
+          description: "`true` when the email provider is not configured for this
+            deployment — `ok` reflects that no provider is wired, not an
+            outage."
+      required:
+        - ok
+      description: Email service health.
+    WorkerStatsResponseDto:
+      type: object
+      properties:
+        workerCount:
+          type: integer
+        workers:
+          type: array
+          items:
+            type: object
+            properties:
+              pid:
+                type: integer
+              workerId:
+                type: integer
+              cpuPercent:
+                type: number
+              heapUsedMb:
+                type: number
+              rssMb:
+                type: number
+            required:
+              - pid
+              - workerId
+              - cpuPercent
+              - heapUsedMb
+              - rssMb
+        totals:
+          type: object
+          properties:
+            cpuPercent:
+              type: number
+            heapUsedMb:
+              type: number
+            rssMb:
+              type: number
+          required:
+            - cpuPercent
+            - heapUsedMb
+            - rssMb
+      required:
+        - workerCount
+        - workers
+        - totals
+      description: Per-worker CPU/memory snapshot aggregated from Redis. Each worker
+        self-reports every 10s. Disabled in production (returns 404).
+    QueueStatsResponseDto:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          waiting:
+            type: integer
+          active:
+            type: integer
+          delayed:
+            type: integer
+          failed:
+            type: integer
+        required:
+          - waiting
+          - active
+          - delayed
+          - failed
+      description: BullMQ queue depths keyed by queue name. Polled by k6 to track
+        backend queue depth during load tests. Disabled in production (returns
+        404).
+    TelemetryStateResponseDto:
+      type: object
+      properties:
+        lastUpdatedMs:
+          type: integer
+          description: Epoch ms of the last telemetry update.
+        effectiveHeartRate:
+          type: number
+          nullable: true
+        effectiveRespiratoryRate:
+          type: number
+          nullable: true
+        effectiveSleepStatus:
+          type: string
+      required:
+        - lastUpdatedMs
+        - effectiveHeartRate
+        - effectiveRespiratoryRate
+        - effectiveSleepStatus
+      description: Effective device telemetry state for end-to-end lag measurement
+        during load tests. Disabled in production (returns 404); 404 also when
+        no state is cached for the device.

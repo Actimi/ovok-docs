@@ -47,3 +47,10 @@ Information such as id, contentType, fileName can be fetched by querying /fhir/D
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `RedirectResponseDto` (`application/json`)
+
+No JSON body — endpoint replies with HTTP 307 redirect to a short-lived signed object-storage URL. Body is empty; follow the `Location` header. The redirect target expires (typical TTL: a few minutes).
+
+_Additional properties allowed._

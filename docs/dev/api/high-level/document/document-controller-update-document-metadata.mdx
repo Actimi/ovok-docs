@@ -79,3 +79,31 @@ Returns the updated document information in the same format as the create endpoi
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `FileEntryDto` (`application/json`)
+
+- `id`: `string` **(required)** — The ID of the DocumentReference resource.
+- `meta`: `object` — The metadata of the document.
+- `author`: `object` — The author of the document.
+- `fileName`: `string` — The name of the document.
+- `contentType`: `string` — The content type of the document.
+- `uploadOptions`: `object` — The upload options of the document.
+- `publicToken`: `string` — The public token of the document.
+
+**Example**
+
+```json
+{
+  "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
+  "fileName": "test.txt",
+  "contentType": "text/plain",
+  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
+  "uploadOptions": {
+    "url": "https://example.com/upload",
+    "fields": {
+      "key": "value"
+    }
+  }
+}
+```

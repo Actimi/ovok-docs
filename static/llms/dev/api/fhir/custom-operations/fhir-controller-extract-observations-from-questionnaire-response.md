@@ -75,7 +75,7 @@ Given that the above questionnaire response is saved in the database, you can us
 ```bash
 curl -X POST \
   --url 'https://api.sandbox.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-  --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo'
+  --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8'
 ```
 
 ### Example response containing a bundle of Observations (wrapped in a Parameter resource)
@@ -148,3 +148,61 @@ curl -X POST \
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `ExtractBodyResponseDto` (`application/json`)
+
+- `resourceType`: `string` **(required)**
+- `id`: `string` **(required)**
+
+_Additional properties allowed._
+
+**Example**
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+          {
+            "request": {
+              "method": "POST",
+              "url": "Observation"
+            },
+            "resource": {
+              "resourceType": "Observation",
+              "status": "final",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "60621009",
+                    "display": "Body mass index"
+                  }
+                ]
+              },
+              "subject": {
+                "type": "Patient",
+                "reference": "Patient/1684f841-953a-41c2-a298-64af08945349"
+              },
+              "derivedFrom": [
+                {
+                  "reference": "QuestionnaireResponse/26073103-8a48-4fed-8f38-b1b1e39f4083"
+                }
+              ],
+              "valueQuantity": {
+                "value": 32.7
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```

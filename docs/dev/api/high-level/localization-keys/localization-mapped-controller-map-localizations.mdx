@@ -49,3 +49,9 @@ All query parameters are FHIR query parameteters.
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `PaginatedMapSearchResponseDto` (`application/json`)
+
+- `total`: `number` **(required)**
+- `resources`: `array` **(required)**

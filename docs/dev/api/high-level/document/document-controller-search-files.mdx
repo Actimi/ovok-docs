@@ -43,3 +43,25 @@ Information such as id, contentType, fileName, public token.
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `GetSearchFilesResponseDto` (`application/json`)
+
+- `total`: `number` **(required)** — Total number of documents in the system.
+- `resources`: `array` **(required)**
+
+**Example**
+
+```json
+{
+  "total": 100,
+  "resources": [
+    {
+      "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
+      "fileName": "test.txt",
+      "contentType": "text/plain",
+      "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8"
+    }
+  ]
+}
+```

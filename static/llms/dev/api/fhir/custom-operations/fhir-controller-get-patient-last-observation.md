@@ -107,3 +107,28 @@ curl -X GET \
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `PatientObservationResponseDto` (`application/json`)
+
+- `resourceType`: `string` **(required)**
+- `type`: `string` **(required)**
+- `entry`: `array` **(required)**
+
+**Example**
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "entry": [
+    {
+      "resource": {
+        "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
+        "resourceType": "Observation"
+      },
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/87ea5dfc-8b8e-384d-8489-79496e706390"
+    }
+  ]
+}
+```

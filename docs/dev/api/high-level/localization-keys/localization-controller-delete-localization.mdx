@@ -37,3 +37,29 @@ The request doesn't return anything.
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `LocalizationDto` (`application/json`)
+
+- `id`: `string`
+- `key`: `string` **(required)**
+- `language`: `string` **(required)**
+- `value`: `string` **(required)**
+- `author`: `object` **(required)**
+- `date`: `string`
+- `projectId`: `string`
+
+**Example**
+
+```json
+{
+  "key": "home.title",
+  "language": "en",
+  "value": "Home",
+  "author": {
+    "reference": "Practitioner/123",
+    "display": "John Doe"
+  },
+  "date": {}
+}
+```

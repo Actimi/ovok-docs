@@ -32,3 +32,19 @@ Login with MFA token. Success response contains a challenge token that can be us
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `StartPractitionerMFAResponseDto` (`application/json`)
+
+- `nextStep`: `string` **(required)**
+- `sessionCode`: `string` **(required)**
+- `tenants`: `array` **(required)**
+
+**Example**
+
+```json
+{
+  "nextStep": "token",
+  "sessionCode": "xzFK8duv5dcnViQ9TBagco6wf2fErTg9"
+}
+```

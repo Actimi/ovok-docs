@@ -48,3 +48,24 @@ The translation may fail or return hallucinated results due to the nature of LLM
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `CreateTranslationResponseDto` (`application/json`)
+
+- `sourceLanguage`: `string` **(required)**
+- `targetLanguage`: `string` **(required)**
+- `text`: `array` **(required)**
+
+**Example**
+
+```json
+{
+  "sourceLanguage": "en",
+  "targetLanguage": "de",
+  "text": [
+    "Hallo {{ name }}, wie geht es Ihnen?",
+    "Mir geht es gut, danke {{ anotherName }}. Ich freue mich, dass Sie ans Telefon gegangen sind.",
+    "<p>Keine Sorge, Sir, ich werde mich darum <b>kümmern</b>.</p>"
+  ]
+}
+```

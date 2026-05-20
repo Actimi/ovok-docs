@@ -43,3 +43,20 @@ curl -X POST \
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `ResponseTokenDto` (`application/json`)
+
+- `access_token`: `string` **(required)** — Bearer access token. Expires in 1 hour.
+- `refresh_token`: `string` — Refresh token.
+- `expires_in`: `integer` **(required)** — Token expiration.
+
+**Example**
+
+```json
+{
+  "access_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
+  "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8",
+  "expires_in": 3600
+}
+```

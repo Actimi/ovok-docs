@@ -37,3 +37,23 @@ The response is a JSON object with the i18next format.
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `i18nGetDto` (`application/json`)
+
+- `key`: `string` **(required)** — Alphabetic key
+- `language`: `string` **(required)**
+
+**Example**
+
+```json
+{
+  "page": {
+    "about": "about",
+    "contact": "contact",
+    "home": {
+      "title": "home"
+    }
+  }
+}
+```

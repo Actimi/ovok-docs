@@ -224,7 +224,7 @@ The other variables can be sent from the client side in the request body if desi
 ```bash
 curl -X POST \
  --url 'https://api.sandbox.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
  -H 'Content-Type: application/json' \
  -d @populate-body.json # @populate-body.json is the request body from the previous example
 ```
@@ -302,3 +302,75 @@ Now you can use the response (QuestionnaireResponse) and POST it if you want to 
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `PopulateBodyResponseDto` (`application/json`)
+
+- `resourceType`: `string` **(required)**
+- `questionnaire`: `string` **(required)**
+- `subject`: `object` **(required)**
+- `item`: `array` **(required)**
+
+_Additional properties allowed._
+
+**Example**
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "status": "in-progress",
+        "questionnaire": "https://fhir.ovok.com/fhir/Questionnaire/59d9a1ce-008c-4e4f-97fb-ef598d3f2c34|0.1.0",
+        "item": [
+          {
+            "linkId": "bmi-calculation",
+            "text": "BMI Calculation",
+            "item": [
+              {
+                "linkId": "bmi-result",
+                "answer": [
+                  {
+                    "valueDecimal": 32.7
+                  }
+                ],
+                "text": "Value"
+              },
+              {
+                "linkId": "patient-height",
+                "text": "Height",
+                "answer": [
+                  {
+                    "valueDecimal": 175
+                  }
+                ]
+              },
+              {
+                "linkId": "patient-weight",
+                "text": "Weight",
+                "answer": [
+                  {
+                    "valueDecimal": 100
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "type": "Patient",
+          "reference": "Patient/1684f841-953a-41c2-a298-64af08945349"
+        },
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaireresponse"
+          ]
+        }
+      }
+    }
+  ]
+}
+```

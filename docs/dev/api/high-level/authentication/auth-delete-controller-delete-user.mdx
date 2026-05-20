@@ -18,7 +18,7 @@ The Delete User API endpoint schedules user account deletion from the Ovok platf
 ```bash
 curl -X DELETE \
  --url 'https://api.sandbox.ovok.com/auth/delete' \
- -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo' \
+ -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8' \
  -H 'Content-Type: application/json' \
  -d '{
     "days": 30,
@@ -47,3 +47,45 @@ curl -X DELETE \
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `ResponseDeleteDto` (`application/json`)
+
+- `scheduled`: `string` — Has the user account been scheduled for deletion.
+- `user`: `object` — User resource.
+
+**Example**
+
+```json
+{
+  "scheduled": {},
+  "user": {
+    "resourceType": "User",
+    "id": "9f8a2389-a20c-a075-2aa9-e95093515517",
+    "firstName": "Max",
+    "lastName": "Mustermann",
+    "email": "max.mustermann@example.com",
+    "project": {
+      "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",
+      "display": "My Medical Project"
+    },
+    "meta": {
+      "versionId": "87ea5dfc-8b8e-384d-8489-79496e706390",
+      "lastUpdated": {},
+      "author": {
+        "reference": "cd495e76-8385-ecb1-00a6-7e0381de4e42",
+        "display": "John Doe"
+      },
+      "project": "f6f4da8d-93e8-8a08-220e-03b7810451d3",
+      "compartment": [
+        {
+          "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3"
+        },
+        {
+          "reference": "Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498"
+        }
+      ]
+    }
+  }
+}
+```

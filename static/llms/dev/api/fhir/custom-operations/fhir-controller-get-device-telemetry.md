@@ -118,3 +118,119 @@ curl -X GET \
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `DeviceTelemetryResponseDto` (`application/json`)
+
+- `resourceType`: `string` **(required)**
+- `type`: `string` **(required)**
+- `total`: `number`
+- `entry`: `array` **(required)**
+
+**Example**
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 4,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "presence",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "https://sleepiz.com/fhir/CodeSystem/observation-codes",
+              "code": "presence-detection",
+              "display": "Presence detection"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390"
+        },
+        "effectiveInstant": {},
+        "valueBoolean": true
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "heartRate",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390"
+        },
+        "effectiveInstant": {},
+        "valueQuantity": {
+          "value": 72,
+          "unit": "beats/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "respiratoryRate",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390"
+        },
+        "effectiveInstant": {},
+        "valueQuantity": {
+          "value": 14,
+          "unit": "breaths/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "sleep",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "107145-5",
+              "display": "Sleep status"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390"
+        },
+        "effectiveInstant": {},
+        "valueCodeableConcept": {
+          "text": "asleep"
+        }
+      }
+    }
+  ]
+}
+```

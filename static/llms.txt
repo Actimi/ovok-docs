@@ -78,6 +78,7 @@ Manifest: /llms/manifest.json
 - /dev/api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response.md
 - /dev/api/fhir/custom-operations/fhir-controller-get-device-telemetry.md
 - /dev/api/fhir/custom-operations/fhir-controller-get-device-telemetry-history.md
+- /dev/api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries.md
 - /dev/api/fhir/custom-operations/fhir-controller-get-patient-last-observation.md
 - /dev/api/fhir/custom-operations/fhir-controller-populate-questionnaire.md
 - /dev/api/fhir/custom-operations/fhir-controller-update-patient-threshold.md
@@ -221,6 +222,11 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login.md
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start.md
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login.md
+- /dev/cms/api-keys.md
+- /dev/cms/authoring.md
+- /dev/cms/enable.md
+- /dev/cms/index.md
+- /dev/cms/public-delivery.md
 - /dev/platform/environments.md
 - /dev/platform/overview.md
 - /dev/surfaces/console.md

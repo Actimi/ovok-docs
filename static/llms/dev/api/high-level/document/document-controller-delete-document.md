@@ -50,3 +50,10 @@ Deletes a document and its associated file from the system.
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `DocumentDeletedResponseDto` (`application/json`)
+
+Document deletion acknowledgement.
+
+- `message`: `string` **(required)**

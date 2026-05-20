@@ -45,3 +45,23 @@ NOTE: All pre-existing and matching localizations will be overwritten, pre-exist
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `i18nPatchDto` (`application/json`)
+
+`object`
+
+**Example**
+
+```json
+{
+  "page": {
+    "about": "about",
+    "contact": "contact",
+    "phone": null,
+    "home": {
+      "title": "home"
+    }
+  }
+}
+```

@@ -119,19 +119,19 @@
     "label": "CMS Public Delivery",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1"
+      "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
-        "label": "GET /v1/public/cms/{typeSlug}/items"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
+        "label": "Get a published item"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
-        "label": "GET /v1/public/cms/{typeSlug}/items/{idOr…"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
+        "label": "List published items"
       }
     ]
   },

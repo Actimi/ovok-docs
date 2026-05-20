@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
+      "password": "&}Y^R-1HJX+Xh21{",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
+      "password": "&}Y^R-1HJX+Xh21{",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyMDQwNzgsImV4cCI6MTc3OTIwNzY3OH0.bYumRbOBAUVMnJh6wZmCNO6eYR3aDvqrDxPw1QyDXCo"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjQ1NjMsImV4cCI6MTc3OTI2ODE2M30.5wLeel1UXVERnNJ2juPQPCD_JPk11FV5hkEOAa2MkE8"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
+      "password": "&}Y^R-1HJX+Xh21{",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
+      "password": "&}Y^R-1HJX+Xh21{",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
-      "codeChallenge": "BoEm7YK8YyZEv8uzCF1FNfZ9nl24Xgt4"
+      "password": "&}Y^R-1HJX+Xh21{",
+      "codeChallenge": "1TmNIoZUQHb7OUZMuX3vqGabXCjOLKCK"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "bEPloTMzw9yXa7TqgfV9FcpXvTzHedaU",
-      "codeVerifier": "D7qRrbxdMme5S9hQy6PWgFh7Ug3M7unWa4fFnSsFYd5HcSNfgRLEm5H2aQKr0F6i",
+      "sessionCode": "Tzj9rMDJH4HwTXw8fc8fW97YlBHQ6E8R",
+      "codeVerifier": "cP5SiIzvuIBVpJDloIKpK2OUdzw4KJHuQduiMGsx0oNGrhIhHMVqnx6SkbcJJkbr",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
-      "codeChallenge": "f73bPe8GH97YPMdxVVCLmsQTN8542n6U",
+      "password": "&}Y^R-1HJX+Xh21{",
+      "codeChallenge": "xJhQ8pPXfx1QehTjArUKhFegDeQNTjHr",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "I3wlLrJBVB1lD5DibsqBlU3zjSevAjn4",
-      "codeVerifier": "4D27lERYriQUwrIgaKi8V0EhnPW3HgH3cHo80XgIVnVcozNyYBpDWiPgT7UoXhLJ"
+      "sessionCode": "hNORhz8IotLDpngABT78TioELndpIavG",
+      "codeVerifier": "eUksHCCjvEPdKbbOhXBP9T0VTJpGT5ahQGagxD47QIMadbmJa2RSQKqA4gFUvOSt"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "uSi-WdG0-7QT>IRW",
+      "password": "&}Y^R-1HJX+Xh21{",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -1003,6 +1003,69 @@
     "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
     "tag": "FHIR Operations",
     "operationId": "FhirController_getDeviceTelemetry[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/Observation/{id}",
+    "summary": "Expand Observation SampledData to a {t,v} time-series",
+    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getObservationOrTimeseries[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R4/Observation/{id}",
+    "summary": "Expand Observation SampledData to a {t,v} time-series",
+    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getObservationOrTimeseries[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R5/Observation/{id}",
+    "summary": "Expand Observation SampledData to a {t,v} time-series",
+    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getObservationOrTimeseries[2]",
     "parameters": [
       {
         "name": "id",
@@ -1796,8 +1859,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items",
-    "summary": "GET /v1/public/cms/{typeSlug}/items",
-    "description": "",
+    "summary": "List published items",
+    "description": "List published items from a CMS collection. Authenticates with a project-scoped API key (Authorization: Bearer …). Drafts and unpublished items are filtered out server-side.",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_listItems_v1",
     "parameters": [
@@ -1841,8 +1904,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "summary": "GET /v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "description": "",
+    "summary": "Get a published item",
+    "description": "Fetch a single published item by id or slug. Authenticates with a project-scoped API key. Returns 404 for drafts, unpublished items, or items in another project.",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_getItem_v1",
     "parameters": [

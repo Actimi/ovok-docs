@@ -202,13 +202,91 @@ function emitHighLevelForEnv(envKey, spec) {
     }
     return blocks.join('\n');
   }
+  /**
+   * Render a response/request schema as a flat field list. Recurses one
+   * level deep for nested objects; deeper structures fall back to the
+   * named ref so the page doesn't explode. Arrays of objects render
+   * their item shape under "Array of <Name>".
+   */
+  function renderSchemaFields(schema, depth = 0) {
+    if (!schema) return '';
+    const s = deref(schema);
+    if (!s) return '';
+    if (s.type === 'array') {
+      const inner = deref(s.items) ?? {};
+      const innerName = s.items?.$ref ? s.items.$ref.split('/').pop() : (inner.type ?? 'object');
+      if (depth < 1 && inner.type === 'object' && inner.properties) {
+        return `Array of \`${innerName}\`:\n\n${renderSchemaFields(inner, depth + 1)}`;
+      }
+      return `Array of \`${innerName}\``;
+    }
+    if (s.type === 'object' && s.properties) {
+      const required = new Set(s.required ?? []);
+      const lines = Object.entries(s.properties).map(([name, prop]) => {
+        const p = deref(prop) ?? {};
+        const refName = prop.$ref ? prop.$ref.split('/').pop() : null;
+        const type = refName ?? p.type ?? (p.items?.$ref ? `${p.items.$ref.split('/').pop()}[]` : p.type === 'array' ? `${deref(p.items)?.type ?? 'object'}[]` : '—');
+        const req = required.has(name) ? ' **(required)**' : '';
+        const desc = p.description ? ` — ${escapeMdx(p.description).replace(/\n+/g, ' ')}` : '';
+        return `- \`${name}\`: \`${type}\`${req}${desc}`;
+      });
+      return lines.join('\n');
+    }
+    if (s.type) return `\`${s.type}\``;
+    return '';
+  }
+
   function renderResponses(responses) {
     if (!responses) return '';
+
+    // Status code overview table — derefs each response for its
+    // description text (in case a response itself is a $ref).
     const rows = Object.entries(responses).map(([code, res]) => {
       const r = deref(res);
       return `| \`${code}\` | ${escapeMdx(r.description ?? '').replace(/\n+/g, ' ')} |`;
     });
-    return ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''].join('\n');
+    const blocks = ['', '## Responses', '', '| Code | Description |', '| --- | --- |', ...rows, ''];
+
+    // Per-content schema — iterate the ORIGINAL responses (not derefed)
+    // so we can still read media.schema.$ref to surface the DTO name in
+    // the heading. The recursive deref rebuilds the tree and strips the
+    // $ref attribute from the rendered output, so we have to peek at it
+    // here before resolving.
+    //
+    // 4xx/5xx schemas are skipped — they're all the standard NestJS
+    // HttpException shape (statusCode/message/error) and would repeat
+    // identically on every page.
+    for (const [code, res] of Object.entries(responses)) {
+      if (/^[45]\d\d$/.test(code)) continue;
+      const content = res?.content ?? {};
+      for (const [mime, media] of Object.entries(content)) {
+        const rawRef = media.schema?.$ref;
+        const refName = rawRef ? rawRef.split('/').pop() : null;
+        const s = deref(media.schema);
+        if (!s) continue;
+        const heading = refName
+          ? `### \`${code}\` → \`${refName}\` (\`${mime}\`)`
+          : `### \`${code}\` (\`${mime}\`)`;
+        blocks.push('', heading, '');
+
+        if (s.description) {
+          blocks.push(escapeMdx(s.description), '');
+        }
+
+        const fields = renderSchemaFields(s);
+        if (fields) blocks.push(fields, '');
+
+        if (s.additionalProperties === true) {
+          blocks.push('_Additional properties allowed._', '');
+        }
+
+        if (s.example !== undefined) {
+          blocks.push('**Example**', '', '```json', JSON.stringify(s.example, null, 2), '```', '');
+        }
+      }
+    }
+
+    return blocks.join('\n');
   }
 
   ensureDir(outHigh);
@@ -352,7 +430,7 @@ resources. Each is mounted at \`/fhir/\`, \`/fhir/R4/\` and \`/fhir/R5/\`.
 <ApiBase inline={false} />
 
 ## Operations
-${customOpsSidebar.map((s) => `- [${s.label}](/${envKey}/api/fhir/custom-operations/${s.id.split('/').pop()})`).join('\n')}
+${customOpsSidebar.map((s) => `- [${escapeBraces(s.label)}](/${envKey}/api/fhir/custom-operations/${s.id.split('/').pop()})`).join('\n')}
 `);
   }
 

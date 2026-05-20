@@ -25,3 +25,22 @@ Get organization code
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `TenantCodeDto` (`application/json`)
+
+Tenant code
+
+- `id`: `string`
+- `code`: `string` **(required)**
+- `projectId`: `string` **(required)**
+
+**Example**
+
+```json
+{
+  "id": "aa2c96da-cf00-c451-ef46-5f6115a45a20",
+  "code": "FHXQ-123",
+  "project": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3"
+}
+```
