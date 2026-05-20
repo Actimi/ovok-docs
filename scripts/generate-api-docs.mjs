@@ -121,8 +121,10 @@ function sweepOrphans(dir) {
   if (!existsSync(dir)) return 0;
   let removed = 0;
   const stack = [dir];
+  const dirsSeen = [];
   while (stack.length) {
     const cur = stack.pop();
+    dirsSeen.push(cur);
     let entries;
     try { entries = readdirSync(cur, { withFileTypes: true }); } catch { continue; }
     for (const ent of entries) {
@@ -132,6 +134,17 @@ function sweepOrphans(dir) {
         try { rmSync(full); removed++; } catch {}
       }
     }
+  }
+  // Second pass, deepest-first: any directory left empty after the file
+  // sweep is a stale tag folder (e.g. the legacy CMS dir from before that
+  // tag was demoted to Internal). Remove them so they don't linger on
+  // contributors' filesystems and confuse future regens.
+  for (const d of dirsSeen.reverse()) {
+    if (d === dir) continue;
+    try {
+      const remaining = readdirSync(d);
+      if (remaining.length === 0) rmSync(d, { recursive: false });
+    } catch {}
   }
   return removed;
 }
