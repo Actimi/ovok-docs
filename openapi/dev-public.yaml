@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "ron+d&#x3D;-!URRJP$&#x3D;&amp;",
+            "password": "{GVQSQ;G[-g&lt;t6Mh",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "ron+d&#x3D;-!URRJP$&#x3D;&amp;",
+            "password": "{GVQSQ;G[-g&lt;t6Mh",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -401,7 +401,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +925,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1050,7 +1050,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -1582,24 +1582,56 @@ paths:
       summary: Update the available locales
       tags:
         - Localization
-  /organizations/code/email:
+  /sub-project:
     post:
-      description: Receive organization codes to your email
-      operationId: OrganizationCodeController_sendEmailOfOrganizations
+      description: >-
+        Create a child project ("sub tenant") nested under the caller's current
+        project. The admin issuing the request is automatically joined to the
+        new child project as a Practitioner with admin rights, so the OAuth
+        credentials they already hold keep working against it.
+
+
+        Use this to spin up isolated environments per customer, per clinic, or
+        per integration partner without minting new accounts. The parent project
+        retains full read/write across all its children — child-project access
+        policies stay scoped to the child.
+
+
+        ### Body
+
+
+        `SubProjectRequestBodyDto` — at minimum a `name`. See the schema below
+        for optional metadata (`organizationName`, `accessPolicies`, etc.).
+
+
+        ### Example
+
+
+        ```bash
+
+        curl -X POST '<APP_BASE_URL>/v1/sub-project' \
+          -H 'Authorization: Bearer <admin-token>' \
+          -H 'Content-Type: application/json' \
+          -d '{ "name": "Acme — Berlin clinic" }'
+        ```
+
+
+        Admin-only. Returns `{ success: true }`.
+      operationId: SubProjectController_createSubTenant
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailRequestBodyDto"
+              $ref: "#/components/schemas/SubProjectRequestBodyDto"
       responses:
         "200":
-          description: ""
+          description: The sub tenant was created successfully.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailRequestBodyDto"
+                $ref: "#/components/schemas/SubProjectSuccessResponseDto"
         "400": &a23
           description: The request could not be operated by the server.
           content:
@@ -1691,13 +1723,33 @@ paths:
                 required:
                   - statusCode
                   - message
-      summary: Receive Organization Codes
+      summary: Create a sub tenant
       tags:
-        - Organization Code Information
-  /organizations/code:
+        - Sub Projects
     get:
-      description: Get organization code
-      operationId: OrganizationCodeController_getOrganizationCode
+      description: >-
+        Returns the caller project's place in the project hierarchy: its own id,
+        its parent's id (if any), and the ids of any direct children.
+
+
+        The dashboard renders this on the project switcher; SDK consumers use it
+        to navigate between tenants the caller has access to without minting
+        separate credentials.
+
+
+        ### Example
+
+
+        ```bash
+
+        curl '<APP_BASE_URL>/v1/sub-project' \
+          -H 'Authorization: Bearer <admin-token>'
+        ```
+
+
+        Returns the relationship graph as a `SubProjectsResponseDto`. 400 when
+        no project is bound to the session.
+      operationId: SubProjectController_getProjectRelationships
       parameters: []
       responses:
         "200":
@@ -1705,35 +1757,82 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TenantCodeDto"
+                $ref: "#/components/schemas/SubProjectsResponseDto"
         "400": *a23
         "401": *a24
         "404": *a25
         "422": *a26
         "500": *a27
-      summary: Get Organization Code
+      summary: List project relationships
       tags:
-        - Organization Code Information
-  /v1/content:
-    get:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_get
+        - Sub Projects
+  /sub-project/{subProjectId}:
+    delete:
+      description: >-
+        Tear down a child project. The FHIR Project resource and the parent ↔
+        child relationship are both removed.
+
+
+        **Irreversible.** All resources stored on the child project (Patients,
+        Practitioners, Observations, …) are removed from the active dataset.
+        There is no soft-delete; if you need history, snapshot the child via the
+        FHIR API before calling.
+
+
+        Admin-only. Only the parent project may delete a child it owns —
+        cross-tenant attempts return 404 (same as "not found", to avoid leaking
+        existence).
+
+
+        ### Example
+
+
+        ```bash
+
+        curl -X DELETE '<APP_BASE_URL>/v1/sub-project/<sub-project-id>' \
+          -H 'Authorization: Bearer <admin-token>'
+        ```
+      operationId: SubProjectController_deleteSubTenant
+      parameters:
+        - name: subProjectId
+          required: true
+          in: path
+          schema:
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: The sub tenant was deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubProjectSuccessResponseDto"
+        "400": *a23
+        "401": *a24
+        "404": *a25
+        "422": *a26
+        "500": *a27
+      summary: Delete a sub tenant
+      tags:
+        - Sub Projects
+  /organizations/code/email:
+    post:
+      description: Receive organization codes to your email
+      operationId: OrganizationCodeController_sendEmailOfOrganizations
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmailRequestBodyDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
+                $ref: "#/components/schemas/EmailRequestBodyDto"
         "400": &a28
           description: The request could not be operated by the server.
           content:
@@ -1825,22 +1924,13 @@ paths:
                 required:
                   - statusCode
                   - message
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
+      summary: Receive Organization Codes
       tags:
-        - Content
-    post:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_post
+        - Organization Code Information
+  /organizations/code:
+    get:
+      description: Get organization code
+      operationId: OrganizationCodeController_getOrganizationCode
       parameters: []
       responses:
         "200":
@@ -1848,192 +1938,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
+                $ref: "#/components/schemas/TenantCodeDto"
         "400": *a28
         "401": *a29
         "404": *a30
         "422": *a31
         "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
+      summary: Get Organization Code
       tags:
-        - Content
-    put:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_put
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    delete:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_delete
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    patch:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_patch
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    options:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_options
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    head:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_head
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    search:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_search
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-  /v1/content/{path}:
+        - Organization Code Information
+  /v1/content:
     get:
       description: Catch-all that forwards every method
         (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
@@ -2053,235 +1967,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    post:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_post
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    put:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_put
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    delete:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_delete
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    patch:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_patch
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    options:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_options
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    head:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_head
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-    search:
-      description: Catch-all that forwards every method
-        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
-        project-scoped Payload CMS instance. The Medplum project id is injected
-        as the Payload tenant header, so multi-tenant scoping is automatic — you
-        address `Collection/<id>` or `Collection?where=...` exactly as the
-        Payload REST API expects. Response shape and status code are whatever
-        Payload returns; refer to your collection schemas (and the
-        `payloadcms.com/docs/rest-api` reference) for the per-collection
-        details. 502 surfaces when Payload itself is unreachable.
-      operationId: ContentProxyController_proxy_search
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ContentProxyResponseDto"
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
-      security:
-        - bearer: []
-      summary: Content CMS reverse proxy
-      tags:
-        - Content
-  /partner/health-check:
-    get:
-      description: 'Unauthenticated liveness ping for partner load balancers and
-        sandbox smoke checks. Always returns `{ status: "ok", healthy: true,
-        timestamp }` when the handler is reachable. Mounted at version-neutral,
-        v1, v2 and v3 paths so older partner SDKs keep working as the
-        surrounding API evolves.'
-      operationId: PartnerController_healthCheck[0]
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PartnerHealthResponseDto"
         "400": &a33
           description: The request could not be operated by the server.
           content:
@@ -2373,6 +2058,554 @@ paths:
                 required:
                   - statusCode
                   - message
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    post:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_post
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    put:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_put
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    delete:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_delete
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    patch:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_patch
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    options:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_options
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    head:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_head
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    search:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_search
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+  /v1/content/{path}:
+    get:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_get
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    post:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_post
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    put:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_put
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    delete:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_delete
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    patch:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_patch
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    options:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_options
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    head:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_head
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+    search:
+      description: Catch-all that forwards every method
+        (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the
+        project-scoped Payload CMS instance. The Medplum project id is injected
+        as the Payload tenant header, so multi-tenant scoping is automatic — you
+        address `Collection/<id>` or `Collection?where=...` exactly as the
+        Payload REST API expects. Response shape and status code are whatever
+        Payload returns; refer to your collection schemas (and the
+        `payloadcms.com/docs/rest-api` reference) for the per-collection
+        details. 502 surfaces when Payload itself is unreachable.
+      operationId: ContentProxyController_proxy_search
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentProxyResponseDto"
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
+      security:
+        - bearer: []
+      summary: Content CMS reverse proxy
+      tags:
+        - Content
+  /partner/health-check:
+    get:
+      description: 'Unauthenticated liveness ping for partner load balancers and
+        sandbox smoke checks. Always returns `{ status: "ok", healthy: true,
+        timestamp }` when the handler is reachable. Mounted at version-neutral,
+        v1, v2 and v3 paths so older partner SDKs keep working as the
+        surrounding API evolves.'
+      operationId: PartnerController_healthCheck[0]
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartnerHealthResponseDto"
+        "400": &a38
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a39
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a40
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a41
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a42
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
       summary: Partner integration health check
       tags:
         - Partner
@@ -2392,11 +2625,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PartnerHealthResponseDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       summary: Partner integration health check
       tags:
         - Partner
@@ -2416,11 +2649,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PartnerHealthResponseDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       summary: Partner integration health check
       tags:
         - Partner
@@ -2440,11 +2673,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PartnerHealthResponseDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       summary: Partner integration health check
       tags:
         - Partner
@@ -2729,7 +2962,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": &a38
+        "400": &a43
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -2747,7 +2980,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a39
+        "401": &a44
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -2765,7 +2998,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a40
+        "404": &a45
           description: The requested resource could not be found.
           content:
             application/json:
@@ -2783,7 +3016,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a41
+        "422": &a46
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -2801,7 +3034,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a42
+        "500": &a47
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -2885,11 +3118,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetSearchFilesResponseDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
         - bearer: []
       summary: Search documents
@@ -2906,7 +3139,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -2965,11 +3198,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RedirectResponseDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       summary: Get a document as public user
       tags:
         - Document
@@ -3041,11 +3274,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RedirectResponseDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
         - bearer: []
       summary: Get a document as authenticated user
@@ -3104,11 +3337,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DocumentDeletedResponseDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
         - bearer: []
       summary: Delete a document
@@ -3180,11 +3413,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
         - bearer: []
       summary: Update document metadata
@@ -3278,11 +3511,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
         - bearer: []
       summary: Generate credentials for document file replacement
@@ -3559,7 +3792,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": &a43
+        "400": &a48
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -3577,7 +3810,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a44
+        "401": &a49
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -3595,7 +3828,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a45
+        "404": &a50
           description: The requested resource could not be found.
           content:
             application/json:
@@ -3613,7 +3846,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a46
+        "422": &a51
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -3631,7 +3864,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a47
+        "500": &a52
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -3764,11 +3997,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get last observations
       tags:
         - FHIR Operations
@@ -3883,11 +4116,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get last observations
       tags:
         - FHIR Operations
@@ -4005,11 +4238,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -4127,11 +4360,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -4249,11 +4482,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -4288,11 +4521,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Expand Observation SampledData to a {t,v} time-series
       tags:
         - FHIR Operations
@@ -4327,11 +4560,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Expand Observation SampledData to a {t,v} time-series
       tags:
         - FHIR Operations
@@ -4366,11 +4599,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ObservationTimeseriesResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Expand Observation SampledData to a {t,v} time-series
       tags:
         - FHIR Operations
@@ -4434,11 +4667,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -4502,11 +4735,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -4570,11 +4803,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryHistoryResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -4599,11 +4832,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -4628,11 +4861,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -4657,11 +4890,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -4699,11 +4932,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientThresholdResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -4741,11 +4974,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientThresholdResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -4783,11 +5016,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientThresholdResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -5004,7 +5237,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5076,11 +5309,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -5297,7 +5530,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5369,11 +5602,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -5590,7 +5823,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5662,11 +5895,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -5748,7 +5981,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
         ```
 
 
@@ -5821,11 +6054,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -5907,7 +6140,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
         ```
 
 
@@ -5980,11 +6213,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -6066,7 +6299,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
         ```
 
 
@@ -6139,11 +6372,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a43
-        "401": *a44
-        "404": *a45
-        "422": *a46
-        "500": *a47
+        "400": *a48
+        "401": *a49
+        "404": *a50
+        "422": *a51
+        "500": *a52
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -6496,7 +6729,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/i18nGetDto"
-        "400": &a48
+        "400": &a53
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -6514,7 +6747,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a49
+        "401": &a54
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -6532,7 +6765,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a50
+        "404": &a55
           description: The requested resource could not be found.
           content:
             application/json:
@@ -6550,7 +6783,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a51
+        "422": &a56
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -6568,7 +6801,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a52
+        "500": &a57
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -6587,7 +6820,7 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a53
+      security: &a58
         - bearer: []
       summary: i18next - Get JSON
       tags:
@@ -6952,12 +7185,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/i18nPatchDto"
-        "400": *a48
-        "401": *a49
-        "404": *a50
-        "422": *a51
-        "500": *a52
-      security: *a53
+        "400": *a53
+        "401": *a54
+        "404": *a55
+        "422": *a56
+        "500": *a57
+      security: *a58
       summary: i18next - Update JSON
       tags:
         - Localization Keys
@@ -7820,7 +8053,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedSearchResponseDto"
-        "400": &a54
+        "400": &a59
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -7838,7 +8071,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a55
+        "401": &a60
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -7856,7 +8089,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a56
+        "404": &a61
           description: The requested resource could not be found.
           content:
             application/json:
@@ -7874,7 +8107,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a57
+        "422": &a62
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -7892,7 +8125,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a58
+        "500": &a63
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -7911,7 +8144,7 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a59
+      security: &a64
         - bearer: []
       summary: Get all localizations
       tags:
@@ -8272,12 +8505,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a54
-        "401": *a55
-        "404": *a56
-        "422": *a57
-        "500": *a58
-      security: *a59
+        "400": *a59
+        "401": *a60
+        "404": *a61
+        "422": *a62
+        "500": *a63
+      security: *a64
       summary: Get a single localization
       tags:
         - Localization Keys
@@ -8642,12 +8875,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a54
-        "401": *a55
-        "404": *a56
-        "422": *a57
-        "500": *a58
-      security: *a59
+        "400": *a59
+        "401": *a60
+        "404": *a61
+        "422": *a62
+        "500": *a63
+      security: *a64
       summary: Update a single localization
       tags:
         - Localization Keys
@@ -9006,12 +9239,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a54
-        "401": *a55
-        "404": *a56
-        "422": *a57
-        "500": *a58
-      security: *a59
+        "400": *a59
+        "401": *a60
+        "404": *a61
+        "422": *a62
+        "500": *a63
+      security: *a64
       summary: Delete a single localization
       tags:
         - Localization Keys
@@ -9112,6 +9345,398 @@ paths:
       summary: Get a published item
       tags:
         - CMS Public Delivery
+  /v1/projects:
+    get:
+      description: >-
+        Every FHIR Project the caller has a ProjectMembership on. Each entry
+        carries an `admin` flag (project-admin status for the caller) and an
+        `internal` flag (Ovok-managed tenant, hidden from billing).
+
+
+        Use this to render a tenant switcher in your dashboard — the sub-project
+        hierarchy is exposed via `GET /v1/sub-project`.
+
+
+        ### Example
+
+
+        ```bash
+
+        curl '<APP_BASE_URL>/v1/projects' \
+          -H 'Authorization: Bearer <token>'
+        ```
+      operationId: ProjectsController_listMyProjects_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectListResponseDto"
+        "400": &a65
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a66
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a67
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a68
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a69
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      security:
+        - bearer: []
+      summary: List my projects
+      tags:
+        - Projects
+  /v1/projects/me/tenant-code:
+    get:
+      description: Short tenant code on file for the caller’s current project, or null
+        when one has not been assigned yet.
+      operationId: ProjectsController_getMyTenantCode_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TenantCodeResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Get project tenant code
+      tags:
+        - Projects
+  /v1/projects/me/features:
+    get:
+      description: Returns FHIR-server feature flags for the caller’s current project.
+        Feature flags control opt-in behaviour at the FHIR layer (e.g.
+        terminology server, GraphQL).
+      operationId: ProjectsController_getMyProjectFeatures_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectFeaturesResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Get project features
+      tags:
+        - Projects
+    patch:
+      description: Replace the FHIR-server feature flag list on the caller’s current
+        project. Admin-only. Empty array disables every flag.
+      operationId: ProjectsController_updateMyProjectFeatures_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectFeaturesBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectFeaturesResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Update project features
+      tags:
+        - Projects
+  /v1/projects/me/cms-locales:
+    get:
+      description: BCP-47 locale codes the project offers for content items. The first
+        entry is the project default — public delivery falls back to it when a
+        requested locale has no value on file.
+      operationId: ProjectsController_getMyCmsLocales_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CmsLocalesResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Get CMS locales
+      tags:
+        - Projects
+    patch:
+      description: Replace the list of locales the project offers. The first entry
+        becomes the project default. Admin-only.
+      operationId: ProjectsController_updateMyCmsLocales_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CmsLocalesBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CmsLocalesResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Update CMS locales
+      tags:
+        - Projects
+  /v1/projects/me/members:
+    get:
+      description: Members of the caller’s current project, including pending invites
+        (users who have not completed their first sign-in).
+      operationId: ProjectsController_listMyMembers_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MembersListResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: List project members
+      tags:
+        - Projects
+    post:
+      description: Creates the Practitioner profile + ProjectMembership and sends a
+        magic-link invite email. Admin-only.
+      operationId: ProjectsController_inviteMember_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InviteMemberBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MemberResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Invite a project member
+      tags:
+        - Projects
+  /v1/projects/me/members/{id}:
+    patch:
+      description: Toggle admin status on an existing membership. Admin-only.
+      operationId: ProjectsController_updateMember_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMemberBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MemberResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Update a project member
+      tags:
+        - Projects
+    delete:
+      description: Delete a ProjectMembership. Refuses to remove the caller or the
+        last remaining admin. Admin-only.
+      operationId: ProjectsController_removeMember_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Remove a project member
+      tags:
+        - Projects
+  /v1/projects/{id}:
+    get:
+      description: Return summary + settings for a project the caller is a member of.
+        404 otherwise.
+      operationId: ProjectsController_getProject_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectDetailResponseDto"
+        "400": *a65
+        "401": *a66
+        "404": *a67
+        "422": *a68
+        "500": *a69
+      security:
+        - bearer: []
+      summary: Get project detail
+      tags:
+        - Projects
   /v1/wearables/{provider}/connect:
     post:
       description: >-
@@ -9180,7 +9805,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectResponseDto"
-        "400": &a60
+        "400": &a70
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -9198,7 +9823,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a61
+        "401": &a71
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -9216,7 +9841,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a62
+        "404": &a72
           description: The requested resource could not be found.
           content:
             application/json:
@@ -9234,7 +9859,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a63
+        "422": &a73
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -9252,7 +9877,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a64
+        "500": &a74
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -9364,11 +9989,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OkResponseDto"
-        "400": *a60
-        "401": *a61
-        "404": *a62
-        "422": *a63
-        "500": *a64
+        "400": *a70
+        "401": *a71
+        "404": *a72
+        "422": *a73
+        "500": *a74
       summary: "[Early Access] Wearable OAuth callback"
       tags:
         - Wearables (Early Access)
@@ -9421,11 +10046,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OkResponseDto"
-        "400": *a60
-        "401": *a61
-        "404": *a62
-        "422": *a63
-        "500": *a64
+        "400": *a70
+        "401": *a71
+        "404": *a72
+        "422": *a73
+        "500": *a74
       security:
         - bearer: []
       summary: "[Early Access] Revoke a wearable connection"
@@ -9465,11 +10090,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectionListResponseDto"
-        "400": *a60
-        "401": *a61
-        "404": *a62
-        "422": *a63
-        "500": *a64
+        "400": *a70
+        "401": *a71
+        "404": *a72
+        "422": *a73
+        "500": *a74
       security:
         - bearer: []
       summary: "[Early Access] List wearable connections"
@@ -9536,11 +10161,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OkResponseDto"
-        "400": *a60
-        "401": *a61
-        "404": *a62
-        "422": *a63
-        "500": *a64
+        "400": *a70
+        "401": *a71
+        "404": *a72
+        "422": *a73
+        "500": *a74
       summary: "[Early Access] Wearable webhook subscription verification"
       tags:
         - Wearables (Early Access)
@@ -9624,14 +10249,209 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OkResponseDto"
-        "400": *a60
-        "401": *a61
-        "404": *a62
-        "422": *a63
-        "500": *a64
+        "400": *a70
+        "401": *a71
+        "404": *a72
+        "422": *a73
+        "500": *a74
       summary: "[Early Access] Wearable webhook ingress"
       tags:
         - Wearables (Early Access)
+  /v1/project/settings:
+    get:
+      description: >-
+        Returns every boolean setting on the caller's current project as a
+        single map. Settings drive opt-in features (Payload CMS, custom mailing,
+        wearable integrations, patient registration policies, …).
+
+
+        Defaults are applied for any setting the project has not explicitly set
+        — see `PROJECT_SETTING_DEFAULTS` server-side. Admin only.
+
+
+        ### Example
+
+
+        ```bash
+
+        curl '<APP_BASE_URL>/v1/project/settings' \
+          -H 'Authorization: Bearer <admin-token>'
+        ```
+      operationId: ProjectSettingsController_getSettings_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectSettingsResponseDto"
+        "400": &a75
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a76
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a77
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a78
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a79
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      security:
+        - bearer: []
+      summary: List project settings
+      tags:
+        - Project Settings
+  /v1/project/settings/{key}:
+    put:
+      description: >-
+        Flip a single boolean setting on the caller's current project. Some keys
+        (`CONTENT_ENABLED`, `MAILING_ENABLED`) are paid-tier add-ons and return
+        402 on Free; flipping them OFF is always allowed so a tier downgrade
+        doesn't strand a project. Admin only.
+
+
+        ### Body
+
+
+        `{ "enabled": true | false }`
+
+
+        ### Example
+
+
+        ```bash
+
+        curl -X PUT '<APP_BASE_URL>/v1/project/settings/WEARABLE_STRAVA_ENABLED'
+        \
+          -H 'Authorization: Bearer <admin-token>' \
+          -H 'Content-Type: application/json' \
+          -d '{ "enabled": true }'
+        ```
+
+
+        Returns the full updated settings map.
+      operationId: ProjectSettingsController_putSetting_v1
+      parameters:
+        - name: key
+          required: true
+          in: path
+          schema:
+            type: string
+            enum:
+              - CONTENT_ENABLED
+              - MAILING_ENABLED
+              - PATIENT_INVITATION_ENABLED
+              - PATIENT_REGISTRATION_ENABLED
+              - PATIENT_LOGIN_ENABLED
+              - PRACTITIONER_INVITATION_ENABLED
+              - PRACTITIONER_REGISTRATION_ENABLED
+              - PRACTITIONER_LOGIN_ENABLED
+              - WEARABLE_STRAVA_ENABLED
+              - WEARABLE_POLAR_ENABLED
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutProjectSettingBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectSettingsResponseDto"
+        "400": *a75
+        "401": *a76
+        "404": *a77
+        "422": *a78
+        "500": *a79
+      security:
+        - bearer: []
+      summary: Toggle a project setting
+      tags:
+        - Project Settings
 info:
   title: Public APIs
   description: >-
@@ -9849,7 +10669,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -9894,8 +10714,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -9942,7 +10762,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -9963,8 +10783,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -9984,8 +10804,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -10054,7 +10874,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -10120,7 +10940,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
     RequestDeleteDto:
       type: object
       properties:
@@ -10211,7 +11031,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-05-20T09:01:50.572Z
+        scheduled: 2026-05-20T13:51:05.913Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -10223,7 +11043,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-05-20T09:01:50.572Z
+            lastUpdated: 2026-05-20T13:51:05.913Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -10253,7 +11073,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -10439,8 +11259,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -10738,7 +11558,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -10836,8 +11656,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: YZaZE6pfgG
-        password: ron+d=-!URRJP$=&
+        secret: aQQkUALdtk
+        password: "{GVQSQ;G[-g<t6Mh"
     SessionsResponseDto:
       type: object
       properties:
@@ -10869,7 +11689,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-05-20T09:01:50.572Z
+              lastUpdated: 2026-05-20T13:51:05.913Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -10879,7 +11699,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-05-20T09:01:50.572Z
+            lastUpdated: 2026-05-20T13:51:05.913Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -10923,7 +11743,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -10943,7 +11763,7 @@ components:
       required:
         - tan
       example:
-        tan: OlNGuQwhMvS4
+        tan: 4ibW4mamaoHK
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -10963,8 +11783,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
-        codeChallenge: rVpryh6ohH4bxV611dAO83Uz4VwFSN9T
+        password: "{GVQSQ;G[-g<t6Mh"
+        codeChallenge: I3cZIxdSBHut9t52wBoduBwD3WcN4Z8e
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -11003,7 +11823,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: AvBAYjbFHyQBB6B8UaChwDwCMCAFjprz
+        sessionCode: MHs1XHo6fLjOwcmm7c9OnlDlzA53DYqh
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -11019,8 +11839,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: NJU0ORYz95DcgqqSdjt1RAmcUpD3OWhX
-        codeVerifier: 8Fyh5Wc038TZlXgX0mtha2Yj8HGy97Q9iCayyYuCS89rPfmjheROZT68oUMzoTuq
+        sessionCode: VfUPOsLayDMPLZINcqLsJR0AcDcuwkQn
+        codeVerifier: tXpIzLd8ckpFSCci0GMvuvzsz0nHiXVu58sIaukMk4uW3WX3to2kBrTq6wQT3UzW
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -11060,7 +11880,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: xIAr6BqwgfRxBUgcq4sZRGTUCOUvKVar
+        sessionCode: 5yNXpERPI2FmpFK5iyn1imVn3LZQUhU9
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -11084,8 +11904,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
-        codeChallenge: n9JR5M0eBSPoGy8FlTAWQRLQWpjiWUi2
+        password: "{GVQSQ;G[-g<t6Mh"
+        codeChallenge: jrYJL6nUbusVqufoXwP1esUXBLrLMN0h
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -11113,7 +11933,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: O0akVt0D76shqT1CQwyKYGNP7f1bKj5z
+        sessionCode: RAbYWbWU9mwAsnkLqfjHCYNsf6E9SR0X
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -11125,8 +11945,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: kUCBUDg6kI4kokPrdvdgcYWjTx1PrUKD
-        codeVerifier: 0B24ckSSmIvHk0o9zHOKdZjIMFo125TWWvVCRUk87tzuwX7DScELvIAGZ7WHDJbj
+        sessionCode: Emb71RiMTT9bzB8LsMzkrDSBHtY3hyM8
+        codeVerifier: ctkMnwLI16zq4nBWr4cE4wPv08MGkPs1ClkINTk9HeGrsFC12sR1asmRKSnCNj0L
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -11153,7 +11973,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: walHYBG52d6DdNY9kxtn9bZOuR8pjLXR
+        sessionCode: 000DovzBcm5BH4df0bmQH90Z0snpqGhd
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -11176,7 +11996,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -11923,7 +12743,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -11939,7 +12759,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -12007,7 +12827,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-20T09:01:50.572Z
+            lastUpdated: 2026-05-20T13:51:05.913Z
         members:
           - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
             display: Dr. Max John Mustermann
@@ -12379,7 +13199,7 @@ components:
         - assistant
         - participant
         - messages
-      example: &a65
+      example: &a80
         assistant:
           system: You are an AI Assistant, you will be helping the patient with their
             queries.
@@ -12449,7 +13269,7 @@ components:
         - content
         - sentAt
         - mode
-      example: &a66
+      example: &a81
         reference: Communication/ade0d50c-9254-cf0c-9459-bbfe2398553c
         sender: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
         content: Hello, how are you?
@@ -12524,7 +13344,7 @@ components:
               - assistant
               - participant
               - messages
-            example: *a65
+            example: *a80
       required:
         - sessions
       example:
@@ -12567,7 +13387,7 @@ components:
               - content
               - sentAt
               - mode
-            example: *a66
+            example: *a81
       required:
         - messages
       example:
@@ -14635,7 +15455,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-05-20T09:01:50.572Z
+        date: 2026-05-20T13:51:05.913Z
         settings:
           heartRate:
             enabled: true
@@ -15010,7 +15830,7 @@ components:
               type: object
               properties:
                 period:
-                  default: &a67
+                  default: &a82
                     start: 09:00:00
                     durationSeconds: 86400
                   type: object
@@ -15064,7 +15884,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15117,7 +15937,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15170,7 +15990,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15223,7 +16043,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15282,7 +16102,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15335,7 +16155,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15435,7 +16255,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15494,7 +16314,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15554,7 +16374,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15614,7 +16434,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15673,7 +16493,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15739,7 +16559,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -15798,7 +16618,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a67
+                  default: *a82
                   type: object
                   properties:
                     start:
@@ -16021,7 +16841,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #YZaZE6pfgG"
+                  name: "Patient Monitor #aQQkUALdtk"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -16134,7 +16954,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -16145,7 +16965,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -16304,7 +17124,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -16314,7 +17134,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -16327,7 +17147,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -16338,7 +17158,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T09:01:50.572Z
+                lastUpdated: 2026-05-20T13:51:05.913Z
     BinaryDto:
       type: object
       properties:
@@ -16661,7 +17481,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: &a87
+          enum: &a102
             - current
             - superseded
             - entered-in-error
@@ -16676,7 +17496,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: &a88
+          example: &a103
             - imagingreport
           description: A category assigned to the document reference.
           type: array
@@ -16866,11 +17686,11 @@ components:
           description: The public token of the document.
       required:
         - id
-      example: &a68
+      example: &a83
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -16934,7 +17754,7 @@ components:
                 description: The public token of the document.
             required:
               - id
-            example: *a68
+            example: *a83
       required:
         - total
         - resources
@@ -16944,7 +17764,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
     RedirectResponseDto:
       type: object
       properties: {}
@@ -17193,7 +18013,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-05-20T09:01:50.572Z
+              admissionDate: 2026-05-20T13:51:05.913Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -17215,7 +18035,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-05-20T09:01:50.572Z
+            admissionDate: 2026-05-20T13:51:05.913Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -17402,22 +18222,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1779267710572
+                ts: 1779285065913
               effectiveHeartRate:
                 value: 74
-                ts: 1779267710572
+                ts: 1779285065913
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1779267710572
+                ts: 1779285065913
               effectiveSleepStatus:
                 value: asleep
-                ts: 1779267710572
+                ts: 1779285065913
               lastMeasurementTime:
-                value: 2026-05-20T09:01:50.572Z
-                ts: 1779267710572
+                value: 2026-05-20T13:51:05.913Z
+                ts: 1779285065913
               lastActivityTime:
-                value: 2026-05-20T09:01:50.572Z
-                ts: 1779267710572
+                value: 2026-05-20T13:51:05.913Z
+                ts: 1779285065913
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -17883,8 +18703,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-05-20T09:01:50.572Z
-              createdAt: 2026-05-20T09:01:50.572Z
+              lastActivityTime: 2026-05-20T13:51:05.913Z
+              createdAt: 2026-05-20T13:51:05.913Z
       required:
         - total
         - page
@@ -18173,22 +18993,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1779267710572
+                  ts: 1779285065913
                 effectiveHeartRate:
                   value: 74
-                  ts: 1779267710572
+                  ts: 1779285065913
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1779267710572
+                  ts: 1779285065913
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1779267710572
+                  ts: 1779285065913
                 lastMeasurementTime:
-                  value: 2026-05-20T09:01:50.572Z
-                  ts: 1779267710572
+                  value: 2026-05-20T13:51:05.913Z
+                  ts: 1779285065913
                 lastActivityTime:
-                  value: 2026-05-20T09:01:50.572Z
-                  ts: 1779267710572
+                  value: 2026-05-20T13:51:05.913Z
+                  ts: 1779285065913
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -18213,7 +19033,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-05-20T09:01:50.572Z
+                admissionDate: 2026-05-20T13:51:05.913Z
                 dischargeDate: null
       required:
         - total
@@ -18430,22 +19250,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1779267710572
+              ts: 1779285065913
             effectiveHeartRate:
               value: 74
-              ts: 1779267710572
+              ts: 1779285065913
             effectiveRespiratoryRate:
               value: 16
-              ts: 1779267710572
+              ts: 1779285065913
             effectiveSleepStatus:
               value: asleep
-              ts: 1779267710572
+              ts: 1779285065913
             lastMeasurementTime:
-              value: 2026-05-20T09:01:50.572Z
-              ts: 1779267710572
+              value: 2026-05-20T13:51:05.913Z
+              ts: 1779285065913
             lastActivityTime:
-              value: 2026-05-20T09:01:50.572Z
-              ts: 1779267710572
+              value: 2026-05-20T13:51:05.913Z
+              ts: 1779285065913
             name:
               value: Sleepiz/3001472
               ts: null
@@ -18492,9 +19312,9 @@ components:
       required:
         - name
       example:
-        name: "Patient Monitor Device #YZaZE6pfgG"
+        name: "Patient Monitor Device #aQQkUALdtk"
         status: active
-        thingsboardId: TB_DEVICE_YZaZE6pfgG
+        thingsboardId: TB_DEVICE_aQQkUALdtk
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
         patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -19906,13 +20726,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-05-20T09:01:50.572Z
+          created: 2026-05-20T13:51:05.913Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-05-21T09:01:50Z
+        expiresAt: 2026-05-21T13:51:05Z
     MappedContentSearchResponseDto:
       type: object
       properties:
@@ -20307,7 +21127,7 @@ components:
                   - language
                   - date
                   - type
-                example: &a69
+                example: &a84
                   id: "123"
                   title: My Blog
                   author:
@@ -20709,7 +21529,7 @@ components:
                   - language
                   - date
                   - type
-                example: *a69
+                example: *a84
                 description: The translated content in the requested language, if present.
       required:
         - total
@@ -21159,7 +21979,7 @@ components:
         - language
         - date
         - type
-      example: *a69
+      example: *a84
     ContentSearchResponseDto:
       type: object
       properties:
@@ -21552,7 +22372,7 @@ components:
               - language
               - date
               - type
-            example: *a69
+            example: *a84
       required:
         - total
         - resources
@@ -21705,7 +22525,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #YZaZE6pfgG"
+              deviceName: "Patient Monitor Device #aQQkUALdtk"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -21842,7 +22662,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #YZaZE6pfgG"
+        deviceName: "Patient Monitor Device #aQQkUALdtk"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -22288,7 +23108,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-20T09:01:50.572Z
+            lastUpdated: 2026-05-20T13:51:05.913Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -22298,7 +23118,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-05-20T09:01:50.572Z
+            lastUpdated: 2026-05-20T13:51:05.913Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -22767,7 +23587,7 @@ components:
                 format: date-time
             required:
               - commId
-            example: &a70
+            example: &a85
               commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Jane Doe
@@ -22784,9 +23604,9 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-05-20T09:01:50.572Z
+              authoredOn: 2026-05-20T13:51:05.913Z
               alertCount: 5
-              occurrenceDateTime: 2026-05-20T09:01:50.572Z
+              occurrenceDateTime: 2026-05-20T13:51:05.913Z
       required:
         - total
         - page
@@ -22799,7 +23619,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-05-20T09:01:50.572Z
+            authoredOn: 2026-05-20T13:51:05.913Z
             type: hr
     CarehubNotificationResponseDto:
       type: object
@@ -22856,7 +23676,7 @@ components:
           format: date-time
       required:
         - commId
-      example: *a70
+      example: *a85
     MedicalSettingsNotificationsConsentDto:
       type: object
       properties:
@@ -22882,17 +23702,6 @@ components:
         - message
         - version
         - environment
-    CarehubSupportResponseDto:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          description: True when the support email was queued for delivery.
-      required:
-        - ok
-      description: "Acknowledgement that the support email was queued for delivery.
-        `ok: false` is currently unreachable — service-level failures raise
-        4xx/5xx instead."
     CarehubUserDeleteResponseDto:
       type: object
       properties:
@@ -24418,7 +25227,7 @@ components:
                   - language
                   - value
                   - author
-                example: &a71
+                example: &a86
                   key: home.title
                   language: en
                   value: Home
@@ -24782,7 +25591,7 @@ components:
                   - language
                   - value
                   - author
-                example: *a71
+                example: *a86
             required:
               - source
       required:
@@ -25151,7 +25960,7 @@ components:
               - language
               - value
               - author
-            example: *a71
+            example: *a86
       required:
         - total
         - resources
@@ -25510,7 +26319,7 @@ components:
         - language
         - value
         - author
-      example: *a71
+      example: *a86
     LocalizationRequestBodyDto:
       type: object
       properties:
@@ -25608,7 +26417,7 @@ components:
             description: Published CMS item. Shape is project- and collection-specific — the
               documented fields are the envelope guaranteed by the delivery API;
               everything else comes from the Payload collection schema.
-            example: &a72
+            example: &a87
               id: 87ea5dfc-8b8e-384d-8489-79496e706390
               slug: welcome-banner
               publishedAt: 2026-05-01T12:00:00.000Z
@@ -25695,7 +26504,7 @@ components:
       description: Published CMS item. Shape is project- and collection-specific — the
         documented fields are the envelope guaranteed by the delivery API;
         everything else comes from the Payload collection schema.
-      example: *a72
+      example: *a87
     ProjectListResponseDto:
       type: object
       properties:
@@ -26020,7 +26829,7 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: ron+d=-!URRJP$=&
+        password: "{GVQSQ;G[-g<t6Mh"
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -26686,7 +27495,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a73
+      example: &a88
         name: John
         surname: Doe
         dateOfBirth: 1990-01-01
@@ -26776,7 +27585,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a73
+            example: *a88
       required:
         - total
         - resources
@@ -26820,7 +27629,7 @@ components:
         photo:
           type: string
           format: uri
-      example: &a74
+      example: &a89
         name: John
         surname: Doe
         email: john.doe@example.com
@@ -26868,7 +27677,7 @@ components:
               photo:
                 type: string
                 format: uri
-            example: *a74
+            example: *a89
       required:
         - total
         - resources
@@ -26931,7 +27740,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a75
+      example: &a90
         name: Organization 1
         email: organization1@example.com
         phone: "+491234567890"
@@ -26996,7 +27805,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a75
+            example: *a90
       required:
         - total
         - resources
@@ -27049,7 +27858,7 @@ components:
           type: string
         device:
           type: string
-      examples: &a76
+      examples: &a91
         - subject: Patient/123
           code: 8867-4
           data:
@@ -27114,7 +27923,7 @@ components:
                 type: string
               device:
                 type: string
-            examples: *a76
+            examples: *a91
       required:
         - total
         - resources
@@ -27527,8 +28336,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -27657,17 +28466,17 @@ components:
         - comment
         - videoCallParticipants
         - passphrase
-      example: &a77
+      example: &a92
         status: booked
-        start: 2026-05-20T09:01:50Z
-        end: 2026-05-21T09:01:50Z
+        start: 2026-05-20T13:51:05Z
+        end: 2026-05-21T13:51:05Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: YZaZE6pfgG
+        passphrase: aQQkUALdtk
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -27747,18 +28556,18 @@ components:
           - comment
           - videoCallParticipants
           - passphrase
-        example: *a77
+        example: *a92
       example:
         - status: booked
-          start: 2026-05-20T09:01:50Z
-          end: 2026-05-21T09:01:50Z
+          start: 2026-05-20T13:51:05Z
+          end: 2026-05-21T13:51:05Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: YZaZE6pfgG
+          passphrase: aQQkUALdtk
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
@@ -27946,7 +28755,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a80
+          enum: &a95
             - proposed
             - pending
             - booked
@@ -27978,7 +28787,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: &a81
+          example: &a96
             - CONSULTATION
           description: The service that is performed during the appointment.
           type: array
@@ -28171,7 +28980,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a78
+          enum: &a93
             - active
             - inactive
             - on-hold
@@ -28180,7 +28989,7 @@ components:
           description: Status of the account.
         type:
           type: string
-          enum: &a79
+          enum: &a94
             - _ActAccountCode
             - ACCTRECEIVABLE
             - CASH
@@ -28225,11 +29034,11 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a78
+          enum: *a93
           description: Status of the account.
         type:
           type: string
-          enum: *a79
+          enum: *a94
           description: Type of the account. See
             https://hl7.org/fhir/valueset-account-type.html
         name:
@@ -28345,7 +29154,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a80
+          enum: *a95
           description: Status of the appointment.
         participant:
           description: The participants of the appointment.
@@ -28367,7 +29176,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: *a81
+          example: *a96
           description: The service that is performed during the appointment.
           type: array
           items:
@@ -28442,7 +29251,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: &a82
+          enum: &a97
             - active
             - inactive
             - entered-in-error
@@ -28510,7 +29319,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: *a82
+          enum: *a97
           description: Status of the device availability.
         distinctIdentifier:
           type: string
@@ -28611,7 +29420,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a83
+          enum: &a98
             - active
             - suspended
             - inactive
@@ -28639,7 +29448,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a83
+          enum: *a98
           description: Status of the location.
         name:
           type: string
@@ -28717,7 +29526,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: &a84
+          example: &a99
             - 11111-1
           description: Specific service to be performed during the appointment.
           type: array
@@ -28743,7 +29552,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a83
+          enum: *a98
           description: Status of the location.
         name:
           type: string
@@ -28805,7 +29614,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a84
+          example: *a99
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -28830,7 +29639,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a84
+          example: *a99
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -28981,7 +29790,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: &a85
+          enum: &a100
             - male
             - female
             - other
@@ -29005,7 +29814,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: &a86
+          items: &a101
             type: string
             enum:
               - en
@@ -29039,7 +29848,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a85
+          enum: *a100
           description: Gender of the patient.
         birthDate:
           type: string
@@ -29059,7 +29868,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a86
+          items: *a101
         managingOrganization:
           type: string
           example: abc123
@@ -29116,7 +29925,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a85
+          enum: *a100
           description: Gender of the patient.
         birthDate:
           type: string
@@ -29136,7 +29945,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a86
+          items: *a101
         managingOrganization:
           type: string
           example: abc123
@@ -29159,7 +29968,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: *a87
+          enum: *a102
           description: The status of the document reference.
         content:
           description: Attachment data.
@@ -29171,7 +29980,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: *a88
+          example: *a103
           description: A category assigned to the document reference.
           type: array
           items:
@@ -29350,7 +30159,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a89
+          enum: &a104
             - registered
             - preliminary
             - final
@@ -29371,7 +30180,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: &a90
+          items: &a105
             type: string
             enum:
               - activity
@@ -29404,14 +30213,14 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: &a91
+          items: &a106
             type: string
             enum:
               - low
               - normal
               - high
         note:
-          example: &a92
+          example: &a107
             - Patient is doing well.
           description: Observation note.
           type: array
@@ -29443,7 +30252,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a89
+          enum: *a104
           description: Status of the observation.
         code:
           type: string
@@ -29456,7 +30265,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: *a90
+          items: *a105
         subject:
           description: Who the observation is about.
           allOf:
@@ -29478,9 +30287,9 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: *a91
+          items: *a106
         note:
-          example: *a92
+          example: *a107
           description: Observation note.
           type: array
           items:
@@ -29607,7 +30416,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a93
+          enum: &a108
             - active
             - draft
             - retired
@@ -29622,7 +30431,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: &a94
+          example: &a109
             - 11111-1
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
@@ -29646,7 +30455,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a93
+          enum: *a108
           description: Status of the Questionnaire.
         name:
           type: string
@@ -29657,7 +30466,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: *a94
+          example: *a109
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
           type: array

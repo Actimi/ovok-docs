@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
+      "password": "{GVQSQ;G[-g<t6Mh",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
+      "password": "{GVQSQ;G[-g<t6Mh",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
+      "password": "{GVQSQ;G[-g<t6Mh",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
+      "password": "{GVQSQ;G[-g<t6Mh",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
-      "codeChallenge": "rVpryh6ohH4bxV611dAO83Uz4VwFSN9T"
+      "password": "{GVQSQ;G[-g<t6Mh",
+      "codeChallenge": "I3cZIxdSBHut9t52wBoduBwD3WcN4Z8e"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "NJU0ORYz95DcgqqSdjt1RAmcUpD3OWhX",
-      "codeVerifier": "8Fyh5Wc038TZlXgX0mtha2Yj8HGy97Q9iCayyYuCS89rPfmjheROZT68oUMzoTuq",
+      "sessionCode": "VfUPOsLayDMPLZINcqLsJR0AcDcuwkQn",
+      "codeVerifier": "tXpIzLd8ckpFSCci0GMvuvzsz0nHiXVu58sIaukMk4uW3WX3to2kBrTq6wQT3UzW",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
-      "codeChallenge": "n9JR5M0eBSPoGy8FlTAWQRLQWpjiWUi2",
+      "password": "{GVQSQ;G[-g<t6Mh",
+      "codeChallenge": "jrYJL6nUbusVqufoXwP1esUXBLrLMN0h",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "kUCBUDg6kI4kokPrdvdgcYWjTx1PrUKD",
-      "codeVerifier": "0B24ckSSmIvHk0o9zHOKdZjIMFo125TWWvVCRUk87tzuwX7DScELvIAGZ7WHDJbj"
+      "sessionCode": "Emb71RiMTT9bzB8LsMzkrDSBHtY3hyM8",
+      "codeVerifier": "ctkMnwLI16zq4nBWr4cE4wPv08MGkPs1ClkINTk9HeGrsFC12sR1asmRKSnCNj0L"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "ron+d=-!URRJP$=&",
+      "password": "{GVQSQ;G[-g<t6Mh",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -315,6 +315,57 @@
       ],
       "defaultLanguage": "en-US"
     },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/sub-project",
+    "summary": "Create a sub tenant",
+    "description": "Create a child project (\"sub tenant\") nested under the caller's current project. The admin issuing the request is automatically joined to the new child project as a Practitioner with admin rights, so ",
+    "tag": "Sub Projects",
+    "operationId": "SubProjectController_createSubTenant",
+    "parameters": [],
+    "bodyExample": {
+      "name": "Actimi"
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/sub-project",
+    "summary": "List project relationships",
+    "description": "Returns the caller project's place in the project hierarchy: its own id, its parent's id (if any), and the ids of any direct children.",
+    "tag": "Sub Projects",
+    "operationId": "SubProjectController_getProjectRelationships",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/sub-project/{subProjectId}",
+    "summary": "Delete a sub tenant",
+    "description": "Tear down a child project. The FHIR Project resource and the parent ↔ child relationship are both removed.",
+    "tag": "Sub Projects",
+    "operationId": "SubProjectController_deleteSubTenant",
+    "parameters": [
+      {
+        "name": "subProjectId",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
     "deprecated": false,
     "availableIn": [
       "dev"
@@ -1959,6 +2010,200 @@
     ]
   },
   {
+    "method": "GET",
+    "path": "/v1/projects",
+    "summary": "List my projects",
+    "description": "Every FHIR Project the caller has a ProjectMembership on. Each entry carries an `admin` flag (project-admin status for the caller) and an `internal` flag (Ovok-managed tenant, hidden from billing).",
+    "tag": "Projects",
+    "operationId": "ProjectsController_listMyProjects_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/projects/me/tenant-code",
+    "summary": "Get project tenant code",
+    "description": "Short tenant code on file for the caller’s current project, or null when one has not been assigned yet.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_getMyTenantCode_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/projects/me/features",
+    "summary": "Get project features",
+    "description": "Returns FHIR-server feature flags for the caller’s current project. Feature flags control opt-in behaviour at the FHIR layer (e.g. terminology server, GraphQL).",
+    "tag": "Projects",
+    "operationId": "ProjectsController_getMyProjectFeatures_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/projects/me/features",
+    "summary": "Update project features",
+    "description": "Replace the FHIR-server feature flag list on the caller’s current project. Admin-only. Empty array disables every flag.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_updateMyProjectFeatures_v1",
+    "parameters": [],
+    "bodyExample": {
+      "features": [
+        "bots",
+        "cron",
+        "websocket-subscriptions"
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/projects/me/cms-locales",
+    "summary": "Get CMS locales",
+    "description": "BCP-47 locale codes the project offers for content items. The first entry is the project default — public delivery falls back to it when a requested locale has no value on file.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_getMyCmsLocales_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/projects/me/cms-locales",
+    "summary": "Update CMS locales",
+    "description": "Replace the list of locales the project offers. The first entry becomes the project default. Admin-only.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_updateMyCmsLocales_v1",
+    "parameters": [],
+    "bodyExample": {
+      "locales": [
+        "en",
+        "de",
+        "fr"
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/projects/me/members",
+    "summary": "List project members",
+    "description": "Members of the caller’s current project, including pending invites (users who have not completed their first sign-in).",
+    "tag": "Projects",
+    "operationId": "ProjectsController_listMyMembers_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/v1/projects/me/members",
+    "summary": "Invite a project member",
+    "description": "Creates the Practitioner profile + ProjectMembership and sends a magic-link invite email. Admin-only.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_inviteMember_v1",
+    "parameters": [],
+    "bodyExample": {
+      "email": "alex@acme.com",
+      "firstName": "Alex",
+      "lastName": "Lee",
+      "admin": false
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/projects/me/members/{id}",
+    "summary": "Update a project member",
+    "description": "Toggle admin status on an existing membership. Admin-only.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_updateMember_v1",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "admin": true
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/projects/me/members/{id}",
+    "summary": "Remove a project member",
+    "description": "Delete a ProjectMembership. Refuses to remove the caller or the last remaining admin. Admin-only.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_removeMember_v1",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/projects/{id}",
+    "summary": "Get project detail",
+    "description": "Return summary + settings for a project the caller is a member of. 404 otherwise.",
+    "tag": "Projects",
+    "operationId": "ProjectsController_getProject_v1",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
     "method": "POST",
     "path": "/v1/wearables/{provider}/connect",
     "summary": "[Early Access] Start a wearable OAuth flow",
@@ -2117,6 +2362,43 @@
       }
     ],
     "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/project/settings",
+    "summary": "List project settings",
+    "description": "Returns every boolean setting on the caller's current project as a single map. Settings drive opt-in features (Payload CMS, custom mailing, wearable integrations, patient registration policies, …).",
+    "tag": "Project Settings",
+    "operationId": "ProjectSettingsController_getSettings_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/v1/project/settings/{key}",
+    "summary": "Toggle a project setting",
+    "description": "Flip a single boolean setting on the caller's current project. Some keys (`CONTENT_ENABLED`, `MAILING_ENABLED`) are paid-tier add-ons and return 402 on Free; flipping them OFF is always allowed so a t",
+    "tag": "Project Settings",
+    "operationId": "ProjectSettingsController_putSetting_v1",
+    "parameters": [
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "enabled": true
+    },
     "deprecated": false,
     "availableIn": [
       "dev"

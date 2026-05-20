@@ -383,6 +383,119 @@
   },
   {
     "type": "category",
+    "label": "Project Settings",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/project-settings/project-settings-controller-get-settings-v-1"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/project-settings/project-settings-controller-get-settings-v-1",
+        "label": "List project settings"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/project-settings/project-settings-controller-put-setting-v-1",
+        "label": "Toggle a project setting"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Projects",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/projects/projects-controller-get-my-cms-locales-v-1"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-get-my-cms-locales-v-1",
+        "label": "Get CMS locales"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-get-project-v-1",
+        "label": "Get project detail"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-get-my-project-features-v-1",
+        "label": "Get project features"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-get-my-tenant-code-v-1",
+        "label": "Get project tenant code"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-invite-member-v-1",
+        "label": "Invite a project member"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-list-my-projects-v-1",
+        "label": "List my projects"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-list-my-members-v-1",
+        "label": "List project members"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-remove-member-v-1",
+        "label": "Remove a project member"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-update-member-v-1",
+        "label": "Update a project member"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-update-my-cms-locales-v-1",
+        "label": "Update CMS locales"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/projects/projects-controller-update-my-project-features-v-1",
+        "label": "Update project features"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Sub Projects",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant",
+        "label": "Create a sub tenant"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/sub-projects/sub-project-controller-delete-sub-tenant",
+        "label": "Delete a sub tenant"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/sub-projects/sub-project-controller-get-project-relationships",
+        "label": "List project relationships"
+      }
+    ]
+  },
+  {
+    "type": "category",
     "label": "Tenant Authentication",
     "link": {
       "type": "doc",
