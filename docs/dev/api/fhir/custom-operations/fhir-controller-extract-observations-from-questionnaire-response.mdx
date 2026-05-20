@@ -12,7 +12,7 @@ description: "This endpoint builds Observations based on the provided Questionna
 - <span className="api-method post">POST</span> `/fhir/R4/QuestionnaireResponse/{id}/$extract`
 - <span className="api-method post">POST</span> `/fhir/R5/QuestionnaireResponse/{id}/$extract`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 This endpoint builds Observations based on the provided QuestionnaireResponse.
 

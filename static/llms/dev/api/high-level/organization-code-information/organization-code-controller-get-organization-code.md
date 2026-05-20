@@ -6,7 +6,9 @@ description: "Get organization code"
 
 # Get Organization Code
 
-<span className="api-method get">GET</span> `/organizations/code`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/organizations/code`
 
 <ApiBase inline={false} />
 

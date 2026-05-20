@@ -12,7 +12,7 @@ description: "This endpoint builds a FHIR QuestionnaireResponse based on provide
 - <span className="api-method post">POST</span> `/fhir/R4/Questionnaire/{id}/$populate`
 - <span className="api-method post">POST</span> `/fhir/R5/Questionnaire/{id}/$populate`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.
 

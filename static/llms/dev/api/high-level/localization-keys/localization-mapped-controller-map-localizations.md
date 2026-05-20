@@ -6,7 +6,9 @@ description: "Map a localization to a target language"
 
 # Mapped Localizations
 
-<span className="api-method get">GET</span> `/localization/map/{target}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/localization/map/{target}`
 
 <ApiBase inline={false} />
 

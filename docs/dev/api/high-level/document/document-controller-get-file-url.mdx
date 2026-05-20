@@ -6,7 +6,9 @@ description: "File download"
 
 # Get a document as authenticated user
 
-<span className="api-method get">GET</span> `/document/{id}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/document/{id}`
 
 <ApiBase inline={false} />
 

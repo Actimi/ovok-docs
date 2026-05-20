@@ -6,7 +6,9 @@ description: "OPTIONS /v1/content/{path}"
 
 # OPTIONS /v1/content/&#123;path&#125;
 
-<span className="api-method options">OPTIONS</span> `/v1/content/{path}`
+**Available paths**
+
+- <span className="api-method options">OPTIONS</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 

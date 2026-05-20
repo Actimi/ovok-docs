@@ -6,7 +6,9 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Revoke a wearable connection
 
-<span className="api-method delete">DELETE</span> `/v1/wearables/{provider}/connections/{patientId}`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/v1/wearables/{provider}/connections/{patientId}`
 
 <ApiBase inline={false} />
 

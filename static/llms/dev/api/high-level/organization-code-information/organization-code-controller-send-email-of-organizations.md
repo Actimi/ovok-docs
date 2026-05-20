@@ -6,7 +6,9 @@ description: "Receive organization codes to your email"
 
 # Receive Organization Codes
 
-<span className="api-method post">POST</span> `/organizations/code/email`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/organizations/code/email`
 
 <ApiBase inline={false} />
 

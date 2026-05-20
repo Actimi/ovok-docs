@@ -6,7 +6,9 @@ description: "Update the i18next JSON file for applications"
 
 # i18next - Update JSON
 
-<span className="api-method patch">PATCH</span> `/localization/i18next/{language}`
+**Available paths**
+
+- <span className="api-method patch">PATCH</span> `/localization/i18next/{language}`
 
 <ApiBase inline={false} />
 

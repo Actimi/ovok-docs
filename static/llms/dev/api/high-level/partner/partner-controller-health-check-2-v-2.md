@@ -6,7 +6,9 @@ description: "GET /v2/partner/health-check"
 
 # GET /v2/partner/health-check
 
-<span className="api-method get">GET</span> `/v2/partner/health-check`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/v2/partner/health-check`
 
 <ApiBase inline={false} />
 

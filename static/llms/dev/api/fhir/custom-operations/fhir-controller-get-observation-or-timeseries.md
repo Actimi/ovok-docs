@@ -12,7 +12,7 @@ description: "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
 - <span className="api-method get">GET</span> `/fhir/R4/Observation/{id}`
 - <span className="api-method get">GET</span> `/fhir/R5/Observation/{id}`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledData` (ECG traces, accelerometer streams, contiguous vital-sign batches). Requests without the flag pass through to the standard FHIR GET.
 

@@ -12,7 +12,7 @@ description: "Returns the current effective telemetry for a device as a FHIR sea
 - <span className="api-method get">GET</span> `/fhir/R4/Device/{id}/telemetry`
 - <span className="api-method get">GET</span> `/fhir/R5/Device/{id}/telemetry`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, heart rate (when a fresh value is cached), respiratory rate (when a fresh value is cached), and sleep status. Each Observation uses its own `effectiveInstant` so clients can reason about staleness per metric.
 

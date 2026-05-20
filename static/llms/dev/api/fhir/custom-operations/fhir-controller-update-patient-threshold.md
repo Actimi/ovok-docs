@@ -12,7 +12,7 @@ description: "Save a patient-level threshold CarePlan. When updateOnSignals=true
 - <span className="api-method put">PUT</span> `/fhir/R4/Patient/{id}/threshold`
 - <span className="api-method put">PUT</span> `/fhir/R5/Patient/{id}/threshold`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.
 

@@ -6,7 +6,9 @@ description: "Register a new user."
 
 # Patient - Register
 
-<span className="api-method post">POST</span> `/auth/tenant/Patient/register`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/tenant/Patient/register`
 
 <ApiBase inline={false} />
 

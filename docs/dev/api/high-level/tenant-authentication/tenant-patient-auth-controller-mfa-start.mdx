@@ -6,7 +6,9 @@ description: "Login with MFA token. Success response contains a challenge token 
 
 # Patient - MFA
 
-<span className="api-method post">POST</span> `/auth/tenant/Patient/login/mfa`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/tenant/Patient/login/mfa`
 
 <ApiBase inline={false} />
 

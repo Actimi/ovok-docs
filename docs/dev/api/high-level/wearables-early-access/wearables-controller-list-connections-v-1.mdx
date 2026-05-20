@@ -6,7 +6,9 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] List wearable connections
 
-<span className="api-method get">GET</span> `/v1/wearables/connections`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/v1/wearables/connections`
 
 <ApiBase inline={false} />
 

@@ -6,7 +6,9 @@ description: "Update or create a single localization by language and key"
 
 # Update a single localization
 
-<span className="api-method put">PUT</span> `/localization/{language}/{key}`
+**Available paths**
+
+- <span className="api-method put">PUT</span> `/localization/{language}/{key}`
 
 <ApiBase inline={false} />
 

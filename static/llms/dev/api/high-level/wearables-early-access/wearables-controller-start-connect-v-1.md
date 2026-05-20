@@ -6,7 +6,9 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Start a wearable OAuth flow
 
-<span className="api-method post">POST</span> `/v1/wearables/{provider}/connect`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/v1/wearables/{provider}/connect`
 
 <ApiBase inline={false} />
 

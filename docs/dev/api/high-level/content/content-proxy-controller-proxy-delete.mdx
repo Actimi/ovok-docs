@@ -6,7 +6,9 @@ description: "DELETE /v1/content/{path}"
 
 # DELETE /v1/content/&#123;path&#125;
 
-<span className="api-method delete">DELETE</span> `/v1/content/{path}`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 

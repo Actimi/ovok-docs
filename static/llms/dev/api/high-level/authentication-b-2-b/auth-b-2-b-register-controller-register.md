@@ -6,7 +6,9 @@ description: "This API endpoint registers a user to a project."
 
 # Register an account
 
-<span className="api-method post">POST</span> `/auth/b2b/register`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/b2b/register`
 
 <ApiBase inline={false} />
 

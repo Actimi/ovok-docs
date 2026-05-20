@@ -6,7 +6,9 @@ description: "Download the i18next JSON file for applications"
 
 # i18next - Get JSON
 
-<span className="api-method get">GET</span> `/localization/i18next/{language}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/localization/i18next/{language}`
 
 <ApiBase inline={false} />
 

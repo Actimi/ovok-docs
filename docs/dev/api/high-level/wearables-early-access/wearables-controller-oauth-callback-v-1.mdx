@@ -6,7 +6,9 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Wearable OAuth callback
 
-<span className="api-method get">GET</span> `/v1/wearables/{provider}/callback`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/v1/wearables/{provider}/callback`
 
 <ApiBase inline={false} />
 

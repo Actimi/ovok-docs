@@ -6,7 +6,9 @@ description: "Enable or disable the available locales for localization."
 
 # Update the available locales
 
-<span className="api-method patch">PATCH</span> `/locales`
+**Available paths**
+
+- <span className="api-method patch">PATCH</span> `/locales`
 
 <ApiBase inline={false} />
 

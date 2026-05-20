@@ -6,7 +6,9 @@ description: "The GET Session API endpoint retrieves all sessions from the Ovok 
 
 # Get all sessions
 
-<span className="api-method get">GET</span> `/auth/session`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/auth/session`
 
 <ApiBase inline={false} />
 

@@ -6,7 +6,9 @@ description: "The Register API endpoint allows users to create a new account on 
 
 # Register an account
 
-<span className="api-method post">POST</span> `/auth/register`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/register`
 
 <ApiBase inline={false} />
 

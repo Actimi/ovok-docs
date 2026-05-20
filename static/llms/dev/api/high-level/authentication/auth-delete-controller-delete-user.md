@@ -6,7 +6,9 @@ description: "The Delete User API endpoint schedules user account deletion from 
 
 # Schedule user account deletion
 
-<span className="api-method delete">DELETE</span> `/auth/delete`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/auth/delete`
 
 <ApiBase inline={false} />
 

@@ -6,7 +6,9 @@ description: "By making a POST request to this endpoint you can refresh the acce
 
 # Refresh access token
 
-<span className="api-method post">POST</span> `/auth/refresh-token`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/refresh-token`
 
 <ApiBase inline={false} />
 

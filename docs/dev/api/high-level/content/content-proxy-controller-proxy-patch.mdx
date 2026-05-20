@@ -6,7 +6,9 @@ description: "PATCH /v1/content/{path}"
 
 # PATCH /v1/content/&#123;path&#125;
 
-<span className="api-method patch">PATCH</span> `/v1/content/{path}`
+**Available paths**
+
+- <span className="api-method patch">PATCH</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 

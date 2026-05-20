@@ -317,7 +317,9 @@ function emitHighLevelForEnv(envKey, spec) {
         '',
         `# ${escapeBraces(title)}`,
         '',
-        `<span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
+        '**Available paths**',
+        '',
+        `- <span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
         '',
         '<ApiBase inline={false} />',
         '',
@@ -402,7 +404,7 @@ The machine-readable spec for this tier is at
       '',
       pathLines,
       '',
-      '<ApiBase surface="api" inline={false} />',
+      '<ApiBase inline={false} />',
       '',
     ];
     if (op.description) body.push(escapeMdx(op.description), '');

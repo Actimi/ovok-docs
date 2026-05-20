@@ -6,7 +6,9 @@ description: "This API endpoint logs a user in to a project."
 
 # Login
 
-<span className="api-method post">POST</span> `/auth/b2b/login`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/b2b/login`
 
 <ApiBase inline={false} />
 

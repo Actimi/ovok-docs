@@ -6,7 +6,9 @@ description: "Delete document"
 
 # Delete a document
 
-<span className="api-method delete">DELETE</span> `/document/{id}`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/document/{id}`
 
 <ApiBase inline={false} />
 

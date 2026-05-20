@@ -6,7 +6,9 @@ description: "Login with email and password. Response either contains challange 
 
 # Practitioner - Login
 
-<span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/start`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/start`
 
 <ApiBase inline={false} />
 

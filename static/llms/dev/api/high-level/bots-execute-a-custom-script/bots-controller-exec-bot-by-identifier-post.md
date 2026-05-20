@@ -6,7 +6,9 @@ description: "This API executes a bot by its identifier."
 
 # Execute a bot with request body
 
-<span className="api-method post">POST</span> `/bots`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/bots`
 
 <ApiBase inline={false} />
 

@@ -6,7 +6,9 @@ description: "AI Translation uses LLMs for translation."
 
 # Translate
 
-<span className="api-method post">POST</span> `/ai/translation`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/ai/translation`
 
 <ApiBase inline={false} />
 

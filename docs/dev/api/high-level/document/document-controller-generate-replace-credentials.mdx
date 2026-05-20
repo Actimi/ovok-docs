@@ -6,7 +6,9 @@ description: "Generate credentials for file replacement"
 
 # Generate credentials for document file replacement
 
-<span className="api-method post">POST</span> `/document/{id}`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/document/{id}`
 
 <ApiBase inline={false} />
 

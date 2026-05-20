@@ -6,7 +6,9 @@ description: "The Delete Session API endpoint revokes session(s) from the Ovok p
 
 # Revoke sessions
 
-<span className="api-method delete">DELETE</span> `/auth/session/{option}`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/auth/session/{option}`
 
 <ApiBase inline={false} />
 

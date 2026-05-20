@@ -6,7 +6,9 @@ description: "Fetch the enabled locales and the default locale for localization.
 
 # Get available locales
 
-<span className="api-method get">GET</span> `/locales`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/locales`
 
 <ApiBase inline={false} />
 

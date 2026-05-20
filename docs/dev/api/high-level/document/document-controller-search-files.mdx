@@ -6,7 +6,9 @@ description: "File search"
 
 # Search documents
 
-<span className="api-method get">GET</span> `/document`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/document`
 
 <ApiBase inline={false} />
 

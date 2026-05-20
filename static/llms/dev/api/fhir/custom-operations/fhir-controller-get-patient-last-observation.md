@@ -12,7 +12,7 @@ description: "This endpoint allows users to fetch patient informations, specific
 - <span className="api-method get">GET</span> `/fhir/R4/Observation/$lastn`
 - <span className="api-method get">GET</span> `/fhir/R5/Observation/$lastn`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 This endpoint allows users to fetch patient informations, specifically observations.
 

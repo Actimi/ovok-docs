@@ -6,7 +6,9 @@ description: "Get all localizations"
 
 # Get all localizations
 
-<span className="api-method get">GET</span> `/localization/{language}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/localization/{language}`
 
 <ApiBase inline={false} />
 

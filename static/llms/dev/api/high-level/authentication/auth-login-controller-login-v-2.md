@@ -6,7 +6,9 @@ description: "The Login API endpoint facilitates the authentication process, all
 
 # Login
 
-<span className="api-method post">POST</span> `/v2/auth/login`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/v2/auth/login`
 
 <ApiBase inline={false} />
 

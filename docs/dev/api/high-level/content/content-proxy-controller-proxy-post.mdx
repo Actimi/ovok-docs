@@ -6,7 +6,9 @@ description: "POST /v1/content/{path}"
 
 # POST /v1/content/&#123;path&#125;
 
-<span className="api-method post">POST</span> `/v1/content/{path}`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 

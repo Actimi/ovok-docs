@@ -6,7 +6,9 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Wearable webhook ingress
 
-<span className="api-method post">POST</span> `/v1/wearables/{provider}/webhook`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/v1/wearables/{provider}/webhook`
 
 <ApiBase inline={false} />
 

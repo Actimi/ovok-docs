@@ -6,7 +6,9 @@ description: "GET /v1/content/{path}"
 
 # GET /v1/content/&#123;path&#125;
 
-<span className="api-method get">GET</span> `/v1/content/{path}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/v1/content/{path}`
 
 <ApiBase inline={false} />
 

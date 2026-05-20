@@ -6,7 +6,9 @@ description: "Get a single localization by language and key"
 
 # Get a single localization
 
-<span className="api-method get">GET</span> `/localization/{language}/{key}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/localization/{language}/{key}`
 
 <ApiBase inline={false} />
 

@@ -6,7 +6,9 @@ description: "Public file download"
 
 # Get a document as public user
 
-<span className="api-method get">GET</span> `/document/public/{token}`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/document/public/{token}`
 
 <ApiBase inline={false} />
 

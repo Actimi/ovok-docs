@@ -12,7 +12,7 @@ description: "Create a FHIR Patient resource. When withSignals=true, also provis
 - <span className="api-method post">POST</span> `/fhir/R4/Patient`
 - <span className="api-method post">POST</span> `/fhir/R5/Patient`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.
 

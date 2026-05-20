@@ -6,7 +6,9 @@ description: "Login with challenge token. Success response contains access and r
 
 # Practitioner - Exchange Token
 
-<span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/token`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/token`
 
 <ApiBase inline={false} />
 

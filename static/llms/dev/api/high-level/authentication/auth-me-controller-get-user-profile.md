@@ -6,7 +6,9 @@ description: "This API fetches the user profile information."
 
 # Get account information
 
-<span className="api-method get">GET</span> `/auth/me`
+**Available paths**
+
+- <span className="api-method get">GET</span> `/auth/me`
 
 <ApiBase inline={false} />
 

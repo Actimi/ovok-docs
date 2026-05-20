@@ -6,7 +6,9 @@ description: "Generate a file upload url and credentials"
 
 # Upload document - Generate credentials
 
-<span className="api-method post">POST</span> `/document`
+**Available paths**
+
+- <span className="api-method post">POST</span> `/document`
 
 <ApiBase inline={false} />
 

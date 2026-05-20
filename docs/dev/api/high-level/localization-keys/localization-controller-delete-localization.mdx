@@ -6,7 +6,9 @@ description: "Delete a single localization by language and key"
 
 # Delete a single localization
 
-<span className="api-method delete">DELETE</span> `/localization/{language}/{key}`
+**Available paths**
+
+- <span className="api-method delete">DELETE</span> `/localization/{language}/{key}`
 
 <ApiBase inline={false} />
 

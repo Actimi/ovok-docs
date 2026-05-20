@@ -6,7 +6,9 @@ description: "Update document metadata"
 
 # Update document metadata
 
-<span className="api-method patch">PATCH</span> `/document/{id}`
+**Available paths**
+
+- <span className="api-method patch">PATCH</span> `/document/{id}`
 
 <ApiBase inline={false} />
 

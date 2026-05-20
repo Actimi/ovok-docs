@@ -12,7 +12,7 @@ description: "Query observation history for a device from Signals. Defaults to t
 - <span className="api-method get">GET</span> `/fhir/R4/Device/{id}/telemetry/history`
 - <span className="api-method get">GET</span> `/fhir/R5/Device/{id}/telemetry/history`
 
-<ApiBase surface="api" inline={false} />
+<ApiBase inline={false} />
 
 Query observation history for a device from Signals. Defaults to the last 72 hours.
 
