@@ -56,7 +56,36 @@ const config: Config = {
     mermaid: true,
   },
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    // Local Lunr-based search. No Algolia account / approval workflow,
+    // no external network hop — the index is built at `docusaurus build`
+    // time and shipped statically alongside the rest of the site.
+    // Indexes every released env's docs tree; the search palette opens
+    // on ⌘K / Ctrl+K, matches as you type, and ranks against title +
+    // section heading + body.
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexBlog: false,
+        indexPages: true,
+        docsRouteBasePath: RELEASED_ENVS.map((env) => `/${env}`),
+        docsDir: RELEASED_ENVS.map((env) => `docs/${env}`),
+        // We don't use the classic preset's built-in docs plugin (each
+        // env has its own plugin instance with `id: env`). The search
+        // theme's SearchBar calls `useActiveVersion('default')` by
+        // default and crashes when no default instance exists. Pointing
+        // it at our first released env's plugin id lets it resolve.
+        docsPluginIdForPreferredVersion: RELEASED_ENVS[0],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchResultLimits: 10,
+        searchBarShortcut: true,
+        searchBarShortcutHint: true,
+      },
+    ],
+  ],
 
   i18n: {
     defaultLocale: 'en',
