@@ -21,7 +21,8 @@ Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON ti
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** |  |
+| `id` | path | `string` | **yes** | FHIR Observation id. The resource must carry `valueSampledData` (top-level or in a `component[]`) for the timeseries expansion to succeed. |
+| `asTimeseries` | query | `—` | no | Set to `true` to expand the Observation's SampledData into a JSON `{t, v}` time-series. Omit or set to anything else to pass through to the standard FHIR GET-by-id. |
 
 
 

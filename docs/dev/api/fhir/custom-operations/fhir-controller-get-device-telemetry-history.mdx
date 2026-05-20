@@ -21,12 +21,12 @@ Query observation history for a device from Signals. Defaults to the last 72 hou
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** |  |
-| `from` | query | `string` | no |  |
-| `to` | query | `string` | no |  |
-| `code` | query | `string` | no |  |
-| `page` | query | `integer` | no |  |
-| `pageSize` | query | `integer` | no |  |
+| `id` | path | `string` | **yes** | FHIR Device id whose historical observations should be returned from Signals. |
+| `from` | query | `string` | no | ISO-8601 lower bound (inclusive) on observation effective time. Defaults to 72 hours before `to` when omitted. |
+| `to` | query | `string` | no | ISO-8601 upper bound (inclusive) on observation effective time. Defaults to now when omitted. |
+| `code` | query | `string` | no | Observation code to filter the history by (e.g. a LOINC or SNOMED code). |
+| `page` | query | `integer` | no | 1-indexed page number for paginated results. Defaults to `1`. |
+| `pageSize` | query | `integer` | no | Number of items per page, between 1 and 100. Defaults to `50`. |
 
 
 

@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
+      "password": "ron+d=-!URRJP$=&",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
+      "password": "ron+d=-!URRJP$=&",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
+      "password": "ron+d=-!URRJP$=&",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
+      "password": "ron+d=-!URRJP$=&",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
-      "codeChallenge": "FSXINwXWNSJ7BEjxRkFkdiV9VLgi2ZqY"
+      "password": "ron+d=-!URRJP$=&",
+      "codeChallenge": "rVpryh6ohH4bxV611dAO83Uz4VwFSN9T"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "LRvTyaqdt9Xa6yYhh9N0N0HdOibmltft",
-      "codeVerifier": "Cws17CAP7OyYfxcXGcvldnYoBqowozgKYa79wtNxX9TFxOMmCOv9x0Ui5vsXJDaa",
+      "sessionCode": "NJU0ORYz95DcgqqSdjt1RAmcUpD3OWhX",
+      "codeVerifier": "8Fyh5Wc038TZlXgX0mtha2Yj8HGy97Q9iCayyYuCS89rPfmjheROZT68oUMzoTuq",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
-      "codeChallenge": "FVFz59G0cjDwd3whqQBjktVT4gNA3Omz",
+      "password": "ron+d=-!URRJP$=&",
+      "codeChallenge": "n9JR5M0eBSPoGy8FlTAWQRLQWpjiWUi2",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "K6EScuAiPDjKbnHKADHTZZw9XpaHZEIx",
-      "codeVerifier": "3OM6Hxhtj752r17qXodlW52CpzlsQJRft3DMN5zdEXetpKpz3QX9ekUCma70n5VS"
+      "sessionCode": "kUCBUDg6kI4kokPrdvdgcYWjTx1PrUKD",
+      "codeVerifier": "0B24ckSSmIvHk0o9zHOKdZjIMFo125TWWvVCRUk87tzuwX7DScELvIAGZ7WHDJbj"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3gM<,I!zQTs$@6g.",
+      "password": "ron+d=-!URRJP$=&",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -353,8 +353,8 @@
   {
     "method": "GET",
     "path": "/v1/content",
-    "summary": "GET /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_get",
     "parameters": [],
@@ -367,8 +367,8 @@
   {
     "method": "POST",
     "path": "/v1/content",
-    "summary": "POST /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_post",
     "parameters": [],
@@ -381,8 +381,8 @@
   {
     "method": "PUT",
     "path": "/v1/content",
-    "summary": "PUT /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_put",
     "parameters": [],
@@ -395,8 +395,8 @@
   {
     "method": "DELETE",
     "path": "/v1/content",
-    "summary": "DELETE /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_delete",
     "parameters": [],
@@ -409,8 +409,8 @@
   {
     "method": "PATCH",
     "path": "/v1/content",
-    "summary": "PATCH /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_patch",
     "parameters": [],
@@ -423,8 +423,8 @@
   {
     "method": "OPTIONS",
     "path": "/v1/content",
-    "summary": "OPTIONS /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_options",
     "parameters": [],
@@ -437,8 +437,8 @@
   {
     "method": "HEAD",
     "path": "/v1/content",
-    "summary": "HEAD /v1/content",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_head",
     "parameters": [],
@@ -451,8 +451,8 @@
   {
     "method": "GET",
     "path": "/v1/content/{path}",
-    "summary": "GET /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_get",
     "parameters": [],
@@ -465,8 +465,8 @@
   {
     "method": "POST",
     "path": "/v1/content/{path}",
-    "summary": "POST /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_post",
     "parameters": [],
@@ -479,8 +479,8 @@
   {
     "method": "PUT",
     "path": "/v1/content/{path}",
-    "summary": "PUT /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_put",
     "parameters": [],
@@ -493,8 +493,8 @@
   {
     "method": "DELETE",
     "path": "/v1/content/{path}",
-    "summary": "DELETE /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_delete",
     "parameters": [],
@@ -507,8 +507,8 @@
   {
     "method": "PATCH",
     "path": "/v1/content/{path}",
-    "summary": "PATCH /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_patch",
     "parameters": [],
@@ -521,8 +521,8 @@
   {
     "method": "OPTIONS",
     "path": "/v1/content/{path}",
-    "summary": "OPTIONS /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_options",
     "parameters": [],
@@ -535,8 +535,8 @@
   {
     "method": "HEAD",
     "path": "/v1/content/{path}",
-    "summary": "HEAD /v1/content/{path}",
-    "description": "",
+    "summary": "Content CMS reverse proxy",
+    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
     "tag": "Content",
     "operationId": "ContentProxyController_proxy_head",
     "parameters": [],
@@ -549,8 +549,8 @@
   {
     "method": "GET",
     "path": "/partner/health-check",
-    "summary": "GET /partner/health-check",
-    "description": "",
+    "summary": "Partner integration health check",
+    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[0]",
     "parameters": [],
@@ -563,8 +563,8 @@
   {
     "method": "GET",
     "path": "/v1/partner/health-check",
-    "summary": "GET /v1/partner/health-check",
-    "description": "",
+    "summary": "Partner integration health check",
+    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[1]_v1",
     "parameters": [],
@@ -577,8 +577,8 @@
   {
     "method": "GET",
     "path": "/v2/partner/health-check",
-    "summary": "GET /v2/partner/health-check",
-    "description": "",
+    "summary": "Partner integration health check",
+    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[2]_v2",
     "parameters": [],
@@ -591,8 +591,8 @@
   {
     "method": "GET",
     "path": "/v3/partner/health-check",
-    "summary": "GET /v3/partner/health-check",
-    "description": "",
+    "summary": "Partner integration health check",
+    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[3]_v3",
     "parameters": [],
@@ -1030,6 +1030,12 @@
         "in": "path",
         "required": true,
         "type": "string"
+      },
+      {
+        "name": "asTimeseries",
+        "in": "query",
+        "required": false,
+        "type": null
       }
     ],
     "bodyExample": null,
@@ -1051,6 +1057,12 @@
         "in": "path",
         "required": true,
         "type": "string"
+      },
+      {
+        "name": "asTimeseries",
+        "in": "query",
+        "required": false,
+        "type": null
       }
     ],
     "bodyExample": null,
@@ -1072,6 +1084,12 @@
         "in": "path",
         "required": true,
         "type": "string"
+      },
+      {
+        "name": "asTimeseries",
+        "in": "query",
+        "required": false,
+        "type": null
       }
     ],
     "bodyExample": null,
@@ -1859,8 +1877,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items",
-    "summary": "GET /v1/public/cms/{typeSlug}/items",
-    "description": "",
+    "summary": "List published items",
+    "description": "List published items from a CMS collection. Authenticates with a project-scoped API key (Authorization: Bearer …). Drafts and unpublished items are filtered out server-side.",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_listItems_v1",
     "parameters": [
@@ -1873,25 +1891,25 @@
       {
         "name": "page",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       },
       {
         "name": "limit",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       },
       {
         "name": "locale",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       },
       {
         "name": "depth",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       }
     ],
@@ -1904,8 +1922,8 @@
   {
     "method": "GET",
     "path": "/v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "summary": "GET /v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "description": "",
+    "summary": "Get a published item",
+    "description": "Fetch a single published item by id or slug. Authenticates with a project-scoped API key. Returns 404 for drafts, unpublished items, or items in another project.",
     "tag": "CMS Public Delivery",
     "operationId": "PublicDeliveryController_getItem_v1",
     "parameters": [
@@ -1924,13 +1942,13 @@
       {
         "name": "locale",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       },
       {
         "name": "depth",
         "in": "query",
-        "required": true,
+        "required": false,
         "type": "string"
       }
     ],
@@ -1977,6 +1995,30 @@
         "in": "path",
         "required": true,
         "type": "string"
+      },
+      {
+        "name": "error_description",
+        "in": "query",
+        "required": false,
+        "type": null
+      },
+      {
+        "name": "error",
+        "in": "query",
+        "required": false,
+        "type": null
+      },
+      {
+        "name": "state",
+        "in": "query",
+        "required": false,
+        "type": null
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": null
       }
     ],
     "bodyExample": null,
@@ -2039,6 +2081,18 @@
         "in": "path",
         "required": true,
         "type": "string"
+      },
+      {
+        "name": "hub.verify_token",
+        "in": "query",
+        "required": true,
+        "type": null
+      },
+      {
+        "name": "hub.challenge",
+        "in": "query",
+        "required": true,
+        "type": null
       }
     ],
     "bodyExample": null,

@@ -41,7 +41,7 @@ Response carries an `authorizationUrl` you redirect the user to.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `provider` | path | `string` | **yes** |  |
+| `provider` | path | `string` | **yes** | Wearable provider slug. Currently `strava` or `polar` — must match a slug enabled in `WearableProvider`. |
 
 
 ## Request body

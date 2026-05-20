@@ -38,7 +38,7 @@ Deletes a document and its associated file from the system.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** | The id of the DocumentReference resource |
+| `id` | path | `string` | **yes** | FHIR `DocumentReference` id of the document to delete. Removes the underlying binary and the reference resource. |
 
 
 

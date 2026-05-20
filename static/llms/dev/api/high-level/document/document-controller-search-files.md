@@ -29,9 +29,9 @@ Information such as id, contentType, fileName, public token.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `_count` | query | `string` | no |  |
-| `_offset` | query | `string` | no |  |
-| `_sort` | query | `string` | no |  |
+| `_count` | query | `string` | no | Page size — maximum number of documents to return in one response. Defaults to `100`. |
+| `_offset` | query | `string` | no | Number of documents to skip before returning results. Combine with `_count` to paginate (offset = page × count). |
+| `_sort` | query | `string` | no | FHIR sort expression applied to the underlying `DocumentReference` search. Defaults to `-_lastUpdated` (most recently updated first). |
 
 
 
@@ -62,7 +62,7 @@ Information such as id, contentType, fileName, public token.
       "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
       "fileName": "test.txt",
       "contentType": "text/plain",
-      "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c"
+      "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA"
     }
   ]
 }

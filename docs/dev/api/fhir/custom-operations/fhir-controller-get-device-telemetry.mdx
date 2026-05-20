@@ -104,7 +104,7 @@ curl -X GET \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** |  |
+| `id` | path | `string` | **yes** | FHIR Device id whose latest telemetry observations should be returned. |
 
 
 

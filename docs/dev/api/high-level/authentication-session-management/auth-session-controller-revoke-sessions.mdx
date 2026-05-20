@@ -20,7 +20,7 @@ You can specify if you'd like to revoke `all`, `current`, `other` or a specific 
 ```bash
 curl -X DELETE \
  --url 'https://api.dev.ovok.com/auth/session/other' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjUwMzUsImV4cCI6MTc3OTI2ODYzNX0.cGzMfa5_-z12wqvhA1aYsVZGWelGwRubRJ2w1mm862c'
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyNjc3MTAsImV4cCI6MTc3OTI3MTMxMH0.5ZAIfQX3JUeRoBRZ0jvqywCpqI8NauHlsdeDO4PuBrA'
 ```
 
 
@@ -29,7 +29,7 @@ curl -X DELETE \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `option` | path | `—` | **yes** |  |
+| `option` | path | `—` | **yes** | Which sessions to revoke. Use `current` to revoke the calling session, `other` to revoke every session except the calling one, `all` to revoke every session, or a specific session UUID to revoke just that session. |
 
 
 

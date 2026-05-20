@@ -20,7 +20,7 @@ signals — exposed as a coherent REST surface.
 - **[Authentication - B2B](/dev/api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login)** — 2 endpoints
 - **[Authentication - Session Management](/dev/api/high-level/authentication-session-management/auth-session-controller-find-all)** — 2 endpoints
 - **[Bots - Execute a custom script](/dev/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post)** — 1 endpoint
-- **[CMS Public Delivery](/dev/api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1)** — 2 endpoints
+- **[CMS Public Delivery](/dev/api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1)** — 2 endpoints
 - **[Content](/dev/api/high-level/content/content-proxy-controller-proxy-get)** — 14 endpoints
 - **[Document](/dev/api/high-level/document/document-controller-delete-document)** — 7 endpoints
 - **[Localization](/dev/api/high-level/localization/locale-controller-get-locale)** — 2 endpoints

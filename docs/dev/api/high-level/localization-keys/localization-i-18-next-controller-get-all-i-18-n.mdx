@@ -25,7 +25,7 @@ The response is a JSON object with the i18next format.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `language` | path | `string` | **yes** |  |
+| `language` | path | `string` | **yes** | Locale code to fetch the i18next JSON for (e.g. `en`, `de`). Must be enabled for the project via the Locale APIs. |
 
 
 

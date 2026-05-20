@@ -30,8 +30,8 @@ Returns `{ ok: true }` whether or not a connection existed (idempotent).
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `provider` | path | `string` | **yes** |  |
-| `patientId` | path | `string` | **yes** |  |
+| `provider` | path | `string` | **yes** | Wearable provider slug whose tokens should be deleted. |
+| `patientId` | path | `string` | **yes** | FHIR Patient id whose connection to revoke. Idempotent — non-existent connections still return `{ ok: true }`. |
 
 
 

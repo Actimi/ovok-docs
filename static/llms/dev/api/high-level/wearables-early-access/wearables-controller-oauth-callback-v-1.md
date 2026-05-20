@@ -36,7 +36,11 @@ The state token is single-use (Redis `GETDEL`) — replays return 401. State exp
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `provider` | path | `string` | **yes** |  |
+| `provider` | path | `string` | **yes** | Wearable provider slug. Must match the one passed to `/connect` — mismatch is rejected. |
+| `error_description` | query | `—` | no | Optional human-readable error context from the provider. |
+| `error` | query | `—` | no | Set by the provider when the user denied or the upstream OAuth failed. Forwarded as a 400. |
+| `state` | query | `—` | no | Opaque CSRF token we minted at `/connect`. Single-use (Redis `GETDEL`). Replays return 401. |
+| `code` | query | `—` | no | Authorization code returned by the provider on success. Exchanged server-side for tokens. |
 
 
 

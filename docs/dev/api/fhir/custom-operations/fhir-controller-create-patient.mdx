@@ -21,7 +21,7 @@ Create a FHIR Patient resource. When withSignals=true, also provisions a corresp
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `withSignals` | query | `boolean` | no |  |
+| `withSignals` | query | `boolean` | no | Set to `true` to also provision a matching Signals patient alongside the FHIR Patient. Defaults to `false`. |
 
 
 

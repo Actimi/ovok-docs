@@ -119,19 +119,19 @@
     "label": "CMS Public Delivery",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1"
+      "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
-        "label": "GET /v1/public/cms/{typeSlug}/items"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
+        "label": "Get a published item"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
-        "label": "GET /v1/public/cms/{typeSlug}/items/{idOr…"
+        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
+        "label": "List published items"
       }
     ]
   },
@@ -147,72 +147,72 @@
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-get",
-        "label": "GET /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-post",
-        "label": "POST /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-put",
-        "label": "PUT /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-delete",
-        "label": "DELETE /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-patch",
-        "label": "PATCH /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-options",
-        "label": "OPTIONS /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-head",
-        "label": "HEAD /v1/content"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-get",
-        "label": "GET /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-post",
-        "label": "POST /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-put",
-        "label": "PUT /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-delete",
-        "label": "DELETE /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-patch",
-        "label": "PATCH /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-options",
-        "label": "OPTIONS /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       },
       {
         "type": "doc",
         "id": "api/high-level/content/content-proxy-controller-proxy-head",
-        "label": "HEAD /v1/content/{path}"
+        "label": "Content CMS reverse proxy"
       }
     ]
   },
@@ -362,22 +362,22 @@
       {
         "type": "doc",
         "id": "api/high-level/partner/partner-controller-health-check-0",
-        "label": "GET /partner/health-check"
+        "label": "Partner integration health check"
       },
       {
         "type": "doc",
         "id": "api/high-level/partner/partner-controller-health-check-1-v-1",
-        "label": "GET /v1/partner/health-check"
+        "label": "Partner integration health check"
       },
       {
         "type": "doc",
         "id": "api/high-level/partner/partner-controller-health-check-2-v-2",
-        "label": "GET /v2/partner/health-check"
+        "label": "Partner integration health check"
       },
       {
         "type": "doc",
         "id": "api/high-level/partner/partner-controller-health-check-3-v-3",
-        "label": "GET /v3/partner/health-check"
+        "label": "Partner integration health check"
       }
     ]
   },

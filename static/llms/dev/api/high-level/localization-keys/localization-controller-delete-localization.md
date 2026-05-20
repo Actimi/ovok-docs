@@ -24,8 +24,8 @@ The request doesn't return anything.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `key` | path | `string` | **yes** |  |
-| `language` | path | `string` | **yes** |  |
+| `key` | path | `string` | **yes** | Dot-separated localization key. Alphanumerics, `_`, `-`, `.` only. Hierarchical convention recommended (e.g. `home.screen.title`). |
+| `language` | path | `string` | **yes** | BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant. |
 
 
 
@@ -44,8 +44,8 @@ The request doesn't return anything.
 ### `200` → `LocalizationDto` (`application/json`)
 
 - `id`: `string`
-- `key`: `string` **(required)**
-- `language`: `string` **(required)**
+- `key`: `string` **(required)** — Dot-separated localization key. Alphanumerics, `_`, `-`, `.` only. Hierarchical convention recommended (e.g. `home.screen.title`).
+- `language`: `string` **(required)** — BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant.
 - `value`: `string` **(required)**
 - `author`: `object` **(required)**
 - `date`: `string`

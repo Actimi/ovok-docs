@@ -33,11 +33,11 @@ All query parameters are FHIR query parameteters.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `target` | path | `string` | **yes** |  |
-| `_count` | query | `string` | no |  |
-| `_offset` | query | `string` | no |  |
-| `_sort` | query | `string` | no |  |
-| `search` | query | `string` | no |  |
+| `target` | path | `string` | **yes** | Target locale code to map the project default language onto (e.g. `de`, `fr`). Must be enabled for the project and cannot equal the default language. |
+| `_count` | query | `string` | no | Page size. Positive integer; defaults to `10`. |
+| `_offset` | query | `string` | no | Zero-indexed offset into the result set. Defaults to `0`. |
+| `_sort` | query | `string` | no | Sort key. Prefix with `-` for descending order. Defaults to `-date` (newest first). |
+| `search` | query | `string` | no | Substring filter applied to the localization keys (case-insensitive). |
 
 
 

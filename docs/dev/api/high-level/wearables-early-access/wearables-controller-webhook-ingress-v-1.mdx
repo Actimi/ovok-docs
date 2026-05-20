@@ -43,7 +43,7 @@ The webhook arrives without project context. We look up the matching FHIR Endpoi
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `provider` | path | `string` | **yes** |  |
+| `provider` | path | `string` | **yes** | Wearable provider slug delivering the event. Provider-specific payload + signing rules apply (see description). |
 
 
 

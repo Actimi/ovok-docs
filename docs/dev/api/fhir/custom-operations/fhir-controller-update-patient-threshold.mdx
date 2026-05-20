@@ -21,8 +21,8 @@ Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes 
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** |  |
-| `updateOnSignals` | query | `boolean` | no |  |
+| `id` | path | `string` | **yes** | FHIR Patient id whose threshold CarePlan should be created or updated. |
+| `updateOnSignals` | query | `boolean` | no | Set to `true` to also push the updated threshold configuration to Signals. Defaults to `false`. |
 
 
 ## Request body

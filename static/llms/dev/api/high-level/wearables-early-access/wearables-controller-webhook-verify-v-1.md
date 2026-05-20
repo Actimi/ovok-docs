@@ -31,7 +31,9 @@ Returns `400` when the token does not match.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `provider` | path | `string` | **yes** |  |
+| `provider` | path | `string` | **yes** | Wearable provider slug. Verification handshake is currently used by `strava`. |
+| `hub.verify_token` | query | `—` | **yes** | Verify token agreed with the provider at subscription time. Must equal `WEARABLES_WEBHOOK_VERIFY_TOKEN`. |
+| `hub.challenge` | query | `—` | **yes** | Provider-supplied challenge string. Echoed back verbatim on a successful match. |
 
 
 

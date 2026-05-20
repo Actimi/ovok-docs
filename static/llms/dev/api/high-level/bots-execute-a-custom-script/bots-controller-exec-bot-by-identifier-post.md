@@ -51,7 +51,7 @@ curl -X POST \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `identifier` | query | `string` | **yes** | Identifier containing system and/or value parameters, e.g.: "https://api.ovok.com/fhir/Identifier/my-resource|abc123", "https://api.ovok.com/fhir/Identifier/my-resource", "abc123" |
+| `identifier` | query | `string` | **yes** | Bot identifier in FHIR `system|value` form (e.g. `https://example.com|get-users`); the `system` half may be omitted. The request body is forwarded to the bot as its input. |
 
 
 

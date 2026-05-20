@@ -91,9 +91,9 @@ curl -X GET \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `patient` | query | `string` | no | Patient reference. |
-| `max` | query | `string` | no | Maximum number of observations to return. |
-| `code` | query | `string` | no | Observation code(s) with comma separated values, e.g. "131328,8886-4". |
+| `patient` | query | `string` | no | FHIR Patient reference (e.g. `Patient/<uuid>`) whose most-recent observations to return. |
+| `max` | query | `string` | no | Maximum number of observations to return per code. Defaults to `1`. |
+| `code` | query | `string` | no | Comma-separated list of Observation codes to filter by (e.g. `131328,8886-4`). |
 
 
 
