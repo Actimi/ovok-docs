@@ -6,13 +6,17 @@ description: "Create a FHIR Patient resource. When withSignals=true, also provis
 
 # Create Patient with Signals linking
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/fhir/Patient`
-- <span className="api-method post">POST</span> `/fhir/R4/Patient`
-- <span className="api-method post">POST</span> `/fhir/R5/Patient`
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/Patient</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/R4/Patient</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/R5/Patient</code></div>
+</div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.
 

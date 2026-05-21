@@ -6,11 +6,13 @@ description: "Create a child project (\"sub tenant\") nested under the caller's 
 
 # Create a sub tenant
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/sub-project`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/sub-project</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Create a child project ("sub tenant") nested under the caller's current project. The admin issuing the request is automatically joined to the new child project as a Practitioner with admin rights, so the OAuth credentials they already hold keep working against it.
 

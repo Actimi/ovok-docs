@@ -6,13 +6,17 @@ description: "Query observation history for a device from Signals. Defaults to t
 
 # Get device telemetry history
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/fhir/Device/{id}/telemetry/history`
-- <span className="api-method get">GET</span> `/fhir/R4/Device/{id}/telemetry/history`
-- <span className="api-method get">GET</span> `/fhir/R5/Device/{id}/telemetry/history`
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Device/&#123;id&#125;/telemetry/history</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Device/&#123;id&#125;/telemetry/history</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Device/&#123;id&#125;/telemetry/history</code></div>
+</div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Query observation history for a device from Signals. Defaults to the last 72 hours.
 

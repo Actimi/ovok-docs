@@ -6,11 +6,13 @@ description: "Update the i18next JSON file for applications"
 
 # i18next - Update JSON
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/localization/i18next/{language}`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/localization/i18next/&#123;language&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Update the i18next JSON file for applications
 

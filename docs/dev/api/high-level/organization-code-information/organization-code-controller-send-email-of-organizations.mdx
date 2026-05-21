@@ -6,11 +6,13 @@ description: "Receive organization codes to your email"
 
 # Receive Organization Codes
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/organizations/code/email`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/organizations/code/email</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Receive organization codes to your email
 

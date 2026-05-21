@@ -6,13 +6,17 @@ description: "Save a patient-level threshold CarePlan. When updateOnSignals=true
 
 # Update patient threshold
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method put">PUT</span> `/fhir/Patient/{id}/threshold`
-- <span className="api-method put">PUT</span> `/fhir/R4/Patient/{id}/threshold`
-- <span className="api-method put">PUT</span> `/fhir/R5/Patient/{id}/threshold`
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">/fhir/Patient/&#123;id&#125;/threshold</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">/fhir/R4/Patient/&#123;id&#125;/threshold</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">/fhir/R5/Patient/&#123;id&#125;/threshold</code></div>
+</div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.
 

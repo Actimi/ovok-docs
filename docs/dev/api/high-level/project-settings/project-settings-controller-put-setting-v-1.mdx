@@ -6,11 +6,13 @@ description: "Flip a single boolean setting on the caller's current project. Som
 
 # Toggle a project setting
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method put">PUT</span> `/v1/project/settings/{key}`
+<div className="endpoint-hero__paths"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">/v1/project/settings/&#123;key&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Flip a single boolean setting on the caller's current project. Some keys (`CONTENT_ENABLED`, `MAILING_ENABLED`) are paid-tier add-ons and return 402 on Free; flipping them OFF is always allowed so a tier downgrade doesn't strand a project. Admin only.
 

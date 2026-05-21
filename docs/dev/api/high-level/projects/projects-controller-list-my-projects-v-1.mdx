@@ -6,11 +6,13 @@ description: "Every FHIR Project the caller has a ProjectMembership on. Each ent
 
 # List my projects
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Every FHIR Project the caller has a ProjectMembership on. Each entry carries an `admin` flag (project-admin status for the caller) and an `internal` flag (Ovok-managed tenant, hidden from billing).
 

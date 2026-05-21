@@ -523,3 +523,225 @@ html {
     border-radius: var(--radius-sm);
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────────
+   API endpoint hero — Stripe-style prominence for the method+path.
+
+   The previous treatment put `<span class="api-method">GET</span>` and
+   the path inline next to each other, which read as loose body text. A
+   hero card pulls them out of the prose flow, anchors the page on the
+   actual operation, and gives the env-aware base-URL chip a frame it
+   can sit inside without competing with the heading.
+   ────────────────────────────────────────────────────────────────────── */
+
+.endpoint-hero {
+  margin: 1.25rem 0 2rem;
+  padding: 1rem 1.1rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.endpoint-hero__paths {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.endpoint-hero__path-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.endpoint-hero__path {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  word-break: break-all;
+}
+
+.endpoint-hero .api-method {
+  /* Tighter than the inline body badge — the hero already provides
+     the frame, so the method chip can shed its own border weight. */
+  font-size: 0.7rem;
+  padding: 0.18rem 0.5rem;
+  background: var(--paper-quiet);
+}
+
+[data-theme='dark'] .endpoint-hero {
+  background: var(--paper-quiet);
+  border-color: var(--line-strong);
+}
+
+[data-theme='dark'] .endpoint-hero__path {
+  color: var(--ink);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Tables — Stripe-tight rhythm.
+
+   Existing tables read airy enough for editorial paragraphs but loose
+   for API reference data (parameters, responses). Tighten the
+   row-leading, lighten the header row, and give body rows a quiet
+   hover so it's clear a row is one logical unit.
+   ────────────────────────────────────────────────────────────────────── */
+
+.markdown table {
+  display: table;
+  width: 100%;
+  font-size: 0.92rem;
+  margin: 1.25rem 0 1.5rem;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.markdown table thead tr {
+  background: var(--paper-quiet);
+  border-bottom: 1px solid var(--line);
+}
+
+.markdown table th {
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 0.55rem 0.85rem;
+  text-align: left;
+}
+
+.markdown table td {
+  padding: 0.6rem 0.85rem;
+  border-top: 1px solid var(--line-quiet);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.markdown table tbody tr {
+  background: var(--paper);
+  transition: background-color 120ms var(--ease-out);
+}
+
+.markdown table tbody tr:hover {
+  background: var(--paper-quiet);
+}
+
+.markdown table code {
+  font-size: 0.85rem;
+  padding: 0.05rem 0.3rem;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Heading anchors — Stripe-style hash-on-hover.
+
+   Subtle "#" appears to the left of a section heading when hovered,
+   click to copy the deep link. Makes the reference feel API-y without
+   adding clutter when at rest.
+   ────────────────────────────────────────────────────────────────────── */
+
+.markdown :where(h2, h3, h4) > a.hash-link {
+  opacity: 0;
+  margin-left: -1.25em;
+  padding-right: 0.35em;
+  transition: opacity 120ms var(--ease-out);
+  text-decoration: none;
+  color: var(--ovok-deep);
+}
+
+.markdown :where(h2, h3, h4):hover > a.hash-link,
+.markdown :where(h2, h3, h4) > a.hash-link:focus {
+  opacity: 0.85;
+}
+
+[data-theme='dark'] .markdown :where(h2, h3, h4) > a.hash-link {
+  color: var(--ovok-light);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Code blocks — slightly cooler, language label gets its own row.
+
+   The existing `.theme-code-block` border + radius is already good;
+   tighten the leading inside `<pre>` and add a quiet background tint
+   so the block separates from the warm canvas without going dark-mode.
+   ────────────────────────────────────────────────────────────────────── */
+
+.theme-code-block {
+  font-size: 0.9rem;
+  background: var(--ifm-pre-background);
+}
+
+.theme-code-block pre {
+  padding: 1rem 1.1rem;
+  line-height: 1.55;
+}
+
+.theme-code-block-title {
+  background: var(--paper-quiet);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 0.85rem;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   TOC — sticky right column, tighter type.
+
+   Docusaurus already renders the right-column TOC; this just dials it
+   to the rest of the page rhythm so it reads as part of the reference,
+   not as a default-Docusaurus afterthought.
+   ────────────────────────────────────────────────────────────────────── */
+
+.table-of-contents {
+  font-size: 0.82rem;
+  border-left: 1px solid var(--line);
+  padding-left: 0.85rem;
+}
+
+.table-of-contents__link {
+  color: var(--ink-3);
+  padding: 0.15rem 0;
+  display: block;
+  transition: color 120ms var(--ease-out);
+}
+
+.table-of-contents__link:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active {
+  color: var(--ovok-deep);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--ovok-light);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Section-list links on the high-level + stability index pages — Stripe
+   makes its tag/group lists feel like cards. Bullet lists of tag links
+   get a subtle hover hint without changing the markdown source.
+   ────────────────────────────────────────────────────────────────────── */
+
+.markdown ul li > a:only-child {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 120ms var(--ease-out);
+}
+
+.markdown ul li > a:only-child:hover {
+  border-bottom-color: var(--ovok-deep);
+}

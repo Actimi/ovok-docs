@@ -6,13 +6,17 @@ description: "Returns the current effective telemetry for a device as a FHIR sea
 
 # Get device telemetry
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/fhir/Device/{id}/telemetry`
-- <span className="api-method get">GET</span> `/fhir/R4/Device/{id}/telemetry`
-- <span className="api-method get">GET</span> `/fhir/R5/Device/{id}/telemetry`
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Device/&#123;id&#125;/telemetry</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Device/&#123;id&#125;/telemetry</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Device/&#123;id&#125;/telemetry</code></div>
+</div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, heart rate (when a fresh value is cached), respiratory rate (when a fresh value is cached), and sleep status. Each Observation uses its own `effectiveInstant` so clients can reason about staleness per metric.
 

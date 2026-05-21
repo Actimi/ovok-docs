@@ -6,11 +6,13 @@ description: "Returns every boolean setting on the caller's current project as a
 
 # List project settings
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/project/settings`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/project/settings</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Returns every boolean setting on the caller's current project as a single map. Settings drive opt-in features (Payload CMS, custom mailing, wearable integrations, patient registration policies, …).
 

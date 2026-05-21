@@ -6,11 +6,13 @@ description: "Fetch a single published item by id or slug. Authenticates with a 
 
 # Get a published item
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/public/cms/{typeSlug}/items/{idOrSlug}`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/public/cms/&#123;typeSlug&#125;/items/&#123;idOrSlug&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Fetch a single published item by id or slug. Authenticates with a project-scoped API key. Returns 404 for drafts, unpublished items, or items in another project.
 

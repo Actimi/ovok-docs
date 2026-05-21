@@ -6,11 +6,13 @@ description: "AI Translation uses LLMs for translation."
 
 # Translate
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/ai/translation`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/ai/translation</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 AI Translation uses LLMs for translation.
 

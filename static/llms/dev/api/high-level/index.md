@@ -33,6 +33,13 @@ signals — exposed as a coherent REST surface.
 - **[Tenant Authentication](/dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login)** — 7 endpoints
 - **[Wearables (Early Access)](/dev/api/high-level/wearables-early-access/wearables-controller-list-connections-v-1)** — 6 endpoints
 
+## Stability
+
+Not every endpoint is at the same release stage. The
+[API stability](/dev/api/stability) page lists everything tagged
+**Early Access** or **Deprecated** on this tier so you can scope
+production integrations cleanly.
+
 ## Tier
 
 You're viewing the **dev** tier. Switch tiers from the navbar to

@@ -6,11 +6,13 @@ description: "Returns FHIR-server feature flags for the caller’s current proje
 
 # Get project features
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects/me/features`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/features</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Returns FHIR-server feature flags for the caller’s current project. Feature flags control opt-in behaviour at the FHIR layer (e.g. terminology server, GraphQL).
 

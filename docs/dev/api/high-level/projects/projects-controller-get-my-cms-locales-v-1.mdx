@@ -6,11 +6,13 @@ description: "BCP-47 locale codes the project offers for content items. The firs
 
 # Get CMS locales
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects/me/cms-locales`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/cms-locales</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 BCP-47 locale codes the project offers for content items. The first entry is the project default — public delivery falls back to it when a requested locale has no value on file.
 

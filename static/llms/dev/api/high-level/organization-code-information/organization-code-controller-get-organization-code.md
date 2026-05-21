@@ -6,11 +6,13 @@ description: "Get organization code"
 
 # Get Organization Code
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/organizations/code`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/organizations/code</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Get organization code
 

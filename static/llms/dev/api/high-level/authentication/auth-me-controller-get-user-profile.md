@@ -6,11 +6,13 @@ description: "This API fetches the user profile information."
 
 # Get account information
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/auth/me`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/auth/me</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 This API fetches the user profile information.
 

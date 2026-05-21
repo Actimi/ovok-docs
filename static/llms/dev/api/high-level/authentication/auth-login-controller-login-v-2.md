@@ -6,11 +6,13 @@ description: "The Login API endpoint facilitates the authentication process, all
 
 # Login
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/v2/auth/login`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/v2/auth/login</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 The Login API endpoint facilitates the authentication process, allowing users to obtain a JWT (JSON Web Token) for subsequent authorized requests.
 <br />This API is crucial for secure access to Ovok services.

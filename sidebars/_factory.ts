@@ -50,6 +50,15 @@ export function buildSidebar(envKey: string): SidebarsConfig {
     });
   }
 
+  // Stability sits above High Level API so first-time integrators
+  // notice the Early Access / Deprecated cohort before they pick an
+  // endpoint to build against. Auto-emitted by the doc generator,
+  // so we just point at it when it exists.
+  const stabilityPath = path.join(envDir, 'api', 'stability.mdx');
+  if (fs.existsSync(stabilityPath)) {
+    items.push({ type: 'doc', id: 'api/stability', label: 'API stability' });
+  }
+
   const highLevelJson = path.join(envDir, 'api', 'high-level', 'sidebar.json');
   if (fs.existsSync(highLevelJson)) {
     items.push({

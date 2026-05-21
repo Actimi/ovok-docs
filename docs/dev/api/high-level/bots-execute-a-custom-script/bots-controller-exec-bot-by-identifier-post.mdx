@@ -6,11 +6,13 @@ description: "This API executes a bot by its identifier."
 
 # Execute a bot with request body
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/bots`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/bots</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 This API executes a bot by its identifier.
 <br />Additional parameters can be provided in the request body.

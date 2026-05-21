@@ -6,11 +6,13 @@ description: "Unauthenticated liveness ping for partner load balancers and sandb
 
 # Partner integration health check
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/partner/health-check`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/partner/health-check</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: "ok", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral, v1, v2 and v3 paths so older partner SDKs keep working as the surrounding API evolves.
 

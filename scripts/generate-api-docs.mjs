@@ -389,11 +389,13 @@ function emitHighLevelForEnv(envKey, spec) {
         '',
         `# ${escapeBraces(title)}`,
         '',
-        '**Available paths**',
+        '<div className="endpoint-hero">',
         '',
-        `- <span className="api-method ${method.toLowerCase()}">${method}</span> \`${path}\``,
+        `<div className="endpoint-hero__paths"><span className="api-method ${method.toLowerCase()}">${method}</span> <code className="endpoint-hero__path">${escapeBraces(path)}</code></div>`,
         '',
         '<ApiBase inline={false} />',
+        '',
+        '</div>',
         '',
       ];
       if (op.description) body.push(escapeMdx(op.description), '');
@@ -433,6 +435,13 @@ signals — exposed as a coherent REST surface.
 
 ${tagSummary}
 
+## Stability
+
+Not every endpoint is at the same release stage. The
+[API stability](/${envKey}/api/stability) page lists everything tagged
+**Early Access** or **Deprecated** on this tier so you can scope
+production integrations cleanly.
+
 ## Tier
 
 You're viewing the **${envKey}** tier. Switch tiers from the navbar to
@@ -461,7 +470,7 @@ The machine-readable spec for this tier is at
     const opSlug = slug(key);
     const title = op.summary?.trim() || `${method} ${path}`;
     const pathLines = variants
-      .map((v) => `- <span className="api-method ${v.method.toLowerCase()}">${v.method}</span> \`${v.path}\``)
+      .map((v) => `  <div className="endpoint-hero__path-row"><span className="api-method ${v.method.toLowerCase()}">${v.method}</span> <code className="endpoint-hero__path">${escapeBraces(v.path)}</code></div>`)
       .join('\n');
     const body = [
       '---',
@@ -472,11 +481,15 @@ The machine-readable spec for this tier is at
       '',
       `# ${escapeBraces(title)}`,
       '',
-      '**Available paths**',
+      '<div className="endpoint-hero">',
       '',
+      '<div className="endpoint-hero__paths">',
       pathLines,
+      '</div>',
       '',
       '<ApiBase inline={false} />',
+      '',
+      '</div>',
       '',
     ];
     if (op.description) body.push(escapeMdx(op.description), '');
@@ -514,6 +527,113 @@ ${customOpsSidebar.map((s) => `- [${escapeBraces(s.label)}](/${envKey}/api/fhir/
     customOps: customOpsSidebar.length,
     customOpsSidebar,
     firstCustomId,
+  };
+}
+
+/**
+ * Aggregated lifecycle/stability page. Walks every endpoint in the env
+ * spec and buckets by:
+ *   - Deprecated  → `op.deprecated === true`
+ *   - Early Access → summary starts with `[Early Access]`
+ *   - GA          → everything else (just summarised, not listed)
+ *
+ * The page deliberately doesn't enumerate the GA endpoints — that's
+ * what the rest of the docs is. The point of this page is to make the
+ * non-stable surface findable without grepping the spec.
+ */
+function emitStabilityPage(envKey, spec) {
+  const outApi = join(DOCS_ROOT, envKey, 'api');
+  ensureDir(outApi);
+
+  // Walk every op once, categorise, capture the slug pair we'll need
+  // to deep-link into the per-endpoint MDX. The slug logic must match
+  // emitHighLevelForEnv exactly — same `slug(tag)` / `slug(opIdHint)`
+  // recipe — or the links 404.
+  const deprecated = [];
+  const earlyAccess = [];
+  let gaCount = 0;
+
+  for (const [path, methods] of Object.entries(spec.paths ?? {})) {
+    for (const [method, op] of Object.entries(methods)) {
+      if (!HTTP_METHODS.has(method)) continue;
+      const summary = (op.summary ?? '').trim();
+      const tag = (op.tags ?? []).find((t) => !['Public', 'Internal', 'Deprecated'].includes(t)) ?? 'Uncategorized';
+      const tagSlug = slug(tag);
+      const opSlug = slug(op.operationId || `${method}-${path}`) || 'endpoint';
+      const isFhirCustomOp = isFhirCustomOpPath(path);
+      const href = isFhirCustomOp
+        ? `/${envKey}/api/fhir/custom-operations/${opSlug}`
+        : `/${envKey}/api/high-level/${tagSlug}/${opSlug}`;
+      const row = {
+        method: method.toUpperCase(),
+        path,
+        title: summary || `${method.toUpperCase()} ${path}`,
+        tag,
+        href,
+      };
+      if (op.deprecated) deprecated.push(row);
+      else if (/^\[Early Access\]/i.test(summary)) earlyAccess.push(row);
+      else gaCount++;
+    }
+  }
+
+  const formatRow = ({ method, path, title, tag, href }) =>
+    `| [${escapeBraces(title.replace(/^\[Early Access\]\s*/i, ''))}](${href}) | \`${method}\` \`${escapeBraces(path)}\` | ${tag} |`;
+
+  const section = (heading, rows, empty) => {
+    if (rows.length === 0) {
+      return `### ${heading}\n\n_${empty}_\n`;
+    }
+    return [
+      `### ${heading}`,
+      '',
+      '| Endpoint | Method | Tag |',
+      '| --- | --- | --- |',
+      ...rows.map(formatRow),
+      '',
+    ].join('\n');
+  };
+
+  const body = [
+    '---',
+    'title: API stability',
+    'sidebar_position: 2',
+    'sidebar_label: API stability',
+    `description: Lifecycle status of every Ovok ${envKey}-tier endpoint — what's stable, what's early access, what's on the way out.`,
+    '---',
+    '',
+    '# API stability',
+    '',
+    `Lifecycle status of every endpoint exposed on the **${envKey}** tier. Anything not listed below is considered general availability — stable enough to build production integrations against.`,
+    '',
+    '## Stability levels',
+    '',
+    '- **General availability** — covered by the standard release cadence. Breaking changes go through deprecation first.',
+    '- **Early Access** — works end-to-end, but the request / response shapes can change without a deprecation window. Safe to prototype against; not yet recommended for production criticality.',
+    '- **Deprecated** — still functional, scheduled for removal. Migrate to the replacement noted on the endpoint page.',
+    '',
+    `## Summary`,
+    '',
+    `| Status | Endpoints |`,
+    `| --- | --- |`,
+    `| General availability | ${gaCount} |`,
+    `| Early Access | ${earlyAccess.length} |`,
+    `| Deprecated | ${deprecated.length} |`,
+    '',
+    `_Counts cover the **${envKey}** tier. Switch tiers from the navbar to see the equivalent stability map for another release surface._`,
+    '',
+    '## Detail',
+    '',
+    section('Early Access', earlyAccess, 'No endpoints currently in Early Access on this tier.'),
+    section('Deprecated', deprecated, 'No endpoints currently marked deprecated on this tier.'),
+  ].join('\n');
+
+  writeIfChanged(join(outApi, 'stability.mdx'), body);
+
+  return {
+    earlyAccess: earlyAccess.length,
+    deprecated: deprecated.length,
+    gaCount,
   };
 }
 
@@ -758,7 +878,8 @@ for (const envKey of ALL_ENVS_ORDERED) {
   if (!envSpecs[envKey]) continue;
   const hl = emitHighLevelForEnv(envKey, envSpecs[envKey]);
   const fhir = emitFhirForEnv(envKey, fhirData, hl);
-  summary.push({ envKey, ...hl, ...fhir });
+  const stability = emitStabilityPage(envKey, envSpecs[envKey]);
+  summary.push({ envKey, ...hl, ...fhir, ...stability });
 }
 
 ensureDir(STATIC_OPENAPI);

@@ -6,11 +6,13 @@ description: "Login with challenge token. Success response contains access and r
 
 # Practitioner - Exchange Token
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/token`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/tenant/Practitioner/login/token</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Login with challenge token. Success response contains access and refresh tokens.
 

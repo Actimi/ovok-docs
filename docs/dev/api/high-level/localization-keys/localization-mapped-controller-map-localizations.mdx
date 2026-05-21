@@ -6,11 +6,13 @@ description: "Map a localization to a target language"
 
 # Mapped Localizations
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/localization/map/{target}`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/localization/map/&#123;target&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Map a localization to a target language
 

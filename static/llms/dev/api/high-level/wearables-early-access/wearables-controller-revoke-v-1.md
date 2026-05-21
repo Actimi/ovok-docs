@@ -6,11 +6,13 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Revoke a wearable connection
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method delete">DELETE</span> `/v1/wearables/{provider}/connections/{patientId}`
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/v1/wearables/&#123;provider&#125;/connections/&#123;patientId&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 **Early Access** — interfaces may change without notice.
 

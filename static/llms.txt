@@ -244,6 +244,7 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/wearables-early-access/wearables-controller-start-connect-v-1.md
 - /dev/api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1.md
 - /dev/api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1.md
+- /dev/api/stability.md
 - /dev/cms/api-keys.md
 - /dev/cms/authoring.md
 - /dev/cms/enable.md

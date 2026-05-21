@@ -6,11 +6,13 @@ description: "Toggle admin status on an existing membership. Admin-only."
 
 # Update a project member
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/v1/projects/me/members/{id}`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/v1/projects/me/members/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Toggle admin status on an existing membership. Admin-only.
 

@@ -6,11 +6,13 @@ description: "Replace the FHIR-server feature flag list on the caller’s curren
 
 # Update project features
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/v1/projects/me/features`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/v1/projects/me/features</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Replace the FHIR-server feature flag list on the caller’s current project. Admin-only. Empty array disables every flag.
 

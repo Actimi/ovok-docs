@@ -6,11 +6,13 @@ description: "The Delete User API endpoint schedules user account deletion from 
 
 # Schedule user account deletion
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method delete">DELETE</span> `/auth/delete`
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/auth/delete</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 The Delete User API endpoint schedules user account deletion from the Ovok platform to be carried out in 30 days.
 <br />User deletion can be aborted by logging in to the account.

@@ -6,11 +6,13 @@ description: "This API endpoint logs a user in to a project."
 
 # Login
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/b2b/login`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/b2b/login</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 This API endpoint logs a user in to a project.
 

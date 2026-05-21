@@ -6,11 +6,13 @@ description: "Update document metadata"
 
 # Update document metadata
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/document/{id}`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/document/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Update document metadata
 

@@ -6,11 +6,13 @@ description: "Delete a ProjectMembership. Refuses to remove the caller or the la
 
 # Remove a project member
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method delete">DELETE</span> `/v1/projects/me/members/{id}`
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/v1/projects/me/members/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Delete a ProjectMembership. Refuses to remove the caller or the last remaining admin. Admin-only.
 

@@ -6,11 +6,13 @@ description: "Generate credentials for file replacement"
 
 # Generate credentials for document file replacement
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/document/{id}`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/document/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Generate credentials for file replacement
 

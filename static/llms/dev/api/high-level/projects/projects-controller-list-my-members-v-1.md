@@ -6,11 +6,13 @@ description: "Members of the caller’s current project, including pending invit
 
 # List project members
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects/me/members`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/members</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Members of the caller’s current project, including pending invites (users who have not completed their first sign-in).
 

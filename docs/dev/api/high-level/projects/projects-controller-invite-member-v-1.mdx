@@ -6,11 +6,13 @@ description: "Creates the Practitioner profile + ProjectMembership and sends a m
 
 # Invite a project member
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/v1/projects/me/members`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/v1/projects/me/members</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Creates the Practitioner profile + ProjectMembership and sends a magic-link invite email. Admin-only.
 

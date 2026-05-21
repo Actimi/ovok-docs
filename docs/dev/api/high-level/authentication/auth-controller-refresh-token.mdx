@@ -6,11 +6,13 @@ description: "By making a POST request to this endpoint you can refresh the acce
 
 # Refresh access token
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/refresh-token`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/refresh-token</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 By making a POST request to this endpoint you can refresh the access token, ensuring uninterrupted access to protected resources.
 

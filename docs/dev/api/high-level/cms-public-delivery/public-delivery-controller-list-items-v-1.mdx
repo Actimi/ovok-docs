@@ -6,11 +6,13 @@ description: "List published items from a CMS collection. Authenticates with a p
 
 # List published items
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/public/cms/{typeSlug}/items`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/public/cms/&#123;typeSlug&#125;/items</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 List published items from a CMS collection. Authenticates with a project-scoped API key (Authorization: Bearer …). Drafts and unpublished items are filtered out server-side.
 

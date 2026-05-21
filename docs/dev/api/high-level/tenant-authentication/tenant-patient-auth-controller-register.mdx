@@ -6,11 +6,13 @@ description: "Register a new user."
 
 # Patient - Register
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/tenant/Patient/register`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/tenant/Patient/register</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Register a new user.
 

@@ -6,11 +6,13 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Wearable OAuth callback
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/wearables/{provider}/callback`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/wearables/&#123;provider&#125;/callback</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 **Early Access** — interfaces may change without notice.
 

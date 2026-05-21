@@ -240,6 +240,7 @@
   "/dev/api/high-level/wearables-early-access/wearables-controller-start-connect-v-1",
   "/dev/api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1",
   "/dev/api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1",
+  "/dev/api/stability",
   "/dev/cms/api-keys",
   "/dev/cms/authoring",
   "/dev/cms/enable",

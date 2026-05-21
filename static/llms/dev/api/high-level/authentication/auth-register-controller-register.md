@@ -6,11 +6,13 @@ description: "The Register API endpoint allows users to create a new account on 
 
 # Register an account
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/register`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/register</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 The Register API endpoint allows users to create a new account on the Ovok platform.
 <br />This API is essential for onboarding new users and providing access to Ovok services.

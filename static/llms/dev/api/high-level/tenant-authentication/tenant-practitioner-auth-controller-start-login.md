@@ -6,11 +6,13 @@ description: "Login with email and password. Response either contains challange 
 
 # Practitioner - Login
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/tenant/Practitioner/login/start`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/tenant/Practitioner/login/start</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Login with email and password. Response either contains challange or MFA challenge - which is followed up by challenge as a second step as well.
 

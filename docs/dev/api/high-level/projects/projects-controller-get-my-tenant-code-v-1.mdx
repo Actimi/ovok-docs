@@ -6,11 +6,13 @@ description: "Short tenant code on file for the caller’s current project, or n
 
 # Get project tenant code
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects/me/tenant-code`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/tenant-code</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Short tenant code on file for the caller’s current project, or null when one has not been assigned yet.
 

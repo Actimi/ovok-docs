@@ -6,11 +6,13 @@ description: "Return summary + settings for a project the caller is a member of.
 
 # Get project detail
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/v1/projects/{id}`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Return summary + settings for a project the caller is a member of. 404 otherwise.
 

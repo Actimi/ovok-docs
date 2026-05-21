@@ -6,11 +6,13 @@ description: "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HE
 
 # Content CMS reverse proxy
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method head">HEAD</span> `/v1/content/{path}`
+<div className="endpoint-hero__paths"><span className="api-method head">HEAD</span> <code className="endpoint-hero__path">/v1/content/&#123;path&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant header, so multi-tenant scoping is automatic — you address `Collection/<id>` or `Collection?where=...` exactly as the Payload REST API expects. Response shape and status code are whatever Payload returns; refer to your collection schemas (and the `payloadcms.com/docs/rest-api` reference) for the per-collection details. 502 surfaces when Payload itself is unreachable.
 

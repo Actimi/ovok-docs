@@ -6,11 +6,13 @@ description: "Tear down a child project. The FHIR Project resource and the paren
 
 # Delete a sub tenant
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method delete">DELETE</span> `/sub-project/{subProjectId}`
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/sub-project/&#123;subProjectId&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Tear down a child project. The FHIR Project resource and the parent ↔ child relationship are both removed.
 

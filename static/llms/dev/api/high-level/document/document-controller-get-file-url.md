@@ -6,11 +6,13 @@ description: "File download"
 
 # Get a document as authenticated user
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/document/{id}`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/document/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 File download
 

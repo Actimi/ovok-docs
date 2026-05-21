@@ -6,11 +6,13 @@ description: "Delete document"
 
 # Delete a document
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method delete">DELETE</span> `/document/{id}`
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/document/&#123;id&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Delete document
 

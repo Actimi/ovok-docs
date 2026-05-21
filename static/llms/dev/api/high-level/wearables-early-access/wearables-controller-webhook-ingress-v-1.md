@@ -6,11 +6,13 @@ description: "**Early Access** — interfaces may change without notice."
 
 # [Early Access] Wearable webhook ingress
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/v1/wearables/{provider}/webhook`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/v1/wearables/&#123;provider&#125;/webhook</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 **Early Access** — interfaces may change without notice.
 

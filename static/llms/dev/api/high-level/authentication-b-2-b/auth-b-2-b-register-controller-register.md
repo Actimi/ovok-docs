@@ -6,11 +6,13 @@ description: "This API endpoint registers a user to a project."
 
 # Register an account
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/b2b/register`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/b2b/register</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 This API endpoint registers a user to a project.
 

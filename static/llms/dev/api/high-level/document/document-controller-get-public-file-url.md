@@ -6,11 +6,13 @@ description: "Public file download"
 
 # Get a document as public user
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/document/public/{token}`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/document/public/&#123;token&#125;</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Public file download
 

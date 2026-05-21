@@ -6,11 +6,13 @@ description: "Enable or disable the available locales for localization."
 
 # Update the available locales
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/locales`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/locales</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Enable or disable the available locales for localization.
 

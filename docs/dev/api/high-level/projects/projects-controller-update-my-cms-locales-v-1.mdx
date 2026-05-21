@@ -6,11 +6,13 @@ description: "Replace the list of locales the project offers. The first entry be
 
 # Update CMS locales
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method patch">PATCH</span> `/v1/projects/me/cms-locales`
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/v1/projects/me/cms-locales</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Replace the list of locales the project offers. The first entry becomes the project default. Admin-only.
 

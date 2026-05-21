@@ -6,13 +6,17 @@ description: "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
 
 # Expand Observation SampledData to a &#123;t,v&#125; time-series
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/fhir/Observation/{id}`
-- <span className="api-method get">GET</span> `/fhir/R4/Observation/{id}`
-- <span className="api-method get">GET</span> `/fhir/R5/Observation/{id}`
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Observation/&#123;id&#125;</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Observation/&#123;id&#125;</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Observation/&#123;id&#125;</code></div>
+</div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledData` (ECG traces, accelerometer streams, contiguous vital-sign batches). Requests without the flag pass through to the standard FHIR GET.
 

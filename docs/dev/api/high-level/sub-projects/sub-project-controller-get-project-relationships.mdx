@@ -6,11 +6,13 @@ description: "Returns the caller project's place in the project hierarchy: its o
 
 # List project relationships
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/sub-project`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/sub-project</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Returns the caller project's place in the project hierarchy: its own id, its parent's id (if any), and the ids of any direct children.
 

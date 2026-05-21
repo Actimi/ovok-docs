@@ -6,11 +6,13 @@ description: "File search"
 
 # Search documents
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method get">GET</span> `/document`
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/document</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 File search
 

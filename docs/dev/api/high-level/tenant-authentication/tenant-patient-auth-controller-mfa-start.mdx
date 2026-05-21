@@ -6,11 +6,13 @@ description: "Login with MFA token. Success response contains a challenge token 
 
 # Patient - MFA
 
-**Available paths**
+<div className="endpoint-hero">
 
-- <span className="api-method post">POST</span> `/auth/tenant/Patient/login/mfa`
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/tenant/Patient/login/mfa</code></div>
 
 <ApiBase inline={false} />
+
+</div>
 
 Login with MFA token. Success response contains a challenge token that can be used to finish login via login/token endpoint.
 
