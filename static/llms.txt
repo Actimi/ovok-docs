@@ -219,9 +219,9 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/projects/projects-controller-update-member-v-1.md
 - /dev/api/high-level/projects/projects-controller-update-my-cms-locales-v-1.md
 - /dev/api/high-level/projects/projects-controller-update-my-project-features-v-1.md
-- /dev/api/high-level/sub-projects/sub-project-controller-create-sub-tenant.md
-- /dev/api/high-level/sub-projects/sub-project-controller-delete-sub-tenant.md
-- /dev/api/high-level/sub-projects/sub-project-controller-get-project-relationships.md
+- /dev/api/high-level/sub-projects/sub-project-controller-create-sub-tenant-v-1.md
+- /dev/api/high-level/sub-projects/sub-project-controller-delete-sub-tenant-v-1.md
+- /dev/api/high-level/sub-projects/sub-project-controller-get-project-relationships-v-1.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-register.md
@@ -229,6 +229,9 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login.md
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start.md
 - /dev/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login.md
+- /dev/api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1.md
+- /dev/api/high-level/wearables-early-access/wearable-credentials-controller-get-v-1.md
+- /dev/api/high-level/wearables-early-access/wearable-credentials-controller-put-v-1.md
 - /dev/api/high-level/wearables-early-access/wearables-controller-list-connections-v-1.md
 - /dev/api/high-level/wearables-early-access/wearables-controller-oauth-callback-v-1.md
 - /dev/api/high-level/wearables-early-access/wearables-controller-revoke-v-1.md

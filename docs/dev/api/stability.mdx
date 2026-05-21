@@ -20,7 +20,7 @@ Lifecycle status of every endpoint exposed on the **dev** tier. Anything not lis
 | Status | Endpoints |
 | --- | --- |
 | General availability | 96 |
-| Early Access | 6 |
+| Early Access | 9 |
 | Deprecated | 0 |
 
 _Counts cover the **dev** tier. Switch tiers from the navbar to see the equivalent stability map for another release surface._
@@ -37,6 +37,9 @@ _Counts cover the **dev** tier. Switch tiers from the navbar to see the equivale
 | [List wearable connections](/dev/api/high-level/wearables-early-access/wearables-controller-list-connections-v-1) | `GET` `/v1/wearables/connections` | Wearables (Early Access) |
 | [Wearable webhook subscription verification](/dev/api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1) | `GET` `/v1/wearables/&#123;provider&#125;/webhook` | Wearables (Early Access) |
 | [Wearable webhook ingress](/dev/api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1) | `POST` `/v1/wearables/&#123;provider&#125;/webhook` | Wearables (Early Access) |
+| [Read wearable credentials](/dev/api/high-level/wearables-early-access/wearable-credentials-controller-get-v-1) | `GET` `/v1/wearables/&#123;provider&#125;/credentials` | Wearables (Early Access) |
+| [Set wearable credentials](/dev/api/high-level/wearables-early-access/wearable-credentials-controller-put-v-1) | `PUT` `/v1/wearables/&#123;provider&#125;/credentials` | Wearables (Early Access) |
+| [Clear wearable credentials](/dev/api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1) | `DELETE` `/v1/wearables/&#123;provider&#125;/credentials` | Wearables (Early Access) |
 
 ### Deprecated
 

@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "{GVQSQ;G[-g&lt;t6Mh",
+            "password": "A[.DmUv]2vE|n_+]",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "{GVQSQ;G[-g&lt;t6Mh",
+            "password": "A[.DmUv]2vE|n_+]",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -401,7 +401,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +925,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1050,7 +1050,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -1582,7 +1582,7 @@ paths:
       summary: Update the available locales
       tags:
         - Localization
-  /sub-project:
+  /v1/sub-project:
     post:
       description: >-
         Create a child project ("sub tenant") nested under the caller's current
@@ -1617,7 +1617,7 @@ paths:
 
 
         Admin-only. Returns `{ success: true }`.
-      operationId: SubProjectController_createSubTenant
+      operationId: SubProjectController_createSubTenant_v1
       parameters: []
       requestBody:
         required: true
@@ -1749,7 +1749,7 @@ paths:
 
         Returns the relationship graph as a `SubProjectsResponseDto`. 400 when
         no project is bound to the session.
-      operationId: SubProjectController_getProjectRelationships
+      operationId: SubProjectController_getProjectRelationships_v1
       parameters: []
       responses:
         "200":
@@ -1766,7 +1766,7 @@ paths:
       summary: List project relationships
       tags:
         - Sub Projects
-  /sub-project/{subProjectId}:
+  /v1/sub-project/{subProjectId}:
     delete:
       description: >-
         Tear down a child project. The FHIR Project resource and the parent ↔
@@ -1792,7 +1792,7 @@ paths:
         curl -X DELETE '<APP_BASE_URL>/v1/sub-project/<sub-project-id>' \
           -H 'Authorization: Bearer <admin-token>'
         ```
-      operationId: SubProjectController_deleteSubTenant
+      operationId: SubProjectController_deleteSubTenant_v1
       parameters:
         - name: subProjectId
           required: true
@@ -3139,7 +3139,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -5237,7 +5237,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5530,7 +5530,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5823,7 +5823,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -5981,7 +5981,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
         ```
 
 
@@ -6140,7 +6140,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
         ```
 
 
@@ -6299,7 +6299,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
         ```
 
 
@@ -10257,35 +10257,37 @@ paths:
       summary: "[Early Access] Wearable webhook ingress"
       tags:
         - Wearables (Early Access)
-  /v1/project/settings:
+  /v1/wearables/{provider}/credentials:
     get:
       description: >-
-        Returns every boolean setting on the caller's current project as a
-        single map. Settings drive opt-in features (Payload CMS, custom mailing,
-        wearable integrations, patient registration policies, …).
+        **Early Access** — interfaces may change without notice.
 
 
-        Defaults are applied for any setting the project has not explicitly set
-        — see `PROJECT_SETTING_DEFAULTS` server-side. Admin only.
-
-
-        ### Example
-
-
-        ```bash
-
-        curl '<APP_BASE_URL>/v1/project/settings' \
-          -H 'Authorization: Bearer <admin-token>'
-        ```
-      operationId: ProjectSettingsController_getSettings_v1
-      parameters: []
+        Report whether the caller's project has Strava / Polar OAuth app
+        credentials on file, without ever returning the raw values. Use the
+        response to drive a 'configured / not configured' indicator in the
+        dashboard; the secret fields (`hasSecret`, `hasWebhookSecret`) report
+        presence only and `clientIdLast4` lets the UI show 'ends in …XY34' for
+        visual confirmation. Admin-only.
+      operationId: WearableCredentialsController_get_v1
+      parameters:
+        - name: provider
+          required: true
+          in: path
+          description: Wearable provider slug whose stored credentials are being read.
+            Currently `strava` or `polar`.
+          schema:
+            enum:
+              - strava
+              - polar
+            type: string
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ProjectSettingsResponseDto"
+                $ref: "#/components/schemas/WearableCredentialsStatusDto"
         "400": &a75
           description: The request could not be operated by the server.
           content:
@@ -10377,6 +10379,214 @@ paths:
                 required:
                   - statusCode
                   - message
+      security: &a80
+        - bearer: []
+      summary: "[Early Access] Read wearable credentials"
+      tags:
+        - Wearables (Early Access)
+    put:
+      description: >-
+        **Early Access** — interfaces may change without notice.
+
+
+        Write (or replace) the project's OAuth credentials for a wearable
+        provider. Values are encrypted at rest with the project id as salt —
+        same envelope as MAIL_API_KEY — so the raw secrets are never persisted
+        in plaintext. The response returns the same status view as `GET`, with
+        `configured: true` once both `clientId` and `clientSecret` are on file.
+        Admin-only.
+      operationId: WearableCredentialsController_put_v1
+      parameters:
+        - name: provider
+          required: true
+          in: path
+          description: Wearable provider slug whose credentials are being written.
+            Currently `strava` or `polar`.
+          schema:
+            enum:
+              - strava
+              - polar
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WearableCredentialsBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WearableCredentialsStatusDto"
+        "400": *a75
+        "401": *a76
+        "404": *a77
+        "422": *a78
+        "500": *a79
+      security: *a80
+      summary: "[Early Access] Set wearable credentials"
+      tags:
+        - Wearables (Early Access)
+    delete:
+      description: >-
+        **Early Access** — interfaces may change without notice.
+
+
+        Remove the stored OAuth credentials for a wearable provider. Existing
+        patient connections that were issued under the old credentials keep
+        working until their access tokens expire; the next webhook signature
+        verification (Polar) or token refresh (both providers) will start to
+        fail and the patient will need to reconnect. Admin-only.
+      operationId: WearableCredentialsController_clear_v1
+      parameters:
+        - name: provider
+          required: true
+          in: path
+          description: Wearable provider slug whose stored credentials should be cleared.
+            Currently `strava` or `polar`.
+          schema:
+            enum:
+              - strava
+              - polar
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WearableCredentialsStatusDto"
+        "400": *a75
+        "401": *a76
+        "404": *a77
+        "422": *a78
+        "500": *a79
+      security: *a80
+      summary: "[Early Access] Clear wearable credentials"
+      tags:
+        - Wearables (Early Access)
+  /v1/project/settings:
+    get:
+      description: >-
+        Returns every boolean setting on the caller's current project as a
+        single map. Settings drive opt-in features (Payload CMS, custom mailing,
+        wearable integrations, patient registration policies, …).
+
+
+        Defaults are applied for any setting the project has not explicitly set
+        — see `PROJECT_SETTING_DEFAULTS` server-side. Admin only.
+
+
+        ### Example
+
+
+        ```bash
+
+        curl '<APP_BASE_URL>/v1/project/settings' \
+          -H 'Authorization: Bearer <admin-token>'
+        ```
+      operationId: ProjectSettingsController_getSettings_v1
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectSettingsResponseDto"
+        "400": &a81
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a82
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a83
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a84
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a85
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
       security:
         - bearer: []
       summary: List project settings
@@ -10442,11 +10652,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProjectSettingsResponseDto"
-        "400": *a75
-        "401": *a76
-        "404": *a77
-        "422": *a78
-        "500": *a79
+        "400": *a81
+        "401": *a82
+        "404": *a83
+        "422": *a84
+        "500": *a85
       security:
         - bearer: []
       summary: Toggle a project setting
@@ -10669,7 +10879,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -10714,8 +10924,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -10762,7 +10972,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -10783,8 +10993,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -10804,8 +11014,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -10874,7 +11084,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -10940,7 +11150,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
     RequestDeleteDto:
       type: object
       properties:
@@ -11031,7 +11241,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-05-20T13:51:05.913Z
+        scheduled: 2026-05-21T08:09:31.577Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -11043,7 +11253,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-05-20T13:51:05.913Z
+            lastUpdated: 2026-05-21T08:09:31.577Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -11073,7 +11283,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -11259,8 +11469,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -11558,7 +11768,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -11656,8 +11866,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: aQQkUALdtk
-        password: "{GVQSQ;G[-g<t6Mh"
+        secret: gq7cDglqpS
+        password: A[.DmUv]2vE|n_+]
     SessionsResponseDto:
       type: object
       properties:
@@ -11689,7 +11899,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-05-20T13:51:05.913Z
+              lastUpdated: 2026-05-21T08:09:31.577Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -11699,7 +11909,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-05-20T13:51:05.913Z
+            lastUpdated: 2026-05-21T08:09:31.577Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -11743,7 +11953,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -11763,7 +11973,7 @@ components:
       required:
         - tan
       example:
-        tan: 4ibW4mamaoHK
+        tan: SsHQYt2zRufm
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -11783,8 +11993,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
-        codeChallenge: I3cZIxdSBHut9t52wBoduBwD3WcN4Z8e
+        password: A[.DmUv]2vE|n_+]
+        codeChallenge: 3F8syr8vEYl8jimX5fUejs0DHe5kUl3A
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -11823,7 +12033,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: MHs1XHo6fLjOwcmm7c9OnlDlzA53DYqh
+        sessionCode: 4YQWUb224nntjcKgLjMO3u9qcqP9iyPe
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -11839,8 +12049,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: VfUPOsLayDMPLZINcqLsJR0AcDcuwkQn
-        codeVerifier: tXpIzLd8ckpFSCci0GMvuvzsz0nHiXVu58sIaukMk4uW3WX3to2kBrTq6wQT3UzW
+        sessionCode: 61NPZQcozdWDLzI3GzzaSz0avmqQagVy
+        codeVerifier: B4aCNQKwdhe0dJlmqAF8ArnqgnwMJfuDpY2YBxFNye59xidvu9xFqX2swlQH0bt3
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -11880,7 +12090,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: 5yNXpERPI2FmpFK5iyn1imVn3LZQUhU9
+        sessionCode: nUKpwGLkUqQVkv3cyCFfxBEUl6LxwbdR
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -11904,8 +12114,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
-        codeChallenge: jrYJL6nUbusVqufoXwP1esUXBLrLMN0h
+        password: A[.DmUv]2vE|n_+]
+        codeChallenge: 44J8QEjDVxY5X98Ak8RXusCjnas2OoHd
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -11933,7 +12143,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: RAbYWbWU9mwAsnkLqfjHCYNsf6E9SR0X
+        sessionCode: OhZEgsMYoWG1ZTzbwezCZMzfikHQRws2
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -11945,8 +12155,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: Emb71RiMTT9bzB8LsMzkrDSBHtY3hyM8
-        codeVerifier: ctkMnwLI16zq4nBWr4cE4wPv08MGkPs1ClkINTk9HeGrsFC12sR1asmRKSnCNj0L
+        sessionCode: x50Sjv1E40IG6nh7gFjwISDixWBSE1ut
+        codeVerifier: fw8yVWVvrJ2uXXJt3Uuvqmt9Ji3HwlETXUnBxIyNb2ru9Yw2bMfnWhx4LCL94V4v
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -11973,7 +12183,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: 000DovzBcm5BH4df0bmQH90Z0snpqGhd
+        sessionCode: xU5keKxDB7gFWcguI5dAwMvti173sNBt
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -11996,7 +12206,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -12743,7 +12953,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -12759,7 +12969,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -12827,7 +13037,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-20T13:51:05.913Z
+            lastUpdated: 2026-05-21T08:09:31.577Z
         members:
           - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
             display: Dr. Max John Mustermann
@@ -13199,7 +13409,7 @@ components:
         - assistant
         - participant
         - messages
-      example: &a80
+      example: &a86
         assistant:
           system: You are an AI Assistant, you will be helping the patient with their
             queries.
@@ -13269,7 +13479,7 @@ components:
         - content
         - sentAt
         - mode
-      example: &a81
+      example: &a87
         reference: Communication/ade0d50c-9254-cf0c-9459-bbfe2398553c
         sender: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
         content: Hello, how are you?
@@ -13344,7 +13554,7 @@ components:
               - assistant
               - participant
               - messages
-            example: *a80
+            example: *a86
       required:
         - sessions
       example:
@@ -13387,7 +13597,7 @@ components:
               - content
               - sentAt
               - mode
-            example: *a81
+            example: *a87
       required:
         - messages
       example:
@@ -15455,7 +15665,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-05-20T13:51:05.913Z
+        date: 2026-05-21T08:09:31.577Z
         settings:
           heartRate:
             enabled: true
@@ -15830,7 +16040,7 @@ components:
               type: object
               properties:
                 period:
-                  default: &a82
+                  default: &a88
                     start: 09:00:00
                     durationSeconds: 86400
                   type: object
@@ -15884,7 +16094,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -15937,7 +16147,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -15990,7 +16200,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16043,7 +16253,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16102,7 +16312,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16155,7 +16365,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16255,7 +16465,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16314,7 +16524,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16374,7 +16584,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16434,7 +16644,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16493,7 +16703,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16559,7 +16769,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16618,7 +16828,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a82
+                  default: *a88
                   type: object
                   properties:
                     start:
@@ -16841,7 +17051,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #aQQkUALdtk"
+                  name: "Patient Monitor #gq7cDglqpS"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -16954,7 +17164,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -16965,7 +17175,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -17124,7 +17334,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -17134,7 +17344,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -17147,7 +17357,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -17158,7 +17368,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-05-20T13:51:05.913Z
+                lastUpdated: 2026-05-21T08:09:31.577Z
     BinaryDto:
       type: object
       properties:
@@ -17481,7 +17691,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: &a102
+          enum: &a108
             - current
             - superseded
             - entered-in-error
@@ -17496,7 +17706,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: &a103
+          example: &a109
             - imagingreport
           description: A category assigned to the document reference.
           type: array
@@ -17686,11 +17896,11 @@ components:
           description: The public token of the document.
       required:
         - id
-      example: &a83
+      example: &a89
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -17754,7 +17964,7 @@ components:
                 description: The public token of the document.
             required:
               - id
-            example: *a83
+            example: *a89
       required:
         - total
         - resources
@@ -17764,7 +17974,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
     RedirectResponseDto:
       type: object
       properties: {}
@@ -18013,7 +18223,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-05-20T13:51:05.913Z
+              admissionDate: 2026-05-21T08:09:31.577Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -18035,7 +18245,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-05-20T13:51:05.913Z
+            admissionDate: 2026-05-21T08:09:31.577Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -18222,22 +18432,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1779285065913
+                ts: 1779350971577
               effectiveHeartRate:
                 value: 74
-                ts: 1779285065913
+                ts: 1779350971577
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1779285065913
+                ts: 1779350971577
               effectiveSleepStatus:
                 value: asleep
-                ts: 1779285065913
+                ts: 1779350971577
               lastMeasurementTime:
-                value: 2026-05-20T13:51:05.913Z
-                ts: 1779285065913
+                value: 2026-05-21T08:09:31.577Z
+                ts: 1779350971577
               lastActivityTime:
-                value: 2026-05-20T13:51:05.913Z
-                ts: 1779285065913
+                value: 2026-05-21T08:09:31.577Z
+                ts: 1779350971577
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -18703,8 +18913,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-05-20T13:51:05.913Z
-              createdAt: 2026-05-20T13:51:05.913Z
+              lastActivityTime: 2026-05-21T08:09:31.577Z
+              createdAt: 2026-05-21T08:09:31.577Z
       required:
         - total
         - page
@@ -18993,22 +19203,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1779285065913
+                  ts: 1779350971577
                 effectiveHeartRate:
                   value: 74
-                  ts: 1779285065913
+                  ts: 1779350971577
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1779285065913
+                  ts: 1779350971577
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1779285065913
+                  ts: 1779350971577
                 lastMeasurementTime:
-                  value: 2026-05-20T13:51:05.913Z
-                  ts: 1779285065913
+                  value: 2026-05-21T08:09:31.577Z
+                  ts: 1779350971577
                 lastActivityTime:
-                  value: 2026-05-20T13:51:05.913Z
-                  ts: 1779285065913
+                  value: 2026-05-21T08:09:31.577Z
+                  ts: 1779350971577
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -19033,7 +19243,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-05-20T13:51:05.913Z
+                admissionDate: 2026-05-21T08:09:31.577Z
                 dischargeDate: null
       required:
         - total
@@ -19250,22 +19460,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1779285065913
+              ts: 1779350971577
             effectiveHeartRate:
               value: 74
-              ts: 1779285065913
+              ts: 1779350971577
             effectiveRespiratoryRate:
               value: 16
-              ts: 1779285065913
+              ts: 1779350971577
             effectiveSleepStatus:
               value: asleep
-              ts: 1779285065913
+              ts: 1779350971577
             lastMeasurementTime:
-              value: 2026-05-20T13:51:05.913Z
-              ts: 1779285065913
+              value: 2026-05-21T08:09:31.577Z
+              ts: 1779350971577
             lastActivityTime:
-              value: 2026-05-20T13:51:05.913Z
-              ts: 1779285065913
+              value: 2026-05-21T08:09:31.577Z
+              ts: 1779350971577
             name:
               value: Sleepiz/3001472
               ts: null
@@ -19312,9 +19522,9 @@ components:
       required:
         - name
       example:
-        name: "Patient Monitor Device #aQQkUALdtk"
+        name: "Patient Monitor Device #gq7cDglqpS"
         status: active
-        thingsboardId: TB_DEVICE_aQQkUALdtk
+        thingsboardId: TB_DEVICE_gq7cDglqpS
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
         patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -20726,13 +20936,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-05-20T13:51:05.913Z
+          created: 2026-05-21T08:09:31.577Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-05-21T13:51:05Z
+        expiresAt: 2026-05-22T08:09:31Z
     MappedContentSearchResponseDto:
       type: object
       properties:
@@ -21127,7 +21337,7 @@ components:
                   - language
                   - date
                   - type
-                example: &a84
+                example: &a90
                   id: "123"
                   title: My Blog
                   author:
@@ -21529,7 +21739,7 @@ components:
                   - language
                   - date
                   - type
-                example: *a84
+                example: *a90
                 description: The translated content in the requested language, if present.
       required:
         - total
@@ -21979,7 +22189,7 @@ components:
         - language
         - date
         - type
-      example: *a84
+      example: *a90
     ContentSearchResponseDto:
       type: object
       properties:
@@ -22372,7 +22582,7 @@ components:
               - language
               - date
               - type
-            example: *a84
+            example: *a90
       required:
         - total
         - resources
@@ -22525,7 +22735,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #aQQkUALdtk"
+              deviceName: "Patient Monitor Device #gq7cDglqpS"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -22662,7 +22872,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #aQQkUALdtk"
+        deviceName: "Patient Monitor Device #gq7cDglqpS"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -23108,7 +23318,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-05-20T13:51:05.913Z
+            lastUpdated: 2026-05-21T08:09:31.577Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -23118,7 +23328,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-05-20T13:51:05.913Z
+            lastUpdated: 2026-05-21T08:09:31.577Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -23587,7 +23797,7 @@ components:
                 format: date-time
             required:
               - commId
-            example: &a85
+            example: &a91
               commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Jane Doe
@@ -23604,9 +23814,9 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-05-20T13:51:05.913Z
+              authoredOn: 2026-05-21T08:09:31.577Z
               alertCount: 5
-              occurrenceDateTime: 2026-05-20T13:51:05.913Z
+              occurrenceDateTime: 2026-05-21T08:09:31.577Z
       required:
         - total
         - page
@@ -23619,7 +23829,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-05-20T13:51:05.913Z
+            authoredOn: 2026-05-21T08:09:31.577Z
             type: hr
     CarehubNotificationResponseDto:
       type: object
@@ -23676,7 +23886,7 @@ components:
           format: date-time
       required:
         - commId
-      example: *a85
+      example: *a91
     MedicalSettingsNotificationsConsentDto:
       type: object
       properties:
@@ -25227,7 +25437,7 @@ components:
                   - language
                   - value
                   - author
-                example: &a86
+                example: &a92
                   key: home.title
                   language: en
                   value: Home
@@ -25591,7 +25801,7 @@ components:
                   - language
                   - value
                   - author
-                example: *a86
+                example: *a92
             required:
               - source
       required:
@@ -25960,7 +26170,7 @@ components:
               - language
               - value
               - author
-            example: *a86
+            example: *a92
       required:
         - total
         - resources
@@ -26319,7 +26529,7 @@ components:
         - language
         - value
         - author
-      example: *a86
+      example: *a92
     LocalizationRequestBodyDto:
       type: object
       properties:
@@ -26417,7 +26627,7 @@ components:
             description: Published CMS item. Shape is project- and collection-specific — the
               documented fields are the envelope guaranteed by the delivery API;
               everything else comes from the Payload collection schema.
-            example: &a87
+            example: &a93
               id: 87ea5dfc-8b8e-384d-8489-79496e706390
               slug: welcome-banner
               publishedAt: 2026-05-01T12:00:00.000Z
@@ -26504,7 +26714,7 @@ components:
       description: Published CMS item. Shape is project- and collection-specific — the
         documented fields are the envelope guaranteed by the delivery API;
         everything else comes from the Payload collection schema.
-      example: *a87
+      example: *a93
     ProjectListResponseDto:
       type: object
       properties:
@@ -26829,7 +27039,7 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: "{GVQSQ;G[-g<t6Mh"
+        password: A[.DmUv]2vE|n_+]
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -27328,6 +27538,61 @@ components:
       required:
         - connections
       description: All wearable connections for the caller’s project.
+    WearableCredentialsStatusDto:
+      type: object
+      properties:
+        configured:
+          type: boolean
+          description: True when both clientId and clientSecret are on file for this
+            provider.
+        clientIdLast4:
+          type: string
+          nullable: true
+          description: Last 4 characters of the stored clientId, for visual confirmation.
+            `null` when no clientId is on file.
+        hasSecret:
+          type: boolean
+          description: True when a clientSecret is on file. The value itself is never
+            returned.
+        hasWebhookSecret:
+          type: boolean
+          description: True when a webhookSecret is on file. Required for inbound
+            signature verification on Polar; optional on Strava.
+      required:
+        - configured
+        - clientIdLast4
+        - hasSecret
+        - hasWebhookSecret
+      description: Status view of a project's wearable OAuth credentials. Returned by
+        GET / PUT / DELETE — raw secrets are never surfaced, only their presence
+        and the last 4 chars of the stored clientId.
+      example:
+        configured: true
+        clientIdLast4: XY34
+        hasSecret: true
+        hasWebhookSecret: true
+    WearableCredentialsBodyDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          minLength: 1
+          description: OAuth client_id from the provider's developer portal.
+        clientSecret:
+          type: string
+          minLength: 1
+          description: OAuth client_secret from the provider's developer portal.
+        webhookSecret:
+          type: string
+          description: Webhook signing secret (required for signature verification on
+            inbound events).
+      required:
+        - clientId
+        - clientSecret
+      example:
+        clientId: abc123
+        clientSecret: supersecret
+        webhookSecret: whsec_xyz
     ProjectSettingsResponseDto:
       type: object
       properties:
@@ -27495,7 +27760,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a88
+      example: &a94
         name: John
         surname: Doe
         dateOfBirth: 1990-01-01
@@ -27585,7 +27850,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a88
+            example: *a94
       required:
         - total
         - resources
@@ -27629,7 +27894,7 @@ components:
         photo:
           type: string
           format: uri
-      example: &a89
+      example: &a95
         name: John
         surname: Doe
         email: john.doe@example.com
@@ -27677,7 +27942,7 @@ components:
               photo:
                 type: string
                 format: uri
-            example: *a89
+            example: *a95
       required:
         - total
         - resources
@@ -27740,7 +28005,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a90
+      example: &a96
         name: Organization 1
         email: organization1@example.com
         phone: "+491234567890"
@@ -27805,7 +28070,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a90
+            example: *a96
       required:
         - total
         - resources
@@ -27858,7 +28123,7 @@ components:
           type: string
         device:
           type: string
-      examples: &a91
+      examples: &a97
         - subject: Patient/123
           code: 8867-4
           data:
@@ -27923,7 +28188,7 @@ components:
                 type: string
               device:
                 type: string
-            examples: *a91
+            examples: *a97
       required:
         - total
         - resources
@@ -28336,8 +28601,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -28466,17 +28731,17 @@ components:
         - comment
         - videoCallParticipants
         - passphrase
-      example: &a92
+      example: &a98
         status: booked
-        start: 2026-05-20T13:51:05Z
-        end: 2026-05-21T13:51:05Z
+        start: 2026-05-21T08:09:31Z
+        end: 2026-05-22T08:09:31Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: aQQkUALdtk
+        passphrase: gq7cDglqpS
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -28556,18 +28821,18 @@ components:
           - comment
           - videoCallParticipants
           - passphrase
-        example: *a92
+        example: *a98
       example:
         - status: booked
-          start: 2026-05-20T13:51:05Z
-          end: 2026-05-21T13:51:05Z
+          start: 2026-05-21T08:09:31Z
+          end: 2026-05-22T08:09:31Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: aQQkUALdtk
+          passphrase: gq7cDglqpS
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
@@ -28755,7 +29020,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a95
+          enum: &a101
             - proposed
             - pending
             - booked
@@ -28787,7 +29052,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: &a96
+          example: &a102
             - CONSULTATION
           description: The service that is performed during the appointment.
           type: array
@@ -28980,7 +29245,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a93
+          enum: &a99
             - active
             - inactive
             - on-hold
@@ -28989,7 +29254,7 @@ components:
           description: Status of the account.
         type:
           type: string
-          enum: &a94
+          enum: &a100
             - _ActAccountCode
             - ACCTRECEIVABLE
             - CASH
@@ -29034,11 +29299,11 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a93
+          enum: *a99
           description: Status of the account.
         type:
           type: string
-          enum: *a94
+          enum: *a100
           description: Type of the account. See
             https://hl7.org/fhir/valueset-account-type.html
         name:
@@ -29154,7 +29419,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a95
+          enum: *a101
           description: Status of the appointment.
         participant:
           description: The participants of the appointment.
@@ -29176,7 +29441,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: *a96
+          example: *a102
           description: The service that is performed during the appointment.
           type: array
           items:
@@ -29251,7 +29516,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: &a97
+          enum: &a103
             - active
             - inactive
             - entered-in-error
@@ -29319,7 +29584,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: *a97
+          enum: *a103
           description: Status of the device availability.
         distinctIdentifier:
           type: string
@@ -29420,7 +29685,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a98
+          enum: &a104
             - active
             - suspended
             - inactive
@@ -29448,7 +29713,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a98
+          enum: *a104
           description: Status of the location.
         name:
           type: string
@@ -29526,7 +29791,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: &a99
+          example: &a105
             - 11111-1
           description: Specific service to be performed during the appointment.
           type: array
@@ -29552,7 +29817,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a98
+          enum: *a104
           description: Status of the location.
         name:
           type: string
@@ -29614,7 +29879,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a99
+          example: *a105
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -29639,7 +29904,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a99
+          example: *a105
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -29790,7 +30055,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: &a100
+          enum: &a106
             - male
             - female
             - other
@@ -29814,7 +30079,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: &a101
+          items: &a107
             type: string
             enum:
               - en
@@ -29848,7 +30113,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a100
+          enum: *a106
           description: Gender of the patient.
         birthDate:
           type: string
@@ -29868,7 +30133,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a101
+          items: *a107
         managingOrganization:
           type: string
           example: abc123
@@ -29925,7 +30190,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a100
+          enum: *a106
           description: Gender of the patient.
         birthDate:
           type: string
@@ -29945,7 +30210,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a101
+          items: *a107
         managingOrganization:
           type: string
           example: abc123
@@ -29968,7 +30233,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: *a102
+          enum: *a108
           description: The status of the document reference.
         content:
           description: Attachment data.
@@ -29980,7 +30245,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: *a103
+          example: *a109
           description: A category assigned to the document reference.
           type: array
           items:
@@ -30159,7 +30424,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a104
+          enum: &a110
             - registered
             - preliminary
             - final
@@ -30180,7 +30445,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: &a105
+          items: &a111
             type: string
             enum:
               - activity
@@ -30213,14 +30478,14 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: &a106
+          items: &a112
             type: string
             enum:
               - low
               - normal
               - high
         note:
-          example: &a107
+          example: &a113
             - Patient is doing well.
           description: Observation note.
           type: array
@@ -30252,7 +30517,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a104
+          enum: *a110
           description: Status of the observation.
         code:
           type: string
@@ -30265,7 +30530,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: *a105
+          items: *a111
         subject:
           description: Who the observation is about.
           allOf:
@@ -30287,9 +30552,9 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: *a106
+          items: *a112
         note:
-          example: *a107
+          example: *a113
           description: Observation note.
           type: array
           items:
@@ -30416,7 +30681,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a108
+          enum: &a114
             - active
             - draft
             - retired
@@ -30431,7 +30696,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: &a109
+          example: &a115
             - 11111-1
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
@@ -30455,7 +30720,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a108
+          enum: *a114
           description: Status of the Questionnaire.
         name:
           type: string
@@ -30466,7 +30731,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: *a109
+          example: *a115
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
           type: array
@@ -30668,3 +30933,41 @@ components:
       description: Effective device telemetry state for end-to-end lag measurement
         during load tests. Disabled in production (returns 404); 404 also when
         no state is cached for the device.
+    PayloadHealthResponseDto:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          description: True when the Payload sidecar accepted the probe with a 2xx response.
+        baseUrl:
+          type: string
+          description: The `PAYLOAD_INTERNAL_URL` we attempted to reach. Useful for
+            spotting wrong port or wrong hostname.
+        statusCode:
+          type: integer
+          nullable: true
+          description: Upstream HTTP status from the probe, or null when the connection
+            itself failed before any response.
+        upstreamBody:
+          type: string
+          nullable: true
+          description: First 500 bytes of the upstream response body, when present. Useful
+            for spotting 401 (api-key mismatch) vs 502 (gateway).
+        error:
+          type: string
+          nullable: true
+          description: Underlying connection error (ECONNREFUSED, ENOTFOUND, EAI_AGAIN,
+            timeout, …). Null when the connection itself succeeded.
+      required:
+        - ok
+        - baseUrl
+        - statusCode
+        - upstreamBody
+        - error
+      description: Diagnostic probe of the Payload CMS sidecar over the internal
+        Railway network. Hits `${PAYLOAD_INTERNAL_URL}/api/access` with the
+        internal API key — the cheapest authenticated round-trip Payload
+        exposes. No tenant header sent; we just want to confirm the connection
+        is reachable + the internal key is accepted. Open to NoBearerAuth so it
+        can be hit from a curl on the operator machine without setting up a
+        Medplum session.

@@ -116,10 +116,20 @@ function shortenLabel(s, max = 90) {
  * different logical handlers that happen to share a method name.
  */
 function stripHandlerSuffix(id) {
-  return id
-    .replace(/\[\d+\]/g, '')
-    .replace(/_v_?\d+$/i, '')
-    .replace(/_(get|post|put|patch|delete|head|options|search|trace|connect)$/i, '');
+  let result = id.replace(/\[\d+\]/g, '').replace(/_v_?\d+$/i, '');
+  // HTTP-method suffix (from @All() fanout) ONLY strips when the
+  // operationId has the form `Controller_handlerName_<httpMethod>` —
+  // i.e. 3+ underscore-separated parts. Controller class names are
+  // CamelCase with no underscores, so a 2-part id (e.g.
+  // `WearableCredentialsController_get`) has the method name as the
+  // handler itself, not as a fanout suffix. Stripping there would
+  // incorrectly merge a literal `get()` handler with a sibling
+  // `put()` handler.
+  result = result.replace(
+    /^(.+_.+)_(get|post|put|patch|delete|head|options|search|trace|connect)$/i,
+    '$1',
+  );
+  return result;
 }
 
 /**

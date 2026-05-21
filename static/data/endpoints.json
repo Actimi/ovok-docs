@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
+      "password": "A[.DmUv]2vE|n_+]",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
+      "password": "A[.DmUv]2vE|n_+]",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkyODUwNjUsImV4cCI6MTc3OTI4ODY2NX0.hWVqb9o_Bcix949tRWlNPQ36XFB1RuTGap56ovg1JKQ"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
+      "password": "A[.DmUv]2vE|n_+]",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
+      "password": "A[.DmUv]2vE|n_+]",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
-      "codeChallenge": "I3cZIxdSBHut9t52wBoduBwD3WcN4Z8e"
+      "password": "A[.DmUv]2vE|n_+]",
+      "codeChallenge": "3F8syr8vEYl8jimX5fUejs0DHe5kUl3A"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "VfUPOsLayDMPLZINcqLsJR0AcDcuwkQn",
-      "codeVerifier": "tXpIzLd8ckpFSCci0GMvuvzsz0nHiXVu58sIaukMk4uW3WX3to2kBrTq6wQT3UzW",
+      "sessionCode": "61NPZQcozdWDLzI3GzzaSz0avmqQagVy",
+      "codeVerifier": "B4aCNQKwdhe0dJlmqAF8ArnqgnwMJfuDpY2YBxFNye59xidvu9xFqX2swlQH0bt3",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
-      "codeChallenge": "jrYJL6nUbusVqufoXwP1esUXBLrLMN0h",
+      "password": "A[.DmUv]2vE|n_+]",
+      "codeChallenge": "44J8QEjDVxY5X98Ak8RXusCjnas2OoHd",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "Emb71RiMTT9bzB8LsMzkrDSBHtY3hyM8",
-      "codeVerifier": "ctkMnwLI16zq4nBWr4cE4wPv08MGkPs1ClkINTk9HeGrsFC12sR1asmRKSnCNj0L"
+      "sessionCode": "x50Sjv1E40IG6nh7gFjwISDixWBSE1ut",
+      "codeVerifier": "fw8yVWVvrJ2uXXJt3Uuvqmt9Ji3HwlETXUnBxIyNb2ru9Yw2bMfnWhx4LCL94V4v"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "{GVQSQ;G[-g<t6Mh",
+      "password": "A[.DmUv]2vE|n_+]",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -322,11 +322,11 @@
   },
   {
     "method": "POST",
-    "path": "/sub-project",
+    "path": "/v1/sub-project",
     "summary": "Create a sub tenant",
     "description": "Create a child project (\"sub tenant\") nested under the caller's current project. The admin issuing the request is automatically joined to the new child project as a Practitioner with admin rights, so ",
     "tag": "Sub Projects",
-    "operationId": "SubProjectController_createSubTenant",
+    "operationId": "SubProjectController_createSubTenant_v1",
     "parameters": [],
     "bodyExample": {
       "name": "Actimi"
@@ -338,11 +338,11 @@
   },
   {
     "method": "GET",
-    "path": "/sub-project",
+    "path": "/v1/sub-project",
     "summary": "List project relationships",
     "description": "Returns the caller project's place in the project hierarchy: its own id, its parent's id (if any), and the ids of any direct children.",
     "tag": "Sub Projects",
-    "operationId": "SubProjectController_getProjectRelationships",
+    "operationId": "SubProjectController_getProjectRelationships_v1",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,
@@ -352,11 +352,11 @@
   },
   {
     "method": "DELETE",
-    "path": "/sub-project/{subProjectId}",
+    "path": "/v1/sub-project/{subProjectId}",
     "summary": "Delete a sub tenant",
     "description": "Tear down a child project. The FHIR Project resource and the parent ↔ child relationship are both removed.",
     "tag": "Sub Projects",
-    "operationId": "SubProjectController_deleteSubTenant",
+    "operationId": "SubProjectController_deleteSubTenant_v1",
     "parameters": [
       {
         "name": "subProjectId",
@@ -2353,6 +2353,73 @@
     "description": "**Early Access** — interfaces may change without notice.",
     "tag": "Wearables (Early Access)",
     "operationId": "WearablesController_webhookIngress_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/v1/wearables/{provider}/credentials",
+    "summary": "[Early Access] Read wearable credentials",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearableCredentialsController_get_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/v1/wearables/{provider}/credentials",
+    "summary": "[Early Access] Set wearable credentials",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearableCredentialsController_put_v1",
+    "parameters": [
+      {
+        "name": "provider",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "clientId": "abc123",
+      "clientSecret": "supersecret",
+      "webhookSecret": "whsec_xyz"
+    },
+    "deprecated": false,
+    "availableIn": [
+      "dev"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/wearables/{provider}/credentials",
+    "summary": "[Early Access] Clear wearable credentials",
+    "description": "**Early Access** — interfaces may change without notice.",
+    "tag": "Wearables (Early Access)",
+    "operationId": "WearableCredentialsController_clear_v1",
     "parameters": [
       {
         "name": "provider",

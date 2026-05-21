@@ -393,23 +393,23 @@
     "label": "Sub Projects",
     "link": {
       "type": "doc",
-      "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant"
+      "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant-v-1"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant",
+        "id": "api/high-level/sub-projects/sub-project-controller-create-sub-tenant-v-1",
         "label": "Create a sub tenant"
       },
       {
         "type": "doc",
-        "id": "api/high-level/sub-projects/sub-project-controller-delete-sub-tenant",
+        "id": "api/high-level/sub-projects/sub-project-controller-delete-sub-tenant-v-1",
         "label": "Delete a sub tenant"
       },
       {
         "type": "doc",
-        "id": "api/high-level/sub-projects/sub-project-controller-get-project-relationships",
+        "id": "api/high-level/sub-projects/sub-project-controller-get-project-relationships-v-1",
         "label": "List project relationships"
       }
     ]
@@ -465,10 +465,15 @@
     "label": "Wearables (Early Access)",
     "link": {
       "type": "doc",
-      "id": "api/high-level/wearables-early-access/wearables-controller-list-connections-v-1"
+      "id": "api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1"
     },
     "collapsed": true,
     "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1",
+        "label": "[Early Access] Clear wearable credentials"
+      },
       {
         "type": "doc",
         "id": "api/high-level/wearables-early-access/wearables-controller-list-connections-v-1",
@@ -476,8 +481,18 @@
       },
       {
         "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-get-v-1",
+        "label": "[Early Access] Read wearable credentials"
+      },
+      {
+        "type": "doc",
         "id": "api/high-level/wearables-early-access/wearables-controller-revoke-v-1",
         "label": "[Early Access] Revoke a wearable connection"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-put-v-1",
+        "label": "[Early Access] Set wearable credentials"
       },
       {
         "type": "doc",
