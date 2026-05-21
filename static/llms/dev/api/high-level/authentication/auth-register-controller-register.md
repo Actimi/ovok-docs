@@ -8,7 +8,9 @@ description: "The Register API endpoint allows users to create a new account on 
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/register"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/register"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

@@ -8,7 +8,9 @@ description: "Update or create a single localization by language and key"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">{"/localization/{language}/{key}"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">{"/localization/{language}/{key}"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

@@ -140,78 +140,13 @@
     "label": "Content",
     "link": {
       "type": "doc",
-      "id": "api/high-level/content/content-proxy-controller-proxy-get"
+      "id": "api/high-level/content/content-proxy-controller-proxy"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-get",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-post",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-put",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-delete",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-patch",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-options",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-head",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-get",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-post",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-put",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-delete",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-patch",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-options",
-        "label": "Content CMS reverse proxy"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy-head",
+        "id": "api/high-level/content/content-proxy-controller-proxy",
         "label": "Content CMS reverse proxy"
       }
     ]
@@ -355,28 +290,13 @@
     "label": "Partner",
     "link": {
       "type": "doc",
-      "id": "api/high-level/partner/partner-controller-health-check-0"
+      "id": "api/high-level/partner/partner-controller-health-check"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-0",
-        "label": "Partner integration health check"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-1-v-1",
-        "label": "Partner integration health check"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-2-v-2",
-        "label": "Partner integration health check"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/partner/partner-controller-health-check-3-v-3",
+        "id": "api/high-level/partner/partner-controller-health-check",
         "label": "Partner integration health check"
       }
     ]

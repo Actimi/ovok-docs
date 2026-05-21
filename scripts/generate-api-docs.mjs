@@ -104,6 +104,43 @@ function shortenLabel(s, max = 90) {
   return s.length <= max ? s : s.slice(0, max - 1) + '…';
 }
 
+/**
+ * Compute the canonical handler-key for an operation. NestJS Swagger
+ * emits a separate operation per HTTP method (`_get`, `_post`, …) when
+ * a route is registered via `@All(...)`, and a separate operation per
+ * version (`[0]`, `[1]_v1`, …) when `@Version([NEUTRAL, '1', '2'])` is
+ * used. Both patterns produce duplicate-feeling pages with identical
+ * titles and descriptions; collapsing on the stripped id puts them all
+ * under one page. Two operations with the same stripped id but
+ * different summaries DO NOT collapse — different summaries imply
+ * different logical handlers that happen to share a method name.
+ */
+function stripHandlerSuffix(id) {
+  return id
+    .replace(/\[\d+\]/g, '')
+    .replace(/_v_?\d+$/i, '')
+    .replace(/_(get|post|put|patch|delete|head|options|search|trace|connect)$/i, '');
+}
+
+/**
+ * Count how many ops in the spec share the same stripped operationId.
+ * Used by the stability emitter to mirror emitHighLevelForEnv's "only
+ * collapse the slug when there's actually a group to collapse" rule,
+ * so cross-page hrefs always land on the page that actually got
+ * written.
+ */
+function stripHandlerSuffixGroupCount(spec, strippedId) {
+  let count = 0;
+  for (const methods of Object.values(spec.paths ?? {})) {
+    for (const [method, op] of Object.entries(methods)) {
+      if (!HTTP_METHODS.has(method)) continue;
+      const raw = op.operationId || `${method}-${methods.path}`;
+      if (stripHandlerSuffix(raw) === strippedId) count++;
+    }
+  }
+  return count;
+}
+
 const WRITTEN_FILES = new Set();
 
 function ensureDir(p) { mkdirSync(p, { recursive: true }); }
@@ -372,14 +409,61 @@ function emitHighLevelForEnv(envKey, spec) {
     const tagDir = join(outHigh, tagSlug);
     ensureDir(tagDir);
 
+    // Group ops by logical handler. See stripHandlerSuffix at module
+    // scope for the rationale — short version: collapse the @All and
+    // @Version([…]) fanout into a single page that lists every
+    // (method, path) variant in the hero, identical to the
+    // R4/R5/neutral grouping already used for FHIR custom ops.
+    const HTTP_METHOD_ORDER = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'];
+    const methodOrder = (m) => {
+      const i = HTTP_METHOD_ORDER.indexOf(m.toLowerCase());
+      return i === -1 ? HTTP_METHOD_ORDER.length : i;
+    };
+
+    const byHandler = new Map();
+    for (const item of ops) {
+      const opIdHint = item.op.operationId || `${item.method}-${item.path}`;
+      const stripped = stripHandlerSuffix(opIdHint);
+      const summary = (item.op.summary ?? '').trim();
+      const key = `${stripped}::${summary}`;
+      if (!byHandler.has(key)) byHandler.set(key, []);
+      byHandler.get(key).push(item);
+    }
+
     const opItems = [];
     let firstId = null;
-    for (const { method, path, op } of ops) {
-      const opIdHint = op.operationId || `${method}-${path}`;
+    for (const variants of byHandler.values()) {
+      variants.sort((a, b) => {
+        // Shortest path first → version-neutral leads its numbered
+        // siblings; within identical paths, GET/POST/PUT/... order.
+        const dp = a.path.length - b.path.length;
+        if (dp !== 0) return dp;
+        const dm = methodOrder(a.method) - methodOrder(b.method);
+        if (dm !== 0) return dm;
+        return a.path.localeCompare(b.path);
+      });
+      const canonical = variants[0];
+      const { method, path, op } = canonical;
+      // Only collapse the slug when the grouping ACTUALLY merged
+      // variants. Standalone endpoints whose operationId happens to
+      // carry a `_vN` suffix (e.g. `AuthLoginController_login_v2` —
+      // single endpoint, no legacy v1 sibling) keep their original
+      // slug, so bookmarks survive the suffix-strip and the hand-
+      // written CMS/walkthrough links don't 404.
+      const opIdRaw = op.operationId || `${method}-${path}`;
+      const opIdHint = variants.length > 1 ? stripHandlerSuffix(opIdRaw) : opIdRaw;
       const opSlug = slug(opIdHint) || 'endpoint';
       const title = op.summary?.trim() || `${method} ${path}`;
       const opLabel = shortenLabel(title);
       const desc = (op.description && String(op.description).split('\n')[0].trim()) || `${method} ${path}`;
+
+      // Hero rows — one per variant. Single-variant endpoints get a
+      // compact single-row block; multi-variant ones list every method/
+      // path pair so the customer sees the full surface at a glance.
+      const variantRows = variants
+        .map((v) => `  <div className="endpoint-hero__path-row"><span className="api-method ${v.method.toLowerCase()}">${v.method}</span> <code className="endpoint-hero__path">{${JSON.stringify(v.path)}}</code></div>`)
+        .join('\n');
+
       const body = [
         '---',
         `title: ${JSON.stringify(title)}`,
@@ -391,12 +475,9 @@ function emitHighLevelForEnv(envKey, spec) {
         '',
         '<div className="endpoint-hero">',
         '',
-        // Path text wraps in a JSX string expression — `{"…/{x}/…"}` —
-        // because MDX renders `&#123;` as a literal entity (not as `{`)
-        // when it sits inside a JSX element's children. The string
-        // expression sidesteps both: braces inside a quoted JS string
-        // are just characters.
-        `<div className="endpoint-hero__paths"><span className="api-method ${method.toLowerCase()}">${method}</span> <code className="endpoint-hero__path">{${JSON.stringify(path)}}</code></div>`,
+        '<div className="endpoint-hero__paths">',
+        variantRows,
+        '</div>',
         '',
         '<ApiBase inline={false} />',
         '',
@@ -567,7 +648,15 @@ function emitStabilityPage(envKey, spec) {
       const summary = (op.summary ?? '').trim();
       const tag = (op.tags ?? []).find((t) => !['Public', 'Internal', 'Deprecated'].includes(t)) ?? 'Uncategorized';
       const tagSlug = slug(tag);
-      const opSlug = slug(op.operationId || `${method}-${path}`) || 'endpoint';
+      // Match the slug rule from emitHighLevelForEnv: strip the handler
+      // suffix ONLY for ops whose handler key has >1 variants in the
+      // spec. We can't tell that from a single op in isolation, so we
+      // probe globally — count how many ops share the stripped id;
+      // collapse only when at least two do.
+      const opIdRaw = op.operationId || `${method}-${path}`;
+      const stripped = stripHandlerSuffix(opIdRaw);
+      const sameGroupCount = stripHandlerSuffixGroupCount(spec, stripped);
+      const opSlug = slug(sameGroupCount > 1 ? stripped : opIdRaw) || 'endpoint';
       const isFhirCustomOp = isFhirCustomOpPath(path);
       const href = isFhirCustomOp
         ? `/${envKey}/api/fhir/custom-operations/${opSlug}`

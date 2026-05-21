@@ -8,7 +8,9 @@ description: "Tear down a child project. The FHIR Project resource and the paren
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/sub-project/{subProjectId}"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/sub-project/{subProjectId}"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

@@ -8,7 +8,9 @@ description: "Login with email and password. Response either contains challange 
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/tenant/Practitioner/login/start"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/tenant/Practitioner/login/start"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

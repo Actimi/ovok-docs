@@ -8,7 +8,9 @@ description: "List published items from a CMS collection. Authenticates with a p
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/public/cms/{typeSlug}/items"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/public/cms/{typeSlug}/items"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

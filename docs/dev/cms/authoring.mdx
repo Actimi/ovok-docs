@@ -65,7 +65,7 @@ The catch-all proxy supports every method Payload exposes:
 The `{path}` is whatever Payload route you'd call directly — typically
 `api/<collection>` or `api/<collection>/<id>` or `api/globals/<slug>`.
 
-See the [auto-generated reference](/dev/api/high-level/content/content-proxy-controller-proxy-get) for the
+See the [auto-generated reference](/dev/api/high-level/content/content-proxy-controller-proxy) for the
 per-method OpenAPI schema.
 
 ## Examples
@@ -160,4 +160,4 @@ Body handling:
 ## Next
 
 - [Public delivery](/dev/cms/public-delivery) — read published content from apps
-- [Content API reference](/dev/api/high-level/content/content-proxy-controller-proxy-get)
+- [Content API reference](/dev/api/high-level/content/content-proxy-controller-proxy)

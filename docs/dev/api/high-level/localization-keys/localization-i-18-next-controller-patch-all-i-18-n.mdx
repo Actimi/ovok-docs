@@ -8,7 +8,9 @@ description: "Update the i18next JSON file for applications"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">{"/localization/i18next/{language}"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">{"/localization/i18next/{language}"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

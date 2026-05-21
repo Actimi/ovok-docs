@@ -185,13 +185,7 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post.md
 - /dev/api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1.md
 - /dev/api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-delete.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-get.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-head.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-options.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-patch.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-post.md
-- /dev/api/high-level/content/content-proxy-controller-proxy-put.md
+- /dev/api/high-level/content/content-proxy-controller-proxy.md
 - /dev/api/high-level/document/document-controller-create-upload-credentials.md
 - /dev/api/high-level/document/document-controller-delete-document.md
 - /dev/api/high-level/document/document-controller-generate-replace-credentials.md
@@ -211,10 +205,7 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/localization/locale-controller-patch-locale.md
 - /dev/api/high-level/organization-code-information/organization-code-controller-get-organization-code.md
 - /dev/api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations.md
-- /dev/api/high-level/partner/partner-controller-health-check-0.md
-- /dev/api/high-level/partner/partner-controller-health-check-1-v-1.md
-- /dev/api/high-level/partner/partner-controller-health-check-2-v-2.md
-- /dev/api/high-level/partner/partner-controller-health-check-3-v-3.md
+- /dev/api/high-level/partner/partner-controller-health-check.md
 - /dev/api/high-level/project-settings/project-settings-controller-get-settings-v-1.md
 - /dev/api/high-level/project-settings/project-settings-controller-put-setting-v-1.md
 - /dev/api/high-level/projects/projects-controller-get-my-cms-locales-v-1.md

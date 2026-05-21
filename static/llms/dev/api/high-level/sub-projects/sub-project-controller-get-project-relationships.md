@@ -8,7 +8,9 @@ description: "Returns the caller project's place in the project hierarchy: its o
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/sub-project"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/sub-project"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 

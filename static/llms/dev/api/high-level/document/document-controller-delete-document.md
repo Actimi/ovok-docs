@@ -8,7 +8,9 @@ description: "Delete document"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/document/{id}"}</code></div>
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/document/{id}"}</code></div>
+</div>
 
 <ApiBase inline={false} />
 
