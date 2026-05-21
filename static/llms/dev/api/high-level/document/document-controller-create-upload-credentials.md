@@ -8,7 +8,7 @@ description: "Generate a file upload url and credentials"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/document</code></div>
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/document"}</code></div>
 
 <ApiBase inline={false} />
 

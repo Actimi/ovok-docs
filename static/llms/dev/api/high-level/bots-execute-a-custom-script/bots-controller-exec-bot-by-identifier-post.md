@@ -8,7 +8,7 @@ description: "This API executes a bot by its identifier."
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/bots</code></div>
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/bots"}</code></div>
 
 <ApiBase inline={false} />
 

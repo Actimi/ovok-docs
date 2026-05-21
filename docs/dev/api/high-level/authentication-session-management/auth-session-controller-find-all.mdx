@@ -8,7 +8,7 @@ description: "The GET Session API endpoint retrieves all sessions from the Ovok 
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/auth/session</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/auth/session"}</code></div>
 
 <ApiBase inline={false} />
 

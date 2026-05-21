@@ -8,7 +8,7 @@ description: "Flip a single boolean setting on the caller's current project. Som
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">/v1/project/settings/&#123;key&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">{"/v1/project/settings/{key}"}</code></div>
 
 <ApiBase inline={false} />
 

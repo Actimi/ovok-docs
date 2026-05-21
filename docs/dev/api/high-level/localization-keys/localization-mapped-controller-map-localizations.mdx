@@ -8,7 +8,7 @@ description: "Map a localization to a target language"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/localization/map/&#123;target&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/localization/map/{target}"}</code></div>
 
 <ApiBase inline={false} />
 

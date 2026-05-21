@@ -8,7 +8,7 @@ description: "**Early Access** — interfaces may change without notice."
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/wearables/&#123;provider&#125;/callback</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/wearables/{provider}/callback"}</code></div>
 
 <ApiBase inline={false} />
 

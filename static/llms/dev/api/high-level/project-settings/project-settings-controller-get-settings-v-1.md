@@ -8,7 +8,7 @@ description: "Returns every boolean setting on the caller's current project as a
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/project/settings</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/project/settings"}</code></div>
 
 <ApiBase inline={false} />
 

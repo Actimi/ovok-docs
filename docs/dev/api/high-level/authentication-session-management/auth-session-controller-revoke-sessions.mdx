@@ -8,7 +8,7 @@ description: "The Delete Session API endpoint revokes session(s) from the Ovok p
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/auth/session/&#123;option&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/auth/session/{option}"}</code></div>
 
 <ApiBase inline={false} />
 

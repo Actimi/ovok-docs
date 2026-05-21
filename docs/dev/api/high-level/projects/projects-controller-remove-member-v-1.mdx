@@ -8,7 +8,7 @@ description: "Delete a ProjectMembership. Refuses to remove the caller or the la
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/v1/projects/me/members/&#123;id&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/v1/projects/me/members/{id}"}</code></div>
 
 <ApiBase inline={false} />
 

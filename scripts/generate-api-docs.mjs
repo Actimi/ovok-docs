@@ -391,7 +391,12 @@ function emitHighLevelForEnv(envKey, spec) {
         '',
         '<div className="endpoint-hero">',
         '',
-        `<div className="endpoint-hero__paths"><span className="api-method ${method.toLowerCase()}">${method}</span> <code className="endpoint-hero__path">${escapeBraces(path)}</code></div>`,
+        // Path text wraps in a JSX string expression — `{"…/{x}/…"}` —
+        // because MDX renders `&#123;` as a literal entity (not as `{`)
+        // when it sits inside a JSX element's children. The string
+        // expression sidesteps both: braces inside a quoted JS string
+        // are just characters.
+        `<div className="endpoint-hero__paths"><span className="api-method ${method.toLowerCase()}">${method}</span> <code className="endpoint-hero__path">{${JSON.stringify(path)}}</code></div>`,
         '',
         '<ApiBase inline={false} />',
         '',
@@ -470,7 +475,10 @@ The machine-readable spec for this tier is at
     const opSlug = slug(key);
     const title = op.summary?.trim() || `${method} ${path}`;
     const pathLines = variants
-      .map((v) => `  <div className="endpoint-hero__path-row"><span className="api-method ${v.method.toLowerCase()}">${v.method}</span> <code className="endpoint-hero__path">${escapeBraces(v.path)}</code></div>`)
+      // Same JSX-string-expression trick as the single-path hero
+      // above — MDX would otherwise render the entity-encoded braces
+      // literally inside the <code> children.
+      .map((v) => `  <div className="endpoint-hero__path-row"><span className="api-method ${v.method.toLowerCase()}">${v.method}</span> <code className="endpoint-hero__path">{${JSON.stringify(v.path)}}</code></div>`)
       .join('\n');
     const body = [
       '---',

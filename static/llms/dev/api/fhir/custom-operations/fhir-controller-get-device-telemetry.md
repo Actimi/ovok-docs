@@ -9,9 +9,9 @@ description: "Returns the current effective telemetry for a device as a FHIR sea
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Device/&#123;id&#125;/telemetry</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Device/&#123;id&#125;/telemetry</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Device/&#123;id&#125;/telemetry</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/Device/{id}/telemetry"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R4/Device/{id}/telemetry"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R5/Device/{id}/telemetry"}</code></div>
 </div>
 
 <ApiBase inline={false} />

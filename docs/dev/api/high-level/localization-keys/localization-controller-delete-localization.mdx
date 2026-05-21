@@ -8,7 +8,7 @@ description: "Delete a single localization by language and key"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">/localization/&#123;language&#125;/&#123;key&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method delete">DELETE</span> <code className="endpoint-hero__path">{"/localization/{language}/{key}"}</code></div>
 
 <ApiBase inline={false} />
 

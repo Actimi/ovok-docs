@@ -8,7 +8,7 @@ description: "Every FHIR Project the caller has a ProjectMembership on. Each ent
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/projects"}</code></div>
 
 <ApiBase inline={false} />
 

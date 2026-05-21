@@ -9,9 +9,9 @@ description: "This endpoint allows users to fetch patient informations, specific
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Observation/$lastn</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Observation/$lastn</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Observation/$lastn</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/Observation/$lastn"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R4/Observation/$lastn"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R5/Observation/$lastn"}</code></div>
 </div>
 
 <ApiBase inline={false} />

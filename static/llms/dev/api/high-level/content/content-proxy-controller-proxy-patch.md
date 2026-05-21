@@ -8,7 +8,7 @@ description: "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HE
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/v1/content/&#123;path&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">{"/v1/content/{path}"}</code></div>
 
 <ApiBase inline={false} />
 

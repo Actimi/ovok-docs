@@ -8,7 +8,7 @@ description: "Get all localizations"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/localization/&#123;language&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/localization/{language}"}</code></div>
 
 <ApiBase inline={false} />
 

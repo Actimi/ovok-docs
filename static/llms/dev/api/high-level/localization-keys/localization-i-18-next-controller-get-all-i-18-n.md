@@ -8,7 +8,7 @@ description: "Download the i18next JSON file for applications"
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/localization/i18next/&#123;language&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/localization/i18next/{language}"}</code></div>
 
 <ApiBase inline={false} />
 

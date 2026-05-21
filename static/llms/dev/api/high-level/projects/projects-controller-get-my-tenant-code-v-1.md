@@ -8,7 +8,7 @@ description: "Short tenant code on file for the caller’s current project, or n
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/tenant-code</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/projects/me/tenant-code"}</code></div>
 
 <ApiBase inline={false} />
 

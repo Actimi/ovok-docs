@@ -8,7 +8,7 @@ description: "Login with MFA token. Success response contains a challenge token 
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/auth/tenant/Practitioner/login/mfa</code></div>
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/tenant/Practitioner/login/mfa"}</code></div>
 
 <ApiBase inline={false} />
 

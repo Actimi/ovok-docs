@@ -8,7 +8,7 @@ description: "Enable or disable the available locales for localization."
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">/locales</code></div>
+<div className="endpoint-hero__paths"><span className="api-method patch">PATCH</span> <code className="endpoint-hero__path">{"/locales"}</code></div>
 
 <ApiBase inline={false} />
 

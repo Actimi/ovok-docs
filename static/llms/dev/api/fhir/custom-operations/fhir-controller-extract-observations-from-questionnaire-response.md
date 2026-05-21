@@ -9,9 +9,9 @@ description: "This endpoint builds Observations based on the provided Questionna
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/QuestionnaireResponse/&#123;id&#125;/$extract</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/R4/QuestionnaireResponse/&#123;id&#125;/$extract</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/fhir/R5/QuestionnaireResponse/&#123;id&#125;/$extract</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/QuestionnaireResponse/{id}/$extract"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/R4/QuestionnaireResponse/{id}/$extract"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/R5/QuestionnaireResponse/{id}/$extract"}</code></div>
 </div>
 
 <ApiBase inline={false} />

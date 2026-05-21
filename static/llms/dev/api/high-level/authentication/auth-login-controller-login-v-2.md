@@ -8,7 +8,7 @@ description: "The Login API endpoint facilitates the authentication process, all
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">/v2/auth/login</code></div>
+<div className="endpoint-hero__paths"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/v2/auth/login"}</code></div>
 
 <ApiBase inline={false} />
 

@@ -9,9 +9,9 @@ description: "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Observation/&#123;id&#125;</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Observation/&#123;id&#125;</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Observation/&#123;id&#125;</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/Observation/{id}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R4/Observation/{id}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R5/Observation/{id}"}</code></div>
 </div>
 
 <ApiBase inline={false} />

@@ -8,7 +8,7 @@ description: "BCP-47 locale codes the project offers for content items. The firs
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/me/cms-locales</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/projects/me/cms-locales"}</code></div>
 
 <ApiBase inline={false} />
 

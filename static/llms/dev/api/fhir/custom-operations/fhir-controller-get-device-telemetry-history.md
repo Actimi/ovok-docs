@@ -9,9 +9,9 @@ description: "Query observation history for a device from Signals. Defaults to t
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/Device/&#123;id&#125;/telemetry/history</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R4/Device/&#123;id&#125;/telemetry/history</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/fhir/R5/Device/&#123;id&#125;/telemetry/history</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/Device/{id}/telemetry/history"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R4/Device/{id}/telemetry/history"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R5/Device/{id}/telemetry/history"}</code></div>
 </div>
 
 <ApiBase inline={false} />

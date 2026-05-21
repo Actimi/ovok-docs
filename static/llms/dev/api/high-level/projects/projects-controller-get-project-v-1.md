@@ -8,7 +8,7 @@ description: "Return summary + settings for a project the caller is a member of.
 
 <div className="endpoint-hero">
 
-<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">/v1/projects/&#123;id&#125;</code></div>
+<div className="endpoint-hero__paths"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/v1/projects/{id}"}</code></div>
 
 <ApiBase inline={false} />
 
