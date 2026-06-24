@@ -22,7 +22,7 @@ You write your product; we run the rest.
   project setup, member roles, content management, billing, audit.
 - **A Data Dashboard** for working with the data your product produces:
   inspecting records, curating cohorts, validating workflows.
-- **Three release tiers** — *alpha*, *beta*, *final* — so you can move
+- **Three release tiers** — _alpha_, _beta_, _final_ — so you can move
   fast where you need to and stay stable where you must.
 
 ## The shape of the surfaces
@@ -68,9 +68,16 @@ and Data Dashboard are clients like any other.
 - **Three tiers, one platform.** Ship a preview to one partner on alpha,
   validate on beta, run production on final — all from one project.
 
+## Content (CMS)
+
+Ovok ships an optional headless CMS backed by Payload. It shares the
+same API host but uses dedicated Railway services (payload-ovok +
+ovok-control-plane) behind ovok-core proxies. See
+[Payload stack](./payload-stack) and [Content (CMS)](../cms/index).
+
 ## Next
 
-- [Release tiers](./environments.md) — the alpha/beta/final contract
-  and how to pick one.
-- [Console](../surfaces/console.md) — the operator surface.
-- [Data Dashboard](../surfaces/data-dashboard.md) — the data surface.
+- [Release tiers](./environments.md) — sandbox, alpha, beta, final
+- [Payload stack](./payload-stack.mdx) — CMS infrastructure
+- [Console](../surfaces/console.md) — the operator surface
+- [Data Dashboard](../surfaces/data-dashboard.md) — the data surface

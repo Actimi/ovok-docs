@@ -13,7 +13,7 @@ keywords:
 
 Public delivery (`/v1/public/cms/...`) authenticates with project-scoped
 API keys, not JWTs. Each key is bound to one project and grants read
-access to that project's *published* content only. Keys are minted from
+access to that project's _published_ content only. Keys are minted from
 the Console.
 
 ## Minting a key
@@ -74,12 +74,12 @@ return `401` on the next call.
 
 We recommend a key **per consumer**:
 
-| Consumer | Key name |
-| --- | --- |
-| Marketing site (browser) | `mkt-web-prod` |
-| iOS app | `ios-app-prod` |
-| Android app | `android-app-prod` |
-| CMS preview environment | `mkt-web-preview` |
+| Consumer                 | Key name           |
+| ------------------------ | ------------------ |
+| Marketing site (browser) | `mkt-web-prod`     |
+| iOS app                  | `ios-app-prod`     |
+| Android app              | `android-app-prod` |
+| CMS preview environment  | `mkt-web-preview`  |
 
 This keeps the blast radius of a leak small and lets you rotate one
 consumer without disrupting the others.

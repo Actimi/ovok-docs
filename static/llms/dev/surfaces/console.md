@@ -39,13 +39,13 @@ integration uses. There's no privileged operator endpoint.
 
 ## Where to find it
 
-| Tier | Host |
-| --- | --- |
-| **alpha** | `console.dev.ovok.com` |
+| Tier      | Host                       |
+| --------- | -------------------------- |
+| **alpha** | `console.dev.ovok.com`     |
 | **beta**  | `console.staging.ovok.com` |
-| **final** | `console.ovok.com` |
+| **final** | `console.ovok.com`         |
 
-The link in the navbar above always goes to the *final* Console. Switch
+The link in the navbar above always goes to the _final_ Console. Switch
 the tier in the env switcher to use the matching Console for the same
 maturity tier.
 
@@ -66,8 +66,8 @@ back.** sign-in card.
 - **Password** field — minimum 8 characters
 - **Continue →** button (or press `⌘ ↵` / `Ctrl ↵`)
 
-Foot text: *"Sign in with your Ovok credentials. Only project admins
-can access the console — everyone else, talk to your team owner."* A
+Foot text: _"Sign in with your Ovok credentials. Only project admins
+can access the console — everyone else, talk to your team owner."_ A
 **Data Dashboard** link in the bottom-right of the card opens the
 data surface directly.
 
@@ -101,8 +101,8 @@ bottom signs you out.
 
 - **Top bar** — project switcher (project name + slug + arrow icon),
   global search (`⌘K`), API status pill, profile dropdown.
-- **Left sidebar** — *Workspace* (Overview, Content, Mail) and
-  *Project* (Users, Billing, Settings). Workspace items show a lock
+- **Left sidebar** — _Workspace_ (Overview, Content, Mail) and
+  _Project_ (Users, Billing, Settings). Workspace items show a lock
   icon when the underlying feature is disabled for the project.
 - **Page header** — large project name, slug + Medplum project ID,
   one-line "Signed in as…" attribution, and role badges
@@ -110,12 +110,12 @@ bottom signs you out.
 
 Four stat cards line the top of the body:
 
-| Card | What it shows |
-| --- | --- |
-| **PLAN** | Subscription plan (e.g. `Internal`) and health badge. Subtext: *"No billing — internal project"* for internal-only projects. |
-| **TEAM** | Member count and admin count. |
-| **CONTENT** | CMS state. `Off` here means *"CMS isn't enabled for this project. Turn it on in Settings."* |
-| **ACTIVE SESSIONS** | Sessions for the current account. Subtext: *"Only this device. Other sessions get revoked here."* |
+| Card                | What it shows                                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **PLAN**            | Subscription plan (e.g. `Internal`) and health badge. Subtext: _"No billing — internal project"_ for internal-only projects. |
+| **TEAM**            | Member count and admin count.                                                                                                |
+| **CONTENT**         | CMS state. `Off` here means _"CMS isn't enabled for this project. Turn it on in Settings."_                                  |
+| **ACTIVE SESSIONS** | Sessions for the current account. Subtext: _"Only this device. Other sessions get revoked here."_                            |
 
 Below the cards, two columns:
 
@@ -124,12 +124,12 @@ Below the cards, two columns:
   invites.
 - **This project at a glance · Where things live** — sidebar-style
   index pointing at Billing, Team, Content, Invites. Each row has a
-  one-liner status (e.g. *"CMS is off. Turn it on under Settings →
-  General."*).
+  one-liner status (e.g. _"CMS is off. Turn it on under Settings →
+  General."_).
 
-A footer note reads: *"Admin-only. The console is filtered to
+A footer note reads: _"Admin-only. The console is filtered to
 Practitioners who are admins on this project; FHIR data exploration
-lives in the Data Dashboard."*
+lives in the Data Dashboard."_
 
 ### 4. Settings → Overview
 
@@ -184,8 +184,8 @@ Payload CMS toggle.
 
 ### 6. Settings → API keys
 
-This is the **CMS API keys** screen. Eyebrow *"PUBLIC DELIVERY"*,
-title *"CMS API keys"*.
+This is the **CMS API keys** screen. Eyebrow _"PUBLIC DELIVERY"_,
+title _"CMS API keys"_.
 
 ![Settings API keys tab with CMS API keys card and empty Keys panel offering a New API key button](/img/walkthrough/console-06-api-keys.png)
 
@@ -193,8 +193,8 @@ title *"CMS API keys"*.
 > (`/v1/public/cms/<slug>/items`). Consumers send the key in
 > `Authorization: Bearer` and receive only published items.
 
-A second card lists the keys (empty state: *"No keys yet — No API
-keys yet. Issue one above to enable headless content delivery."*) and
+A second card lists the keys (empty state: _"No keys yet — No API
+keys yet. Issue one above to enable headless content delivery."_) and
 exposes the **+ New API key** action.
 
 Below the table, two disclaimers:
@@ -224,7 +224,7 @@ single card:
 > provisions a Payload tenant for this project and adds a CMS line
 > item to your Stripe subscription.
 >
-> [Open project settings →]  [What is Payload CMS?]
+> [Open project settings →] [What is Payload CMS?]
 
 After enabling, this becomes the editorial surface — collections,
 media library, drafts, publishing — scoped to the project's Payload

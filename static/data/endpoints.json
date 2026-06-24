@@ -322,57 +322,6 @@
   },
   {
     "method": "POST",
-    "path": "/v1/sub-project",
-    "summary": "Create a sub tenant",
-    "description": "Create a child project (\"sub tenant\") nested under the caller's current project. The admin issuing the request is automatically joined to the new child project as a Practitioner with admin rights, so ",
-    "tag": "Sub Projects",
-    "operationId": "SubProjectController_createSubTenant_v1",
-    "parameters": [],
-    "bodyExample": {
-      "name": "Actimi"
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/sub-project",
-    "summary": "List project relationships",
-    "description": "Returns the caller project's place in the project hierarchy: its own id, its parent's id (if any), and the ids of any direct children.",
-    "tag": "Sub Projects",
-    "operationId": "SubProjectController_getProjectRelationships_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/sub-project/{subProjectId}",
-    "summary": "Delete a sub tenant",
-    "description": "Tear down a child project. The FHIR Project resource and the parent ↔ child relationship are both removed.",
-    "tag": "Sub Projects",
-    "operationId": "SubProjectController_deleteSubTenant_v1",
-    "parameters": [
-      {
-        "name": "subProjectId",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
     "path": "/organizations/code/email",
     "summary": "Receive Organization Codes",
     "description": "Receive organization codes to your email",

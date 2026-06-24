@@ -37,14 +37,14 @@ your product is producing.
 
 ## Console or Data Dashboard?
 
-| You want to... | Surface |
-| --- | --- |
-| Add a teammate to your project | [Console](./console.md) |
-| Look up a patient's last visit | **Data Dashboard** |
-| Update billing details | [Console](./console.md) |
-| Confirm an observation was recorded | **Data Dashboard** |
-| Rotate an API key | [Console](./console.md) |
-| Curate a cohort for analytics | **Data Dashboard** |
+| You want to...                      | Surface                 |
+| ----------------------------------- | ----------------------- |
+| Add a teammate to your project      | [Console](./console.md) |
+| Look up a patient's last visit      | **Data Dashboard**      |
+| Update billing details              | [Console](./console.md) |
+| Confirm an observation was recorded | **Data Dashboard**      |
+| Rotate an API key                   | [Console](./console.md) |
+| Curate a cohort for analytics       | **Data Dashboard**      |
 
 The two surfaces speak to the same API. Anything you can see in the
 Data Dashboard, your code can read; anything you configure in the
@@ -52,13 +52,13 @@ Console, your code can manage.
 
 ## Where to find it
 
-| Tier | Host |
-| --- | --- |
-| **alpha** | `dashboard.dev.ovok.com` |
+| Tier      | Host                         |
+| --------- | ---------------------------- |
+| **alpha** | `dashboard.dev.ovok.com`     |
 | **beta**  | `dashboard.staging.ovok.com` |
-| **final** | `dashboard.ovok.com` |
+| **final** | `dashboard.ovok.com`         |
 
-The link in the navbar above always goes to the *final* Data Dashboard.
+The link in the navbar above always goes to the _final_ Data Dashboard.
 Switch the release tier in the env switcher to use the matching
 Dashboard for the same maturity tier.
 
@@ -72,10 +72,10 @@ and inspect resources.
 
 Open `dashboard.sandbox.ovok.com`. The sign-in flow is two cards:
 
-1. **Email card** — `Sign In` title, *Email* field, **Continue**
+1. **Email card** — `Sign In` title, _Email_ field, **Continue**
    button. Submit your account email.
 2. **Password card** — your email shows in a read-only row (with a
-   pencil icon to change), then a *Password* field, a **Remember me**
+   pencil icon to change), then a _Password_ field, a **Remember me**
    checkbox, and the **Sign In** button. A **Reset Password** link
    sits below.
 

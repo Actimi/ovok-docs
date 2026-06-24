@@ -36,8 +36,7 @@ looks like this:
 
 ![Settings General page showing the Payload CMS section with Enable Payload CMS toggle off and the Custom mailing section below it](/img/walkthrough/console-05-settings-general.png)
 
-> **CONTENT**
-> **Payload CMS**
+> **CONTENT** > **Payload CMS**
 >
 > Opt this project into the new Payload-backed CMS. Flipping on
 > triggers tenant provisioning + adds a CMS line item to your Stripe
@@ -45,7 +44,7 @@ looks like this:
 >
 > ☐ **Enable Payload CMS** — Provisions a Payload tenant and starts
 > CMS billing for this project.
-> *Config key: `CONTENT_ENABLED`*
+> _Config key: `CONTENT_ENABLED`_
 
 The card next to it is **Custom mailing** (`MAILING_ENABLED`) — a
 separate, independent toggle. Don't flip it by accident.
@@ -56,9 +55,9 @@ Click **Enable Payload CMS**. Behind the scenes the Console:
 
 1. Calls `PUT /v1/project/settings/CONTENT_ENABLED` with `{ enabled: true }`
    to flag the project.
-2. Calls `POST /v1/cms/ensure-tenant` to provision (or self-heal) the
-   project's Payload tenant. This is idempotent — calling it again
-   does nothing if the tenant already exists.
+2. Calls `POST /v1/cms/projects/{slug}/environments` with
+   `{ "environment": "dev" }` to enable CMS on the control plane. That
+   provisions the Payload tenant idempotently via payload-ovok.
 3. Adds a `cms` line item to the project's Stripe subscription so
    usage is billed alongside the platform.
 
@@ -86,12 +85,12 @@ create a key. Treat it like any other secret. See
 
 ## What changed under the hood
 
-| Before enable | After enable |
-| --- | --- |
-| `/v1/content/*` requests return 403 | `/v1/content/*` forwards to your tenant |
-| `/v1/public/cms/*` returns 404 | `/v1/public/cms/*` serves published items |
-| No CMS line item in Stripe | CMS line item is active and metered |
-| Console sidebar omits **Content** | Console shows **Content** + sub-menus |
+| Before enable                       | After enable                              |
+| ----------------------------------- | ----------------------------------------- |
+| `/v1/content/*` requests return 403 | `/v1/content/*` forwards to your tenant   |
+| `/v1/public/cms/*` returns 404      | `/v1/public/cms/*` serves published items |
+| No CMS line item in Stripe          | CMS line item is active and metered       |
+| Console sidebar omits **Content**   | Console shows **Content** + sub-menus     |
 
 ## Turning it off
 
@@ -112,12 +111,13 @@ is the project lacking an active subscription. Open billing first, make
 sure you have a payment method on file, then retry.
 
 **`/v1/content/*` returns 403 even after enabling** → wait ~10 seconds
-for tenant provisioning to settle, then refresh. The Console hits
-`ensure-tenant` again on the overview page as a self-heal.
+for tenant provisioning to settle, then refresh. The first authenticated
+`/v1/content/*` call can also self-heal tenant resolution if the control
+plane row exists but the Payload tenant was missing.
 
 **Deleted the tenant manually in Railway / cloud console** → don't.
-But if it happened, hitting `POST /v1/cms/ensure-tenant` from the
-Console (re-open `/settings/general`) re-provisions it.
+Re-enable the environment from **Settings → General** (calls
+`POST /v1/cms/projects/{slug}/environments` again) or contact support.
 
 ## Next
 

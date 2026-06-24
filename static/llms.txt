@@ -219,9 +219,6 @@ Manifest: /llms/manifest.json
 - /dev/api/high-level/projects/projects-controller-update-member-v-1.md
 - /dev/api/high-level/projects/projects-controller-update-my-cms-locales-v-1.md
 - /dev/api/high-level/projects/projects-controller-update-my-project-features-v-1.md
-- /dev/api/high-level/sub-projects/sub-project-controller-create-sub-tenant-v-1.md
-- /dev/api/high-level/sub-projects/sub-project-controller-delete-sub-tenant-v-1.md
-- /dev/api/high-level/sub-projects/sub-project-controller-get-project-relationships-v-1.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start.md
 - /dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-register.md
@@ -242,9 +239,13 @@ Manifest: /llms/manifest.json
 - /dev/cms/api-keys.md
 - /dev/cms/authoring.md
 - /dev/cms/enable.md
+- /dev/cms/environments.md
 - /dev/cms/index.md
 - /dev/cms/public-delivery.md
+- /dev/platform/deployment.md
 - /dev/platform/environments.md
 - /dev/platform/overview.md
+- /dev/platform/payload-stack.md
+- /dev/platform/public-api.md
 - /dev/surfaces/console.md
 - /dev/surfaces/data-dashboard.md

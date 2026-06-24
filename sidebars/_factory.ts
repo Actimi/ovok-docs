@@ -1,29 +1,30 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+import fs from 'node:fs'
+import path from 'node:path'
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs'
 
 /**
  * Build the sidebar for a given env tier. Each tier owns its own folder
  * under docs/<envKey>/ and gets the same structure: Intro, Platform,
- * Surfaces, High Level API, FHIR API. The API categories pull from
- * generator-emitted sidebar.json files; the rest are static MDX pages.
- *
- * When a category's underlying content is missing (e.g. an env folder
- * exists but the OpenAPI generator hasn't run yet for it), the category
- * is omitted so the build doesn't break.
+ * Surfaces, Content (CMS), High Level API, FHIR API.
  */
 export function buildSidebar(envKey: string): SidebarsConfig {
-  const envDir = path.join(__dirname, '..', 'docs', envKey);
+  const envDir = path.join(__dirname, '..', 'docs', envKey)
 
-  const items: NonNullable<SidebarsConfig['docs']> = ['intro'];
+  const items: NonNullable<SidebarsConfig['docs']> = ['intro']
 
   if (existsAny(path.join(envDir, 'platform'))) {
     items.push({
       type: 'category',
       label: 'Platform',
       collapsed: false,
-      items: ['platform/overview', 'platform/environments'],
-    });
+      items: [
+        'platform/overview',
+        'platform/public-api',
+        'platform/environments',
+        'platform/payload-stack',
+        'platform/deployment',
+      ],
+    })
   }
 
   if (existsAny(path.join(envDir, 'surfaces'))) {
@@ -32,7 +33,7 @@ export function buildSidebar(envKey: string): SidebarsConfig {
       label: 'Surfaces',
       collapsed: false,
       items: ['surfaces/console', 'surfaces/data-dashboard'],
-    });
+    })
   }
 
   if (existsAny(path.join(envDir, 'cms'))) {
@@ -43,49 +44,46 @@ export function buildSidebar(envKey: string): SidebarsConfig {
       items: [
         'cms/index',
         'cms/enable',
+        'cms/environments',
         'cms/authoring',
         'cms/public-delivery',
         'cms/api-keys',
       ],
-    });
+    })
   }
 
-  // Stability sits above High Level API so first-time integrators
-  // notice the Early Access / Deprecated cohort before they pick an
-  // endpoint to build against. Auto-emitted by the doc generator,
-  // so we just point at it when it exists.
-  const stabilityPath = path.join(envDir, 'api', 'stability.mdx');
+  const stabilityPath = path.join(envDir, 'api', 'stability.mdx')
   if (fs.existsSync(stabilityPath)) {
-    items.push({ type: 'doc', id: 'api/stability', label: 'API stability' });
+    items.push({ type: 'doc', id: 'api/stability', label: 'API stability' })
   }
 
-  const highLevelJson = path.join(envDir, 'api', 'high-level', 'sidebar.json');
+  const highLevelJson = path.join(envDir, 'api', 'high-level', 'sidebar.json')
   if (fs.existsSync(highLevelJson)) {
     items.push({
       type: 'category',
       label: 'High Level API',
       collapsed: true,
       items: JSON.parse(fs.readFileSync(highLevelJson, 'utf8')),
-    });
+    })
   }
 
-  const fhirJson = path.join(envDir, 'api', 'fhir', 'sidebar.json');
+  const fhirJson = path.join(envDir, 'api', 'fhir', 'sidebar.json')
   if (fs.existsSync(fhirJson)) {
     items.push({
       type: 'category',
       label: 'FHIR API',
       collapsed: true,
       items: JSON.parse(fs.readFileSync(fhirJson, 'utf8')),
-    });
+    })
   }
 
-  return { docs: items };
+  return { docs: items }
 }
 
 function existsAny(dir: string): boolean {
   try {
-    return fs.statSync(dir).isDirectory();
+    return fs.statSync(dir).isDirectory()
   } catch {
-    return false;
+    return false
   }
 }

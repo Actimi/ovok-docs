@@ -32,25 +32,51 @@ section shows the **Payload CMS · OFF** card.
 :::
 
 :::info When to use the Content API vs Public delivery
+
 - **Content API** (`/v1/content/*`) — writes and admin reads. Requires
   a project JWT. Use from trusted backends, the Console, CI jobs.
 - **Public delivery** (`/v1/public/cms/*`) — published-only reads with
   an API key. Use from browsers, mobile apps, anything untrusted.
-:::
+  :::
 
 ## Authentication
 
-Send a project bearer JWT in `Authorization`. The proxy adds an
-`X-Payload-Tenant` header derived from your project ID so Payload's
-multi-tenant plugin scopes the request correctly. You don't set the
-tenant header yourself — and any value you send is ignored.
+Send a project bearer JWT in `Authorization`. ovok-core resolves your
+Medplum project from the JWT, looks up (or provisions) the Payload
+tenant, and injects these headers on the upstream call — you do **not**
+set them yourself:
+
+| Header                      | Set by    | Purpose                      |
+| --------------------------- | --------- | ---------------------------- |
+| `x-ovok-internal-key`       | ovok-core | Cluster auth to payload-ovok |
+| `x-ovok-tenant-id`          | ovok-core | Payload multi-tenant scope   |
+| `x-ovok-environment`        | ovok-core | `dev` \| `staging` \| `prod` |
+| `x-ovok-medplum-project-id` | ovok-core | Medplum project UUID         |
+
+Select the environment with `?environment=dev` on the request URL or
+`x-ovok-environment` if you control headers (Console backends typically
+use the query param). Defaults to `dev` on sandbox.
 
 ```http
-GET /v1/content/api/collections HTTP/1.1
+GET /v1/content/api/content-types?environment=dev HTTP/1.1
 Host: api.sandbox.ovok.com
 Authorization: Bearer <project-jwt>
 Accept: application/json
 ```
+
+## Path mapping
+
+The proxy strips `/v1/content` and forwards to payload-ovok:
+
+| You call                                | Payload receives             |
+| --------------------------------------- | ---------------------------- |
+| `GET /v1/content/api/{collection}`      | `GET /api/{collection}`      |
+| `GET /v1/content/api/{collection}/{id}` | `GET /api/{collection}/{id}` |
+| `GET /v1/content/_ovok/schema`          | `GET /api/_ovok/schema`      |
+| `POST /v1/content/api/media`            | `POST /api/media`            |
+
+Legacy unversioned `/content/*` URLs are normalised the same way if your
+client still sends them, but **new integrations should use `/v1/content/*`**.
 
 ## What the proxy forwards
 
@@ -73,7 +99,7 @@ per-method OpenAPI schema.
 ### List a collection
 
 ```bash
-curl https://api.sandbox.ovok.com/v1/content/api/pages \
+curl "https://api.sandbox.ovok.com/v1/content/api/content-types?environment=dev" \
   -H "Authorization: Bearer $OVOK_PROJECT_JWT"
 ```
 
@@ -82,7 +108,12 @@ Returns Payload's standard paginated response:
 ```json
 {
   "docs": [
-    { "id": "abc...", "slug": "home", "title": "Welcome", "_status": "published" }
+    {
+      "id": "abc...",
+      "slug": "home",
+      "title": "Welcome",
+      "_status": "published"
+    }
   ],
   "totalDocs": 1,
   "limit": 10,
@@ -94,17 +125,14 @@ Returns Payload's standard paginated response:
 ### Create a content item
 
 ```bash
-curl https://api.sandbox.ovok.com/v1/content/api/pages \
+curl "https://api.sandbox.ovok.com/v1/content/api/content-items?environment=dev" \
   -X POST \
   -H "Authorization: Bearer $OVOK_PROJECT_JWT" \
   -H "Content-Type: application/json" \
   -d '{
     "slug": "pricing",
     "title": "Pricing",
-    "_status": "draft",
-    "blocks": [
-      { "blockType": "hero", "headline": "Simple, transparent pricing" }
-    ]
+    "_status": "draft"
   }'
 ```
 
@@ -114,7 +142,7 @@ curl https://api.sandbox.ovok.com/v1/content/api/pages \
 large uploads don't pin the API process:
 
 ```bash
-curl https://api.sandbox.ovok.com/v1/content/api/media \
+curl "https://api.sandbox.ovok.com/v1/content/api/media?environment=dev" \
   -X POST \
   -H "Authorization: Bearer $OVOK_PROJECT_JWT" \
   -F "file=@hero.png" \
@@ -126,7 +154,7 @@ curl https://api.sandbox.ovok.com/v1/content/api/media \
 In Payload, "publish" is just a status update:
 
 ```bash
-curl https://api.sandbox.ovok.com/v1/content/api/pages/$ITEM_ID \
+curl "https://api.sandbox.ovok.com/v1/content/api/content-items/$ITEM_ID?environment=dev" \
   -X PATCH \
   -H "Authorization: Bearer $OVOK_PROJECT_JWT" \
   -H "Content-Type: application/json" \
@@ -150,12 +178,12 @@ Body handling:
 
 ## Errors
 
-| Status | Meaning |
-| --- | --- |
-| `403` | CMS is not enabled for this project (flip the toggle in Settings) |
-| `403` | Caller's JWT lacks the project context — re-auth |
-| `402` | Subscription has lapsed — see ActiveSubscriptionGuard |
-| `502` | Payload tenant is unreachable — retry, or check Status |
+| Status | Meaning                                                       |
+| ------ | ------------------------------------------------------------- |
+| `403`  | CMS environment not enabled, suspended, or prod write blocked |
+| `403`  | JWT missing Medplum project context — re-auth                 |
+| `402`  | Subscription has lapsed — see ActiveSubscriptionGuard         |
+| `502`  | Payload tenant is unreachable — retry, or check Status        |
 
 ## Next
 

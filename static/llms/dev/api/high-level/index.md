@@ -29,7 +29,6 @@ signals — exposed as a coherent REST surface.
 - **[Partner](/dev/api/high-level/partner/partner-controller-health-check)** — 4 endpoints
 - **[Project Settings](/dev/api/high-level/project-settings/project-settings-controller-get-settings-v-1)** — 2 endpoints
 - **[Projects](/dev/api/high-level/projects/projects-controller-get-my-cms-locales-v-1)** — 11 endpoints
-- **[Sub Projects](/dev/api/high-level/sub-projects/sub-project-controller-create-sub-tenant-v-1)** — 3 endpoints
 - **[Tenant Authentication](/dev/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login)** — 7 endpoints
 - **[Wearables (Early Access)](/dev/api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1)** — 9 endpoints
 
