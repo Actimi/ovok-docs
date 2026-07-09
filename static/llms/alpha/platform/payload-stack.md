@@ -34,7 +34,7 @@ flowchart LR
 
 ## Services
 
-| Service                     | Role                                     | Typical host (sandbox)                             |
+| Service                     | Role                                     | Typical host (alpha)                               |
 | --------------------------- | ---------------------------------------- | -------------------------------------------------- |
 | **ovok-core**               | Public API, auth, CMS proxy, cache       | `api.sandbox.ovok.com`                             |
 | **ovok-control-plane**      | Project registry, environment enablement | private `ovok-control-plane.railway.internal:4001` |

@@ -15,8 +15,7 @@ of the contract**, not the underlying infrastructure.
 
 | Tier                   | Promise                                                                                                               | API host               |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| **dev** — sandbox      | Partner sandbox. CMS + Payload stack live here first. Expect change.                                                  | `api.sandbox.ovok.com` |
-| **alpha** — preview    | Bleeding edge. Endpoints can change shape day-to-day. Use when you need access to a capability before it ships.       | `api.sandbox.ovok.com`     |
+| **alpha**              | Bleeding edge. CMS + Payload stack live here first. Endpoints can change shape day-to-day. Use when you need access to a capability before it ships. | `api.sandbox.ovok.com`     |
 | **beta** — pre-release | Release-candidate. Stable enough for integration tests and partner walkthroughs, but not bound by deprecation policy. | `api.staging.eu.ovok.com` |
 | **final** — production | The supported contract. Breaking changes follow the deprecation policy; production integrations target this tier.     | `api.ovok.com`         |
 
@@ -54,8 +53,8 @@ Currently selected:
 Every public Ovok surface follows the same subdomain pattern. Flip the
 tier in the navbar to see the matching hostnames in context.
 
-| Surface        | dev (sandbox)                | alpha                    | beta                         | final                |
-| -------------- | ---------------------------- | ------------------------ | ---------------------------- | -------------------- |
-| API            | `api.sandbox.ovok.com`       | `api.sandbox.ovok.com`       | `api.staging.eu.ovok.com`       | `api.ovok.com`       |
-| Console        | `console.sandbox.ovok.com`   | `console.sandbox.ovok.com`   | `console.staging.eu.ovok.com`   | `console.ovok.com`   |
-| Data Dashboard | `dashboard.sandbox.ovok.com` | `dashboard.sandbox.ovok.com` | `dashboard.staging.eu.ovok.com` | `dashboard.ovok.com` |
+| Surface        | alpha                        | beta                            | final                |
+| -------------- | ---------------------------- | ------------------------------- | -------------------- |
+| API            | `api.sandbox.ovok.com`       | `api.staging.eu.ovok.com`       | `api.ovok.com`       |
+| Console        | `console.sandbox.ovok.com`   | `console.staging.eu.ovok.com`   | `console.ovok.com`   |
+| Data Dashboard | `dashboard.sandbox.ovok.com` | `dashboard.staging.eu.ovok.com` | `dashboard.ovok.com` |

@@ -23,8 +23,8 @@ You can specify if you'd like to revoke `all`, `current`, `other` or a specific 
 
 ```bash
 curl -X DELETE \
- --url 'https://api.sandbox.ovok.com/auth/session/other' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY'
+ --url 'https://api.dev.ovok.com/auth/session/other' \
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc'
 ```
 
 
@@ -33,7 +33,7 @@ curl -X DELETE \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `option` | path | `—` | **yes** | Which sessions to revoke. Use `current` to revoke the calling session, `other` to revoke every session except the calling one, `all` to revoke every session, or a specific session UUID to revoke just that session. |
+| `option` | path | `—` | **yes** |  |
 
 
 

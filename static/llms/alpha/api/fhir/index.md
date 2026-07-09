@@ -2,12 +2,12 @@
 title: FHIR API
 sidebar_position: 1
 sidebar_label: Overview
-description: The Ovok FHIR API on the dev tier — every FHIR R5 resource at /fhir/R5/.
+description: The Ovok FHIR API on the alpha tier — every FHIR R5 resource at /fhir/R5/.
 ---
 
 # FHIR API
 
-The FHIR R5 data plane on the **dev** tier. Every FHIR R5 resource
+The FHIR R5 data plane on the **alpha** tier. Every FHIR R5 resource
 type is mounted under `/fhir/R5/` with the standard set of REST interactions.
 
 <ApiBase surface="fhir" inline={false} />

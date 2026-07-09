@@ -38,11 +38,11 @@ All query parameters are FHIR query parameteters and therefore optional.
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `language` | path | `string` | **yes** | BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant. |
-| `_count` | query | `string` | no | Page size. Positive integer; defaults to `10`. |
-| `_offset` | query | `string` | no | Zero-indexed offset into the result set. Defaults to `0`. |
-| `_sort` | query | `string` | no | Sort key. Prefix with `-` for descending order. Defaults to `-date` (newest first). |
-| `search` | query | `string` | no | Substring filter applied to the localization keys (case-insensitive). |
+| `language` | path | `string` | **yes** |  |
+| `_count` | query | `string` | no |  |
+| `_offset` | query | `string` | no |  |
+| `_sort` | query | `string` | no |  |
+| `search` | query | `string` | no |  |
 
 
 
@@ -63,8 +63,8 @@ All query parameters are FHIR query parameteters and therefore optional.
 - `total`: `number` **(required)**
 - `resources`: `object[]` **(required)**
   - `id`: `string`
-  - `key`: `string` **(required)** — Dot-separated localization key. Alphanumerics, `_`, `-`, `.` only. Hierarchical convention recommended (e.g. `home.screen.title`).
-  - `language`: `string` **(required)** — BCP-47 locale code drawn from the i18n ISO list. Use the short form (`en`, `de`) for the platform-default region, or the full form (`en-US`, `de-DE`) for a specific variant.
+  - `key`: `string` **(required)**
+  - `language`: `string` **(required)**
   - `value`: `string` **(required)**
   - `author`: `object` **(required)**
   - `date`: `string`

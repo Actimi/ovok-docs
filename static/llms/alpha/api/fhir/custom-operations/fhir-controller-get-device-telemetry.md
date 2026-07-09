@@ -24,7 +24,7 @@ Returns the current effective telemetry for a device as a FHIR searchset Bundle 
 
 ```bash
 curl -X GET \
- 'https://api.sandbox.ovok.com/fhir/R4/Device/87ea5dfc-8b8e-384d-8489-79496e706390/telemetry' \
+ 'https://api.dev.ovok.com/fhir/R4/Device/87ea5dfc-8b8e-384d-8489-79496e706390/telemetry' \
  -H 'Authorization: Bearer <token>'
 ```
 
@@ -108,7 +108,7 @@ curl -X GET \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** | FHIR Device id whose latest telemetry observations should be returned. |
+| `id` | path | `string` | **yes** |  |
 
 
 

@@ -9,13 +9,13 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
+      "password": "LyA{P.thDJw_E=Nr",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
+      "password": "LyA{P.thDJw_E=Nr",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -36,7 +36,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -48,11 +48,11 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -69,7 +69,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -82,12 +82,12 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
+      "password": "LyA{P.thDJw_E=Nr",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -101,7 +101,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -114,14 +114,14 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
+      "password": "LyA{P.thDJw_E=Nr",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -135,7 +135,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -156,7 +156,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -169,12 +169,12 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
-      "codeChallenge": "3F8syr8vEYl8jimX5fUejs0DHe5kUl3A"
+      "password": "LyA{P.thDJw_E=Nr",
+      "codeChallenge": "k0CBzsBqgJejBTsi97acWeHGQLpNWYLR"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -186,13 +186,13 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "61NPZQcozdWDLzI3GzzaSz0avmqQagVy",
-      "codeVerifier": "B4aCNQKwdhe0dJlmqAF8ArnqgnwMJfuDpY2YBxFNye59xidvu9xFqX2swlQH0bt3",
+      "sessionCode": "CTFWMX4Ph467ag6MiVF1lFVDMwepqcYr",
+      "codeVerifier": "ZtjbdYPZTfMP7xbXit2bMm0Hq7pu5YYoZhivzvILd5orAFHgLRAGh9vgwMGKYDp0",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -209,7 +209,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -222,13 +222,13 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
-      "codeChallenge": "44J8QEjDVxY5X98Ak8RXusCjnas2OoHd",
+      "password": "LyA{P.thDJw_E=Nr",
+      "codeChallenge": "6JFfDinyaWwLWn0MOplQbhHx2uI416bZ",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -240,12 +240,12 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "x50Sjv1E40IG6nh7gFjwISDixWBSE1ut",
-      "codeVerifier": "fw8yVWVvrJ2uXXJt3Uuvqmt9Ji3HwlETXUnBxIyNb2ru9Yw2bMfnWhx4LCL94V4v"
+      "sessionCode": "VswcCqe7FdOPwXeNkqDTXaos5A4wtM1n",
+      "codeVerifier": "mF6rayn3QcjlDWR1o6NvmLXDsTQjTQfif079mpVopKv50l6pIsgorG2jKtokBGvT"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -262,7 +262,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -275,14 +275,14 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "A[.DmUv]2vE|n_+]",
+      "password": "LyA{P.thDJw_E=Nr",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -296,7 +296,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -317,7 +317,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -333,7 +333,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -347,259 +347,63 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_get",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_post",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_put",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_delete",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_patch",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "OPTIONS",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_options",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "HEAD",
-    "path": "/v1/content",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_head",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_get",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_post",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_put",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_delete",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_patch",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "OPTIONS",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_options",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "HEAD",
-    "path": "/v1/content/{path}",
-    "summary": "Content CMS reverse proxy",
-    "description": "Catch-all that forwards every method (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) under `/v1/content/*` to the project-scoped Payload CMS instance. The Medplum project id is injected as the Payload tenant",
-    "tag": "Content",
-    "operationId": "ContentProxyController_proxy_head",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
     "method": "GET",
     "path": "/partner/health-check",
-    "summary": "Partner integration health check",
-    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
+    "summary": "GET /partner/health-check",
+    "description": "",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[0]",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
     "method": "GET",
     "path": "/v1/partner/health-check",
-    "summary": "Partner integration health check",
-    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
+    "summary": "GET /v1/partner/health-check",
+    "description": "",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[1]_v1",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
     "method": "GET",
     "path": "/v2/partner/health-check",
-    "summary": "Partner integration health check",
-    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
+    "summary": "GET /v2/partner/health-check",
+    "description": "",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[2]_v2",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
     "method": "GET",
     "path": "/v3/partner/health-check",
-    "summary": "Partner integration health check",
-    "description": "Unauthenticated liveness ping for partner load balancers and sandbox smoke checks. Always returns `{ status: \"ok\", healthy: true, timestamp }` when the handler is reachable. Mounted at version-neutral",
+    "summary": "GET /v3/partner/health-check",
+    "description": "",
     "tag": "Partner",
     "operationId": "PartnerController_healthCheck[3]_v3",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -621,7 +425,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -639,7 +443,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -672,7 +476,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -717,7 +521,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -762,7 +566,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -783,7 +587,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -807,7 +611,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -831,7 +635,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -852,7 +656,347 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/cms/{type}/map/{language}",
+    "summary": "Search mapped content",
+    "description": "# Search Mapped Content",
+    "tag": "CMS",
+    "operationId": "CMSController_searchMappedContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}/copy-from-parent-project",
+    "summary": "Copy contents",
+    "description": "Copy contents.",
+    "tag": "CMS",
+    "operationId": "CMSController_copyContents",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}/{key}/copy-from-parent-project",
+    "summary": "Copy a content",
+    "description": "Copy a content.",
+    "tag": "CMS",
+    "operationId": "CMSController_copySingleContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}",
+    "summary": "Create content",
+    "description": "# Create Content",
+    "tag": "CMS",
+    "operationId": "CMSController_createContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/cms/{type}/{language}",
+    "summary": "Search content",
+    "description": "# Search Content",
+    "tag": "CMS",
+    "operationId": "CMSController_searchContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Update content",
+    "description": "# Create Content",
+    "tag": "CMS",
+    "operationId": "CMSController_updateContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Get content by key and language",
+    "description": "# Get Content by Key and Language",
+    "tag": "CMS",
+    "operationId": "CMSController_getContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Delete content",
+    "description": "# Delete Content",
+    "tag": "CMS",
+    "operationId": "CMSController_deleteContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
     ]
   },
   {
@@ -885,7 +1029,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -918,7 +1062,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -951,7 +1095,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -972,7 +1116,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -993,7 +1137,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1014,457 +1158,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/Observation/{id}",
-    "summary": "Expand Observation SampledData to a {t,v} time-series",
-    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getObservationOrTimeseries[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "asTimeseries",
-        "in": "query",
-        "required": false,
-        "type": null
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R4/Observation/{id}",
-    "summary": "Expand Observation SampledData to a {t,v} time-series",
-    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getObservationOrTimeseries[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "asTimeseries",
-        "in": "query",
-        "required": false,
-        "type": null
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Observation/{id}",
-    "summary": "Expand Observation SampledData to a {t,v} time-series",
-    "description": "Custom operation on `Observation/:id`. Set `?asTimeseries=true` to get a JSON time-series instead of the raw FHIR resource. Useful for plotting Observations whose values are stored as `valueSampledDat",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getObservationOrTimeseries[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "asTimeseries",
-        "in": "query",
-        "required": false,
-        "type": null
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R4/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[0]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R4/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[1]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[2]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/R4/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/R5/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1504,7 +1198,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1544,7 +1238,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1584,7 +1278,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1605,7 +1299,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1626,7 +1320,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1647,7 +1341,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1668,7 +1362,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1698,7 +1392,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1743,7 +1437,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1788,7 +1482,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1815,7 +1509,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1844,7 +1538,7 @@
     },
     "deprecated": false,
     "availableIn": [
-      "dev"
+      "alpha"
     ]
   },
   {
@@ -1871,553 +1565,7 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/public/cms/{typeSlug}/items",
-    "summary": "List published items",
-    "description": "List published items from a CMS collection. Authenticates with a project-scoped API key (Authorization: Bearer …). Drafts and unpublished items are filtered out server-side.",
-    "tag": "CMS Public Delivery",
-    "operationId": "PublicDeliveryController_listItems_v1",
-    "parameters": [
-      {
-        "name": "typeSlug",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "limit",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "locale",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "depth",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/public/cms/{typeSlug}/items/{idOrSlug}",
-    "summary": "Get a published item",
-    "description": "Fetch a single published item by id or slug. Authenticates with a project-scoped API key. Returns 404 for drafts, unpublished items, or items in another project.",
-    "tag": "CMS Public Delivery",
-    "operationId": "PublicDeliveryController_getItem_v1",
-    "parameters": [
-      {
-        "name": "typeSlug",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "idOrSlug",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "locale",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "depth",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects",
-    "summary": "List my projects",
-    "description": "Every FHIR Project the caller has a ProjectMembership on. Each entry carries an `admin` flag (project-admin status for the caller) and an `internal` flag (Ovok-managed tenant, hidden from billing).",
-    "tag": "Projects",
-    "operationId": "ProjectsController_listMyProjects_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects/me/tenant-code",
-    "summary": "Get project tenant code",
-    "description": "Short tenant code on file for the caller’s current project, or null when one has not been assigned yet.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_getMyTenantCode_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects/me/features",
-    "summary": "Get project features",
-    "description": "Returns FHIR-server feature flags for the caller’s current project. Feature flags control opt-in behaviour at the FHIR layer (e.g. terminology server, GraphQL).",
-    "tag": "Projects",
-    "operationId": "ProjectsController_getMyProjectFeatures_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/v1/projects/me/features",
-    "summary": "Update project features",
-    "description": "Replace the FHIR-server feature flag list on the caller’s current project. Admin-only. Empty array disables every flag.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_updateMyProjectFeatures_v1",
-    "parameters": [],
-    "bodyExample": {
-      "features": [
-        "bots",
-        "cron",
-        "websocket-subscriptions"
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects/me/cms-locales",
-    "summary": "Get CMS locales",
-    "description": "BCP-47 locale codes the project offers for content items. The first entry is the project default — public delivery falls back to it when a requested locale has no value on file.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_getMyCmsLocales_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/v1/projects/me/cms-locales",
-    "summary": "Update CMS locales",
-    "description": "Replace the list of locales the project offers. The first entry becomes the project default. Admin-only.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_updateMyCmsLocales_v1",
-    "parameters": [],
-    "bodyExample": {
-      "locales": [
-        "en",
-        "de",
-        "fr"
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects/me/members",
-    "summary": "List project members",
-    "description": "Members of the caller’s current project, including pending invites (users who have not completed their first sign-in).",
-    "tag": "Projects",
-    "operationId": "ProjectsController_listMyMembers_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/projects/me/members",
-    "summary": "Invite a project member",
-    "description": "Creates the Practitioner profile + ProjectMembership and sends a magic-link invite email. Admin-only.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_inviteMember_v1",
-    "parameters": [],
-    "bodyExample": {
-      "email": "alex@acme.com",
-      "firstName": "Alex",
-      "lastName": "Lee",
-      "admin": false
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/v1/projects/me/members/{id}",
-    "summary": "Update a project member",
-    "description": "Toggle admin status on an existing membership. Admin-only.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_updateMember_v1",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "admin": true
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/projects/me/members/{id}",
-    "summary": "Remove a project member",
-    "description": "Delete a ProjectMembership. Refuses to remove the caller or the last remaining admin. Admin-only.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_removeMember_v1",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/projects/{id}",
-    "summary": "Get project detail",
-    "description": "Return summary + settings for a project the caller is a member of. 404 otherwise.",
-    "tag": "Projects",
-    "operationId": "ProjectsController_getProject_v1",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/wearables/{provider}/connect",
-    "summary": "[Early Access] Start a wearable OAuth flow",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_startConnect_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "patientId": "string",
-      "redirectUri": "string"
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/wearables/{provider}/callback",
-    "summary": "[Early Access] Wearable OAuth callback",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_oauthCallback_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "error_description",
-        "in": "query",
-        "required": false,
-        "type": null
-      },
-      {
-        "name": "error",
-        "in": "query",
-        "required": false,
-        "type": null
-      },
-      {
-        "name": "state",
-        "in": "query",
-        "required": false,
-        "type": null
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": null
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/wearables/{provider}/connections/{patientId}",
-    "summary": "[Early Access] Revoke a wearable connection",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_revoke_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "patientId",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/wearables/connections",
-    "summary": "[Early Access] List wearable connections",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_listConnections_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/wearables/{provider}/webhook",
-    "summary": "[Early Access] Wearable webhook subscription verification",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_webhookVerify_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "hub.verify_token",
-        "in": "query",
-        "required": true,
-        "type": null
-      },
-      {
-        "name": "hub.challenge",
-        "in": "query",
-        "required": true,
-        "type": null
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/wearables/{provider}/webhook",
-    "summary": "[Early Access] Wearable webhook ingress",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearablesController_webhookIngress_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/wearables/{provider}/credentials",
-    "summary": "[Early Access] Read wearable credentials",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearableCredentialsController_get_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/v1/wearables/{provider}/credentials",
-    "summary": "[Early Access] Set wearable credentials",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearableCredentialsController_put_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "clientId": "abc123",
-      "clientSecret": "supersecret",
-      "webhookSecret": "whsec_xyz"
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/v1/wearables/{provider}/credentials",
-    "summary": "[Early Access] Clear wearable credentials",
-    "description": "**Early Access** — interfaces may change without notice.",
-    "tag": "Wearables (Early Access)",
-    "operationId": "WearableCredentialsController_clear_v1",
-    "parameters": [
-      {
-        "name": "provider",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/v1/project/settings",
-    "summary": "List project settings",
-    "description": "Returns every boolean setting on the caller's current project as a single map. Settings drive opt-in features (Payload CMS, custom mailing, wearable integrations, patient registration policies, …).",
-    "tag": "Project Settings",
-    "operationId": "ProjectSettingsController_getSettings_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "dev"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/v1/project/settings/{key}",
-    "summary": "Toggle a project setting",
-    "description": "Flip a single boolean setting on the caller's current project. Some keys (`CONTENT_ENABLED`, `MAILING_ENABLED`) are paid-tier add-ons and return 402 on Free; flipping them OFF is always allowed so a t",
-    "tag": "Project Settings",
-    "operationId": "ProjectSettingsController_putSetting_v1",
-    "parameters": [
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "enabled": true
-    },
-    "deprecated": false,
-    "availableIn": [
-      "dev"
+      "alpha"
     ]
   }
 ]

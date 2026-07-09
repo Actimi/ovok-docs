@@ -24,7 +24,7 @@ Information such as id, contentType, fileName, publicToken can be fetched by que
 
 | Parameter | In       | Description                                                                                                  | Example             |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-| `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY` |
+| `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc` |
 | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
 | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
 | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -37,7 +37,7 @@ Information such as id, contentType, fileName, publicToken can be fetched by que
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `token` | path | `string` | **yes** | Public access JWT minted for the document and stored as an extension on the `DocumentReference`. Anyone with this token can read the file, so treat it as the shareable link itself. |
+| `token` | path | `string` | **yes** | The public token of the DocumentReference resource |
 | `ETag` | header | `string` | no | The ETag of the file for GET requests. If provided, the server will check the value of the ETag against the value of the ETag in the request headers. If the values match, the server will return a 304 Not Modified response. If the values do not match, the server will return a 200 OK response and the file content, if the file exists. |
 | `width` | query | `string` | no | The width of the binary resource if the resource is an image. |
 | `height` | query | `string` | no | The height of the binary resource if the resource is an image. |
@@ -55,10 +55,3 @@ Information such as id, contentType, fileName, publicToken can be fetched by que
 | `404` | The requested resource could not be found. |
 | `422` | The request could not be validated by the server. |
 | `500` | The server encountered an unexpected condition. Please try again later. |
-
-
-### `200` → `RedirectResponseDto` (`application/json`)
-
-No JSON body — endpoint replies with HTTP 307 redirect to a short-lived signed object-storage URL. Body is empty; follow the `Location` header. The redirect target expires (typical TTL: a few minutes).
-
-_Additional properties allowed._

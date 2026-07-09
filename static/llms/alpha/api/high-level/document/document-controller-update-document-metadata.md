@@ -63,7 +63,7 @@ Returns the updated document information in the same format as the create endpoi
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** | FHIR `DocumentReference` id whose metadata should be updated (e.g. file name, author, content type). The binary itself is not changed — use `POST /document/:id` to replace the file. |
+| `id` | path | `string` | **yes** | The id of the DocumentReference resource |
 
 
 ## Request body
@@ -109,7 +109,7 @@ Returns the updated document information in the same format as the create endpoi
   "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
   "fileName": "test.txt",
   "contentType": "text/plain",
-  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY",
+  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc",
   "uploadOptions": {
     "url": "https://example.com/upload",
     "fields": {

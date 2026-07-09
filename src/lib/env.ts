@@ -11,9 +11,9 @@
  *   beta    staging          docs/beta/             /beta/...
  *   final   master           docs/final/            /final/...   (or /)
  *
- * `alpha` is the sandbox tier — that's where breaking changes land daily.
+ * `alpha` is the bleeding-edge tier — that's where breaking changes land daily.
  * `beta` is the staging tier — pre-release quality. `final` is production.
- * There used to be a `dev` tier that pointed at sandbox hosts; it was
+ * There used to be a `dev` tier that pointed at alpha hosts; it was
  * folded into `alpha` on 2026-07-09 so we have one bleeding-edge tier
  * instead of two overlapping ones.
  */
@@ -27,22 +27,22 @@ export interface EnvConfig {
   shortLabel: string;
   description: string;
   hosts: Record<Surface, string>;
-  maturity: 'sandbox' | 'pre-release' | 'production';
+  maturity: 'alpha' | 'pre-release' | 'production';
 }
 
 export const ENVS: Record<EnvKey, EnvConfig> = {
   alpha: {
     key: 'alpha',
-    label: 'Alpha — sandbox',
+    label: 'Alpha',
     shortLabel: 'alpha',
-    description: 'Sandbox tier. Bleeding-edge surface; breaking changes can land any day.',
+    description: 'Alpha tier. Bleeding-edge, unstable.',
     hosts: {
       api:       'https://api.sandbox.ovok.com',
       fhir:      'https://api.sandbox.ovok.com/fhir/R5',
       console:   'https://console.sandbox.ovok.com',
       dashboard: 'https://dashboard.sandbox.ovok.com',
     },
-    maturity: 'sandbox',
+    maturity: 'alpha',
   },
   beta: {
     key: 'beta',

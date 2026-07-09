@@ -332,7 +332,7 @@ function PlaygroundImpl(): JSX.Element {
               value={env}
               onChange={(e) => setEnv(e.target.value as never)}
             >
-              <option value="alpha">alpha — sandbox</option>
+              <option value="alpha">alpha</option>
               <option value="beta">beta — pre-release</option>
               <option value="final">final — production</option>
             </select>

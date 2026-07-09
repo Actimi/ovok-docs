@@ -2,7 +2,7 @@
 title: High Level API
 sidebar_position: 1
 sidebar_label: Overview
-description: The Ovok platform API on the dev tier — auth, projects, content, billing, devices, signals.
+description: The Ovok platform API on the alpha tier — auth, projects, content, billing, devices, signals.
 ---
 
 # High Level API
@@ -20,17 +20,13 @@ signals — exposed as a coherent REST surface.
 - **[Authentication - B2B](/alpha/api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login)** — 2 endpoints
 - **[Authentication - Session Management](/alpha/api/high-level/authentication-session-management/auth-session-controller-find-all)** — 2 endpoints
 - **[Bots - Execute a custom script](/alpha/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post)** — 1 endpoint
-- **[CMS Public Delivery](/alpha/api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1)** — 2 endpoints
-- **[Content](/alpha/api/high-level/content/content-proxy-controller-proxy)** — 14 endpoints
+- **[CMS](/alpha/api/high-level/cms/cms-controller-copy-single-content)** — 8 endpoints
 - **[Document](/alpha/api/high-level/document/document-controller-delete-document)** — 7 endpoints
 - **[Localization](/alpha/api/high-level/localization/locale-controller-get-locale)** — 2 endpoints
 - **[Localization Keys](/alpha/api/high-level/localization-keys/localization-controller-delete-localization)** — 7 endpoints
 - **[Organization Code Information](/alpha/api/high-level/organization-code-information/organization-code-controller-get-organization-code)** — 2 endpoints
 - **[Partner](/alpha/api/high-level/partner/partner-controller-health-check)** — 4 endpoints
-- **[Project Settings](/alpha/api/high-level/project-settings/project-settings-controller-get-settings-v-1)** — 2 endpoints
-- **[Projects](/alpha/api/high-level/projects/projects-controller-get-my-cms-locales-v-1)** — 11 endpoints
 - **[Tenant Authentication](/alpha/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login)** — 7 endpoints
-- **[Wearables (Early Access)](/alpha/api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1)** — 9 endpoints
 
 ## Stability
 
@@ -41,8 +37,8 @@ production integrations cleanly.
 
 ## Tier
 
-You're viewing the **dev** tier. Switch tiers from the navbar to
+You're viewing the **alpha** tier. Switch tiers from the navbar to
 see the equivalent docs for another release surface.
 
 The machine-readable spec for this tier is at
-[`/openapi/dev-public.yaml`](pathname:///openapi/dev-public.yaml).
+[`/openapi/alpha-public.yaml`](pathname:///openapi/alpha-public.yaml).

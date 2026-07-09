@@ -541,7 +541,7 @@ console calls, Nest returns `{ message: "Cannot GET /v1/…", ... }`.
 The console's `isRouteMissing` helper (`lib/api.ts`) recognizes
 this specific 404 shape and renders a friendly "Waiting on
 ovok-core deploy" card citing the exact backend commit that ships
-the missing endpoint. So a stale sandbox never surfaces as a
+the missing endpoint. So a stale alpha environment never surfaces as a
 mysterious raw-Nest error.
 
 Pages with the soft-degrade wired: `/signals`, `/devices`,

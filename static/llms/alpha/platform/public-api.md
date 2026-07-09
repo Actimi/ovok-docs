@@ -1,7 +1,7 @@
 ---
 title: Public API surface
 sidebar_position: 2
-description: Map of every public HTTPS route on api.sandbox.ovok.com — auth, projects, CMS, FHIR, wearables, and more.
+description: Map of every public HTTPS route on api.sandbox.ovok.com — auth, projects, CMS, FHIR, and more.
 keywords:
   - public API
   - route map
@@ -15,7 +15,7 @@ from the OpenAPI spec (`pnpm run docs` on ovok-core). This page is the
 one-screen map of what exists on the public host before you drill into a
 specific endpoint.
 
-Base URL (sandbox / dev tier):
+Base URL (alpha tier):
 
 ```
 https://api.sandbox.ovok.com
@@ -36,7 +36,6 @@ Login first via `POST /v2/auth/login`.
 | **Documents**           | `/document/*`                 | JWT / public token | Upload, search, public file URLs                 |
 | **Localization**        | `/localization/*`, `/locales` | JWT / public       | i18n keys and mapped content                     |
 | **Organizations**       | `/organizations/code/*`       | JWT                | Org-code lookup                                  |
-| **Wearables**           | `/v1/wearables/*`             | JWT                | Connect providers, webhooks (Early Access)       |
 | **Bots**                | `/bots`                       | JWT                | Execute project bots                             |
 | **AI translation**      | `/ai/translation`             | JWT                | Translate text                                   |
 | **Partner**             | `/v1/partner/health-check`    | Partner auth       | Integration health probes                        |
@@ -78,4 +77,4 @@ curl https://api.sandbox.ovok.com/v1/projects/me/features \
 
 - [High Level API](../api/high-level/index) — auto-generated per-endpoint reference
 - [FHIR API](../api/fhir/index) — FHIR R5 resources + custom ops
-- [Release tiers](./environments) — sandbox vs alpha vs final hosts
+- [Release tiers](./environments) — alpha vs beta vs final hosts

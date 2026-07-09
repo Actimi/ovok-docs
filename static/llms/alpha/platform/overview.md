@@ -77,7 +77,7 @@ ovok-control-plane) behind ovok-core proxies. See
 
 ## Next
 
-- [Release tiers](./environments.md) — sandbox, alpha, beta, final
+- [Release tiers](./environments.md) — alpha, beta, final
 - [Payload stack](./payload-stack.mdx) — CMS infrastructure
 - [Console](../surfaces/console.md) — the operator surface
 - [Data Dashboard](../surfaces/data-dashboard.md) — the data surface

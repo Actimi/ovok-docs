@@ -70,7 +70,7 @@ The other variables can be sent from the client side in the request body if desi
       "valueCanonical": "https://smartforms.csiro.au/docs/StructureMap/extract-bmi"
     }
   ],
-  "url": "https://fhir.eu.ovok.com/fhir/R4/Questionnaire/example-questionnaire-id",
+  "url": "https://fhir.ovok.com/fhir/R4/Questionnaire/example-questionnaire-id",
   "version": "0.1.0",
   "name": "CalculatedExpressionBMICalculatorPrepop",
   "title": "CalculatedExpression BMI Calculator - Pre-population",
@@ -227,8 +227,8 @@ The other variables can be sent from the client side in the request body if desi
 
 ```bash
 curl -X POST \
- --url 'https://api.sandbox.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzkzNTA5NzEsImV4cCI6MTc3OTM1NDU3MX0.PO6ZkOtyOEugGyNuZUyg_YxUt3ozpJ_QOdJuriC14uY' \
+ --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc' \
  -H 'Content-Type: application/json' \
  -d @populate-body.json # @populate-body.json is the request body from the previous example
 ```
@@ -285,7 +285,7 @@ Now you can use the response (QuestionnaireResponse) and POST it if you want to 
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `id` | path | `string` | **yes** | FHIR Questionnaire id to pre-fill against the caller's patient context. |
+| `id` | path | `string` | **yes** |  |
 
 
 ## Request body
@@ -328,7 +328,7 @@ _Additional properties allowed._
       "resource": {
         "resourceType": "QuestionnaireResponse",
         "status": "in-progress",
-        "questionnaire": "https://fhir.eu.ovok.com/fhir/Questionnaire/59d9a1ce-008c-4e4f-97fb-ef598d3f2c34|0.1.0",
+        "questionnaire": "https://fhir.ovok.com/fhir/Questionnaire/59d9a1ce-008c-4e4f-97fb-ef598d3f2c34|0.1.0",
         "item": [
           {
             "linkId": "bmi-calculation",

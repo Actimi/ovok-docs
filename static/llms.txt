@@ -3,7 +3,7 @@
 Every doc page is mirrored as raw markdown at /llms<url>.md.
 Manifest: /llms/manifest.json
 
-- /dev.md
+- /alpha.md
 - /alpha/api/fhir/base/endpoint.md
 - /alpha/api/fhir/base/group.md
 - /alpha/api/fhir/base/healthcare-service.md
@@ -74,14 +74,10 @@ Manifest: /llms/manifest.json
 - /alpha/api/fhir/conformance/search-parameter.md
 - /alpha/api/fhir/conformance/structure-definition.md
 - /alpha/api/fhir/conformance/structure-map.md
-- /alpha/api/fhir/custom-operations/fhir-controller-create-patient.md
 - /alpha/api/fhir/custom-operations/fhir-controller-extract-observations-from-questionnaire-response.md
 - /alpha/api/fhir/custom-operations/fhir-controller-get-device-telemetry.md
-- /alpha/api/fhir/custom-operations/fhir-controller-get-device-telemetry-history.md
-- /alpha/api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries.md
 - /alpha/api/fhir/custom-operations/fhir-controller-get-patient-last-observation.md
 - /alpha/api/fhir/custom-operations/fhir-controller-populate-questionnaire.md
-- /alpha/api/fhir/custom-operations/fhir-controller-update-patient-threshold.md
 - /alpha/api/fhir/custom-operations/index.md
 - /alpha/api/fhir/financial/account.md
 - /alpha/api/fhir/financial/charge-item.md
@@ -183,9 +179,14 @@ Manifest: /llms/manifest.json
 - /alpha/api/high-level/authentication/auth-me-controller-get-user-profile.md
 - /alpha/api/high-level/authentication/auth-register-controller-register.md
 - /alpha/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post.md
-- /alpha/api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1.md
-- /alpha/api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1.md
-- /alpha/api/high-level/content/content-proxy-controller-proxy.md
+- /alpha/api/high-level/cms/cms-controller-copy-contents.md
+- /alpha/api/high-level/cms/cms-controller-copy-single-content.md
+- /alpha/api/high-level/cms/cms-controller-create-content.md
+- /alpha/api/high-level/cms/cms-controller-delete-content.md
+- /alpha/api/high-level/cms/cms-controller-get-content.md
+- /alpha/api/high-level/cms/cms-controller-search-content.md
+- /alpha/api/high-level/cms/cms-controller-search-mapped-content.md
+- /alpha/api/high-level/cms/cms-controller-update-content.md
 - /alpha/api/high-level/document/document-controller-create-upload-credentials.md
 - /alpha/api/high-level/document/document-controller-delete-document.md
 - /alpha/api/high-level/document/document-controller-generate-replace-credentials.md
@@ -206,19 +207,6 @@ Manifest: /llms/manifest.json
 - /alpha/api/high-level/organization-code-information/organization-code-controller-get-organization-code.md
 - /alpha/api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations.md
 - /alpha/api/high-level/partner/partner-controller-health-check.md
-- /alpha/api/high-level/project-settings/project-settings-controller-get-settings-v-1.md
-- /alpha/api/high-level/project-settings/project-settings-controller-put-setting-v-1.md
-- /alpha/api/high-level/projects/projects-controller-get-my-cms-locales-v-1.md
-- /alpha/api/high-level/projects/projects-controller-get-my-project-features-v-1.md
-- /alpha/api/high-level/projects/projects-controller-get-my-tenant-code-v-1.md
-- /alpha/api/high-level/projects/projects-controller-get-project-v-1.md
-- /alpha/api/high-level/projects/projects-controller-invite-member-v-1.md
-- /alpha/api/high-level/projects/projects-controller-list-my-members-v-1.md
-- /alpha/api/high-level/projects/projects-controller-list-my-projects-v-1.md
-- /alpha/api/high-level/projects/projects-controller-remove-member-v-1.md
-- /alpha/api/high-level/projects/projects-controller-update-member-v-1.md
-- /alpha/api/high-level/projects/projects-controller-update-my-cms-locales-v-1.md
-- /alpha/api/high-level/projects/projects-controller-update-my-project-features-v-1.md
 - /alpha/api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login.md
 - /alpha/api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start.md
 - /alpha/api/high-level/tenant-authentication/tenant-patient-auth-controller-register.md
@@ -226,15 +214,6 @@ Manifest: /llms/manifest.json
 - /alpha/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login.md
 - /alpha/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start.md
 - /alpha/api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login.md
-- /alpha/api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearable-credentials-controller-get-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearable-credentials-controller-put-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-list-connections-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-oauth-callback-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-revoke-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-start-connect-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1.md
-- /alpha/api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1.md
 - /alpha/api/stability.md
 - /alpha/cms/api-keys.md
 - /alpha/cms/authoring.md

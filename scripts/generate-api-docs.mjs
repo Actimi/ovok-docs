@@ -14,7 +14,7 @@
  * variants, no availability badges. The env switcher in the UI navigates
  * between equivalent paths in different env folders.
  *
- * Today only `dev` is released (per the "release sandbox now" plan). When
+ * Today only `dev` is released (per the "release alpha now" plan). When
  * alpha/beta/final come online via the merge train, their per-env specs
  * become available and this script emits their folders too.
  */
@@ -29,7 +29,6 @@ const REPO_ROOT = join(__dirname, '..');
 
 const PRIMARY_SPEC    = join(REPO_ROOT, 'openapi/ovok-api-public.yaml');
 const ENV_SPEC_PATHS  = {
-  dev:   join(REPO_ROOT, 'openapi/dev-public.yaml'),
   alpha: join(REPO_ROOT, 'openapi/alpha-public.yaml'),
   beta:  join(REPO_ROOT, 'openapi/beta-public.yaml'),
   final: join(REPO_ROOT, 'openapi/final-public.yaml'),
@@ -40,7 +39,7 @@ const DOCS_ROOT       = join(REPO_ROOT, 'docs');
 const STATIC_OPENAPI  = join(REPO_ROOT, 'static/openapi');
 const STATIC_DATA     = join(REPO_ROOT, 'static/data');
 
-const ALL_ENVS_ORDERED = ['dev', 'alpha', 'beta', 'final'];
+const ALL_ENVS_ORDERED = ['alpha', 'beta', 'final'];
 const HTTP_METHODS = new Set(['get', 'post', 'put', 'patch', 'delete', 'head', 'options']);
 const FHIR_PATH_PREFIXES = ['/fhir/', '/R4/', '/R5/'];
 const isFhirCustomOpPath = (p) => FHIR_PATH_PREFIXES.some((prefix) => p.startsWith(prefix));
@@ -225,6 +224,12 @@ function emitHighLevelForEnv(envKey, spec) {
   for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
       if (!HTTP_METHODS.has(method)) continue;
+      // Skip Wearables: they were pulled out of the docs on 2026-07-09 and
+      // should never regenerate. Match either operationId (e.g.
+      // WearablesController_...) or the first tag ("Wearables (Early Access)").
+      const controllerName = op.operationId ?? '';
+      const tagName = (op.tags?.[0] ?? '').toLowerCase();
+      if (/wearable/i.test(controllerName) || tagName.includes('wearable')) continue;
       const entry = { method: method.toUpperCase(), path, op };
       if (isFhirCustomOpPath(path)) { fhirCustomOps.push(entry); continue; }
       const tag = (op.tags?.[0] ?? 'Uncategorized').trim();
@@ -655,6 +660,10 @@ function emitStabilityPage(envKey, spec) {
   for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
       if (!HTTP_METHODS.has(method)) continue;
+      // Skip Wearables — see filter in emitHighLevelForEnv.
+      const controllerName = op.operationId ?? '';
+      const firstTag = (op.tags?.[0] ?? '').toLowerCase();
+      if (/wearable/i.test(controllerName) || firstTag.includes('wearable')) continue;
       const summary = (op.summary ?? '').trim();
       const tag = (op.tags ?? []).find((t) => !['Public', 'Internal', 'Deprecated'].includes(t)) ?? 'Uncategorized';
       const tagSlug = slug(tag);
@@ -975,7 +984,7 @@ if (Object.keys(envSpecs).length === 0) {
     console.error(`No spec found at ${PRIMARY_SPEC} or env-specific paths.`);
     process.exit(1);
   }
-  envSpecs.dev = yaml.load(readFileSync(PRIMARY_SPEC, 'utf8'));
+  envSpecs.alpha = yaml.load(readFileSync(PRIMARY_SPEC, 'utf8'));
 }
 
 const fhirData = loadFhirResources();
@@ -1002,7 +1011,7 @@ for (const [env, p] of Object.entries(ENV_SPEC_PATHS)) {
 // example + parameters come from the canonical (most-stable available)
 // variant so the picker can pre-fill JSON for POST/PUT/PATCH.
 ensureDir(STATIC_DATA);
-const CANONICAL_PRIORITY = ['final', 'beta', 'alpha', 'dev'];
+const CANONICAL_PRIORITY = ['final', 'beta', 'alpha'];
 
 function exampleFromSchema(schema, deref, depth) {
   if (!schema || depth > 4) return null;
@@ -1072,6 +1081,10 @@ for (const envKey of CANONICAL_PRIORITY) {
   for (const [path, methods] of Object.entries(spec.paths ?? {})) {
     for (const [method, op] of Object.entries(methods)) {
       if (!HTTP_METHODS.has(method)) continue;
+      // Skip Wearables — see filter in emitHighLevelForEnv.
+      const controllerName = op.operationId ?? '';
+      const firstTag = (op.tags?.[0] ?? '').toLowerCase();
+      if (/wearable/i.test(controllerName) || firstTag.includes('wearable')) continue;
       const key = `${method.toUpperCase()} ${path}`;
       if (!byKey.has(key)) {
         // First time we see this endpoint — capture canonical variant.
@@ -1083,7 +1096,7 @@ for (const envKey of CANONICAL_PRIORITY) {
 }
 const manifest = [...byKey.values()].map(({ row, availableIn }) => ({
   ...row,
-  availableIn: ['dev', 'alpha', 'beta', 'final'].filter((e) => availableIn.includes(e)),
+  availableIn: ['alpha', 'beta', 'final'].filter((e) => availableIn.includes(e)),
 }));
 writeIfChanged(join(STATIC_DATA, 'endpoints.json'), JSON.stringify(manifest, null, 2));
 

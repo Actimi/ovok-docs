@@ -55,7 +55,7 @@ set them yourself:
 
 Select the environment with `?environment=dev` on the request URL or
 `x-ovok-environment` if you control headers (Console backends typically
-use the query param). Defaults to `dev` on sandbox.
+use the query param). Defaults to `dev` on alpha.
 
 ```http
 GET /v1/content/api/content-types?environment=dev HTTP/1.1

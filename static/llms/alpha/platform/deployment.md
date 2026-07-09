@@ -13,7 +13,7 @@ keywords:
 Both Ovok Payload apps deploy from the **monorepo root** of
 `Actimi/ovok-payload` (required for `@ovok/contracts`).
 
-## Railway services (sandbox)
+## Railway services
 
 | Railway service      | App           | Health check            |
 | -------------------- | ------------- | ----------------------- |

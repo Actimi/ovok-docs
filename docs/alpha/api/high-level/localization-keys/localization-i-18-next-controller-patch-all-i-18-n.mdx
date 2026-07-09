@@ -31,7 +31,7 @@ NOTE: All pre-existing and matching localizations will be overwritten, pre-exist
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `language` | path | `string` | **yes** | Locale code whose i18next JSON should be updated (e.g. `en`, `de`). Must be enabled for the project via the Locale APIs. |
+| `language` | path | `string` | **yes** |  |
 
 
 ## Request body

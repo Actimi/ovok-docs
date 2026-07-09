@@ -24,8 +24,14 @@ where your team configures the product behind your product.
   toggle billed surfaces on and off.
 - **Content** — edit the copy and assets served inside your product.
 - **Audit / change history** — read who changed what and when.
-- **Devices & signals** — manage the device fleet attached to your
-  project.
+- **IoT Builder** — visual DAG authoring for per-project rule-chains
+  that turn device telemetry into FHIR resources + Signals events.
+  Palette + canvas + schema-driven inspector; supports HTTP + MQTT
+  + WebSocket ingest.
+- **Devices** — provision, mint tokens, copy transport recipes,
+  observe last-ingest state per device.
+- **Signals** — landed observations list; per-project Signals tenant
+  provisioning; alerting via `action.send-to-signals` in a rule-chain.
 
 ## When to use it
 
@@ -230,7 +236,30 @@ After enabling, this becomes the editorial surface — collections,
 media library, drafts, publishing — scoped to the project's Payload
 tenant.
 
-### 8. Project sidebar (always-on)
+### 8. IoT Builder (Project sidebar, when IoT is enabled)
+
+`/iot-builder` and `/devices` show up in the Project section of the
+sidebar once the project's `IOT_ENABLED` toggle is on (Settings →
+General → IoT ingestion). The IoT Builder is the visual DAG
+authoring surface — a full-page palette + canvas + schema-driven
+inspector, no tabs. See the [IoT platform page](../platform/iot/index.mdx)
+for the full model + endpoint index + example templates.
+
+Key IoT-related console URLs:
+
+| URL | Purpose |
+|-----|---------|
+| `/iot-builder` | Rule-chain list |
+| `/iot-builder/[id]` | Full-page workspace (palette + canvas + inspector) |
+| `/iot-builder/catalog` | Node catalog reference |
+| `/devices` | Device list |
+| `/devices/[id]` | Token panel + transport picker + observability rail + telemetry simulator |
+| `/signals` | Signals-landed observations list |
+| `/settings/iot/signals` | Per-project Signals tenant |
+| `/settings/iot/capabilities` | High-risk capability grants (read-only) |
+| `/settings/iot/killswitch` | Project + global killswitch |
+
+### 9. Project sidebar (always-on)
 
 - **Users** — invite, list, suspend, change roles
 - **Billing** — Stripe subscription, plan, invoices

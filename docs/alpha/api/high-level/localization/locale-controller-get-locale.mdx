@@ -35,8 +35,8 @@ Fetch the enabled locales and the default locale for localization.
 
 ### `200` → `LocaleBodyDto` (`application/json`)
 
-- `languages`: `string[]` **(required)** — At least one locale code. Used to register a project's active locale set.
-- `defaultLanguage`: `string` **(required)** — The locale to fall back to when a request omits or specifies an unmapped one.
+- `languages`: `string[]` **(required)**
+- `defaultLanguage`: `string` **(required)**
 
 **Example**
 

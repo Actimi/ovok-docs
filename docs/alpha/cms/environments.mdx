@@ -16,7 +16,7 @@ that tenant, content is further scoped by **environment**:
 
 | Environment | Typical use                  |
 | ----------- | ---------------------------- |
-| `dev`       | Sandbox / integration drafts |
+| `dev`       | Alpha / integration drafts   |
 | `staging`   | Pre-release validation       |
 | `prod`      | Live published content       |
 

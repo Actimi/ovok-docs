@@ -24,7 +24,7 @@ This endpoint allows users to fetch patient informations, specifically observati
 
 ```bash
 curl -X GET \
- -G 'https://api.sandbox.ovok.com/fhir/Observation/$lastn' \
+ -G 'https://api.dev.ovok.com/fhir/Observation/$lastn' \
  -d 'patient=Patient/e70f3aec-d37e-453d-887b-72654c26b3fe' \
  -d 'max=2' \
  -d 'code=131328,8886-4'
@@ -55,7 +55,7 @@ curl -X GET \
         "status": "amended",
         "id": "a4508b00-7854-4108-a903-57aa67eaa79e"
       },
-      "fullUrl": "https://fhir.eu.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
     },
     {
       "resource": {
@@ -83,7 +83,7 @@ curl -X GET \
         },
         "id": "32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
       },
-      "fullUrl": "https://fhir.eu.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
     }
   ]
 }
@@ -95,9 +95,9 @@ curl -X GET \
 
 | Name | In | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `patient` | query | `string` | no | FHIR Patient reference (e.g. `Patient/<uuid>`) whose most-recent observations to return. |
-| `max` | query | `string` | no | Maximum number of observations to return per code. Defaults to `1`. |
-| `code` | query | `string` | no | Comma-separated list of Observation codes to filter by (e.g. `131328,8886-4`). |
+| `patient` | query | `string` | no | Patient reference. |
+| `max` | query | `string` | no | Maximum number of observations to return. |
+| `code` | query | `string` | no | Observation code(s) with comma separated values, e.g. "131328,8886-4". |
 
 
 
@@ -133,7 +133,7 @@ curl -X GET \
         "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
         "resourceType": "Observation"
       },
-      "fullUrl": "https://fhir.eu.ovok.com/fhir/R4/Observation/87ea5dfc-8b8e-384d-8489-79496e706390"
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/87ea5dfc-8b8e-384d-8489-79496e706390"
     }
   ]
 }

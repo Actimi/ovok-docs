@@ -116,38 +116,52 @@
   },
   {
     "type": "category",
-    "label": "CMS Public Delivery",
+    "label": "CMS",
     "link": {
       "type": "doc",
-      "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1"
+      "id": "api/high-level/cms/cms-controller-copy-single-content"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-get-item-v-1",
-        "label": "Get a published item"
+        "id": "api/high-level/cms/cms-controller-copy-single-content",
+        "label": "Copy a content"
       },
       {
         "type": "doc",
-        "id": "api/high-level/cms-public-delivery/public-delivery-controller-list-items-v-1",
-        "label": "List published items"
-      }
-    ]
-  },
-  {
-    "type": "category",
-    "label": "Content",
-    "link": {
-      "type": "doc",
-      "id": "api/high-level/content/content-proxy-controller-proxy"
-    },
-    "collapsed": true,
-    "items": [
+        "id": "api/high-level/cms/cms-controller-copy-contents",
+        "label": "Copy contents"
+      },
       {
         "type": "doc",
-        "id": "api/high-level/content/content-proxy-controller-proxy",
-        "label": "Content CMS reverse proxy"
+        "id": "api/high-level/cms/cms-controller-create-content",
+        "label": "Create content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-delete-content",
+        "label": "Delete content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-get-content",
+        "label": "Get content by key and language"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-search-content",
+        "label": "Search content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-search-mapped-content",
+        "label": "Search mapped content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-update-content",
+        "label": "Update content"
       }
     ]
   },
@@ -297,94 +311,7 @@
       {
         "type": "doc",
         "id": "api/high-level/partner/partner-controller-health-check",
-        "label": "Partner integration health check"
-      }
-    ]
-  },
-  {
-    "type": "category",
-    "label": "Project Settings",
-    "link": {
-      "type": "doc",
-      "id": "api/high-level/project-settings/project-settings-controller-get-settings-v-1"
-    },
-    "collapsed": true,
-    "items": [
-      {
-        "type": "doc",
-        "id": "api/high-level/project-settings/project-settings-controller-get-settings-v-1",
-        "label": "List project settings"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/project-settings/project-settings-controller-put-setting-v-1",
-        "label": "Toggle a project setting"
-      }
-    ]
-  },
-  {
-    "type": "category",
-    "label": "Projects",
-    "link": {
-      "type": "doc",
-      "id": "api/high-level/projects/projects-controller-get-my-cms-locales-v-1"
-    },
-    "collapsed": true,
-    "items": [
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-get-my-cms-locales-v-1",
-        "label": "Get CMS locales"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-get-project-v-1",
-        "label": "Get project detail"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-get-my-project-features-v-1",
-        "label": "Get project features"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-get-my-tenant-code-v-1",
-        "label": "Get project tenant code"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-invite-member-v-1",
-        "label": "Invite a project member"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-list-my-projects-v-1",
-        "label": "List my projects"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-list-my-members-v-1",
-        "label": "List project members"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-remove-member-v-1",
-        "label": "Remove a project member"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-update-member-v-1",
-        "label": "Update a project member"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-update-my-cms-locales-v-1",
-        "label": "Update CMS locales"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/projects/projects-controller-update-my-project-features-v-1",
-        "label": "Update project features"
+        "label": "GET /partner/health-check"
       }
     ]
   },
@@ -431,62 +358,6 @@
         "type": "doc",
         "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
         "label": "Practitioner - MFA"
-      }
-    ]
-  },
-  {
-    "type": "category",
-    "label": "Wearables (Early Access)",
-    "link": {
-      "type": "doc",
-      "id": "api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1"
-    },
-    "collapsed": true,
-    "items": [
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-clear-v-1",
-        "label": "[Early Access] Clear wearable credentials"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-list-connections-v-1",
-        "label": "[Early Access] List wearable connections"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-get-v-1",
-        "label": "[Early Access] Read wearable credentials"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-revoke-v-1",
-        "label": "[Early Access] Revoke a wearable connection"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearable-credentials-controller-put-v-1",
-        "label": "[Early Access] Set wearable credentials"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-start-connect-v-1",
-        "label": "[Early Access] Start a wearable OAuth flow"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-oauth-callback-v-1",
-        "label": "[Early Access] Wearable OAuth callback"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-webhook-ingress-v-1",
-        "label": "[Early Access] Wearable webhook ingress"
-      },
-      {
-        "type": "doc",
-        "id": "api/high-level/wearables-early-access/wearables-controller-webhook-verify-v-1",
-        "label": "[Early Access] Wearable webhook subscription verification"
       }
     ]
   }

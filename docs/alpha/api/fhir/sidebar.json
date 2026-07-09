@@ -30,26 +30,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/custom-operations/fhir-controller-get-observation-or-timeseries",
-        "label": "Expand Observation SampledData to a {t,v} time-series"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/custom-operations/fhir-controller-get-device-telemetry-history",
-        "label": "Get device telemetry history"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/custom-operations/fhir-controller-create-patient",
-        "label": "Create Patient with Signals linking"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/custom-operations/fhir-controller-update-patient-threshold",
-        "label": "Update patient threshold"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/custom-operations/fhir-controller-populate-questionnaire",
         "label": "Populate questionnaire"
       },

@@ -35,7 +35,7 @@ Use `projectId`, not `projectSlug`, on this surface.
 
 Send the API key as `Authorization: Bearer …`, `x-api-key: …`, or
 `?apiKey=…`. Each key is bound to exactly one project when
-`PAYLOAD_CMS_PUBLIC_API_KEY` is configured on ovok-core (sandbox may
+`PAYLOAD_CMS_PUBLIC_API_KEY` is configured on ovok-core (alpha may
 allow unauthenticated access when that env var is unset).
 
 Mint keys from the Console at **Settings → API keys → CMS**:

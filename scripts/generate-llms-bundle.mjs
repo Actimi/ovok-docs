@@ -28,7 +28,7 @@ const DOCS = join(REPO_ROOT, 'docs');
 const OUT  = join(REPO_ROOT, 'static/llms');
 const LLMS_TXT = join(REPO_ROOT, 'static/llms.txt');
 
-const ENV_FOLDERS = new Set(['dev', 'alpha', 'beta', 'final']);
+const ENV_FOLDERS = new Set(['alpha', 'beta', 'final']);
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -80,9 +80,9 @@ function sweepOrphans(dir) {
 /**
  * Compute the public URL for a doc file given its on-disk path.
  *
- *   docs/dev/intro.md           (slug:/)           → /dev
- *   docs/dev/platform/foo.md                       → /dev/platform/foo
- *   docs/dev/api/fhir/base/patient.mdx             → /dev/api/fhir/base/patient
+ *   docs/alpha/intro.md           (slug:/)         → /alpha
+ *   docs/alpha/platform/foo.md                     → /alpha/platform/foo
+ *   docs/alpha/api/fhir/base/patient.mdx           → /alpha/api/fhir/base/patient
  *   docs/intro.md  (legacy, no env folder)         → /intro
  */
 function urlForDocFile(absPath, content) {
@@ -109,8 +109,8 @@ function urlForDocFile(absPath, content) {
  * Convert a public URL to the on-disk twin path. The CopyForAI button
  * fetches /llms<pathname>.md, so this mapping has to match.
  *
- *   /dev                → static/llms/dev.md
- *   /dev/api/foo        → static/llms/dev/api/foo.md
+ *   /alpha              → static/llms/alpha.md
+ *   /alpha/api/foo      → static/llms/alpha/api/foo.md
  *   /                   → static/llms/index.md
  */
 function llmsPathForUrl(url) {
