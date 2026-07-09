@@ -14,7 +14,7 @@ import type * as Preset from '@docusaurus/preset-classic';
  * The order is fixed (dev → alpha → beta → final) so the switcher always
  * lists tiers in maturity order regardless of which arrived first.
  */
-const ALL_ENVS = ['dev', 'alpha', 'beta', 'final'] as const;
+const ALL_ENVS = ['alpha', 'beta', 'final'] as const;
 type EnvKey = (typeof ALL_ENVS)[number];
 
 const DOCS_DIR = path.join(__dirname, 'docs');
@@ -226,7 +226,7 @@ const config: Config = {
       logo: { alt: 'Ovok', src: 'img/logo.svg' },
       items: [
         // docSidebar with docsPluginId targets the dev instance for the Docs link.
-        { type: 'docSidebar', sidebarId: 'docs', docsPluginId: 'dev', position: 'left', label: 'Docs' },
+        { type: 'docSidebar', sidebarId: 'docs', docsPluginId: 'alpha', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { type: 'custom-envSwitcher', position: 'right' },
         { type: 'custom-envLink', surface: 'console',   label: 'Console',        position: 'right' },
@@ -239,23 +239,23 @@ const config: Config = {
         {
           title: 'Product',
           items: [
-            { label: 'Introduction', to: '/dev' },
-            { label: 'Platform overview', to: '/dev/platform/overview' },
-            { label: 'Release tiers', to: '/dev/platform/environments' },
+            { label: 'Introduction', to: '/alpha' },
+            { label: 'Platform overview', to: '/alpha/platform/overview' },
+            { label: 'Release tiers', to: '/alpha/platform/environments' },
           ],
         },
         {
           title: 'Surfaces',
           items: [
-            { label: 'Console', to: '/dev/surfaces/console' },
-            { label: 'Data Dashboard', to: '/dev/surfaces/data-dashboard' },
+            { label: 'Console', to: '/alpha/surfaces/console' },
+            { label: 'Data Dashboard', to: '/alpha/surfaces/data-dashboard' },
           ],
         },
         {
           title: 'API',
           items: [
-            { label: 'High Level API', to: '/dev/api/high-level' },
-            { label: 'FHIR API',       to: '/dev/api/fhir' },
+            { label: 'High Level API', to: '/alpha/api/high-level' },
+            { label: 'FHIR API',       to: '/alpha/api/fhir' },
           ],
         },
         {

@@ -1,13 +1,13 @@
 name: Vercel Deployment
 
 # One Vercel project hosts the docs site. The env switcher inside the
-# site is the user-facing selection between dev / alpha / beta / final —
+# site is the user-facing selection between alpha / beta / final —
 # the ovok-docs branches all deploy into the SAME project:
 #
-#   dev             → production deployment (only sandbox docs released
-#                     right now; final/alpha/beta come back when the
-#                     ovok-internal PR merges through development → master)
-#   alpha/beta/final → preview deployments (auto-named by Vercel) until
+#   alpha           → production deployment (only sandbox docs released
+#                     right now; final/beta come back when the
+#                     ovok-internal PR merges through staging → master)
+#   beta/final      → preview deployments (auto-named by Vercel) until
 #                     one of them is promoted to production
 #
 # When `final` is recreated and ready to take over docs.ovok.com,

@@ -5,15 +5,20 @@
  * URL prefix. The env switcher is a *router* — it rewrites the first path
  * segment to navigate between equivalent pages in different tiers.
  *
- *   tier   source branch    docs folder            URL prefix
- *   ────   ──────────────   ────────────────       ─────────────
- *   dev    sandbox          docs/dev/              /dev/...
- *   alpha  development      docs/alpha/            /alpha/...
- *   beta   staging          docs/beta/             /beta/...
- *   final  master           docs/final/            /final/...   (or /)
+ *   tier    source branch    docs folder            URL prefix
+ *   ────    ──────────────   ────────────────       ─────────────
+ *   alpha   sandbox          docs/alpha/            /alpha/...
+ *   beta    staging          docs/beta/             /beta/...
+ *   final   master           docs/final/            /final/...   (or /)
+ *
+ * `alpha` is the sandbox tier — that's where breaking changes land daily.
+ * `beta` is the staging tier — pre-release quality. `final` is production.
+ * There used to be a `dev` tier that pointed at sandbox hosts; it was
+ * folded into `alpha` on 2026-07-09 so we have one bleeding-edge tier
+ * instead of two overlapping ones.
  */
 
-export type EnvKey = 'dev' | 'alpha' | 'beta' | 'final';
+export type EnvKey = 'alpha' | 'beta' | 'final';
 export type Surface = 'api' | 'fhir' | 'console' | 'dashboard';
 
 export interface EnvConfig {
@@ -22,15 +27,15 @@ export interface EnvConfig {
   shortLabel: string;
   description: string;
   hosts: Record<Surface, string>;
-  maturity: 'sandbox' | 'preview' | 'pre-release' | 'production';
+  maturity: 'sandbox' | 'pre-release' | 'production';
 }
 
 export const ENVS: Record<EnvKey, EnvConfig> = {
-  dev: {
-    key: 'dev',
-    label: 'Dev — sandbox',
-    shortLabel: 'dev',
-    description: 'Sandbox tier. Internal experiments, feature flags, breaking changes daily.',
+  alpha: {
+    key: 'alpha',
+    label: 'Alpha — sandbox',
+    shortLabel: 'alpha',
+    description: 'Sandbox tier. Bleeding-edge surface; breaking changes can land any day.',
     hosts: {
       api:       'https://api.sandbox.ovok.com',
       fhir:      'https://api.sandbox.ovok.com/fhir/R5',
@@ -39,29 +44,16 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     },
     maturity: 'sandbox',
   },
-  alpha: {
-    key: 'alpha',
-    label: 'Alpha — preview',
-    shortLabel: 'alpha',
-    description: 'Bleeding-edge surface. Breaking changes can land any day.',
-    hosts: {
-      api:       'https://api.dev.ovok.com',
-      fhir:      'https://api.dev.ovok.com/fhir/R5',
-      console:   'https://console.dev.ovok.com',
-      dashboard: 'https://dashboard.dev.ovok.com',
-    },
-    maturity: 'preview',
-  },
   beta: {
     key: 'beta',
     label: 'Beta — pre-release',
     shortLabel: 'beta',
     description: 'Release-candidate surface. Stable enough for integration testing.',
     hosts: {
-      api:       'https://api.staging.ovok.com',
-      fhir:      'https://api.staging.ovok.com/fhir/R5',
-      console:   'https://console.staging.ovok.com',
-      dashboard: 'https://dashboard.staging.ovok.com',
+      api:       'https://api.staging.eu.ovok.com',
+      fhir:      'https://api.staging.eu.ovok.com/fhir/R5',
+      console:   'https://console.staging.eu.ovok.com',
+      dashboard: 'https://dashboard.staging.eu.ovok.com',
     },
     maturity: 'pre-release',
   },
@@ -71,17 +63,17 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     shortLabel: 'final',
     description: 'The contract you build against. Versioned and supported.',
     hosts: {
-      api:       'https://api.ovok.com',
-      fhir:      'https://api.ovok.com/fhir/R5',
-      console:   'https://console.ovok.com',
-      dashboard: 'https://dashboard.ovok.com',
+      api:       'https://api.eu.ovok.com',
+      fhir:      'https://api.eu.ovok.com/fhir/R5',
+      console:   'https://console.eu.ovok.com',
+      dashboard: 'https://dashboard.eu.ovok.com',
     },
     maturity: 'production',
   },
 };
 
-export const ENV_ORDER: EnvKey[] = ['dev', 'alpha', 'beta', 'final'];
-export const DEFAULT_ENV: EnvKey = 'dev';
+export const ENV_ORDER: EnvKey[] = ['alpha', 'beta', 'final'];
+export const DEFAULT_ENV: EnvKey = 'alpha';
 
 /**
  * Which tiers are actually released today is computed at build time by
@@ -92,10 +84,10 @@ export const DEFAULT_ENV: EnvKey = 'dev';
  */
 
 export function isEnvKey(value: unknown): value is EnvKey {
-  return value === 'dev' || value === 'alpha' || value === 'beta' || value === 'final';
+  return value === 'alpha' || value === 'beta' || value === 'final';
 }
 
-/** Pull the env from a URL pathname like "/dev/api/high-level/foo" → "dev". */
+/** Pull the env from a URL pathname like "/alpha/api/high-level/foo" → "alpha". */
 export function envFromPathname(pathname: string): EnvKey | null {
   const first = pathname.split('/').filter(Boolean)[0];
   return isEnvKey(first) ? first : null;

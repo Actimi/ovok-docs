@@ -23,7 +23,7 @@ export default function EnvSwitcher({ mobile = false }: Props): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const releasedEnvs = useMemo<EnvKey[]>(() => {
     const raw = siteConfig.customFields?.releasedEnvs;
-    if (!Array.isArray(raw)) return ['dev'];
+    if (!Array.isArray(raw)) return ['alpha'];
     return raw.filter(isEnvKey);
   }, [siteConfig.customFields]);
 

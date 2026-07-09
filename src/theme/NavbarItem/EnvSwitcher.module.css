@@ -57,7 +57,6 @@
   display: inline-block;
   background: var(--ink-4);
 }
-.dot[data-env='dev']    { background: var(--ink-3); }
 .dot[data-env='alpha']  { background: var(--signal-warn); }
 .dot[data-env='beta']   { background: var(--ovok-deep); }
 .dot[data-env='final']  { background: var(--signal-ok); }
