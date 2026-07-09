@@ -288,10 +288,7 @@ project until an operator grants it explicitly on
 
 ```ts
 {
-  resourceType:  'Patient' | 'Device' | 'Observation' | 'Encounter' |
-                 'CommunicationRequest' | 'DiagnosticReport' |
-                 'ServiceRequest' | 'Practitioner' | 'Organization' |
-                 'Location';
+  resourceType:  ClinicalFhirResourceType;   // 149 FHIR R5 clinical types
   id?:           string;                     // exactly one of…
   searchFilter?: {                           // …id or searchFilter
     identifier?:   string | number;
@@ -311,11 +308,51 @@ project until an operator grants it explicitly on
 }
 ```
 
+**`resourceType` — every FHIR R5 clinical resource is allowed** (Patient,
+Observation, DiagnosticReport, ServiceRequest, Encounter, Immunization,
+MedicationRequest, DocumentReference, CarePlan, RiskAssessment, Task,
+… 149 types total). The allowlist is a **whitelist**, not a blacklist —
+it explicitly excludes 23 admin / tenancy / security-sensitive types
+so Medplum shipping a new admin resource never silently widens the
+attack surface:
+
+| Excluded type          | Why                                                          |
+| ---------------------- | ------------------------------------------------------------ |
+| `AccessPolicy`         | grants the access rules themselves                            |
+| `Agent`                | Medplum on-premise agent identity                             |
+| `AsyncJob`             | internal cross-tenant job internals                           |
+| `AuditEvent`           | actor / patient refs / IP; cross-tenant discovery             |
+| `Binary`               | raw bytes (PDF exports, uploaded docs); PHI exfil             |
+| `Bot`                  | executable code with elevated privileges                      |
+| `BulkDataExport`       | pre-signed URLs of tenant-wide data snapshots                 |
+| `Bundle`               | container wrapping any resource, including admin              |
+| `ClientApplication`    | OAuth client id/secret                                        |
+| `DomainConfiguration`  | tenant SSO/OIDC secrets                                       |
+| `Endpoint`             | address + auth headers of outbound integrations               |
+| `JsonWebKey`           | signing/verification keys                                     |
+| `Login`                | live session tokens + refresh tokens                          |
+| `Permission`           | FHIR R5 access rules (equivalent to AccessPolicy)             |
+| `Project`              | tenant root                                                   |
+| `ProjectMembership`    | tenancy graph + effective permissions                         |
+| `Provenance`           | change actor + timeline (companion to AuditEvent)             |
+| `SmartAppLaunch`       | SMART-on-FHIR launch tokens                                   |
+| `Subscription`         | webhook endpoint URLs + secret headers                        |
+| `SubscriptionStatus`   | internal notification-pipeline bookkeeping                    |
+| `User`                 | identity: email, hashed password, MFA state                   |
+| `UserConfiguration`    | admin-plane per-user preferences                              |
+| `UserSecurityRequest`  | password-reset / email-verification tokens                    |
+
+The console inspector renders `resourceType` as a searchable dropdown
+sourced from the same enum — the FE and the runtime Zod parse never
+drift.
+
 Guarantees:
 
-1. `resourceType` allowlist — admin-plane resources (`Project`,
-   `ProjectMembership`, `Bot`, `User`, `AccessPolicy`) cannot be
-   fetched by a chain.
+1. `resourceType` allowlist — admin/tenancy/security resources (23
+   types above) cannot be fetched by a chain. Attempted use fails Zod
+   at parse time; a defense-in-depth runtime check in the handler
+   routes Failure with `metadata.fetchError = 'excluded'` if the two
+   constants ever drift.
 2. `_project` is FORCE-injected into every search — a caller-supplied
    `_project` in `searchFilter` is stripped (Zod rejects it anyway).
 3. Post-read `meta.project === ctx.projectId` check. Stray cross-
