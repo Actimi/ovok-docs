@@ -120,6 +120,94 @@ The full HTTP contract for each — request bodies, response shapes,
 error semantics — is under [High Level API](../../api/high-level/)
 in this docs site. This page is the model + safety overview.
 
+## Example: Sleepiz-style ingestion flow
+
+This is the shape a real vitals device (heart rate, breathing rate,
+SpO2, out-of-bed) ends up with by the time it's landing in Ovok. Ships
+as a one-click template on the console — pick **Load template →
+Sleepiz-style ingestion (HR)** in the JSON editor. Copies verbatim
+into a rule-chain draft and passes the validator (assuming the
+project has grants for `raise-cr` + `store-fhir`).
+
+```mermaid
+graph LR
+  T[trigger.telemetry<br/>LOINC 8867-4] --> E[action.enrich<br/>Device → Patient refs]
+  E --> D[action.dedup<br/>deviceId + ts, 1-min window]
+  D -->|first-seen| S[action.switch<br/>value > 120]
+  D -->|first-seen| SG[action.send-to-signals]
+  D -->|first-seen| LK[action.set-live-key<br/>code: hr]
+  S -->|true| CR[action.raise-cr<br/>urgent CR to care team]
+  S -->|false| STORE[action.store-fhir<br/>Observation]
+```
+
+### What each node does
+
+- **`trigger.telemetry`** — fires on any device telemetry matching the
+  LOINC filter. `8867-4` = heart rate. Swap for `9279-1` (breathing
+  rate), `59408-5` (SpO2), or `81509-1` (out-of-bed) to reuse the
+  same graph shape for other vitals.
+- **`action.enrich`** — reads the Device by id (from the token
+  binding) and its linked Patient, attaches both as metadata on the
+  message. Downstream nodes get `deviceRef` + `patientRef` for free.
+  Self-serve — no capability grant needed.
+- **`action.dedup`** — routes on first-seen (project-scoped key)
+  vs repeat. Configured to key on `deviceId + ts` with the label
+  `sleepiz-hr-1min`, so a device that retries the exact same
+  timestamp (retry loop, at-least-once transport) only fires the
+  chain once. Repeats dead-end silently on the `false` handle.
+- **`action.switch`** — the branching threshold. `from: "value"`,
+  `op: "gt"`, `value: 120` — HR above 120 bpm routes to the `true`
+  handle (alert path), everything else to `false` (routine path).
+- **`action.raise-cr`** — creates a `CommunicationRequest` for the
+  patient's care team with `priority: urgent`. Requires the
+  `raise-cr` capability grant (high-risk).
+- **`action.store-fhir`** — persists the reading as an `Observation`
+  resource on the project's FHIR store. Requires the `store-fhir`
+  capability grant (high-risk).
+- **`action.send-to-signals`** — resolves the project's Signals
+  tenant (per-project via `/v1/signals/project-config` or the shared
+  global fallback) and stamps tenant identity on the message so it
+  lands in the right event bus. Self-serve.
+- **`action.set-live-key`** — writes the payload's `value` field to
+  Redis under the code `hr` so downstream dashboards can read
+  `last-known heart rate` without a FHIR query. Self-serve.
+
+### Adapting the template
+
+Two knobs to change per deployment:
+
+1. **LOINC on the trigger** — swap `8867-4` for the vital your
+   device reports. The rest of the chain is code-agnostic.
+2. **Threshold on the switch** — `120` is the HR bound; use `< 12`
+   for BR bradypnea, `< 90` for SpO2 desat, etc. `op` accepts
+   `equals`, `not-equals`, `gt`, `gte`, `lt`, `lte`, `contains`.
+
+Everything else — the enrich → dedup → fan-out shape — carries over
+verbatim. It's the same shape sleepiz uses in production for
+Hartmann-tenant HR/BR/OOB ingestion (see the underlying
+[`DeviceInitializationRunner`](https://github.com/Actimi/ovok-core/blob/sandbox/src/ingest/device-initialization.runner.ts)
++ [`ingest.controller.ts`](https://github.com/Actimi/ovok-core/blob/sandbox/src/ingest/ingest.controller.ts)),
+translated into rule-chain nodes so any project can wire it up
+without a code change.
+
+### End-to-end test with the console simulator
+
+1. **Load** — on `/iot-builder/[chain-id]`, click **Load template →
+   Sleepiz-style ingestion (HR)** in the JSON tab. Save the draft.
+2. **Grants** — Settings → IoT capabilities. If `raise-cr` and
+   `store-fhir` aren't granted, request them; publish will 422 with
+   `capability-denied` otherwise.
+3. **Provision** — `/devices` → **+ New device** → serial `SLPZ-TEST-01`
+   (or any string). Mint a token; copy the raw `iotk_…` once.
+4. **Send** — on the device detail page, in the **Simulate** card,
+   paste the token and POST a body like:
+   ```json
+   { "value": 145, "unit": "bpm", "deviceId": "SLPZ-TEST-01", "ts": "2026-07-09T12:00:00Z" }
+   ```
+5. **Watch** — the response panel shows 202 with a `jobId`; the
+   chain runs; a `CommunicationRequest` with `priority: urgent` lands
+   on the project; the Signals tenant receives the event.
+
 ## Environment configuration
 
 Deployment-level env vars the IoT surface reads:
