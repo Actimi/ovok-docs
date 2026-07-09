@@ -240,6 +240,7 @@
   "/dev/cms/public-delivery",
   "/dev/platform/deployment",
   "/dev/platform/environments",
+  "/dev/platform/iot/index",
   "/dev/platform/overview",
   "/dev/platform/payload-stack",
   "/dev/platform/public-api",

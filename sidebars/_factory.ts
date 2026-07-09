@@ -13,17 +13,23 @@ export function buildSidebar(envKey: string): SidebarsConfig {
   const items: NonNullable<SidebarsConfig['docs']> = ['intro']
 
   if (existsAny(path.join(envDir, 'platform'))) {
+    const platformItems: string[] = [
+      'platform/overview',
+      'platform/public-api',
+      'platform/environments',
+      'platform/payload-stack',
+      'platform/deployment',
+    ]
+    // IoT platform page — only listed when the env has it. Lands
+    // on `dev` alongside the ovok-core b0..b7 backend gaps.
+    if (fs.existsSync(path.join(envDir, 'platform', 'iot', 'index.mdx'))) {
+      platformItems.push('platform/iot/index')
+    }
     items.push({
       type: 'category',
       label: 'Platform',
       collapsed: false,
-      items: [
-        'platform/overview',
-        'platform/public-api',
-        'platform/environments',
-        'platform/payload-stack',
-        'platform/deployment',
-      ],
+      items: platformItems,
     })
   }
 

@@ -244,6 +244,7 @@ Manifest: /llms/manifest.json
 - /dev/cms/public-delivery.md
 - /dev/platform/deployment.md
 - /dev/platform/environments.md
+- /dev/platform/iot/index.md
 - /dev/platform/overview.md
 - /dev/platform/payload-stack.md
 - /dev/platform/public-api.md
