@@ -19,7 +19,7 @@ Lifecycle status of every endpoint exposed on the **alpha** tier. Anything not l
 
 | Status | Endpoints |
 | --- | --- |
-| General availability | 60 |
+| General availability | 77 |
 | Early Access | 0 |
 | Deprecated | 0 |
 

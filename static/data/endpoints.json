@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
+      "password": "c3Et4<l.}EyxQ92)",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
+      "password": "c3Et4<l.}EyxQ92)",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzgxMDg5MzQsImV4cCI6MTc3ODExMjUzNH0.xLs8hvtYqtL9CS-8CY8Izq4_1JRXmC5IBo8y9JCHAqc"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM4OTMxNTQsImV4cCI6MTc4Mzg5Njc1NH0.x4Kx-NE-F0281CYRtXmiQlfe9SUXSMzuG0njgBWl7Yc"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
+      "password": "c3Et4<l.}EyxQ92)",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
+      "password": "c3Et4<l.}EyxQ92)",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
-      "codeChallenge": "k0CBzsBqgJejBTsi97acWeHGQLpNWYLR"
+      "password": "c3Et4<l.}EyxQ92)",
+      "codeChallenge": "Ds6NIBz7hMEN2Nigdqm2bxnHFh9hrtzE"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "CTFWMX4Ph467ag6MiVF1lFVDMwepqcYr",
-      "codeVerifier": "ZtjbdYPZTfMP7xbXit2bMm0Hq7pu5YYoZhivzvILd5orAFHgLRAGh9vgwMGKYDp0",
+      "sessionCode": "l4LeKx4KdQZsVJHKjbXiZ80zWNQjQihz",
+      "codeVerifier": "O1vVeB1tHNbbsEphHc25Me9dWFF5tlPVS67ii7xPbQg9Mss7GUn77Mo2AwBkbQjc",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
-      "codeChallenge": "6JFfDinyaWwLWn0MOplQbhHx2uI416bZ",
+      "password": "c3Et4<l.}EyxQ92)",
+      "codeChallenge": "YCjjRezAzb8MiXlXF2ialDAbB4QsK11k",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "VswcCqe7FdOPwXeNkqDTXaos5A4wtM1n",
-      "codeVerifier": "mF6rayn3QcjlDWR1o6NvmLXDsTQjTQfif079mpVopKv50l6pIsgorG2jKtokBGvT"
+      "sessionCode": "YV2oVdxcGrOiRSkLM5yQs1I4sURTrWI6",
+      "codeVerifier": "fHAqBKRIiifdPo5WKxh86ckvd4My04dvs8CaZpHMGYHDdWbTWaGwdNzOfRQdXsLe"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "LyA{P.thDJw_E=Nr",
+      "password": "c3Et4<l.}EyxQ92)",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -664,8 +664,59 @@
     "path": "/cms/{type}/map/{language}",
     "summary": "Search mapped content",
     "description": "# Search Mapped Content",
-    "tag": "CMS",
-    "operationId": "CMSController_searchMappedContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchMappedContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/map/{language}",
+    "summary": "Search mapped content",
+    "description": "# Search Mapped Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchMappedContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -715,8 +766,35 @@
     "path": "/cms/{type}/{language}/copy-from-parent-project",
     "summary": "Copy contents",
     "description": "Copy contents.",
-    "tag": "CMS",
-    "operationId": "CMSController_copyContents",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copyContents[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}/copy-from-parent-project",
+    "summary": "Copy contents",
+    "description": "Copy contents.",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copyContents[1]",
     "parameters": [
       {
         "name": "type",
@@ -742,8 +820,41 @@
     "path": "/cms/{type}/{language}/{key}/copy-from-parent-project",
     "summary": "Copy a content",
     "description": "Copy a content.",
-    "tag": "CMS",
-    "operationId": "CMSController_copySingleContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copySingleContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}/{key}/copy-from-parent-project",
+    "summary": "Copy a content",
+    "description": "Copy a content.",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copySingleContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -775,8 +886,8 @@
     "path": "/cms/{type}/{language}",
     "summary": "Create content",
     "description": "# Create Content",
-    "tag": "CMS",
-    "operationId": "CMSController_createContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_createContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -828,8 +939,112 @@
     "path": "/cms/{type}/{language}",
     "summary": "Search content",
     "description": "# Search Content",
-    "tag": "CMS",
-    "operationId": "CMSController_searchContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}",
+    "summary": "Create content",
+    "description": "# Create Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_createContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/{language}",
+    "summary": "Search content",
+    "description": "# Search Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -879,8 +1094,8 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Update content",
     "description": "# Create Content",
-    "tag": "CMS",
-    "operationId": "CMSController_updateContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_updateContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -938,8 +1153,8 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Get content by key and language",
     "description": "# Get Content by Key and Language",
-    "tag": "CMS",
-    "operationId": "CMSController_getContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_getContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -971,8 +1186,133 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Delete content",
     "description": "# Delete Content",
-    "tag": "CMS",
-    "operationId": "CMSController_deleteContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_deleteContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Update content",
+    "description": "# Create Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_updateContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Get content by key and language",
+    "description": "# Get Content by Key and Language",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_getContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Delete content",
+    "description": "# Delete Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_deleteContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -1156,6 +1496,375 @@
       }
     ],
     "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R4/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R5/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[0]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R4/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[1]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R5/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[2]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/R4/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/R5/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
     "deprecated": false,
     "availableIn": [
       "alpha"

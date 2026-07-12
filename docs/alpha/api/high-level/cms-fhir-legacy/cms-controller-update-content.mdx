@@ -1,15 +1,16 @@
 ---
-title: "Create content"
-sidebar_label: "Create content"
+title: "Update content"
+sidebar_label: "Update content"
 description: "# Create Content"
 ---
 
-# Create content
+# Update content
 
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}/{key}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method put">PUT</span> <code className="endpoint-hero__path">{"/internal/cms/{type}/{language}/{key}"}</code></div>
 </div>
 
 <ApiBase inline={false} />
@@ -65,6 +66,7 @@ curl -X POST \
 | --- | --- | --- | --- | --- |
 | `type` | path | `string` | **yes** |  |
 | `language` | path | `string` | **yes** |  |
+| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
 
 
 ## Request body

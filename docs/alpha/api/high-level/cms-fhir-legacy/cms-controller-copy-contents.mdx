@@ -1,22 +1,23 @@
 ---
-title: "Copy a content"
-sidebar_label: "Copy a content"
-description: "Copy a content."
+title: "Copy contents"
+sidebar_label: "Copy contents"
+description: "Copy contents."
 ---
 
-# Copy a content
+# Copy contents
 
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}/{key}/copy-from-parent-project"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}/copy-from-parent-project"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/internal/cms/{type}/{language}/copy-from-parent-project"}</code></div>
 </div>
 
 <ApiBase inline={false} />
 
 </div>
 
-Copy a content.
+Copy contents.
 
 
 ## Parameters
@@ -25,7 +26,6 @@ Copy a content.
 | --- | --- | --- | --- | --- |
 | `type` | path | `string` | **yes** |  |
 | `language` | path | `string` | **yes** |  |
-| `key` | path | `string` | **yes** | A key that is used to identify the content between languages. |
 
 
 

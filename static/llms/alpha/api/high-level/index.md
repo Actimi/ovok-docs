@@ -20,7 +20,7 @@ signals — exposed as a coherent REST surface.
 - **[Authentication - B2B](/alpha/api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login)** — 2 endpoints
 - **[Authentication - Session Management](/alpha/api/high-level/authentication-session-management/auth-session-controller-find-all)** — 2 endpoints
 - **[Bots - Execute a custom script](/alpha/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post)** — 1 endpoint
-- **[CMS](/alpha/api/high-level/cms/cms-controller-copy-single-content)** — 8 endpoints
+- **[CMS (FHIR Legacy)](/alpha/api/high-level/cms-fhir-legacy/cms-controller-copy-single-content)** — 16 endpoints
 - **[Document](/alpha/api/high-level/document/document-controller-delete-document)** — 7 endpoints
 - **[Localization](/alpha/api/high-level/localization/locale-controller-get-locale)** — 2 endpoints
 - **[Localization Keys](/alpha/api/high-level/localization-keys/localization-controller-delete-localization)** — 7 endpoints

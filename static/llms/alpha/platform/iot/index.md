@@ -193,12 +193,193 @@ issue on Publish) read.
 
 Categories:
 
-- **`trigger.*`** — no inputs, one output. Fire on incoming telemetry.
+- **`trigger.*`** — no inputs, one output. Fire on an incoming event.
+  Two trigger types today: `trigger.telemetry` (device sent a reading)
+  and `trigger.signal` (Signals threshold breached).
 - **`condition.*`** — one input, `branch` outputs (`true`/`false` handles).
-- **`action.*`** — one input, one output (or `branch` for `dedup` +
-  `switch`). Do the work.
+- **`action.*`** — one input, one output (or `branch` for `dedup`,
+  `switch`, and `fetch-resource`). Do the work.
 
 Full reference at `/iot-builder/catalog` on the console.
+
+#### Selector syntax (Zapier-style cross-node references)
+
+Any node config field that names a value on the message accepts one
+of three **prefix-scoped selectors**, or a bare key which resolves as
+if the caller had written `payload.<key>` (back-compat with early
+switch chains):
+
+| Selector                | Resolves to                     | Example                              |
+| ----------------------- | ------------------------------- | ------------------------------------ |
+| `payload.<key>`         | `message.payload[key]`          | `payload.heartRate`                  |
+| `metadata.<key>`        | `message.metadata[key]`         | `metadata.patientRef`                |
+| `nodes.<nodeId>.<key>`  | `message.outputs[nodeId][key]`  | `nodes.enrich-1.patientRef`          |
+| `<bareKey>`             | `message.payload[bareKey]`      | `value` (equivalent to `payload.value`) |
+
+**Dot depth past the first key segment is intentionally forbidden**
+(e.g. `payload.a.b` treats `a.b` as a literal key). Keeps parsing
+linear-scan; matches switch's original contract. Chains that need
+deeper drilling wire an `action.lua` node in between.
+
+Consuming nodes: `condition.threshold`, `action.switch`,
+`condition.exists`, `action.dedup` (per key), `action.set-live-key`
+(via `valueFrom`).
+
+Producing nodes (declare a `produced` bag under their `node.id`):
+
+- **`action.enrich`** → `deviceRef`, `deviceDisplay`, `patientRef`
+- **`action.fetch-resource`** → the fetched resource under
+  `<outputField>`, plus `resourceType` + `id`.
+
+#### Trigger.signal (Signals inbound)
+
+`trigger.signal` fires **after** the ordinary Signals OOB / CR
+reaction completes on the per-project signals processor. The
+`SignalRuleDispatcherService` (in ovok-core's rule-engine module)
+lists every published chain in the project whose root is
+`trigger.signal` and runs each synchronously — no queue hop, no
+retry surface. A rule-chain failure is swallowed inside the
+dispatcher; the Signals path is never taken down by a bad user
+chain.
+
+The alert becomes the flat `payload`:
+
+```json
+{
+  "alertId":     "…",
+  "event":       "threshold-breach",
+  "patient":     "Patient/pat-1",
+  "patientRef":  "Patient/pat-1",
+  "deviceRef":   "Device/dev-1",
+  "code":        "8867-4",
+  "value":       128,
+  "message":     "HR above upper limit",
+  "observedAt":  "2026-07-09T13:12:00Z",
+  "createdAt":   "2026-07-09T13:12:01Z",
+  "alert":       { "…full alert dto…": "…" }
+}
+```
+
+Per-run metadata carries `triggerKind: 'signal'`,
+`transport: 'signals-webhook'`, plus `alertId / patientRef /
+deviceRef / triggerCode / triggerDisplay`. Config filters (optional):
+
+```ts
+{
+  loinc?:    string;                                   // filter on trigger code
+  event?:    string;                                   // filter on alert.event
+  severity?: 'any' | 'info' | 'warning' | 'critical';  // default 'any'
+}
+```
+
+Filters aren't applied yet at the executor level (v1 fires every
+signal-rooted chain for every alert; author-controlled short-circuits
+via `condition.*` are the pragmatic path). The filter fields are
+reserved so a follow-up can index chains by these without a schema
+break.
+
+#### Action.fetch-resource (Zapier-style FHIR read)
+
+Reads a resource from Ovok by id OR single-match search filter,
+force-scoped to the current project. Every read is capability-gated
+(`fetch-resource` in `HIGH_RISK_NODE_CLASSES`) — default-deny per
+project until an operator grants it explicitly on
+`Project.extension[iot-enabled-node-classes]`.
+
+```ts
+{
+  resourceType:  ClinicalFhirResourceType;   // 149 FHIR R5 clinical types
+  id?:           string;                     // exactly one of…
+  searchFilter?: {                           // …id or searchFilter
+    identifier?:   string | number;
+    code?:         string | number;
+    patient?:      string | number;
+    subject?:      string | number;
+    device?:       string | number;
+    status?:       string | number;
+    date?:         string | number;
+    _lastUpdated?: string | number;
+    _sort?:        string | number;
+    _count?:       string | number;
+    _offset?:      string | number;
+  };
+  into?:        'payload' | 'metadata';      // default 'metadata'
+  outputField?: string;                      // default 'fetched'
+}
+```
+
+**`resourceType` — every FHIR R5 clinical resource is allowed** (Patient,
+Observation, DiagnosticReport, ServiceRequest, Encounter, Immunization,
+MedicationRequest, DocumentReference, CarePlan, RiskAssessment, Task,
+… 149 types total). The allowlist is a **whitelist**, not a blacklist —
+it explicitly excludes 23 admin / tenancy / security-sensitive types
+so Medplum shipping a new admin resource never silently widens the
+attack surface:
+
+| Excluded type          | Why                                                          |
+| ---------------------- | ------------------------------------------------------------ |
+| `AccessPolicy`         | grants the access rules themselves                            |
+| `Agent`                | Medplum on-premise agent identity                             |
+| `AsyncJob`             | internal cross-tenant job internals                           |
+| `AuditEvent`           | actor / patient refs / IP; cross-tenant discovery             |
+| `Binary`               | raw bytes (PDF exports, uploaded docs); PHI exfil             |
+| `Bot`                  | executable code with elevated privileges                      |
+| `BulkDataExport`       | pre-signed URLs of tenant-wide data snapshots                 |
+| `Bundle`               | container wrapping any resource, including admin              |
+| `ClientApplication`    | OAuth client id/secret                                        |
+| `DomainConfiguration`  | tenant SSO/OIDC secrets                                       |
+| `Endpoint`             | address + auth headers of outbound integrations               |
+| `JsonWebKey`           | signing/verification keys                                     |
+| `Login`                | live session tokens + refresh tokens                          |
+| `Permission`           | FHIR R5 access rules (equivalent to AccessPolicy)             |
+| `Project`              | tenant root                                                   |
+| `ProjectMembership`    | tenancy graph + effective permissions                         |
+| `Provenance`           | change actor + timeline (companion to AuditEvent)             |
+| `SmartAppLaunch`       | SMART-on-FHIR launch tokens                                   |
+| `Subscription`         | webhook endpoint URLs + secret headers                        |
+| `SubscriptionStatus`   | internal notification-pipeline bookkeeping                    |
+| `User`                 | identity: email, hashed password, MFA state                   |
+| `UserConfiguration`    | admin-plane per-user preferences                              |
+| `UserSecurityRequest`  | password-reset / email-verification tokens                    |
+
+The console inspector renders `resourceType` as a searchable dropdown
+sourced from the same enum — the FE and the runtime Zod parse never
+drift.
+
+Guarantees:
+
+1. `resourceType` allowlist — admin/tenancy/security resources (23
+   types above) cannot be fetched by a chain. Attempted use fails Zod
+   at parse time; a defense-in-depth runtime check in the handler
+   routes Failure with `metadata.fetchError = 'excluded'` if the two
+   constants ever drift.
+2. `_project` is FORCE-injected into every search — a caller-supplied
+   `_project` in `searchFilter` is stripped (Zod rejects it anyway).
+3. Post-read `meta.project === ctx.projectId` check. Stray cross-
+   project result → routes Failure with `metadata.fetchError =
+   'cross-project'`.
+4. Missing resource routes `Failure` with `metadata.fetchError`
+   set to `'not-found'` (id) or `'no-match'` (search). Handler NEVER
+   throws on missing — the chain author gets a proper branch, not
+   a BullMQ retry.
+
+The fetched resource lands under `message.metadata[outputField]` by
+default (opt into `message.payload[outputField]` via `into: 'payload'`)
+AND on the per-node produced bag, so downstream nodes can address it
+via `nodes.<fetchNodeId>.<outputField>`.
+
+#### Condition.exists
+
+Pairs with `fetch-resource`. Routes `True` iff the selector resolves
+to a non-null value. Config: `{ from: <selector> }`. Zero side effects.
+
+#### Condition.threshold
+
+Numeric compare using the selector syntax. Config:
+`{ from: <selector>, op: '>' | '>=' | '<' | '<=' | '==' | '!=',
+value: number }`. Non-numeric or missing input routes **False**
+(Zapier convention — a chain author expects "did this reading
+breach?" to always be answerable).
 
 ### The workspace
 
