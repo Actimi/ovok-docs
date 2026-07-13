@@ -72,8 +72,8 @@ curl -X POST \
 
 ```json
 {
-  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM5MzE5MTQsImV4cCI6MTc4MzkzNTUxNH0.7IsrS_Q2i4ZFkN7WyOHrCnObDYkjh3U-in-O1g-FnKw",
-  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM5MzE5MTQsImV4cCI6MTc4MzkzNTUxNH0.7IsrS_Q2i4ZFkN7WyOHrCnObDYkjh3U-in-O1g-FnKw",
+  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM5MzgxMzYsImV4cCI6MTc4Mzk0MTczNn0.4TebucjvmoZXptAExYxKE8K9G-N9SO1nj7FFLam0yL8",
+  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM5MzgxMzYsImV4cCI6MTc4Mzk0MTczNn0.4TebucjvmoZXptAExYxKE8K9G-N9SO1nj7FFLam0yL8",
   "expiresIn": 3600,
   "project": {
     "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",
