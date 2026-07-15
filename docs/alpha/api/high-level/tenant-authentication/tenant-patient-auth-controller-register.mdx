@@ -59,8 +59,8 @@ Register a new user.
 
 ```json
 {
-  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDYyMTMsImV4cCI6MTc4NDE0OTgxM30.-zgHooiNUJ_01_UllPZxgYf5foyD4F-iLeNzhLCVNdc",
-  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDYyMTMsImV4cCI6MTc4NDE0OTgxM30.-zgHooiNUJ_01_UllPZxgYf5foyD4F-iLeNzhLCVNdc",
+  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDc0MjcsImV4cCI6MTc4NDE1MTAyN30.CkBf7y_fnOVBoNbqBbRYyiwhmqvsoKNvFN7BdPJzNY4",
+  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDc0MjcsImV4cCI6MTc4NDE1MTAyN30.CkBf7y_fnOVBoNbqBbRYyiwhmqvsoKNvFN7BdPJzNY4",
   "expiresIn": 3600,
   "project": {
     "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",

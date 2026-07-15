@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
+      "password": "zZop+$rN7>y,Xe9#",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -28,7 +28,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
+      "password": "zZop+$rN7>y,Xe9#",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -48,7 +48,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDYyMTMsImV4cCI6MTc4NDE0OTgxM30.-zgHooiNUJ_01_UllPZxgYf5foyD4F-iLeNzhLCVNdc"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxNDc0MjcsImV4cCI6MTc4NDE1MTAyN30.CkBf7y_fnOVBoNbqBbRYyiwhmqvsoKNvFN7BdPJzNY4"
     },
     "deprecated": false,
     "availableIn": [
@@ -82,7 +82,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
+      "password": "zZop+$rN7>y,Xe9#",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -114,7 +114,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
+      "password": "zZop+$rN7>y,Xe9#",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -169,8 +169,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
-      "codeChallenge": "RryRaWXj4uT6jEoAxq7jChWNXIYQgy9e"
+      "password": "zZop+$rN7>y,Xe9#",
+      "codeChallenge": "2G9jeG9m5e13Y4QJ0CmBUrN7Xo5geZ7j"
     },
     "deprecated": false,
     "availableIn": [
@@ -186,8 +186,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "z69UH9TFazc4pXvV38PQiIP5OSpNyKcY",
-      "codeVerifier": "RdK3XJ06L1FdEwsAtNaG0BsKekJwqhxIOecpHnNLXZnYfMn0QxYex5ARfLNuKBKD",
+      "sessionCode": "u1rntAgmW9sbFHzsc2OLcHnUUckVnXeM",
+      "codeVerifier": "SJU5wAG0uUpIvRUn5iPGrPyIt3TgGmWwxVs0P0XFg9NrwIwiRix30ZNpcWGDy7jb",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -222,8 +222,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
-      "codeChallenge": "6FuDqNumd8TDBBXYzor43YqgOl9YVYbN",
+      "password": "zZop+$rN7>y,Xe9#",
+      "codeChallenge": "sbwkpawtNb36ulPx2El4hL4NTCfLd3jQ",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -240,8 +240,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "saVNz06T1vRDlvLGLF8LXR1yt3yMAqij",
-      "codeVerifier": "Jx8I4fjNWDl5Y4jVgw2QwNKqErK0g0c1lYRaC3BbQ3ixzJjGZGQKqOTdFDX4Z0az"
+      "sessionCode": "8PySEmaklLbG8ZEqNQ5m4Zrd68aq8Dy3",
+      "codeVerifier": "ku65sCbXipigKXvdDAkibttUtmUuJPqdiwXtL8sMllZf8CwxTIpW4vVkJMVW7M5j"
     },
     "deprecated": false,
     "availableIn": [
@@ -275,7 +275,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "mBx=.o1a(CgcVl57",
+      "password": "zZop+$rN7>y,Xe9#",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
