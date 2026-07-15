@@ -109,7 +109,7 @@ Returns the updated document information in the same format as the create endpoi
   "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
   "fileName": "test.txt",
   "contentType": "text/plain",
-  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODM5MzgxMzYsImV4cCI6MTc4Mzk0MTczNn0.4TebucjvmoZXptAExYxKE8K9G-N9SO1nj7FFLam0yL8",
+  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQxMTg3ODksImV4cCI6MTc4NDEyMjM4OX0.5hDoYHo6OWmniPLk2nJ-wp2-HEmFvZJ4HMrm9C6-9f0",
   "uploadOptions": {
     "url": "https://example.com/upload",
     "fields": {
