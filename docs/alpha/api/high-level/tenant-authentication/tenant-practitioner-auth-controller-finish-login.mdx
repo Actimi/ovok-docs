@@ -57,8 +57,8 @@ Login with challenge token. Success response contains access and refresh tokens.
 
 ```json
 {
-  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMDE0NTksImV4cCI6MTc4NDIwNTA1OX0.Eya0WB_ICaj6XifzcxndPDTmtIZJH-_jzsV7A88BGZU",
-  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMDE0NTksImV4cCI6MTc4NDIwNTA1OX0.Eya0WB_ICaj6XifzcxndPDTmtIZJH-_jzsV7A88BGZU",
+  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMTI2NDksImV4cCI6MTc4NDIxNjI0OX0.5iOl2WY4Ew7YZQgRgDHgMQGtNgnWmNg0oaw9cNr601w",
+  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMTI2NDksImV4cCI6MTc4NDIxNjI0OX0.5iOl2WY4Ew7YZQgRgDHgMQGtNgnWmNg0oaw9cNr601w",
   "expiresIn": 3600,
   "project": {
     "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",
