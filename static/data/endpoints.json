@@ -9,13 +9,14 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
+      "password": "3L,J:rOF^J3S:XA-",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -28,7 +29,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
+      "password": "3L,J:rOF^J3S:XA-",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -36,7 +37,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -48,11 +50,12 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyNDE4NzksImV4cCI6MTc4NDI0NTQ3OX0.ZODrL-qKmuodEc7RibwCzz5TI6ptGTp7g1ZwJxh6WXA"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyNDE4MzgsImV4cCI6MTc4NDI0NTQzOH0.3RnvT86aa1fhBlDTgSEUxHROMrypyWAekMhGEXsrAxU"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -69,7 +72,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -82,12 +86,13 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
+      "password": "3L,J:rOF^J3S:XA-",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -101,7 +106,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -114,14 +120,15 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
+      "password": "3L,J:rOF^J3S:XA-",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -135,7 +142,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -156,7 +164,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -169,12 +178,13 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
-      "codeChallenge": "wKWESjuByEHgOf5higorPuayaAOJaKRj"
+      "password": "3L,J:rOF^J3S:XA-",
+      "codeChallenge": "nIRvsLhlnko6ddVL694tMikyEfomhSzC"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -186,13 +196,14 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "AbgfPSoIGwdG17dySlbcU0gezqngXDBo",
-      "codeVerifier": "2lwf9sZ4QywQD8uYNBHm74jYvUvEzbBUNtKB2dCX7dAltrEg3RplXyraHQ9UOQlH",
+      "sessionCode": "2mZ1gma4uRrn6nDxppAFEMOja4gWjUXC",
+      "codeVerifier": "6nZoehmA85gY0moUbDeTFfNpHr0bWLi2EKNz0YYVDKLfqozmaYOHNu2HmOTURMRS",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -209,7 +220,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -222,13 +234,14 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
-      "codeChallenge": "2yImzxlWpDM2BAJNjOXifwoPBKEHWbC8",
+      "password": "3L,J:rOF^J3S:XA-",
+      "codeChallenge": "IpDTGpKa93pYke5j5FHyMIPVgIIS6MnI",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -240,12 +253,13 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "sZQTmP3NRkj6SDu3PO0dsvgYYRSbw14s",
-      "codeVerifier": "Ga6azgrnh1X3iOf15kSYLZKSH7MuXvbOo7ZOLHdUKYJYeKQL3zfTPicIXNG158HF"
+      "sessionCode": "fdBsj71dMX74xjoPfvbYd4Z0G3ovguxT",
+      "codeVerifier": "SmparaaMmGnFWAZuIm1WIWObUKS5xgZI1gCDQUwTOxqrGWJllxAJDPnNIQnKPEwm"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -262,7 +276,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -275,14 +290,15 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "#BD&zx_d]WtW,Z{(",
+      "password": "3L,J:rOF^J3S:XA-",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -296,7 +312,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -317,7 +334,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -333,7 +351,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -347,7 +366,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -361,7 +381,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -375,7 +396,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -389,7 +411,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -403,7 +426,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -425,7 +449,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -443,7 +468,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -476,7 +502,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -521,7 +548,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -566,7 +594,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -587,7 +616,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -611,7 +641,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -635,7 +666,8 @@
     },
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -656,7 +688,8 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -664,8 +697,8 @@
     "path": "/cms/{type}/map/{language}",
     "summary": "Search mapped content",
     "description": "# Search Mapped Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_searchMappedContent[0]",
+    "tag": "CMS",
+    "operationId": "CMSController_searchMappedContent",
     "parameters": [
       {
         "name": "type",
@@ -707,7 +740,1270 @@
     "bodyExample": null,
     "deprecated": false,
     "availableIn": [
-      "alpha"
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}/copy-from-parent-project",
+    "summary": "Copy contents",
+    "description": "Copy contents.",
+    "tag": "CMS",
+    "operationId": "CMSController_copyContents",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}/{key}/copy-from-parent-project",
+    "summary": "Copy a content",
+    "description": "Copy a content.",
+    "tag": "CMS",
+    "operationId": "CMSController_copySingleContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/cms/{type}/{language}",
+    "summary": "Create content",
+    "description": "# Create Content",
+    "tag": "CMS",
+    "operationId": "CMSController_createContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/cms/{type}/{language}",
+    "summary": "Search content",
+    "description": "# Search Content",
+    "tag": "CMS",
+    "operationId": "CMSController_searchContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Update content",
+    "description": "# Create Content",
+    "tag": "CMS",
+    "operationId": "CMSController_updateContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Get content by key and language",
+    "description": "# Get Content by Key and Language",
+    "tag": "CMS",
+    "operationId": "CMSController_getContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/cms/{type}/{language}/{key}",
+    "summary": "Delete content",
+    "description": "# Delete Content",
+    "tag": "CMS",
+    "operationId": "CMSController_deleteContent",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/Observation/$lastn",
+    "summary": "Get last observations",
+    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getPatientLastObservation[0]",
+    "parameters": [
+      {
+        "name": "patient",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "max",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R4/Observation/$lastn",
+    "summary": "Get last observations",
+    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getPatientLastObservation[1]",
+    "parameters": [
+      {
+        "name": "patient",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "max",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R5/Observation/$lastn",
+    "summary": "Get last observations",
+    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getPatientLastObservation[2]",
+    "parameters": [
+      {
+        "name": "patient",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "max",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/Device/{id}/telemetry",
+    "summary": "Get device telemetry",
+    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetry[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R4/Device/{id}/telemetry",
+    "summary": "Get device telemetry",
+    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetry[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R5/Device/{id}/telemetry",
+    "summary": "Get device telemetry",
+    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetry[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R4/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/fhir/R5/Device/{id}/telemetry/history",
+    "summary": "Get device telemetry history",
+    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_getDeviceTelemetryHistory[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      },
+      {
+        "name": "pageSize",
+        "in": "query",
+        "required": false,
+        "type": "integer"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[0]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R4/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[1]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R5/Patient",
+    "summary": "Create Patient with Signals linking",
+    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_createPatient[2]",
+    "parameters": [
+      {
+        "name": "withSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/R4/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/fhir/R5/Patient/{id}/threshold",
+    "summary": "Update patient threshold",
+    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_updatePatientThreshold[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "updateOnSignals",
+        "in": "query",
+        "required": false,
+        "type": "boolean"
+      }
+    ],
+    "bodyExample": {
+      "id": "123",
+      "patientId": "patient-123",
+      "date": {},
+      "settings": {
+        "heartRate": {
+          "mode": "patient",
+          "enabled": true,
+          "absolute": {
+            "enabled": true,
+            "min": 60,
+            "max": 100
+          }
+        },
+        "respiratoryRate": {
+          "mode": "organization",
+          "enabled": false,
+          "absolute": {
+            "enabled": false,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/Questionnaire/{id}/$populate",
+    "summary": "Populate questionnaire",
+    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_populateQuestionnaire[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "context",
+          "part": [
+            {
+              "name": "name",
+              "valueString": "patientWeight"
+            },
+            {
+              "name": "content",
+              "resource": {
+                "valueDecimal": 66.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R4/Questionnaire/{id}/$populate",
+    "summary": "Populate questionnaire",
+    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_populateQuestionnaire[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "context",
+          "part": [
+            {
+              "name": "name",
+              "valueString": "patientWeight"
+            },
+            {
+              "name": "content",
+              "resource": {
+                "valueDecimal": 66.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R5/Questionnaire/{id}/$populate",
+    "summary": "Populate questionnaire",
+    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_populateQuestionnaire[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "context",
+          "part": [
+            {
+              "name": "name",
+              "valueString": "patientWeight"
+            },
+            {
+              "name": "content",
+              "resource": {
+                "valueDecimal": 66.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/QuestionnaireResponse/{id}/$extract",
+    "summary": "Extract observations from questionnaire response",
+    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[0]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R4/QuestionnaireResponse/{id}/$extract",
+    "summary": "Extract observations from questionnaire response",
+    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[1]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/fhir/R5/QuestionnaireResponse/{id}/$extract",
+    "summary": "Extract observations from questionnaire response",
+    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
+    "tag": "FHIR Operations",
+    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[2]",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/localization/i18next/{language}",
+    "summary": "i18next - Get JSON",
+    "description": "Download the i18next JSON file for applications",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationI18NextController_getAllI18n",
+    "parameters": [
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "/localization/i18next/{language}",
+    "summary": "i18next - Update JSON",
+    "description": "Update the i18next JSON file for applications",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationI18NextController_patchAllI18n",
+    "parameters": [
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "page": {
+        "about": "about",
+        "contact": "contact",
+        "phone": null,
+        "home": {
+          "title": "home"
+        }
+      }
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/localization/map/{target}",
+    "summary": "Mapped Localizations",
+    "description": "Map a localization to a target language",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationMappedController_mapLocalizations",
+    "parameters": [
+      {
+        "name": "target",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_sort",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/localization/{language}",
+    "summary": "Get all localizations",
+    "description": "Get all localizations",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationController_getLocalizations",
+    "parameters": [
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_sort",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/localization/{language}/{key}",
+    "summary": "Get a single localization",
+    "description": "Get a single localization by language and key",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationController_getLocalization",
+    "parameters": [
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/localization/{language}/{key}",
+    "summary": "Update a single localization",
+    "description": "Update or create a single localization by language and key",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationController_updateLocalization",
+    "parameters": [
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "value": "Home"
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/localization/{language}/{key}",
+    "summary": "Delete a single localization",
+    "description": "Delete a single localization by language and key",
+    "tag": "Localization Keys",
+    "operationId": "LocalizationController_deleteLocalization",
+    "parameters": [
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
     ]
   },
   {
@@ -763,33 +2059,6 @@
   },
   {
     "method": "POST",
-    "path": "/cms/{type}/{language}/copy-from-parent-project",
-    "summary": "Copy contents",
-    "description": "Copy contents.",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_copyContents[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
     "path": "/internal/cms/{type}/{language}/copy-from-parent-project",
     "summary": "Copy contents",
     "description": "Copy contents.",
@@ -804,39 +2073,6 @@
       },
       {
         "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/cms/{type}/{language}/{key}/copy-from-parent-project",
-    "summary": "Copy a content",
-    "description": "Copy a content.",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_copySingleContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
         "in": "path",
         "required": true,
         "type": "string"
@@ -872,110 +2108,6 @@
         "name": "key",
         "in": "path",
         "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/cms/{type}/{language}",
-    "summary": "Create content",
-    "description": "# Create Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_createContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "title": "My Blog",
-      "category": "123",
-      "section": [
-        {
-          "title": "My Section",
-          "text": "My Text",
-          "code": [
-            "main-content"
-          ]
-        },
-        {
-          "title": "My Section 2",
-          "text": "My Text 2",
-          "code": [
-            "reading-time"
-          ]
-        },
-        {
-          "title": "My Section 3",
-          "text": "My Text 3",
-          "code": [
-            "resource-link"
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/cms/{type}/{language}",
-    "summary": "Search content",
-    "description": "# Search Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_searchContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "search",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_count",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_offset",
-        "in": "query",
-        "required": false,
         "type": "string"
       }
     ],
@@ -1080,131 +2212,6 @@
         "name": "_offset",
         "in": "query",
         "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/cms/{type}/{language}/{key}",
-    "summary": "Update content",
-    "description": "# Create Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_updateContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "title": "My Blog",
-      "category": "123",
-      "section": [
-        {
-          "title": "My Section",
-          "text": "My Text",
-          "code": [
-            "main-content"
-          ]
-        },
-        {
-          "title": "My Section 2",
-          "text": "My Text 2",
-          "code": [
-            "reading-time"
-          ]
-        },
-        {
-          "title": "My Section 3",
-          "text": "My Text 3",
-          "code": [
-            "resource-link"
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/cms/{type}/{language}/{key}",
-    "summary": "Get content by key and language",
-    "description": "# Get Content by Key and Language",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_getContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/cms/{type}/{language}/{key}",
-    "summary": "Delete content",
-    "description": "# Delete Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_deleteContent[0]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
         "type": "string"
       }
     ],
@@ -1328,944 +2335,6 @@
       },
       {
         "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/Observation/$lastn",
-    "summary": "Get last observations",
-    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getPatientLastObservation[0]",
-    "parameters": [
-      {
-        "name": "patient",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "max",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R4/Observation/$lastn",
-    "summary": "Get last observations",
-    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getPatientLastObservation[1]",
-    "parameters": [
-      {
-        "name": "patient",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "max",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Observation/$lastn",
-    "summary": "Get last observations",
-    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getPatientLastObservation[2]",
-    "parameters": [
-      {
-        "name": "patient",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "max",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/Device/{id}/telemetry",
-    "summary": "Get device telemetry",
-    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetry[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R4/Device/{id}/telemetry",
-    "summary": "Get device telemetry",
-    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetry[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Device/{id}/telemetry",
-    "summary": "Get device telemetry",
-    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetry[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R4/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[0]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R4/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[1]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[2]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/R4/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/R5/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/Questionnaire/{id}/$populate",
-    "summary": "Populate questionnaire",
-    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_populateQuestionnaire[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "resourceType": "Parameters",
-      "parameter": [
-        {
-          "name": "context",
-          "part": [
-            {
-              "name": "name",
-              "valueString": "patientWeight"
-            },
-            {
-              "name": "content",
-              "resource": {
-                "valueDecimal": 66.5
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R4/Questionnaire/{id}/$populate",
-    "summary": "Populate questionnaire",
-    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_populateQuestionnaire[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "resourceType": "Parameters",
-      "parameter": [
-        {
-          "name": "context",
-          "part": [
-            {
-              "name": "name",
-              "valueString": "patientWeight"
-            },
-            {
-              "name": "content",
-              "resource": {
-                "valueDecimal": 66.5
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/Questionnaire/{id}/$populate",
-    "summary": "Populate questionnaire",
-    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_populateQuestionnaire[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "resourceType": "Parameters",
-      "parameter": [
-        {
-          "name": "context",
-          "part": [
-            {
-              "name": "name",
-              "valueString": "patientWeight"
-            },
-            {
-              "name": "content",
-              "resource": {
-                "valueDecimal": 66.5
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/QuestionnaireResponse/{id}/$extract",
-    "summary": "Extract observations from questionnaire response",
-    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[0]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R4/QuestionnaireResponse/{id}/$extract",
-    "summary": "Extract observations from questionnaire response",
-    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/QuestionnaireResponse/{id}/$extract",
-    "summary": "Extract observations from questionnaire response",
-    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/localization/i18next/{language}",
-    "summary": "i18next - Get JSON",
-    "description": "Download the i18next JSON file for applications",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationI18NextController_getAllI18n",
-    "parameters": [
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PATCH",
-    "path": "/localization/i18next/{language}",
-    "summary": "i18next - Update JSON",
-    "description": "Update the i18next JSON file for applications",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationI18NextController_patchAllI18n",
-    "parameters": [
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "page": {
-        "about": "about",
-        "contact": "contact",
-        "phone": null,
-        "home": {
-          "title": "home"
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/localization/map/{target}",
-    "summary": "Mapped Localizations",
-    "description": "Map a localization to a target language",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationMappedController_mapLocalizations",
-    "parameters": [
-      {
-        "name": "target",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "_count",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_offset",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_sort",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "search",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/localization/{language}",
-    "summary": "Get all localizations",
-    "description": "Get all localizations",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationController_getLocalizations",
-    "parameters": [
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "_count",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_offset",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_sort",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "search",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/localization/{language}/{key}",
-    "summary": "Get a single localization",
-    "description": "Get a single localization by language and key",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationController_getLocalization",
-    "parameters": [
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/localization/{language}/{key}",
-    "summary": "Update a single localization",
-    "description": "Update or create a single localization by language and key",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationController_updateLocalization",
-    "parameters": [
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "value": "Home"
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/localization/{language}/{key}",
-    "summary": "Delete a single localization",
-    "description": "Delete a single localization by language and key",
-    "tag": "Localization Keys",
-    "operationId": "LocalizationController_deleteLocalization",
-    "parameters": [
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
         "in": "path",
         "required": true,
         "type": "string"

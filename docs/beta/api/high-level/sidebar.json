@@ -1,0 +1,364 @@
+[
+  {
+    "type": "doc",
+    "id": "api/high-level/index",
+    "label": "Overview"
+  },
+  {
+    "type": "category",
+    "label": "AI Translation",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/ai-translation/translation-controller-translate"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/ai-translation/translation-controller-translate",
+        "label": "Translate"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Authentication",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication/auth-me-controller-get-user-profile"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-me-controller-get-user-profile",
+        "label": "Get account information"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-login-controller-login-v-2",
+        "label": "Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-controller-refresh-token",
+        "label": "Refresh access token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-register-controller-register",
+        "label": "Register an account"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication/auth-delete-controller-delete-user",
+        "label": "Schedule user account deletion"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Authentication - B2B",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login",
+        "label": "Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-b-2-b/auth-b-2-b-register-controller-register",
+        "label": "Register an account"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Authentication - Session Management",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/authentication-session-management/auth-session-controller-find-all"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-session-management/auth-session-controller-find-all",
+        "label": "Get all sessions"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/authentication-session-management/auth-session-controller-revoke-sessions",
+        "label": "Revoke sessions"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Bots - Execute a custom script",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post",
+        "label": "Execute a bot with request body"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "CMS",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/cms/cms-controller-copy-single-content"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-copy-single-content",
+        "label": "Copy a content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-copy-contents",
+        "label": "Copy contents"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-create-content",
+        "label": "Create content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-delete-content",
+        "label": "Delete content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-get-content",
+        "label": "Get content by key and language"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-search-content",
+        "label": "Search content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-search-mapped-content",
+        "label": "Search mapped content"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/cms/cms-controller-update-content",
+        "label": "Update content"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Document",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/document/document-controller-delete-document"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-delete-document",
+        "label": "Delete a document"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-generate-replace-credentials",
+        "label": "Generate credentials for document file replacement"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-get-file-url",
+        "label": "Get a document as authenticated user"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-get-public-file-url",
+        "label": "Get a document as public user"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-search-files",
+        "label": "Search documents"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-update-document-metadata",
+        "label": "Update document metadata"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/document/document-controller-create-upload-credentials",
+        "label": "Upload document - Generate credentials"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Localization",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/localization/locale-controller-get-locale"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/localization/locale-controller-get-locale",
+        "label": "Get available locales"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization/locale-controller-patch-locale",
+        "label": "Update the available locales"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Localization Keys",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/localization-keys/localization-controller-delete-localization"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-delete-localization",
+        "label": "Delete a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localization",
+        "label": "Get a single localization"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-get-localizations",
+        "label": "Get all localizations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-i-18-next-controller-get-all-i-18-n",
+        "label": "i18next - Get JSON"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-i-18-next-controller-patch-all-i-18-n",
+        "label": "i18next - Update JSON"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-mapped-controller-map-localizations",
+        "label": "Mapped Localizations"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/localization-keys/localization-controller-update-localization",
+        "label": "Update a single localization"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Organization Code Information",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/organization-code-information/organization-code-controller-get-organization-code",
+        "label": "Get Organization Code"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/organization-code-information/organization-code-controller-send-email-of-organizations",
+        "label": "Receive Organization Codes"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Partner",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/partner/partner-controller-health-check"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/partner/partner-controller-health-check",
+        "label": "GET /partner/health-check"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Tenant Authentication",
+    "link": {
+      "type": "doc",
+      "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login"
+    },
+    "collapsed": true,
+    "items": [
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-finish-login",
+        "label": "Patient - Exchange Token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-start-login",
+        "label": "Patient - Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-mfa-start",
+        "label": "Patient - MFA"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-patient-auth-controller-register",
+        "label": "Patient - Register"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-finish-login",
+        "label": "Practitioner - Exchange Token"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-start-login",
+        "label": "Practitioner - Login"
+      },
+      {
+        "type": "doc",
+        "id": "api/high-level/tenant-authentication/tenant-practitioner-auth-controller-mfa-start",
+        "label": "Practitioner - MFA"
+      }
+    ]
+  }
+]

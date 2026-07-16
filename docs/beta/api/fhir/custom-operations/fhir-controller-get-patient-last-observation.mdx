@@ -1,0 +1,140 @@
+---
+title: "Get last observations"
+sidebar_label: "Get last observations"
+description: "This endpoint allows users to fetch patient informations, specifically observations."
+---
+
+# Get last observations
+
+<div className="endpoint-hero">
+
+<div className="endpoint-hero__paths">
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/Observation/$lastn"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R4/Observation/$lastn"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/fhir/R5/Observation/$lastn"}</code></div>
+</div>
+
+<ApiBase inline={false} />
+
+</div>
+
+This endpoint allows users to fetch patient informations, specifically observations.
+
+## Example cURL request
+
+```bash
+curl -X GET \
+ -G 'https://api.staging.ovok.com/fhir/Observation/$lastn' \
+ -d 'patient=Patient/e70f3aec-d37e-453d-887b-72654c26b3fe' \
+ -d 'max=2' \
+ -d 'code=131328,8886-4'
+```
+
+## Example JSON response
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+          "display": "Max Mustermann"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "131328"
+            }
+          ]
+        },
+        "status": "amended",
+        "id": "a4508b00-7854-4108-a903-57aa67eaa79e"
+      },
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "valueQuantity": {
+          "unit": "bpm",
+          "value": 150
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8883-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8886-4"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+          "display": "Max Mustermann"
+        },
+        "id": "32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+      },
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+    }
+  ]
+}
+```
+
+
+
+## Parameters
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `patient` | query | `string` | no | Patient reference. |
+| `max` | query | `string` | no | Maximum number of observations to return. |
+| `code` | query | `string` | no | Observation code(s) with comma separated values, e.g. "131328,8886-4". |
+
+
+
+## Responses
+
+| Code | Description |
+| --- | --- |
+| `200` | Success. |
+| `400` | The request could not be operated by the server. |
+| `401` | The resource owner or authorization server denied the request. |
+| `404` | The requested resource could not be found. |
+| `422` | The request could not be validated by the server. |
+| `500` | The server encountered an unexpected condition. Please try again later. |
+
+
+### `200` → `PatientObservationResponseDto` (`application/json`)
+
+- `resourceType`: `string` **(required)**
+- `type`: `string` **(required)**
+- `entry`: `object[]` **(required)**
+  - `resource`: `object` **(required)**
+  - `fullUrl`: `string` **(required)**
+
+**Example**
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "entry": [
+    {
+      "resource": {
+        "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
+        "resourceType": "Observation"
+      },
+      "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/87ea5dfc-8b8e-384d-8489-79496e706390"
+    }
+  ]
+}
+```
