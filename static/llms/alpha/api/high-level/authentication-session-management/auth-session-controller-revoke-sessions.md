@@ -24,7 +24,7 @@ You can specify if you'd like to revoke `all`, `current`, `other` or a specific 
 ```bash
 curl -X DELETE \
  --url 'https://api.dev.ovok.com/auth/session/other' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMzIzMjksImV4cCI6MTc4NDIzNTkyOX0.6gJbcqf1xowmN1CESQGC9AzKBSLjX4QIvhGER9mW0oY'
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyMzI3MTgsImV4cCI6MTc4NDIzNjMxOH0.jvnbpp9GOZ6Zrxe7hbrnEB5xB-lokDQIB-_sco68fyw'
 ```
 
 
