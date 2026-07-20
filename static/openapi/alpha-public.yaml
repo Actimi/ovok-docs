@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "Q1bM.s8#RlDHys&amp;u",
+            "password": "ecD@^w4Xy#VRA)h%",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "Q1bM.s8#RlDHys&amp;u",
+            "password": "ecD@^w4Xy#VRA)h%",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -401,7 +401,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +925,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1050,7 +1050,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -2297,7 +2297,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -10998,7 +10998,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11289,7 +11289,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11580,7 +11580,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11736,7 +11736,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE'
         ```
 
 
@@ -11893,7 +11893,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE'
         ```
 
 
@@ -12050,7 +12050,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE'
         ```
 
 
@@ -15073,7 +15073,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
+        password: ecD@^w4Xy#VRA)h%
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -15118,8 +15118,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -15166,7 +15166,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
+        password: ecD@^w4Xy#VRA)h%
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -15187,8 +15187,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -15208,8 +15208,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -15278,7 +15278,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -15344,7 +15344,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
     RequestDeleteDto:
       type: object
       properties:
@@ -15435,7 +15435,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-07-20T11:51:38.191Z
+        scheduled: 2026-07-20T13:06:55.432Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -15447,7 +15447,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-07-20T11:51:38.191Z
+            lastUpdated: 2026-07-20T13:06:55.432Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -15477,7 +15477,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
+        password: ecD@^w4Xy#VRA)h%
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -15663,8 +15663,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -15924,7 +15924,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
+        password: ecD@^w4Xy#VRA)h%
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -16022,8 +16022,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: 4riMCi7Eca
-        password: Q1bM.s8#RlDHys&u
+        secret: 2eRU9OWRz9
+        password: ecD@^w4Xy#VRA)h%
     SessionsResponseDto:
       type: object
       properties:
@@ -16055,7 +16055,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-07-20T11:51:38.191Z
+              lastUpdated: 2026-07-20T13:06:55.432Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -16065,7 +16065,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-07-20T11:51:38.191Z
+            lastUpdated: 2026-07-20T13:06:55.432Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -16109,7 +16109,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -16129,7 +16129,7 @@ components:
       required:
         - tan
       example:
-        tan: RzmrANtrXaTd
+        tan: RLZQZ7QqHB9R
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -16149,8 +16149,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
-        codeChallenge: ZwOlO8KF0FIIfAXBsmLD2PNpxdssOQGn
+        password: ecD@^w4Xy#VRA)h%
+        codeChallenge: WIIKXqR3XbVnS2khUd4JiCfeh7dbE2f7
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -16189,7 +16189,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: jtk8atvLs9QF7IbFm8NQYcCX1MoWQhhM
+        sessionCode: hsUa3ZdZw1s3XBj1Vm53myehAAQfu0Cn
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -16205,8 +16205,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: pzpAxt3GjAbmw26U5DiULveADRhY2TRq
-        codeVerifier: dzofzEbeZt2ezba29EjhUntuQoidOwhdKV3ANOrfZc52aeDNfzBSh7k12hOL7wzw
+        sessionCode: aHm0IbhSVPCLq5DRJ27DbLc7OcKlN2hT
+        codeVerifier: UiRS3CMpymqJ3GKFjOcI90qecqFyGKu0PKNTa71Qq7fgcT6PyVosqakXOHlaqly7
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -16246,7 +16246,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: CfcTEQ8fqtdFwyyPcWuTQ7jJ90cJRGIB
+        sessionCode: MttZmYcwdDLJz8v6mnUMN8EqfnEirjo4
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -16270,8 +16270,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
-        codeChallenge: mXR5GbsfjPLxHwxHqBbT6koHFTk0uo4U
+        password: ecD@^w4Xy#VRA)h%
+        codeChallenge: kSEC9XaYlBLVbHaviyGskA771MYQg7eR
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -16299,7 +16299,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: ECgvYO0PF5dcAnl9VtqMaspYteAmPAZV
+        sessionCode: uBLWLA4QmXYNFsExM7OVpSCqaz3QHhWr
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -16311,8 +16311,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: zUiD2ObAFYWqfHmrdJILgrHLMQ2pKnP7
-        codeVerifier: Z5DLMS8VB8jDNWTsl2ZZdKLGV0mZcIGqw1xpwVfsHoi8ZfJ2fOlBFbJRMeW0aflW
+        sessionCode: ZA4gaJcPzRUwD1od4rxBq4R7QBp3oFnQ
+        codeVerifier: ScsqiD6ytGEwbn2RzyYbUKJsLB1xhjh5YnsKWch7AWt53Pe6xEhkWn0DSiUSbBdP
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -16339,7 +16339,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: h1Y13WcSecdGrOTEXIVyEZ6pve3exVM5
+        sessionCode: JOxlgkZtslBY9KzusSJAG9yh7bFm9wHT
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -16362,7 +16362,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
+        password: ecD@^w4Xy#VRA)h%
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -17119,7 +17119,7 @@ components:
                   project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                   author:
                     reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                  lastUpdated: 2026-07-20T11:51:38.191Z
+                  lastUpdated: 2026-07-20T13:06:55.432Z
               members:
                 - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                   display: Dr. Max John Mustermann
@@ -17145,7 +17145,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -17161,7 +17161,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -19770,7 +19770,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-07-20T11:51:38.191Z
+        date: 2026-07-20T13:06:55.432Z
         settings:
           heartRate:
             mode: organization
@@ -21176,6 +21176,647 @@ components:
               enabled: false
               min: 0
               max: 0
+    OrgThresholdV2ResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        projectId:
+          type: string
+        updatedAt:
+          type: string
+          nullable: true
+        settings:
+          type: object
+          properties:
+            heartRate:
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                    max:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            respiratoryRate:
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                    max:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            outOfBed:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                enabled:
+                  type: boolean
+                maxDurationSeconds:
+                  type: number
+              required:
+                - mode
+                - enabled
+                - maxDurationSeconds
+            bedTimePeriod:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                start:
+                  type: string
+                end:
+                  type: string
+                timezone:
+                  type: string
+                  nullable: true
+              required:
+                - mode
+                - start
+                - end
+                - timezone
+          required:
+            - heartRate
+            - respiratoryRate
+            - outOfBed
+            - bedTimePeriod
+      required:
+        - id
+        - projectId
+        - updatedAt
+        - settings
+      example:
+        id: plan-def-uuid
+        projectId: project-1
+        updatedAt: 2026-07-20T10:00:00.000Z
+        settings:
+          heartRate:
+            mode: organization
+            enabled: true
+            min: 55
+            max: 110
+          respiratoryRate:
+            mode: baseline
+            enabled: true
+            deviationPercent: 20
+          outOfBed:
+            mode: organization
+            enabled: true
+            maxDurationSeconds: 900
+          bedTimePeriod:
+            mode: organization
+            start: 22:00:00
+            end: 06:00:00
+            timezone: Europe/Berlin
+    OrgThresholdV2BodyDto:
+      type: object
+      properties:
+        settings:
+          type: object
+          properties:
+            heartRate:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                    max:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                      minimum: 5
+                      maximum: 60
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            respiratoryRate:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                    max:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                      minimum: 5
+                      maximum: 60
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            outOfBed:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                enabled:
+                  type: boolean
+                maxDurationSeconds:
+                  type: integer
+                  minimum: 0
+                  maximum: 86400
+              required:
+                - mode
+                - enabled
+                - maxDurationSeconds
+            bedTimePeriod:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                start:
+                  type: string
+                  pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+                end:
+                  type: string
+                  pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+              required:
+                - mode
+                - start
+                - end
+          required:
+            - heartRate
+            - respiratoryRate
+            - outOfBed
+            - bedTimePeriod
+      required:
+        - settings
+      example:
+        settings:
+          heartRate:
+            mode: organization
+            enabled: true
+            min: 55
+            max: 110
+          respiratoryRate:
+            mode: baseline
+            enabled: true
+            deviationPercent: 20
+          outOfBed:
+            mode: organization
+            enabled: true
+            maxDurationSeconds: 900
+          bedTimePeriod:
+            mode: organization
+            start: 22:00:00
+            end: 06:00:00
+    PatientThresholdV2ResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        patientId:
+          type: string
+        projectId:
+          type: string
+        updatedAt:
+          type: string
+          nullable: true
+        settings:
+          type: object
+          properties:
+            heartRate:
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                    max:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            respiratoryRate:
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                    max:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            outOfBed:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                enabled:
+                  type: boolean
+                maxDurationSeconds:
+                  type: number
+              required:
+                - mode
+                - enabled
+                - maxDurationSeconds
+            bedTimePeriod:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                start:
+                  type: string
+                end:
+                  type: string
+                timezone:
+                  type: string
+                  nullable: true
+              required:
+                - mode
+                - start
+                - end
+                - timezone
+          required:
+            - heartRate
+            - respiratoryRate
+            - outOfBed
+            - bedTimePeriod
+      required:
+        - id
+        - patientId
+        - projectId
+        - updatedAt
+        - settings
+      example:
+        id: care-plan-uuid
+        patientId: patient-123
+        projectId: project-1
+        updatedAt: 2026-07-20T10:00:00.000Z
+        settings:
+          heartRate:
+            mode: patient
+            enabled: true
+            min: 60
+            max: 100
+          respiratoryRate:
+            mode: organization
+            enabled: true
+            min: 12
+            max: 20
+          outOfBed:
+            mode: patient
+            enabled: true
+            maxDurationSeconds: 1200
+          bedTimePeriod:
+            mode: organization
+            start: 22:00:00
+            end: 06:00:00
+            timezone: Europe/Berlin
+    PatientThresholdV2BodyDto:
+      type: object
+      properties:
+        settings:
+          type: object
+          properties:
+            heartRate:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                  required:
+                    - mode
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                    max:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                      minimum: 5
+                      maximum: 60
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            respiratoryRate:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                  required:
+                    - mode
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - patient
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                    max:
+                      type: number
+                      minimum: 0
+                      maximum: 1000
+                  required:
+                    - mode
+                    - enabled
+                    - min
+                    - max
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - baseline
+                    enabled:
+                      type: boolean
+                    deviationPercent:
+                      type: number
+                      minimum: 5
+                      maximum: 60
+                  required:
+                    - mode
+                    - enabled
+                    - deviationPercent
+            outOfBed:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                  required:
+                    - mode
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - patient
+                    enabled:
+                      type: boolean
+                    maxDurationSeconds:
+                      type: integer
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - mode
+                    - enabled
+                    - maxDurationSeconds
+            bedTimePeriod:
+              discriminator:
+                propertyName: mode
+              oneOf:
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                  required:
+                    - mode
+                - type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+                  required:
+                    - mode
+                    - start
+                    - end
+          required:
+            - heartRate
+            - respiratoryRate
+            - outOfBed
+            - bedTimePeriod
+      required:
+        - settings
+      example:
+        settings:
+          heartRate:
+            mode: patient
+            enabled: true
+            min: 60
+            max: 100
+          respiratoryRate:
+            mode: organization
+          outOfBed:
+            mode: patient
+            enabled: true
+            maxDurationSeconds: 1200
+          bedTimePeriod:
+            mode: organization
     CarehubChangeHistoryResponseDto:
       type: object
       properties:
@@ -21283,7 +21924,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #4riMCi7Eca"
+                  name: "Patient Monitor #2eRU9OWRz9"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -21396,7 +22037,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -21407,7 +22048,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -21566,7 +22207,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -21576,7 +22217,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -21589,7 +22230,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -21600,7 +22241,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-20T11:51:38.191Z
+                lastUpdated: 2026-07-20T13:06:55.432Z
     SignalsAlertDto:
       type: object
       properties:
@@ -22353,7 +22994,7 @@ components:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -22427,7 +23068,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
     UpdateDocumentMetadataDto:
       type: object
       properties:
@@ -22920,7 +23561,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-07-20T11:51:38.191Z
+              admissionDate: 2026-07-20T13:06:55.432Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -22942,7 +23583,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-07-20T11:51:38.191Z
+            admissionDate: 2026-07-20T13:06:55.432Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -23129,22 +23770,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1784548298191
+                ts: 1784552815432
               effectiveHeartRate:
                 value: 74
-                ts: 1784548298191
+                ts: 1784552815432
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1784548298191
+                ts: 1784552815432
               effectiveSleepStatus:
                 value: asleep
-                ts: 1784548298191
+                ts: 1784552815432
               lastMeasurementTime:
-                value: 2026-07-20T11:51:38.191Z
-                ts: 1784548298191
+                value: 2026-07-20T13:06:55.432Z
+                ts: 1784552815432
               lastActivityTime:
-                value: 2026-07-20T11:51:38.191Z
-                ts: 1784548298191
+                value: 2026-07-20T13:06:55.432Z
+                ts: 1784552815432
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -23501,8 +24142,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-07-20T11:51:38.191Z
-              createdAt: 2026-07-20T11:51:38.191Z
+              lastActivityTime: 2026-07-20T13:06:55.432Z
+              createdAt: 2026-07-20T13:06:55.432Z
       required:
         - total
         - page
@@ -23848,22 +24489,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1784548298191
+                  ts: 1784552815432
                 effectiveHeartRate:
                   value: 74
-                  ts: 1784548298191
+                  ts: 1784552815432
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1784548298191
+                  ts: 1784552815432
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1784548298191
+                  ts: 1784552815432
                 lastMeasurementTime:
-                  value: 2026-07-20T11:51:38.191Z
-                  ts: 1784548298191
+                  value: 2026-07-20T13:06:55.432Z
+                  ts: 1784552815432
                 lastActivityTime:
-                  value: 2026-07-20T11:51:38.191Z
-                  ts: 1784548298191
+                  value: 2026-07-20T13:06:55.432Z
+                  ts: 1784552815432
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -23895,7 +24536,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-07-20T11:51:38.191Z
+                admissionDate: 2026-07-20T13:06:55.432Z
                 dischargeDate: null
       required:
         - total
@@ -24304,22 +24945,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1784548298191
+              ts: 1784552815432
             effectiveHeartRate:
               value: 74
-              ts: 1784548298191
+              ts: 1784552815432
             effectiveRespiratoryRate:
               value: 16
-              ts: 1784548298191
+              ts: 1784552815432
             effectiveSleepStatus:
               value: asleep
-              ts: 1784548298191
+              ts: 1784552815432
             lastMeasurementTime:
-              value: 2026-07-20T11:51:38.191Z
-              ts: 1784548298191
+              value: 2026-07-20T13:06:55.432Z
+              ts: 1784552815432
             lastActivityTime:
-              value: 2026-07-20T11:51:38.191Z
-              ts: 1784548298191
+              value: 2026-07-20T13:06:55.432Z
+              ts: 1784552815432
             name:
               value: Sleepiz/3001472
               ts: null
@@ -24359,10 +25000,19 @@ components:
           type: string
         organizationId:
           type: string
+        organizationName:
+          type: string
+          nullable: true
         locationId:
           type: string
+        locationName:
+          type: string
+          nullable: true
         patientId:
           type: string
+        patientName:
+          type: string
+          nullable: true
         floor:
           type: string
         room:
@@ -24371,13 +25021,19 @@ components:
           type: string
       required:
         - name
+        - organizationName
+        - locationName
+        - patientName
       example:
-        name: "Patient Monitor Device #4riMCi7Eca"
+        name: "Patient Monitor Device #2eRU9OWRz9"
         status: active
-        thingsboardId: TB_DEVICE_4riMCi7Eca
+        thingsboardId: TB_DEVICE_2eRU9OWRz9
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
+        organizationName: My Medical Project
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
+        locationName: Room 201 Bed 1
         patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
+        patientName: Maxi
         floor: "2"
         room: "201"
         bed: A
@@ -25650,13 +26306,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-07-20T11:51:38.191Z
+          created: 2026-07-20T13:06:55.432Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-07-21T11:51:38Z
+        expiresAt: 2026-07-21T13:06:55Z
     ContentBodyDto:
       type: object
       properties:
@@ -26252,7 +26908,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #4riMCi7Eca"
+              deviceName: "Patient Monitor Device #2eRU9OWRz9"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -26333,7 +26989,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #4riMCi7Eca"
+        deviceName: "Patient Monitor Device #2eRU9OWRz9"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -26779,7 +27435,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-07-20T11:51:38.191Z
+            lastUpdated: 2026-07-20T13:06:55.432Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -26789,7 +27445,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-07-20T11:51:38.191Z
+            lastUpdated: 2026-07-20T13:06:55.432Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -27591,10 +28247,10 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-07-20T11:51:38.191Z
+              authoredOn: 2026-07-20T13:06:55.432Z
               alertCount: 5
-              occurrenceDateTime: 2026-07-20T11:51:38.191Z
-              effectiveTimestamp: 2026-07-20T11:51:38.191Z
+              occurrenceDateTime: 2026-07-20T13:06:55.432Z
+              effectiveTimestamp: 2026-07-20T13:06:55.432Z
       required:
         - total
         - page
@@ -27607,7 +28263,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-07-20T11:51:38.191Z
+            authoredOn: 2026-07-20T13:06:55.432Z
             type: hr
     CarehubNotificationResponseDto:
       type: object
@@ -30676,8 +31332,8 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: Q1bM.s8#RlDHys&u
-        productId: prod_4riMCi7Eca
+        password: ecD@^w4Xy#VRA)h%
+        productId: prod_2eRU9OWRz9
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -32229,8 +32885,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NDgyOTgsImV4cCI6MTc4NDU1MTg5OH0.kRB-6WcVqUCZt0EVCIT6Iur9ty3I4Bz8mM_tih7LgDU
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ1NTI4MTUsImV4cCI6MTc4NDU1NjQxNX0.YutJy1OVIm0HWiFA_AqUcfhgn07zQOqCXBKieQVx7LE
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -32361,15 +33017,15 @@ components:
         - passphrase
       example: &a71
         status: booked
-        start: 2026-07-20T11:51:38Z
-        end: 2026-07-21T11:51:38Z
+        start: 2026-07-20T13:06:55Z
+        end: 2026-07-21T13:06:55Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: 4riMCi7Eca
+        passphrase: 2eRU9OWRz9
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -32452,15 +33108,15 @@ components:
         example: *a71
       example:
         - status: booked
-          start: 2026-07-20T11:51:38Z
-          end: 2026-07-21T11:51:38Z
+          start: 2026-07-20T13:06:55Z
+          end: 2026-07-21T13:06:55Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: 4riMCi7Eca
+          passphrase: 2eRU9OWRz9
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
