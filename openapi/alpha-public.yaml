@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "cYl+eyFcj)B;!PXd",
+            "password": "@?0x-bs#*PFw]vu:",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "cYl+eyFcj)B;!PXd",
+            "password": "@?0x-bs#*PFw]vu:",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -401,7 +401,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +925,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1050,7 +1050,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -2297,7 +2297,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -10998,7 +10998,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11289,7 +11289,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11580,7 +11580,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11736,7 +11736,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE'
         ```
 
 
@@ -11893,7 +11893,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE'
         ```
 
 
@@ -12050,7 +12050,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE'
         ```
 
 
@@ -14976,7 +14976,7 @@ info:
 
     direct access to the FHIR resources. Please refer to the FHIR API
     documentation [here](https://ovok.redocly.app) for more information.
-  version: 2026.07.21
+  version: 2026.07.22
   contact: {}
 tags: []
 servers:
@@ -15073,7 +15073,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
+        password: "@?0x-bs#*PFw]vu:"
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -15118,8 +15118,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -15166,7 +15166,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
+        password: "@?0x-bs#*PFw]vu:"
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -15187,8 +15187,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -15208,8 +15208,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -15278,7 +15278,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -15344,7 +15344,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
     RequestDeleteDto:
       type: object
       properties:
@@ -15435,7 +15435,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-07-21T11:18:23.927Z
+        scheduled: 2026-07-22T02:21:39.684Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -15447,7 +15447,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-07-21T11:18:23.927Z
+            lastUpdated: 2026-07-22T02:21:39.684Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -15477,7 +15477,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
+        password: "@?0x-bs#*PFw]vu:"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -15663,8 +15663,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -15924,7 +15924,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
+        password: "@?0x-bs#*PFw]vu:"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -16022,8 +16022,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: LcimSRSMCG
-        password: cYl+eyFcj)B;!PXd
+        secret: uyCuO6QEPN
+        password: "@?0x-bs#*PFw]vu:"
     SessionsResponseDto:
       type: object
       properties:
@@ -16055,7 +16055,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-07-21T11:18:23.927Z
+              lastUpdated: 2026-07-22T02:21:39.684Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -16065,7 +16065,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-07-21T11:18:23.927Z
+            lastUpdated: 2026-07-22T02:21:39.684Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -16109,7 +16109,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -16129,7 +16129,7 @@ components:
       required:
         - tan
       example:
-        tan: 86HXqRD2G1wa
+        tan: 2Kj2e2z4yzIh
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -16149,8 +16149,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
-        codeChallenge: YI3hiGEhHGDaBFfsEaKHn07TZn3Fyo5g
+        password: "@?0x-bs#*PFw]vu:"
+        codeChallenge: ZxAs6XoMxEV8XlrHu6bqhDrpVkQyiKc1
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -16189,7 +16189,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: GoU2oQZzIvVHeUnsEBOrnwbFSnqjYrtm
+        sessionCode: DdQNKhBvFXi46LmjbyFJcd7f1CuoIHoX
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -16205,8 +16205,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: gkkODUNk51fpt0B1goiAsxCAyPhCO4EX
-        codeVerifier: Sh1ZGrvpp0yWB3d4kaOADRxhrLcZ3HODcL7hEpUTifh5Ay6WQdG3GOFHmn3d2FBI
+        sessionCode: to8p8drftPGinJoatMClMw77tXItDmSk
+        codeVerifier: W3rMG1Uu09QgobBUApGwFtvKvThWZKM7P0KWim229st4I9Uphhg9HrUSmGZDWXsY
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -16246,7 +16246,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: 0kVWFWui0q7yvyBDeZKF3QkWVtUdL9id
+        sessionCode: GOE096ckO5m3h1fcHMtwCsYWJCqlYA5h
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -16270,8 +16270,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
-        codeChallenge: OqztWfd43gS9aPEH5oy90QtbQh0JcgaL
+        password: "@?0x-bs#*PFw]vu:"
+        codeChallenge: bfupWFU1g6b61HLI7tuI745FWek5rCRN
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -16299,7 +16299,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: 17kKgy6hYYPsGkjNixk1Ag3wL6WsHWcy
+        sessionCode: 5Mam8PLcVCN4ddkSjLAOyeUuVAuwxouP
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -16311,8 +16311,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: TV2JDnjvNRPsQwLh1y35kEUK6NQjZcCw
-        codeVerifier: I5Kcdi4EMT5QEcke3tJITW57eVd8xSUpND2E29pijqtoSqf93CWRUwEjSsOOsSwm
+        sessionCode: eQ1msB7Rv3Nqpuhrhxju2vWwPhuHW0Nc
+        codeVerifier: Y2Xs2rCifhNCb8fN5uxnTqJKGiusxVToHb7nXWMMgwoYnDl8LpMqYZywRdxGmJsj
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -16339,7 +16339,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: lPMhB4Y1PEx5SZKh45sQn4H5FwGgQfXb
+        sessionCode: MxITTX0LBV9ulXt0ErDcKZT8acGivjxF
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -16362,7 +16362,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
+        password: "@?0x-bs#*PFw]vu:"
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -17119,7 +17119,7 @@ components:
                   project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                   author:
                     reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                  lastUpdated: 2026-07-21T11:18:23.927Z
+                  lastUpdated: 2026-07-22T02:21:39.684Z
               members:
                 - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                   display: Dr. Max John Mustermann
@@ -17145,7 +17145,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -17161,7 +17161,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -19770,7 +19770,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-07-21T11:18:23.927Z
+        date: 2026-07-22T02:21:39.684Z
         settings:
           heartRate:
             mode: organization
@@ -21924,7 +21924,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #LcimSRSMCG"
+                  name: "Patient Monitor #uyCuO6QEPN"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -22037,7 +22037,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -22048,7 +22048,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -22207,7 +22207,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -22217,7 +22217,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -22230,7 +22230,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -22241,7 +22241,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-07-21T11:18:23.927Z
+                lastUpdated: 2026-07-22T02:21:39.684Z
     SignalsAlertDto:
       type: object
       properties:
@@ -22404,8 +22404,6 @@ components:
           items:
             type: string
           nullable: true
-        hasApiKey:
-          type: boolean
         hasWebhookSecret:
           type: boolean
         source:
@@ -22421,7 +22419,6 @@ components:
         - subscriberId
         - ovokSubscriberId
         - events
-        - hasApiKey
         - hasWebhookSecret
         - source
     ProvisionSignalsProjectRequestDto:
@@ -22447,10 +22444,6 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-        apiKey:
-          type: string
-          minLength: 1
-          maxLength: 4096
         events:
           type: array
           items:
@@ -22465,7 +22458,6 @@ components:
         - submitterId
         - managerId
         - subscriberId
-        - apiKey
         - events
     ProvisionSignalsProjectResponseDto:
       type: object
@@ -22994,7 +22986,7 @@ components:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -23068,7 +23060,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
     UpdateDocumentMetadataDto:
       type: object
       properties:
@@ -23561,7 +23553,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-07-21T11:18:23.927Z
+              admissionDate: 2026-07-22T02:21:39.684Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -23583,7 +23575,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-07-21T11:18:23.927Z
+            admissionDate: 2026-07-22T02:21:39.684Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -23770,22 +23762,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1784632703927
+                ts: 1784686899684
               effectiveHeartRate:
                 value: 74
-                ts: 1784632703927
+                ts: 1784686899684
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1784632703927
+                ts: 1784686899684
               effectiveSleepStatus:
                 value: asleep
-                ts: 1784632703927
+                ts: 1784686899684
               lastMeasurementTime:
-                value: 2026-07-21T11:18:23.927Z
-                ts: 1784632703927
+                value: 2026-07-22T02:21:39.684Z
+                ts: 1784686899684
               lastActivityTime:
-                value: 2026-07-21T11:18:23.927Z
-                ts: 1784632703927
+                value: 2026-07-22T02:21:39.684Z
+                ts: 1784686899684
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -24142,8 +24134,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-07-21T11:18:23.927Z
-              createdAt: 2026-07-21T11:18:23.927Z
+              lastActivityTime: 2026-07-22T02:21:39.684Z
+              createdAt: 2026-07-22T02:21:39.684Z
       required:
         - total
         - page
@@ -24489,22 +24481,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1784632703927
+                  ts: 1784686899684
                 effectiveHeartRate:
                   value: 74
-                  ts: 1784632703927
+                  ts: 1784686899684
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1784632703927
+                  ts: 1784686899684
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1784632703927
+                  ts: 1784686899684
                 lastMeasurementTime:
-                  value: 2026-07-21T11:18:23.927Z
-                  ts: 1784632703927
+                  value: 2026-07-22T02:21:39.684Z
+                  ts: 1784686899684
                 lastActivityTime:
-                  value: 2026-07-21T11:18:23.927Z
-                  ts: 1784632703927
+                  value: 2026-07-22T02:21:39.684Z
+                  ts: 1784686899684
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -24536,7 +24528,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-07-21T11:18:23.927Z
+                admissionDate: 2026-07-22T02:21:39.684Z
                 dischargeDate: null
       required:
         - total
@@ -24945,22 +24937,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1784632703927
+              ts: 1784686899684
             effectiveHeartRate:
               value: 74
-              ts: 1784632703927
+              ts: 1784686899684
             effectiveRespiratoryRate:
               value: 16
-              ts: 1784632703927
+              ts: 1784686899684
             effectiveSleepStatus:
               value: asleep
-              ts: 1784632703927
+              ts: 1784686899684
             lastMeasurementTime:
-              value: 2026-07-21T11:18:23.927Z
-              ts: 1784632703927
+              value: 2026-07-22T02:21:39.684Z
+              ts: 1784686899684
             lastActivityTime:
-              value: 2026-07-21T11:18:23.927Z
-              ts: 1784632703927
+              value: 2026-07-22T02:21:39.684Z
+              ts: 1784686899684
             name:
               value: Sleepiz/3001472
               ts: null
@@ -25025,9 +25017,9 @@ components:
         - locationName
         - patientName
       example:
-        name: "Patient Monitor Device #LcimSRSMCG"
+        name: "Patient Monitor Device #uyCuO6QEPN"
         status: active
-        thingsboardId: TB_DEVICE_LcimSRSMCG
+        thingsboardId: TB_DEVICE_uyCuO6QEPN
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
@@ -26306,13 +26298,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-07-21T11:18:23.927Z
+          created: 2026-07-22T02:21:39.684Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-07-22T11:18:23Z
+        expiresAt: 2026-07-23T02:21:39Z
     ContentBodyDto:
       type: object
       properties:
@@ -26908,7 +26900,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #LcimSRSMCG"
+              deviceName: "Patient Monitor Device #uyCuO6QEPN"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -26989,7 +26981,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #LcimSRSMCG"
+        deviceName: "Patient Monitor Device #uyCuO6QEPN"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -27435,7 +27427,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-07-21T11:18:23.927Z
+            lastUpdated: 2026-07-22T02:21:39.684Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -27445,7 +27437,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-07-21T11:18:23.927Z
+            lastUpdated: 2026-07-22T02:21:39.684Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -28247,10 +28239,10 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-07-21T11:18:23.927Z
+              authoredOn: 2026-07-22T02:21:39.684Z
               alertCount: 5
-              occurrenceDateTime: 2026-07-21T11:18:23.927Z
-              effectiveTimestamp: 2026-07-21T11:18:23.927Z
+              occurrenceDateTime: 2026-07-22T02:21:39.684Z
+              effectiveTimestamp: 2026-07-22T02:21:39.684Z
       required:
         - total
         - page
@@ -28263,7 +28255,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-07-21T11:18:23.927Z
+            authoredOn: 2026-07-22T02:21:39.684Z
             type: hr
     CarehubNotificationResponseDto:
       type: object
@@ -31332,8 +31324,8 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: cYl+eyFcj)B;!PXd
-        productId: prod_LcimSRSMCG
+        password: "@?0x-bs#*PFw]vu:"
+        productId: prod_uyCuO6QEPN
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -32885,8 +32877,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2MzI3MDMsImV4cCI6MTc4NDYzNjMwM30.8AQ4QvO8z-qL4-t5aZ1dOP7X_dCeeMOvsbHHOwp44po
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ2ODY4OTksImV4cCI6MTc4NDY5MDQ5OX0.nWqlgGw7RDwDl3tQoOg_hC0YZAQVbFYIrch51RAkmyE
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -33017,15 +33009,15 @@ components:
         - passphrase
       example: &a71
         status: booked
-        start: 2026-07-21T11:18:23Z
-        end: 2026-07-22T11:18:23Z
+        start: 2026-07-22T02:21:39Z
+        end: 2026-07-23T02:21:39Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: LcimSRSMCG
+        passphrase: uyCuO6QEPN
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -33108,15 +33100,15 @@ components:
         example: *a71
       example:
         - status: booked
-          start: 2026-07-21T11:18:23Z
-          end: 2026-07-22T11:18:23Z
+          start: 2026-07-22T02:21:39Z
+          end: 2026-07-23T02:21:39Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: LcimSRSMCG
+          passphrase: uyCuO6QEPN
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
