@@ -111,7 +111,7 @@ Use the credentials in `uploadOptions` to upload your replacement file directly 
   "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
   "fileName": "test.txt",
   "contentType": "text/plain",
-  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ4MTc2NDUsImV4cCI6MTc4NDgyMTI0NX0.1PnClfFvTSJTCaP5j13PQ1_gBLWdWR_6N69N1VtNQ2o",
+  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ4MzM2NzMsImV4cCI6MTc4NDgzNzI3M30.tQ4m__yf-ihGhRx4gS8l0kc39Ksi7wnGvU-nTqM_4UE",
   "uploadOptions": {
     "url": "https://example.com/upload",
     "fields": {
