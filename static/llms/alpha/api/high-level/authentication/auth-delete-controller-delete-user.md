@@ -24,7 +24,7 @@ The Delete User API endpoint schedules user account deletion from the Ovok platf
 ```bash
 curl -X DELETE \
  --url 'https://api.dev.ovok.com/auth/delete' \
- -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ4NDI4MDIsImV4cCI6MTc4NDg0NjQwMn0.nN8OqsJuJ5HaYPVH6ppZCTgpbMWpgBMFsFMlPa6vGNc' \
+ -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ4NDMwMjUsImV4cCI6MTc4NDg0NjYyNX0.ikS-JpFvae2Jk3EtBk92k75ke9iYUIeQzmDozQgwPGU' \
  -H 'Content-Type: application/json' \
  -d '{
     "days": 30,
