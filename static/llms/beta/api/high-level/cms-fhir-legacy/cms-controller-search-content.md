@@ -1,38 +1,39 @@
 ---
-title: "Search mapped content"
-sidebar_label: "Search mapped content"
-description: "# Search Mapped Content"
+title: "Search content"
+sidebar_label: "Search content"
+description: "# Search Content"
 ---
 
-# Search mapped content
+# Search content
 
 <div className="endpoint-hero">
 
 <div className="endpoint-hero__paths">
-  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/cms/{type}/map/{language}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/internal/cms/{type}/{language}"}</code></div>
 </div>
 
 <ApiBase inline={false} />
 
 </div>
 
-# Search Mapped Content
+# Search Content
 
-Search CMS content with a side-by-side mapping between the project's default language and a target language.
-<br />Each result contains a `source` (default-language entry) and a `target` (requested-language entry) for the same content key. This is useful for translation management UIs where editors need to see original and translated content together.
+Search and paginate CMS content entries for a given content type and language.
+<br />Results are sorted by date (newest first). An optional free-text search performs fuzzy matching across title, author, category, section titles, section text, and key.
 
 ## Path Parameters
 
 | Parameter  | Description                                                     | Example     |
 | ---------- | --------------------------------------------------------------- | ----------- |
 | `type`     | Content type (e.g. `article`, `faq`, `exercise`)                | `article`   |
-| `language` | Target ISO language code to map against the default language     | `de-DE`     |
+| `language` | ISO language code                                               | `en-US`     |
 
 ## Query Parameters
 
 | Parameter  | Type     | Description                                  | Default |
 | ---------- | -------- | -------------------------------------------- | ------- |
-| `search`   | `string` | Free-text fuzzy search across title, section text, author, and key | -       |
+| `search`   | `string` | Free-text fuzzy search term                  | -       |
 | `code`     | `string` | Filter by content code                       | -       |
 | `_count`   | `number` | Page size                                    | `10`    |
 | `_offset`  | `number` | Number of items to skip                      | `0`     |
@@ -41,7 +42,7 @@ Search CMS content with a side-by-side mapping between the project's default lan
 
 ```bash
 curl -X GET \
- --url 'https://api.staging.ovok.com/cms/article/map/de-DE?search=Blog&_count=20&_offset=0' \
+ --url 'https://api.staging.ovok.com/cms/article/en-US?search=Blog&_count=20&_offset=0' \
  -H 'Authorization: Bearer <token>'
 ```
 
@@ -49,17 +50,27 @@ curl -X GET \
 
 ```json
 {
-  "total": 1,
+  "total": 42,
   "resources": [
     {
-      "source": { "title": "My Blog", "language": "en-US", "key": "article-my-blog-a1b2c3d4" },
-      "target": { "title": "Mein Blog", "language": "de-DE", "key": "article-my-blog-a1b2c3d4" }
+      "id": "composition-id",
+      "title": "My Blog",
+      "category": "123",
+      "section": [],
+      "language": "en-US",
+      "key": "article-my-blog-a1b2c3d4",
+      "type": "article",
+      "date": "2025-01-15T12:00:00.000Z",
+      "author": {
+        "reference": "Practitioner/abc",
+        "display": "Dr. Smith"
+      }
     }
   ]
 }
 ```
 
-**Notes:** If a content key exists in the default language but has no translation yet, `target` will be absent from that entry. The reverse is also possible if orphaned translations exist.
+**Notes:** The fuzzy search uses Fuse.js. When no `search` term is provided, all entries for the given type and language are returned, paginated by `_count` and `_offset`.
 
 
 

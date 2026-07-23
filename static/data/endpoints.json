@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
+      "password": "!yd16jPVXE73R._p",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -29,7 +29,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
+      "password": "!yd16jPVXE73R._p",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -50,7 +50,7 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQyNDE4MzgsImV4cCI6MTc4NDI0NTQzOH0.3RnvT86aa1fhBlDTgSEUxHROMrypyWAekMhGEXsrAxU"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ4MzgyMDksImV4cCI6MTc4NDg0MTgwOX0.gd5l1oIV-C0N7wbZ0e3tv7enFxD-5-s0hSh-4RhivM4"
     },
     "deprecated": false,
     "availableIn": [
@@ -86,7 +86,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
+      "password": "!yd16jPVXE73R._p",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -120,7 +120,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
+      "password": "!yd16jPVXE73R._p",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -178,8 +178,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
-      "codeChallenge": "nIRvsLhlnko6ddVL694tMikyEfomhSzC"
+      "password": "!yd16jPVXE73R._p",
+      "codeChallenge": "2m0QyUxIL3R9UmISN8gRDhLHyri3epN3"
     },
     "deprecated": false,
     "availableIn": [
@@ -196,8 +196,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "2mZ1gma4uRrn6nDxppAFEMOja4gWjUXC",
-      "codeVerifier": "6nZoehmA85gY0moUbDeTFfNpHr0bWLi2EKNz0YYVDKLfqozmaYOHNu2HmOTURMRS",
+      "sessionCode": "T6Bw3Oy0PbELlVY5lo3N7nV5MHWY5FKX",
+      "codeVerifier": "VcDQGNxFfvic4hvH2e0aIjd0Lz66MOqaUjWR3qlaTCKMVOY9E4FpoC5sNiIevjRB",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -234,8 +234,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
-      "codeChallenge": "IpDTGpKa93pYke5j5FHyMIPVgIIS6MnI",
+      "password": "!yd16jPVXE73R._p",
+      "codeChallenge": "XhRdNGHIMBPECYr1jcAVC0xAtCTBsIuU",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -253,8 +253,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "fdBsj71dMX74xjoPfvbYd4Z0G3ovguxT",
-      "codeVerifier": "SmparaaMmGnFWAZuIm1WIWObUKS5xgZI1gCDQUwTOxqrGWJllxAJDPnNIQnKPEwm"
+      "sessionCode": "xBTPg53Silv5mOR2TWom2JxCxVDErCpp",
+      "codeVerifier": "ilRVqsy5Pt3IA1ct5rGbTCbWnu8xrdh40hnMd8kBMxEwNgbfdkuuEhsax3fMUltf"
     },
     "deprecated": false,
     "availableIn": [
@@ -290,7 +290,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": "3L,J:rOF^J3S:XA-",
+      "password": "!yd16jPVXE73R._p",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -697,8 +697,60 @@
     "path": "/cms/{type}/map/{language}",
     "summary": "Search mapped content",
     "description": "# Search Mapped Content",
-    "tag": "CMS",
-    "operationId": "CMSController_searchMappedContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchMappedContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/map/{language}",
+    "summary": "Search mapped content",
+    "description": "# Search Mapped Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchMappedContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -749,8 +801,36 @@
     "path": "/cms/{type}/{language}/copy-from-parent-project",
     "summary": "Copy contents",
     "description": "Copy contents.",
-    "tag": "CMS",
-    "operationId": "CMSController_copyContents",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copyContents[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}/copy-from-parent-project",
+    "summary": "Copy contents",
+    "description": "Copy contents.",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copyContents[1]",
     "parameters": [
       {
         "name": "type",
@@ -777,8 +857,42 @@
     "path": "/cms/{type}/{language}/{key}/copy-from-parent-project",
     "summary": "Copy a content",
     "description": "Copy a content.",
-    "tag": "CMS",
-    "operationId": "CMSController_copySingleContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copySingleContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}/{key}/copy-from-parent-project",
+    "summary": "Copy a content",
+    "description": "Copy a content.",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_copySingleContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -811,8 +925,8 @@
     "path": "/cms/{type}/{language}",
     "summary": "Create content",
     "description": "# Create Content",
-    "tag": "CMS",
-    "operationId": "CMSController_createContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_createContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -865,8 +979,114 @@
     "path": "/cms/{type}/{language}",
     "summary": "Search content",
     "description": "# Search Content",
-    "tag": "CMS",
-    "operationId": "CMSController_searchContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_count",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "_offset",
+        "in": "query",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/internal/cms/{type}/{language}",
+    "summary": "Create content",
+    "description": "# Create Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_createContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/{language}",
+    "summary": "Search content",
+    "description": "# Search Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_searchContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -917,8 +1137,8 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Update content",
     "description": "# Create Content",
-    "tag": "CMS",
-    "operationId": "CMSController_updateContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_updateContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -977,8 +1197,8 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Get content by key and language",
     "description": "# Get Content by Key and Language",
-    "tag": "CMS",
-    "operationId": "CMSController_getContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_getContent[0]",
     "parameters": [
       {
         "name": "type",
@@ -1011,8 +1231,136 @@
     "path": "/cms/{type}/{language}/{key}",
     "summary": "Delete content",
     "description": "# Delete Content",
-    "tag": "CMS",
-    "operationId": "CMSController_deleteContent",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_deleteContent[0]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Update content",
+    "description": "# Create Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_updateContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": {
+      "title": "My Blog",
+      "category": "123",
+      "section": [
+        {
+          "title": "My Section",
+          "text": "My Text",
+          "code": [
+            "main-content"
+          ]
+        },
+        {
+          "title": "My Section 2",
+          "text": "My Text 2",
+          "code": [
+            "reading-time"
+          ]
+        },
+        {
+          "title": "My Section 3",
+          "text": "My Text 3",
+          "code": [
+            "resource-link"
+          ]
+        }
+      ]
+    },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Get content by key and language",
+    "description": "# Get Content by Key and Language",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_getContent[1]",
+    "parameters": [
+      {
+        "name": "type",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "key",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/internal/cms/{type}/{language}/{key}",
+    "summary": "Delete content",
+    "description": "# Delete Content",
+    "tag": "CMS (FHIR Legacy)",
+    "operationId": "CMSController_deleteContent[1]",
     "parameters": [
       {
         "name": "type",
@@ -2004,346 +2352,6 @@
     "availableIn": [
       "alpha",
       "beta"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/internal/cms/{type}/map/{language}",
-    "summary": "Search mapped content",
-    "description": "# Search Mapped Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_searchMappedContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "search",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_count",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_offset",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/internal/cms/{type}/{language}/copy-from-parent-project",
-    "summary": "Copy contents",
-    "description": "Copy contents.",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_copyContents[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/internal/cms/{type}/{language}/{key}/copy-from-parent-project",
-    "summary": "Copy a content",
-    "description": "Copy a content.",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_copySingleContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/internal/cms/{type}/{language}",
-    "summary": "Create content",
-    "description": "# Create Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_createContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "title": "My Blog",
-      "category": "123",
-      "section": [
-        {
-          "title": "My Section",
-          "text": "My Text",
-          "code": [
-            "main-content"
-          ]
-        },
-        {
-          "title": "My Section 2",
-          "text": "My Text 2",
-          "code": [
-            "reading-time"
-          ]
-        },
-        {
-          "title": "My Section 3",
-          "text": "My Text 3",
-          "code": [
-            "resource-link"
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/internal/cms/{type}/{language}",
-    "summary": "Search content",
-    "description": "# Search Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_searchContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "search",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_count",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "_offset",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/internal/cms/{type}/{language}/{key}",
-    "summary": "Update content",
-    "description": "# Create Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_updateContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "title": "My Blog",
-      "category": "123",
-      "section": [
-        {
-          "title": "My Section",
-          "text": "My Text",
-          "code": [
-            "main-content"
-          ]
-        },
-        {
-          "title": "My Section 2",
-          "text": "My Text 2",
-          "code": [
-            "reading-time"
-          ]
-        },
-        {
-          "title": "My Section 3",
-          "text": "My Text 3",
-          "code": [
-            "resource-link"
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/internal/cms/{type}/{language}/{key}",
-    "summary": "Get content by key and language",
-    "description": "# Get Content by Key and Language",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_getContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "DELETE",
-    "path": "/internal/cms/{type}/{language}/{key}",
-    "summary": "Delete content",
-    "description": "# Delete Content",
-    "tag": "CMS (FHIR Legacy)",
-    "operationId": "CMSController_deleteContent[1]",
-    "parameters": [
-      {
-        "name": "type",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "language",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "key",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
     ]
   }
 ]

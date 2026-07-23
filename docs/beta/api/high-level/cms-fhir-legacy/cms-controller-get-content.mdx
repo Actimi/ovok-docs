@@ -10,6 +10,7 @@ description: "# Get Content by Key and Language"
 
 <div className="endpoint-hero__paths">
   <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/cms/{type}/{language}/{key}"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method get">GET</span> <code className="endpoint-hero__path">{"/internal/cms/{type}/{language}/{key}"}</code></div>
 </div>
 
 <ApiBase inline={false} />

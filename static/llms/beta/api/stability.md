@@ -19,7 +19,7 @@ Lifecycle status of every endpoint exposed on the **beta** tier. Anything not li
 
 | Status | Endpoints |
 | --- | --- |
-| General availability | 69 |
+| General availability | 77 |
 | Early Access | 0 |
 | Deprecated | 0 |
 
