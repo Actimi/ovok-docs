@@ -26,7 +26,7 @@ curl -X POST \
  -H 'Content-Type: application/json' \
  -d '{
     "email": "max.mustermann@example.com",
-    "password": "TK%Dw$AB+rze5KW9",
+    "password": "U(j,)+vQ:Ct&amp;K{w(",
     "name": "Max",
     "surname": "Mustermann",
     "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -77,8 +77,8 @@ curl -X POST \
 
 ```json
 {
-  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ5OTI1MzAsImV4cCI6MTc4NDk5NjEzMH0.N_vokVLgm2o3_1E9KtBw1NxsedRKgt-LA4GLvT6C-9M",
-  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ5OTI1MzAsImV4cCI6MTc4NDk5NjEzMH0.N_vokVLgm2o3_1E9KtBw1NxsedRKgt-LA4GLvT6C-9M",
+  "accessToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ5OTM1OTAsImV4cCI6MTc4NDk5NzE5MH0.8O6lH8MI9A1KZImAnxsBOKTkB_hCBuTGNeBvSQ_wMhE",
+  "refreshToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODQ5OTM1OTAsImV4cCI6MTc4NDk5NzE5MH0.8O6lH8MI9A1KZImAnxsBOKTkB_hCBuTGNeBvSQ_wMhE",
   "expiresIn": 3600,
   "project": {
     "reference": "Project/f6f4da8d-93e8-8a08-220e-03b7810451d3",
