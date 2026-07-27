@@ -50,6 +50,6 @@ Login with MFA token. Success response contains a challenge token that can be us
 ```json
 {
   "nextStep": "token",
-  "sessionCode": "l8rY40LfSazIFlVAQtl2j6Sl1I5sV8Bw"
+  "sessionCode": "WJT5H2WLWUERMwl553wMIVcn0zcKXcJx"
 }
 ```
