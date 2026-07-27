@@ -73,7 +73,7 @@ Information such as id, contentType, fileName, public token.
       "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
       "fileName": "test.txt",
       "contentType": "text/plain",
-      "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxODQ0MzAsImV4cCI6MTc4NTE4ODAzMH0.4zuAWHmx5tNrLKC8OUR2IlM5m0lkbf6EAFRIXRU8SzY"
+      "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxODc3ODcsImV4cCI6MTc4NTE5MTM4N30.J0KB06dNFWFsodT26PorZPJbc4DudKicFAo4bCTEKpw"
     }
   ]
 }
