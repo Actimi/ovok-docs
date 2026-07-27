@@ -61,8 +61,8 @@ curl -X POST \
 
 ```json
 {
-  "access_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxNDI3MzgsImV4cCI6MTc4NTE0NjMzOH0.1JQC3LlbOkXwlj6xYxWKqU89gtFjMOq2zmTOG7dbxEw",
-  "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxNDI3MzgsImV4cCI6MTc4NTE0NjMzOH0.1JQC3LlbOkXwlj6xYxWKqU89gtFjMOq2zmTOG7dbxEw",
+  "access_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxNTI0NTcsImV4cCI6MTc4NTE1NjA1N30.VJmR2KjA9ii8gWt4xOOvA9Iq5GRgzT6A6ay97ETc1tQ",
+  "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUxNTI0NTcsImV4cCI6MTc4NTE1NjA1N30.VJmR2KjA9ii8gWt4xOOvA9Iq5GRgzT6A6ay97ETc1tQ",
   "expires_in": 3600
 }
 ```
