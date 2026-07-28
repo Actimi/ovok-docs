@@ -153,7 +153,7 @@ uploadFileWithCredentials('path/to/cat.png', uploadCredentialsResponse);
   "id": "87ea5dfc-8b8e-384d-8489-79496e706390",
   "fileName": "test.txt",
   "contentType": "text/plain",
-  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUyNjg1MzgsImV4cCI6MTc4NTI3MjEzOH0.S_sonEIKEZS183S-JSeolqTyAFgvCLzvGNu5MbND9HI",
+  "publicToken": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUyNjg5MzYsImV4cCI6MTc4NTI3MjUzNn0.DlSO558kdhtx9gtQkYwSdgXwjLGXBUj83Hyqle6W6kk",
   "uploadOptions": {
     "url": "https://example.com/upload",
     "fields": {
