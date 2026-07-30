@@ -79,7 +79,7 @@ Given that the above questionnaire response is saved in the database, you can us
 ```bash
 curl -X POST \
   --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-  --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODUzNTA2OTQsImV4cCI6MTc4NTM1NDI5NH0.ufjjBeOKgtMk96F-Wxg9RGnTN_xqG4roZD27e-nVpJM'
+  --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODU0MjEyMzMsImV4cCI6MTc4NTQyNDgzM30.FXxBViUI3VzqrGjV5_vUHHYGHMJH-InTRIDcuvtdlQw'
 ```
 
 ### Example response containing a bundle of Observations (wrapped in a Parameter resource)
