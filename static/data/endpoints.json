@@ -2356,11 +2356,25 @@
   },
   {
     "method": "POST",
+    "path": "/v1/auth/logout",
+    "summary": "Log out (server-side token revocation)",
+    "description": "## Log out",
+    "tag": "Authentication",
+    "operationId": "AuthController_logout[0]_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
+  },
+  {
+    "method": "POST",
     "path": "/auth/logout",
     "summary": "Log out (server-side token revocation)",
     "description": "## Log out",
     "tag": "Authentication",
-    "operationId": "AuthController_logout",
+    "operationId": "AuthController_logout[1]",
     "parameters": [],
     "bodyExample": null,
     "deprecated": false,

@@ -10,6 +10,7 @@ description: "## Log out"
 
 <div className="endpoint-hero__paths">
   <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/auth/logout"}</code></div>
+  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/v1/auth/logout"}</code></div>
 </div>
 
 <ApiBase inline={false} />
