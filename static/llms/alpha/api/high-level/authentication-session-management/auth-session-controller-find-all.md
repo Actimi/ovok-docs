@@ -23,7 +23,7 @@ The GET Session API endpoint retrieves all sessions from the Ovok platform.
 ```bash
 curl -X GET \
  --url 'https://api.dev.ovok.com/auth/session' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyOTQ4NTMsImV4cCI6MTc4NjI5ODQ1M30.GM_UdqKKKkg8gCeJnqiEkdqtoMfrSYxhaF6lCffC_ow'
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyOTYxMDUsImV4cCI6MTc4NjI5OTcwNX0.QpfnvlQYL6EWtCWy56674LXqJCy-GsUmRGXoFBwXlno'
 ```
 
 
