@@ -36,6 +36,11 @@
       },
       {
         "type": "doc",
+        "id": "api/high-level/authentication/auth-controller-logout",
+        "label": "Log out (server-side token revocation)"
+      },
+      {
+        "type": "doc",
         "id": "api/high-level/authentication/auth-login-controller-login-v-2",
         "label": "Login"
       },

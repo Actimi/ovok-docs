@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "7e&lt;iBY@GbbQh-q)X",
+            "password": "@L{Q+)IGcD:[^3jW",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -140,7 +140,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "7e&lt;iBY@GbbQh-q)X",
+            "password": "@L{Q+)IGcD:[^3jW",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -291,7 +291,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResponseTokenDto"
-        "400":
+        "400": &a1
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -309,7 +309,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401":
+        "401": &a2
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -327,7 +327,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404":
+        "404": &a3
           description: The requested resource could not be found.
           content:
             application/json:
@@ -345,7 +345,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422":
+        "422": &a4
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -363,7 +363,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500":
+        "500": &a5
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -385,6 +385,52 @@ paths:
       summary: Refresh access token
       tags:
         - Authentication
+  /auth/logout:
+    post:
+      description: |
+        ## Log out
+
+        Server-side logout — adds the caller's Bearer token to a Redis-backed
+        revocation denylist so it cannot be replayed after the user signs out.
+
+        Closes the token-reuse-after-logout gap tracked in
+        [carehub-product-roadmap#949](https://github.com/Actimi/carehub-product-roadmap/issues/949).
+        Prior to this endpoint, the FE could only clear `localStorage`; the
+        token itself stayed cryptographically valid on every API endpoint for
+        its natural 60-minute lifetime.
+
+        ## Behaviour
+
+        - **Auth required.** The caller must be authenticated; unauthed callers
+          receive `401` via the global `BearerAuthGuard`.
+        - **Idempotent.** Repeated calls from the same token return `204` and
+          have no additional side-effects.
+        - **TTL.** The denylist entry lives for exactly the token's remaining
+          lifetime (from the `exp` claim). The denylist cannot grow larger than
+          the pool of currently-live tokens.
+        - **No response body.** Returns `204 No Content`.
+
+        ## Frontend integration
+
+        Call `POST /v1/auth/logout` before clearing local storage on user-
+        initiated logout. After the call succeeds (or fails — a Redis outage
+        must not block the UX), also clear the local session state and route
+        the user to the sign-in page. The revocation guard on the next authed
+        request will surface `401` for any lingering token copy captured via
+        XSS, shoulder surfing, or a compromised device.
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        "200":
+          description: Token was added to the revocation denylist. Returns 204 No Content.
+        "400": *a1
+        "401": *a2
+        "404": *a3
+        "422": *a4
+        "500": *a5
+      summary: Log out (server-side token revocation)
+      tags:
+        - Authentication
   /auth/delete:
     delete:
       description: >
@@ -401,7 +447,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -925,7 +971,7 @@ paths:
 
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -936,7 +982,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionsResponseDto"
-        "400": &a1
+        "400": &a6
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -954,7 +1000,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a2
+        "401": &a7
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -972,7 +1018,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a3
+        "404": &a8
           description: The requested resource could not be found.
           content:
             application/json:
@@ -990,7 +1036,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a4
+        "422": &a9
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -1008,7 +1054,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a5
+        "500": &a10
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -1027,7 +1073,7 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a6
+      security: &a11
         - bearer: []
       summary: Get all sessions
       tags:
@@ -1050,7 +1096,7 @@ paths:
 
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -1073,12 +1119,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionsResponseDto"
-        "400": *a1
-        "401": *a2
-        "404": *a3
-        "422": *a4
-        "500": *a5
-      security: *a6
+        "400": *a6
+        "401": *a7
+        "404": *a8
+        "422": *a9
+        "500": *a10
+      security: *a11
       summary: Revoke sessions
       tags:
         - Authentication - Session Management
@@ -1102,174 +1148,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/StartPractitionerLoginResponseDto"
-        "400": &a7
-          description: The request could not be operated by the server.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 400
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Bad Request
-                required:
-                  - statusCode
-                  - message
-        "401": &a8
-          description: The resource owner or authorization server denied the request.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 401
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Unauthorized
-                required:
-                  - statusCode
-                  - message
-        "404": &a9
-          description: The requested resource could not be found.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 404
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Not Found
-                required:
-                  - statusCode
-                  - message
-        "422": &a10
-          description: The request could not be validated by the server.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 422
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Unprocessable Entity
-                required:
-                  - statusCode
-                  - message
-        "500": &a11
-          description: The server encountered an unexpected condition. Please try again
-            later.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 500
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Internal Server Error
-                required:
-                  - statusCode
-                  - message
-      summary: Practitioner - Login
-      tags:
-        - Tenant Authentication
-  /auth/tenant/Practitioner/login/token:
-    post:
-      description: Login with challenge token. Success response contains access and
-        refresh tokens.
-      operationId: TenantPractitionerAuthController_finishLogin
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FinishPractitionerLoginBodyDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseRegisterLoginDto"
-        "400": *a7
-        "401": *a8
-        "404": *a9
-        "422": *a10
-        "500": *a11
-      summary: Practitioner - Exchange Token
-      tags:
-        - Tenant Authentication
-  /auth/tenant/Practitioner/login/mfa:
-    post:
-      description: Login with MFA token. Success response contains a challenge token
-        that can be used to finish login via login/token endpoint.
-      operationId: TenantPractitionerAuthController_mfaStart
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/StartPractitionerMFABodyDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StartPractitionerMFAResponseDto"
-        "400": *a7
-        "401": *a8
-        "404": *a9
-        "422": *a10
-        "500": *a11
-      summary: Practitioner - MFA
-      tags:
-        - Tenant Authentication
-  /auth/tenant/Patient/login/start:
-    post:
-      description: Login with email and password. Response either contains challange
-        or MFA challenge - which is followed up by challenge as a second step as
-        well.
-      operationId: TenantPatientAuthController_startLogin
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/StartPatientLoginBodyDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StartPatientLoginResponseDto"
         "400": &a12
           description: The request could not be operated by the server.
           content:
@@ -1361,21 +1239,21 @@ paths:
                 required:
                   - statusCode
                   - message
-      summary: Patient - Login
+      summary: Practitioner - Login
       tags:
         - Tenant Authentication
-  /auth/tenant/Patient/login/token:
+  /auth/tenant/Practitioner/login/token:
     post:
       description: Login with challenge token. Success response contains access and
         refresh tokens.
-      operationId: TenantPatientAuthController_finishLogin
+      operationId: TenantPractitionerAuthController_finishLogin
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/FinishPatientLoginBodyDto"
+              $ref: "#/components/schemas/FinishPractitionerLoginBodyDto"
       responses:
         "200":
           description: ""
@@ -1388,74 +1266,56 @@ paths:
         "404": *a14
         "422": *a15
         "500": *a16
-      summary: Patient - Exchange Token
+      summary: Practitioner - Exchange Token
       tags:
         - Tenant Authentication
-  /auth/tenant/Patient/login/mfa:
+  /auth/tenant/Practitioner/login/mfa:
     post:
       description: Login with MFA token. Success response contains a challenge token
         that can be used to finish login via login/token endpoint.
-      operationId: TenantPatientAuthController_mfaStart
+      operationId: TenantPractitionerAuthController_mfaStart
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/StartPatientMFABodyDto"
+              $ref: "#/components/schemas/StartPractitionerMFABodyDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/StartPatientMFAResponseDto"
+                $ref: "#/components/schemas/StartPractitionerMFAResponseDto"
         "400": *a12
         "401": *a13
         "404": *a14
         "422": *a15
         "500": *a16
-      summary: Patient - MFA
+      summary: Practitioner - MFA
       tags:
         - Tenant Authentication
-  /auth/tenant/Patient/register:
+  /auth/tenant/Patient/login/start:
     post:
-      description: Register a new user.
-      operationId: TenantPatientAuthController_register
+      description: Login with email and password. Response either contains challange
+        or MFA challenge - which is followed up by challenge as a second step as
+        well.
+      operationId: TenantPatientAuthController_startLogin
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RegisterPatientBodyDto"
+              $ref: "#/components/schemas/StartPatientLoginBodyDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRegisterLoginDto"
-        "400": *a12
-        "401": *a13
-        "404": *a14
-        "422": *a15
-        "500": *a16
-      summary: Patient - Register
-      tags:
-        - Tenant Authentication
-  /locales:
-    get:
-      description: Fetch the enabled locales and the default locale for localization.
-      operationId: LocaleController_getLocale
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/LocaleBodyDto"
+                $ref: "#/components/schemas/StartPatientLoginResponseDto"
         "400": &a17
           description: The request could not be operated by the server.
           content:
@@ -1547,7 +1407,193 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a22
+      summary: Patient - Login
+      tags:
+        - Tenant Authentication
+  /auth/tenant/Patient/login/token:
+    post:
+      description: Login with challenge token. Success response contains access and
+        refresh tokens.
+      operationId: TenantPatientAuthController_finishLogin
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FinishPatientLoginBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRegisterLoginDto"
+        "400": *a17
+        "401": *a18
+        "404": *a19
+        "422": *a20
+        "500": *a21
+      summary: Patient - Exchange Token
+      tags:
+        - Tenant Authentication
+  /auth/tenant/Patient/login/mfa:
+    post:
+      description: Login with MFA token. Success response contains a challenge token
+        that can be used to finish login via login/token endpoint.
+      operationId: TenantPatientAuthController_mfaStart
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartPatientMFABodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StartPatientMFAResponseDto"
+        "400": *a17
+        "401": *a18
+        "404": *a19
+        "422": *a20
+        "500": *a21
+      summary: Patient - MFA
+      tags:
+        - Tenant Authentication
+  /auth/tenant/Patient/register:
+    post:
+      description: Register a new user.
+      operationId: TenantPatientAuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterPatientBodyDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRegisterLoginDto"
+        "400": *a17
+        "401": *a18
+        "404": *a19
+        "422": *a20
+        "500": *a21
+      summary: Patient - Register
+      tags:
+        - Tenant Authentication
+  /locales:
+    get:
+      description: Fetch the enabled locales and the default locale for localization.
+      operationId: LocaleController_getLocale
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocaleBodyDto"
+        "400": &a22
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a23
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a24
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a25
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a26
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      security: &a27
         - bearer: []
       summary: Get available locales
       tags:
@@ -1569,12 +1615,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocaleBodyDto"
-        "400": *a17
-        "401": *a18
-        "404": *a19
-        "422": *a20
-        "500": *a21
-      security: *a22
+        "400": *a22
+        "401": *a23
+        "404": *a24
+        "422": *a25
+        "500": *a26
+      security: *a27
       summary: Update the available locales
       tags:
         - Localization
@@ -1596,127 +1642,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EmailRequestBodyDto"
-        "400": &a23
-          description: The request could not be operated by the server.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 400
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Bad Request
-                required:
-                  - statusCode
-                  - message
-        "401": &a24
-          description: The resource owner or authorization server denied the request.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 401
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Unauthorized
-                required:
-                  - statusCode
-                  - message
-        "404": &a25
-          description: The requested resource could not be found.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 404
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Not Found
-                required:
-                  - statusCode
-                  - message
-        "422": &a26
-          description: The request could not be validated by the server.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 422
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Unprocessable Entity
-                required:
-                  - statusCode
-                  - message
-        "500": &a27
-          description: The server encountered an unexpected condition. Please try again
-            later.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  statusCode:
-                    type: number
-                    example: 500
-                  message:
-                    type: string
-                  error:
-                    type: string
-                    example: Internal Server Error
-                required:
-                  - statusCode
-                  - message
-      summary: Receive Organization Codes
-      tags:
-        - Organization Code Information
-  /organizations/code:
-    get:
-      description: Get organization code
-      operationId: OrganizationCodeController_getOrganizationCode
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TenantCodeDto"
-        "400": *a23
-        "401": *a24
-        "404": *a25
-        "422": *a26
-        "500": *a27
-      summary: Get Organization Code
-      tags:
-        - Organization Code Information
-  /partner/health-check:
-    get:
-      operationId: PartnerController_healthCheck[0]
-      parameters: []
-      responses:
-        "200":
-          description: ""
         "400": &a28
           description: The request could not be operated by the server.
           content:
@@ -1808,6 +1733,127 @@ paths:
                 required:
                   - statusCode
                   - message
+      summary: Receive Organization Codes
+      tags:
+        - Organization Code Information
+  /organizations/code:
+    get:
+      description: Get organization code
+      operationId: OrganizationCodeController_getOrganizationCode
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TenantCodeDto"
+        "400": *a28
+        "401": *a29
+        "404": *a30
+        "422": *a31
+        "500": *a32
+      summary: Get Organization Code
+      tags:
+        - Organization Code Information
+  /partner/health-check:
+    get:
+      operationId: PartnerController_healthCheck[0]
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400": &a33
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401": &a34
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404": &a35
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422": &a36
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500": &a37
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
       tags:
         - Partner
   /v1/partner/health-check:
@@ -1817,11 +1863,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
       tags:
         - Partner
   /v2/partner/health-check:
@@ -1831,11 +1877,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
       tags:
         - Partner
   /v3/partner/health-check:
@@ -1845,11 +1891,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a28
-        "401": *a29
-        "404": *a30
-        "422": *a31
-        "500": *a32
+        "400": *a33
+        "401": *a34
+        "404": *a35
+        "422": *a36
+        "500": *a37
       tags:
         - Partner
   /ai/translation:
@@ -2129,7 +2175,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": &a33
+        "400": &a38
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -2147,7 +2193,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a34
+        "401": &a39
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -2165,7 +2211,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a35
+        "404": &a40
           description: The requested resource could not be found.
           content:
             application/json:
@@ -2183,7 +2229,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a36
+        "422": &a41
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -2201,7 +2247,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a37
+        "500": &a42
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -2276,11 +2322,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetSearchFilesResponseDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       security:
         - bearer: []
       summary: Search documents
@@ -2297,7 +2343,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -2350,11 +2396,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       summary: Get a document as public user
       tags:
         - Document
@@ -2421,11 +2467,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       security:
         - bearer: []
       summary: Get a document as authenticated user
@@ -2479,11 +2525,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       security:
         - bearer: []
       summary: Delete a document
@@ -2553,11 +2599,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       security:
         - bearer: []
       summary: Update document metadata
@@ -2649,11 +2695,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileEntryDto"
-        "400": *a33
-        "401": *a34
-        "404": *a35
-        "422": *a36
-        "500": *a37
+        "400": *a38
+        "401": *a39
+        "404": *a40
+        "422": *a41
+        "500": *a42
       security:
         - bearer: []
       summary: Generate credentials for document file replacement
@@ -3264,7 +3310,7 @@ paths:
       responses:
         "200":
           description: ""
-        "400": &a38
+        "400": &a43
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -3282,7 +3328,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a39
+        "401": &a44
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -3300,7 +3346,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a40
+        "404": &a45
           description: The requested resource could not be found.
           content:
             application/json:
@@ -3318,7 +3364,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a41
+        "422": &a46
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -3336,7 +3382,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a42
+        "500": &a47
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -3356,7 +3402,7 @@ paths:
                   - statusCode
                   - message
       security:
-        - &a43
+        - &a48
           bearer: []
         - bearer: []
       summary: Search mapped content
@@ -3811,13 +3857,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Search mapped content
       tags:
@@ -4165,13 +4211,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Copy contents
       tags:
@@ -4519,13 +4565,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Copy contents
       tags:
@@ -4880,13 +4926,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Copy a content
       tags:
@@ -5241,13 +5287,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Copy a content
       tags:
@@ -5681,13 +5727,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Create content
       tags:
@@ -6149,13 +6195,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Search content
       tags:
@@ -6589,13 +6635,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Create content
       tags:
@@ -7057,13 +7103,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Search content
       tags:
@@ -7504,13 +7550,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Update content
       tags:
@@ -7940,13 +7986,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Get content by key and language
       tags:
@@ -8349,13 +8395,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Delete content
       tags:
@@ -8796,13 +8842,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Update content
       tags:
@@ -9232,13 +9278,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ContentDto"
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Get content by key and language
       tags:
@@ -9641,13 +9687,13 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a38
-        "401": *a39
-        "404": *a40
-        "422": *a41
-        "500": *a42
+        "400": *a43
+        "401": *a44
+        "404": *a45
+        "422": *a46
+        "500": *a47
       security:
-        - *a43
+        - *a48
         - bearer: []
       summary: Delete content
       tags:
@@ -9762,7 +9808,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": &a44
+        "400": &a49
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -9780,7 +9826,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a45
+        "401": &a50
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -9798,7 +9844,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a46
+        "404": &a51
           description: The requested resource could not be found.
           content:
             application/json:
@@ -9816,7 +9862,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a47
+        "422": &a52
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -9834,7 +9880,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a48
+        "500": &a53
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -9966,11 +10012,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get last observations
       tags:
         - FHIR Operations
@@ -10084,11 +10130,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PatientObservationResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get last observations
       tags:
         - FHIR Operations
@@ -10204,11 +10250,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -10324,11 +10370,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -10444,11 +10490,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceTelemetryResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry
       tags:
         - FHIR Operations
@@ -10498,11 +10544,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -10552,11 +10598,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -10606,11 +10652,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Get device telemetry history
       tags:
         - FHIR Operations
@@ -10629,11 +10675,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -10652,11 +10698,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -10675,11 +10721,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Create Patient with Signals linking
       tags:
         - FHIR Operations
@@ -10709,11 +10755,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -10743,11 +10789,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -10777,11 +10823,11 @@ paths:
       responses:
         "200":
           description: ""
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Update patient threshold
       tags:
         - FHIR Operations
@@ -10998,7 +11044,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11068,11 +11114,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -11289,7 +11335,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11359,11 +11405,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -11580,7 +11626,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -11650,11 +11696,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PopulateBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Populate questionnaire
       tags:
         - FHIR Operations
@@ -11736,7 +11782,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo'
         ```
 
 
@@ -11807,11 +11853,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -11893,7 +11939,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo'
         ```
 
 
@@ -11964,11 +12010,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -12050,7 +12096,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo'
         ```
 
 
@@ -12121,11 +12167,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExtractBodyResponseDto"
-        "400": *a44
-        "401": *a45
-        "404": *a46
-        "422": *a47
-        "500": *a48
+        "400": *a49
+        "401": *a50
+        "404": *a51
+        "422": *a52
+        "500": *a53
       summary: Extract observations from questionnaire response
       tags:
         - FHIR Operations
@@ -12476,7 +12522,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/i18nGetDto"
-        "400": &a49
+        "400": &a54
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -12494,7 +12540,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a50
+        "401": &a55
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -12512,7 +12558,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a51
+        "404": &a56
           description: The requested resource could not be found.
           content:
             application/json:
@@ -12530,7 +12576,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a52
+        "422": &a57
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -12548,7 +12594,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a53
+        "500": &a58
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -12567,7 +12613,7 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a54
+      security: &a59
         - bearer: []
       summary: i18next - Get JSON
       tags:
@@ -12930,12 +12976,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/i18nPatchDto"
-        "400": *a49
-        "401": *a50
-        "404": *a51
-        "422": *a52
-        "500": *a53
-      security: *a54
+        "400": *a54
+        "401": *a55
+        "404": *a56
+        "422": *a57
+        "500": *a58
+      security: *a59
       summary: i18next - Update JSON
       tags:
         - Localization Keys
@@ -13782,7 +13828,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedSearchResponseDto"
-        "400": &a55
+        "400": &a60
           description: The request could not be operated by the server.
           content:
             application/json:
@@ -13800,7 +13846,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "401": &a56
+        "401": &a61
           description: The resource owner or authorization server denied the request.
           content:
             application/json:
@@ -13818,7 +13864,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "404": &a57
+        "404": &a62
           description: The requested resource could not be found.
           content:
             application/json:
@@ -13836,7 +13882,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "422": &a58
+        "422": &a63
           description: The request could not be validated by the server.
           content:
             application/json:
@@ -13854,7 +13900,7 @@ paths:
                 required:
                   - statusCode
                   - message
-        "500": &a59
+        "500": &a64
           description: The server encountered an unexpected condition. Please try again
             later.
           content:
@@ -13873,7 +13919,7 @@ paths:
                 required:
                   - statusCode
                   - message
-      security: &a60
+      security: &a65
         - bearer: []
       summary: Get all localizations
       tags:
@@ -14229,12 +14275,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a55
-        "401": *a56
-        "404": *a57
-        "422": *a58
-        "500": *a59
-      security: *a60
+        "400": *a60
+        "401": *a61
+        "404": *a62
+        "422": *a63
+        "500": *a64
+      security: *a65
       summary: Get a single localization
       tags:
         - Localization Keys
@@ -14594,12 +14640,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a55
-        "401": *a56
-        "404": *a57
-        "422": *a58
-        "500": *a59
-      security: *a60
+        "400": *a60
+        "401": *a61
+        "404": *a62
+        "422": *a63
+        "500": *a64
+      security: *a65
       summary: Update a single localization
       tags:
         - Localization Keys
@@ -14953,12 +14999,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocalizationDto"
-        "400": *a55
-        "401": *a56
-        "404": *a57
-        "422": *a58
-        "500": *a59
-      security: *a60
+        "400": *a60
+        "401": *a61
+        "404": *a62
+        "422": *a63
+        "500": *a64
+      security: *a65
       summary: Delete a single localization
       tags:
         - Localization Keys
@@ -14976,7 +15022,7 @@ info:
 
     direct access to the FHIR resources. Please refer to the FHIR API
     documentation [here](https://ovok.redocly.app) for more information.
-  version: 2026.08.08
+  version: 2026.08.09
   contact: {}
 tags: []
 servers:
@@ -15073,7 +15119,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
+        password: "@L{Q+)IGcD:[^3jW"
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -15118,8 +15164,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -15166,7 +15212,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
+        password: "@L{Q+)IGcD:[^3jW"
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -15187,8 +15233,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -15208,8 +15254,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -15278,7 +15324,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -15344,7 +15390,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
     RequestDeleteDto:
       type: object
       properties:
@@ -15435,7 +15481,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-08-08T11:23:31.880Z
+        scheduled: 2026-08-09T11:52:19.789Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -15447,7 +15493,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-08-08T11:23:31.880Z
+            lastUpdated: 2026-08-09T11:52:19.789Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -15477,7 +15523,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
+        password: "@L{Q+)IGcD:[^3jW"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -15663,8 +15709,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -15924,7 +15970,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
+        password: "@L{Q+)IGcD:[^3jW"
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -16022,8 +16068,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: zH9zSlnjQd
-        password: 7e<iBY@GbbQh-q)X
+        secret: vVuXRsB9ro
+        password: "@L{Q+)IGcD:[^3jW"
     SessionsResponseDto:
       type: object
       properties:
@@ -16055,7 +16101,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-08-08T11:23:31.880Z
+              lastUpdated: 2026-08-09T11:52:19.789Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -16065,7 +16111,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-08-08T11:23:31.880Z
+            lastUpdated: 2026-08-09T11:52:19.789Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -16109,7 +16155,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -16129,7 +16175,7 @@ components:
       required:
         - tan
       example:
-        tan: qcMmFm6rmEIN
+        tan: n4Qh2dEnynt1
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -16149,8 +16195,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
-        codeChallenge: AfHMQkypSp4UB0q5z561dapth0NMwzyI
+        password: "@L{Q+)IGcD:[^3jW"
+        codeChallenge: Pxnu3hIChNrrNDKmRW8GCo0y5W2tw1XQ
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -16189,7 +16235,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: c2Wg7sXQwQlUzK51hAH5OoNopn1lGi80
+        sessionCode: wJwFx8MJCxMeqOu4BZAagV0PqFq4i0OU
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -16205,8 +16251,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: 6o9Yb9HJ6n6ziq0FMTF0SWu6Xmd7Bcpd
-        codeVerifier: nrfKM5E2bOe5o5rZa7IpVxg9iNIpSgVeKCxy0lgJpE16XEC5IQAx0GyIG98inAoW
+        sessionCode: Fu6eEVey9rtXANyNsitV7IcYQCIlHF4s
+        codeVerifier: oUyMRnWoq3flHh3dGbLU1rwfqxAwjom8mYp0mB2a1om2qkkxYPrNvg9rJppzxuOe
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -16246,7 +16292,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: 6jqn4lFBJC2u5P5NlJMbIaYVUVjiJQwb
+        sessionCode: ZthBYu5gwm91p2q6IAzxhWVaTcPL3Uf9
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -16270,8 +16316,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
-        codeChallenge: RvPDeNmavEy2cSnatjoxwiSXV7vYzWKj
+        password: "@L{Q+)IGcD:[^3jW"
+        codeChallenge: v7va6IQ4nfbjQujzoyynMXIt3v2X9sV1
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -16299,7 +16345,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: ASSDqy1mX2I6yNdHb0usoFevhw8tdjpd
+        sessionCode: s8gneoZ7bjckdojL8sRguw02RqaPcmCK
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -16311,8 +16357,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: JVL3Cb7mo6gyYCn0TPDpGDOTELuhRnJF
-        codeVerifier: NESkTmS60LhMUbvHSndquByWBiBNqM7fsJtbqgL9lwoBkjBWRJQ2WGDhO7T10oPS
+        sessionCode: 0JpaReUELcGsqaGluI9WlGAfqgdMiyGK
+        codeVerifier: 5jJPgglW74OGWNW5RUTA8PFshCQFxCUDpRKUT1hQpWJJAE0EwOxrg0luVWBClr7E
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -16339,7 +16385,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: O4kGTBSxHBfub08cmcCgh4i5zrU1SPyu
+        sessionCode: Kg0pjN3oKL8QZNGj82qvfyWR160ocpLa
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -16362,7 +16408,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
+        password: "@L{Q+)IGcD:[^3jW"
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -17099,7 +17145,7 @@ components:
             required:
               - policy
               - members
-            example: &a61
+            example: &a66
               policy:
                 resourceType: AccessPolicy
                 id: cca28116-f888-97bf-c336-5b992bd02672
@@ -17119,7 +17165,7 @@ components:
                   project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                   author:
                     reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                  lastUpdated: 2026-08-08T11:23:31.880Z
+                  lastUpdated: 2026-08-09T11:52:19.789Z
               members:
                 - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                   display: Dr. Max John Mustermann
@@ -17145,7 +17191,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -17161,7 +17207,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -17231,7 +17277,7 @@ components:
       required:
         - policy
         - members
-      example: *a61
+      example: *a66
     CarehubCreatePolicyDto:
       type: object
       properties:
@@ -17520,7 +17566,7 @@ components:
         - assistant
         - participant
         - messages
-      example: &a62
+      example: &a67
         assistant:
           system: You are an AI Assistant, you will be helping the patient with their
             queries.
@@ -17640,7 +17686,7 @@ components:
               - assistant
               - participant
               - messages
-            example: *a62
+            example: *a67
       required:
         - sessions
       example:
@@ -19770,7 +19816,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-08-08T11:23:31.880Z
+        date: 2026-08-09T11:52:19.789Z
         settings:
           heartRate:
             mode: organization
@@ -20166,7 +20212,7 @@ components:
               type: object
               properties:
                 period:
-                  default: &a63
+                  default: &a68
                     start: 09:00:00
                     end: 09:00:00
                   type: object
@@ -20231,7 +20277,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20295,7 +20341,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20359,7 +20405,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20423,7 +20469,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20493,7 +20539,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20557,7 +20603,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20668,7 +20714,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20738,7 +20784,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20809,7 +20855,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20880,7 +20926,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -20950,7 +20996,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -21027,7 +21073,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -21097,7 +21143,7 @@ components:
               type: object
               properties:
                 period:
-                  default: *a63
+                  default: *a68
                   type: object
                   properties:
                     mode:
@@ -21392,6 +21438,7 @@ components:
                     - enabled
                     - min
                     - max
+                  additionalProperties: false
                 - type: object
                   properties:
                     mode:
@@ -21401,13 +21448,28 @@ components:
                     enabled:
                       type: boolean
                     deviationPercent:
-                      type: number
+                      type: integer
                       minimum: 5
                       maximum: 60
+                    baselineAverage:
+                      type: number
+                      nullable: true
+                    effectiveBand:
+                      type: object
+                      properties:
+                        min:
+                          type: number
+                        max:
+                          type: number
+                      required:
+                        - min
+                        - max
+                      nullable: true
                   required:
                     - mode
                     - enabled
                     - deviationPercent
+                  additionalProperties: false
             respiratoryRate:
               discriminator:
                 propertyName: mode
@@ -21433,6 +21495,7 @@ components:
                     - enabled
                     - min
                     - max
+                  additionalProperties: false
                 - type: object
                   properties:
                     mode:
@@ -21442,13 +21505,28 @@ components:
                     enabled:
                       type: boolean
                     deviationPercent:
-                      type: number
+                      type: integer
                       minimum: 5
                       maximum: 60
+                    baselineAverage:
+                      type: number
+                      nullable: true
+                    effectiveBand:
+                      type: object
+                      properties:
+                        min:
+                          type: number
+                        max:
+                          type: number
+                      required:
+                        - min
+                        - max
+                      nullable: true
                   required:
                     - mode
                     - enabled
                     - deviationPercent
+                  additionalProperties: false
             outOfBed:
               type: object
               properties:
@@ -21466,6 +21544,7 @@ components:
                 - mode
                 - enabled
                 - maxDurationSeconds
+              additionalProperties: false
             bedTimePeriod:
               type: object
               properties:
@@ -21479,10 +21558,14 @@ components:
                 end:
                   type: string
                   pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+                timezone:
+                  type: string
+                  nullable: true
               required:
                 - mode
                 - start
                 - end
+              additionalProperties: false
           required:
             - heartRate
             - respiratoryRate
@@ -21763,6 +21846,7 @@ components:
                     - enabled
                     - min
                     - max
+                  additionalProperties: false
                 - type: object
                   properties:
                     mode:
@@ -21772,13 +21856,28 @@ components:
                     enabled:
                       type: boolean
                     deviationPercent:
-                      type: number
+                      type: integer
                       minimum: 5
                       maximum: 60
+                    baselineAverage:
+                      type: number
+                      nullable: true
+                    effectiveBand:
+                      type: object
+                      properties:
+                        min:
+                          type: number
+                        max:
+                          type: number
+                      required:
+                        - min
+                        - max
+                      nullable: true
                   required:
                     - mode
                     - enabled
                     - deviationPercent
+                  additionalProperties: false
             respiratoryRate:
               discriminator:
                 propertyName: mode
@@ -21813,6 +21912,7 @@ components:
                     - enabled
                     - min
                     - max
+                  additionalProperties: false
                 - type: object
                   properties:
                     mode:
@@ -21822,13 +21922,28 @@ components:
                     enabled:
                       type: boolean
                     deviationPercent:
-                      type: number
+                      type: integer
                       minimum: 5
                       maximum: 60
+                    baselineAverage:
+                      type: number
+                      nullable: true
+                    effectiveBand:
+                      type: object
+                      properties:
+                        min:
+                          type: number
+                        max:
+                          type: number
+                      required:
+                        - min
+                        - max
+                      nullable: true
                   required:
                     - mode
                     - enabled
                     - deviationPercent
+                  additionalProperties: false
             outOfBed:
               discriminator:
                 propertyName: mode
@@ -21858,6 +21973,7 @@ components:
                     - mode
                     - enabled
                     - maxDurationSeconds
+                  additionalProperties: false
             bedTimePeriod:
               discriminator:
                 propertyName: mode
@@ -21883,10 +21999,14 @@ components:
                     end:
                       type: string
                       pattern: ^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$
+                    timezone:
+                      type: string
+                      nullable: true
                   required:
                     - mode
                     - start
                     - end
+                  additionalProperties: false
           required:
             - heartRate
             - respiratoryRate
@@ -22016,7 +22136,7 @@ components:
               id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               deviceName:
                 - type: user-friendly-name
-                  name: "Patient Monitor #zH9zSlnjQd"
+                  name: "Patient Monitor #vVuXRsB9ro"
             patient:
               resourceType: Patient
               id: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -22129,7 +22249,7 @@ components:
               name: My Medical Project
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             deviceCount: 12
             assignedResidentDeviceCount: 12
             activeDeviceCount: 11
@@ -22140,7 +22260,7 @@ components:
               name: My Medical Project - Branch
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             deviceCount: 6
             assignedResidentDeviceCount: 6
             activeDeviceCount: 5
@@ -22299,7 +22419,7 @@ components:
               project: f6f4da8d-93e8-8a08-220e-03b7810451d3
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             profile:
               resourceType: Practitioner
               id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -22309,7 +22429,7 @@ components:
                   family: Mustermann
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             membership:
               resourceType: ProjectMembership
               id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
@@ -22322,7 +22442,7 @@ components:
                 reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
             status: Active
             accessPolicy:
               resourceType: AccessPolicy
@@ -22333,7 +22453,7 @@ components:
                 - Device
               meta:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-08T11:23:31.880Z
+                lastUpdated: 2026-08-09T11:52:19.789Z
     SignalsAlertDto:
       type: object
       properties:
@@ -22608,6 +22728,54 @@ components:
     BatchPatientsConfigDto:
       type: object
       properties: {}
+    MedicalSettingsNotificationsConsentResponseDto:
+      type: object
+      properties:
+        medicalSettingsNotificationsConsent:
+          type: boolean
+        termsAndConditionsConsent:
+          type: boolean
+      required:
+        - medicalSettingsNotificationsConsent
+        - termsAndConditionsConsent
+      example:
+        medicalSettingsNotificationsConsent: true
+        termsAndConditionsConsent: true
+    MedicalSettingsNotificationsConsentDto:
+      type: object
+      properties:
+        medicalSettingsNotificationsConsent:
+          type: boolean
+        termsAndConditionsConsent:
+          type: boolean
+      example:
+        medicalSettingsNotificationsConsent: true
+        termsAndConditionsConsent: true
+    SupportEmailRequestDto:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+        version:
+          type: string
+          minLength: 1
+        environment:
+          type: string
+          minLength: 1
+      required:
+        - message
+        - version
+        - environment
+    CarehubUserDeleteResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success
+      example:
+        success: true
     BinaryDto:
       type: object
       properties:
@@ -22930,7 +23098,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: &a81
+          enum: &a86
             - current
             - superseded
             - entered-in-error
@@ -22945,7 +23113,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: &a82
+          example: &a87
             - imagingreport
           description: A category assigned to the document reference.
           type: array
@@ -23095,11 +23263,11 @@ components:
           description: The public token of the document.
       required:
         - id
-      example: &a64
+      example: &a69
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -23163,7 +23331,7 @@ components:
                 description: The public token of the document.
             required:
               - id
-            example: *a64
+            example: *a69
       required:
         - total
         - resources
@@ -23173,7 +23341,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
     UpdateDocumentMetadataDto:
       type: object
       properties:
@@ -23666,7 +23834,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-08-08T11:23:31.880Z
+              admissionDate: 2026-08-09T11:52:19.789Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -23688,7 +23856,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-08-08T11:23:31.880Z
+            admissionDate: 2026-08-09T11:52:19.789Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -23875,22 +24043,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1786188211880
+                ts: 1786276339789
               effectiveHeartRate:
                 value: 74
-                ts: 1786188211880
+                ts: 1786276339789
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1786188211880
+                ts: 1786276339789
               effectiveSleepStatus:
                 value: asleep
-                ts: 1786188211880
+                ts: 1786276339789
               lastMeasurementTime:
-                value: 2026-08-08T11:23:31.880Z
-                ts: 1786188211880
+                value: 2026-08-09T11:52:19.789Z
+                ts: 1786276339789
               lastActivityTime:
-                value: 2026-08-08T11:23:31.880Z
-                ts: 1786188211880
+                value: 2026-08-09T11:52:19.789Z
+                ts: 1786276339789
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -24247,8 +24415,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-08-08T11:23:31.880Z
-              createdAt: 2026-08-08T11:23:31.880Z
+              lastActivityTime: 2026-08-09T11:52:19.789Z
+              createdAt: 2026-08-09T11:52:19.789Z
       required:
         - total
         - page
@@ -24594,22 +24762,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1786188211880
+                  ts: 1786276339789
                 effectiveHeartRate:
                   value: 74
-                  ts: 1786188211880
+                  ts: 1786276339789
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1786188211880
+                  ts: 1786276339789
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1786188211880
+                  ts: 1786276339789
                 lastMeasurementTime:
-                  value: 2026-08-08T11:23:31.880Z
-                  ts: 1786188211880
+                  value: 2026-08-09T11:52:19.789Z
+                  ts: 1786276339789
                 lastActivityTime:
-                  value: 2026-08-08T11:23:31.880Z
-                  ts: 1786188211880
+                  value: 2026-08-09T11:52:19.789Z
+                  ts: 1786276339789
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -24641,7 +24809,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-08-08T11:23:31.880Z
+                admissionDate: 2026-08-09T11:52:19.789Z
                 dischargeDate: null
       required:
         - total
@@ -25050,22 +25218,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1786188211880
+              ts: 1786276339789
             effectiveHeartRate:
               value: 74
-              ts: 1786188211880
+              ts: 1786276339789
             effectiveRespiratoryRate:
               value: 16
-              ts: 1786188211880
+              ts: 1786276339789
             effectiveSleepStatus:
               value: asleep
-              ts: 1786188211880
+              ts: 1786276339789
             lastMeasurementTime:
-              value: 2026-08-08T11:23:31.880Z
-              ts: 1786188211880
+              value: 2026-08-09T11:52:19.789Z
+              ts: 1786276339789
             lastActivityTime:
-              value: 2026-08-08T11:23:31.880Z
-              ts: 1786188211880
+              value: 2026-08-09T11:52:19.789Z
+              ts: 1786276339789
             name:
               value: Sleepiz/3001472
               ts: null
@@ -25130,9 +25298,9 @@ components:
         - locationName
         - patientName
       example:
-        name: "Patient Monitor Device #zH9zSlnjQd"
+        name: "Patient Monitor Device #vVuXRsB9ro"
         status: active
-        thingsboardId: TB_DEVICE_zH9zSlnjQd
+        thingsboardId: TB_DEVICE_vVuXRsB9ro
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
@@ -26424,13 +26592,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-08-08T11:23:31.880Z
+          created: 2026-08-09T11:52:19.789Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-08-09T11:23:31Z
+        expiresAt: 2026-08-10T11:52:19Z
     ContentBodyDto:
       type: object
       properties:
@@ -27026,7 +27194,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: "Patient Monitor Device #zH9zSlnjQd"
+              deviceName: "Patient Monitor Device #vVuXRsB9ro"
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -27107,7 +27275,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: "Patient Monitor Device #zH9zSlnjQd"
+        deviceName: "Patient Monitor Device #vVuXRsB9ro"
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -27553,7 +27721,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-08-08T11:23:31.880Z
+            lastUpdated: 2026-08-09T11:52:19.789Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -27563,7 +27731,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-08-08T11:23:31.880Z
+            lastUpdated: 2026-08-09T11:52:19.789Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -28351,7 +28519,7 @@ components:
                 format: date-time
             required:
               - commId
-            example: &a65
+            example: &a70
               commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Jane Doe
@@ -28368,11 +28536,11 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-08-08T11:23:31.880Z
+              authoredOn: 2026-08-09T11:52:19.789Z
               alertCount: 5
-              occurrenceDateTime: 2026-08-08T11:23:31.880Z
-              effectiveTimestamp: 2026-08-08T11:23:31.880Z
-              latestObservationTimestamp: 2026-08-08T11:23:31.880Z
+              occurrenceDateTime: 2026-08-09T11:52:19.789Z
+              effectiveTimestamp: 2026-08-09T11:52:19.789Z
+              latestObservationTimestamp: 2026-08-09T11:52:19.789Z
       required:
         - total
         - page
@@ -28385,7 +28553,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-08-08T11:23:31.880Z
+            authoredOn: 2026-08-09T11:52:19.789Z
             type: hr
     CarehubNotificationsRecentResponseDto:
       type: object
@@ -28464,7 +28632,7 @@ components:
                 format: date-time
             required:
               - commId
-            example: *a65
+            example: *a70
         total:
           type: integer
           minimum: 0
@@ -28557,41 +28725,7 @@ components:
           format: date-time
       required:
         - commId
-      example: *a65
-    MedicalSettingsNotificationsConsentDto:
-      type: object
-      properties:
-        medicalSettingsNotificationsConsent:
-          type: boolean
-      required:
-        - medicalSettingsNotificationsConsent
-      example:
-        medicalSettingsNotificationsConsent: true
-    SupportEmailRequestDto:
-      type: object
-      properties:
-        message:
-          type: string
-          minLength: 1
-        version:
-          type: string
-          minLength: 1
-        environment:
-          type: string
-          minLength: 1
-      required:
-        - message
-        - version
-        - environment
-    CarehubUserDeleteResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-      required:
-        - success
-      example:
-        success: true
+      example: *a70
     GetGraphsDataResponseDto:
       type: object
       additionalProperties:
@@ -30434,7 +30568,7 @@ components:
                   - language
                   - value
                   - author
-                example: &a66
+                example: &a71
                   key: home.title
                   language: en
                   value: Home
@@ -30792,7 +30926,7 @@ components:
                   - language
                   - value
                   - author
-                example: *a66
+                example: *a71
             required:
               - source
       required:
@@ -31155,7 +31289,7 @@ components:
               - language
               - value
               - author
-            example: *a66
+            example: *a71
       required:
         - total
         - resources
@@ -31509,7 +31643,7 @@ components:
         - language
         - value
         - author
-      example: *a66
+      example: *a71
     LocalizationRequestBodyDto:
       type: object
       properties:
@@ -31555,8 +31689,8 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: 7e<iBY@GbbQh-q)X
-        productId: prod_zH9zSlnjQd
+        password: "@L{Q+)IGcD:[^3jW"
+        productId: prod_vVuXRsB9ro
         projectPurpose: ""
         organizationName: My Organization
     StripeProductsDto:
@@ -32267,7 +32401,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a67
+      example: &a72
         name: John
         surname: Doe
         dateOfBirth: 1990-01-01
@@ -32357,7 +32491,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a67
+            example: *a72
       required:
         - total
         - resources
@@ -32401,7 +32535,7 @@ components:
         photo:
           type: string
           format: uri
-      example: &a68
+      example: &a73
         name: John
         surname: Doe
         email: john.doe@example.com
@@ -32449,7 +32583,7 @@ components:
               photo:
                 type: string
                 format: uri
-            example: *a68
+            example: *a73
       required:
         - total
         - resources
@@ -32512,7 +32646,7 @@ components:
                   type: string
                 country:
                   type: string
-      example: &a69
+      example: &a74
         name: Organization 1
         email: organization1@example.com
         phone: "+491234567890"
@@ -32577,7 +32711,7 @@ components:
                         type: string
                       country:
                         type: string
-            example: *a69
+            example: *a74
       required:
         - total
         - resources
@@ -32630,7 +32764,7 @@ components:
           type: string
         device:
           type: string
-      examples: &a70
+      examples: &a75
         - subject: Patient/123
           code: 8867-4
           data:
@@ -32695,7 +32829,7 @@ components:
                 type: string
               device:
                 type: string
-            examples: *a70
+            examples: *a75
       required:
         - total
         - resources
@@ -33108,8 +33242,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYxODgyMTEsImV4cCI6MTc4NjE5MTgxMX0.leOgtSYWjBCSvFIhfl4OCDF_AKvXVPalThtktiRXYsc
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYyNzYzMzksImV4cCI6MTc4NjI3OTkzOX0.1PZF0lhzG6F4dMgfUJz2sr3OAD0Wrddw-CXP0YuxdFo
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -33238,17 +33372,17 @@ components:
         - comment
         - videoCallParticipants
         - passphrase
-      example: &a71
+      example: &a76
         status: booked
-        start: 2026-08-08T11:23:31Z
-        end: 2026-08-09T11:23:31Z
+        start: 2026-08-09T11:52:19Z
+        end: 2026-08-10T11:52:19Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: zH9zSlnjQd
+        passphrase: vVuXRsB9ro
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -33328,18 +33462,18 @@ components:
           - comment
           - videoCallParticipants
           - passphrase
-        example: *a71
+        example: *a76
       example:
         - status: booked
-          start: 2026-08-08T11:23:31Z
-          end: 2026-08-09T11:23:31Z
+          start: 2026-08-09T11:52:19Z
+          end: 2026-08-10T11:52:19Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: zH9zSlnjQd
+          passphrase: vVuXRsB9ro
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
@@ -33527,7 +33661,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a74
+          enum: &a79
             - proposed
             - pending
             - booked
@@ -33559,7 +33693,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: &a75
+          example: &a80
             - CONSULTATION
           description: The service that is performed during the appointment.
           type: array
@@ -33752,7 +33886,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a72
+          enum: &a77
             - active
             - inactive
             - on-hold
@@ -33761,7 +33895,7 @@ components:
           description: Status of the account.
         type:
           type: string
-          enum: &a73
+          enum: &a78
             - _ActAccountCode
             - ACCTRECEIVABLE
             - CASH
@@ -33806,11 +33940,11 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a72
+          enum: *a77
           description: Status of the account.
         type:
           type: string
-          enum: *a73
+          enum: *a78
           description: Type of the account. See
             https://hl7.org/fhir/valueset-account-type.html
         name:
@@ -33926,7 +34060,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a74
+          enum: *a79
           description: Status of the appointment.
         participant:
           description: The participants of the appointment.
@@ -33948,7 +34082,7 @@ components:
           example: 2000-01-30T23:59:59Z
           description: End date of the appointment.
         serviceType:
-          example: *a75
+          example: *a80
           description: The service that is performed during the appointment.
           type: array
           items:
@@ -34023,7 +34157,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: &a76
+          enum: &a81
             - active
             - inactive
             - entered-in-error
@@ -34091,7 +34225,7 @@ components:
             $ref: "#/components/schemas/DeviceUdiCarrierDto"
         status:
           type: string
-          enum: *a76
+          enum: *a81
           description: Status of the device availability.
         distinctIdentifier:
           type: string
@@ -34192,7 +34326,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a77
+          enum: &a82
             - active
             - suspended
             - inactive
@@ -34220,7 +34354,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a77
+          enum: *a82
           description: Status of the location.
         name:
           type: string
@@ -34298,7 +34432,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: &a78
+          example: &a83
             - 11111-1
           description: Specific service to be performed during the appointment.
           type: array
@@ -34324,7 +34458,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a77
+          enum: *a82
           description: Status of the location.
         name:
           type: string
@@ -34386,7 +34520,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a78
+          example: *a83
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -34411,7 +34545,7 @@ components:
           items:
             $ref: "#/components/schemas/ScheduleActorDto"
         serviceType:
-          example: *a78
+          example: *a83
           description: Specific service to be performed during the appointment.
           type: array
           items:
@@ -34562,7 +34696,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: &a79
+          enum: &a84
             - male
             - female
             - other
@@ -34586,7 +34720,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: &a80
+          items: &a85
             type: string
             enum:
               - en
@@ -34620,7 +34754,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a79
+          enum: *a84
           description: Gender of the patient.
         birthDate:
           type: string
@@ -34640,7 +34774,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a80
+          items: *a85
         managingOrganization:
           type: string
           example: abc123
@@ -34697,7 +34831,7 @@ components:
             $ref: "#/components/schemas/TelecomDto"
         gender:
           type: string
-          enum: *a79
+          enum: *a84
           description: Gender of the patient.
         birthDate:
           type: string
@@ -34717,7 +34851,7 @@ components:
         communicationLanguage:
           type: array
           description: Language to be used to communicate with the patient.
-          items: *a80
+          items: *a85
         managingOrganization:
           type: string
           example: abc123
@@ -34740,7 +34874,7 @@ components:
             - $ref: "#/components/schemas/DocumentReferenceMetaDto"
         status:
           type: string
-          enum: *a81
+          enum: *a86
           description: The status of the document reference.
         content:
           description: Attachment data.
@@ -34752,7 +34886,7 @@ components:
           example: 11111-1
           description: Type of the document reference.
         category:
-          example: *a82
+          example: *a87
           description: A category assigned to the document reference.
           type: array
           items:
@@ -34931,7 +35065,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a83
+          enum: &a88
             - registered
             - preliminary
             - final
@@ -34952,7 +35086,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: &a84
+          items: &a89
             type: string
             enum:
               - activity
@@ -34985,14 +35119,14 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: &a85
+          items: &a90
             type: string
             enum:
               - low
               - normal
               - high
         note:
-          example: &a86
+          example: &a91
             - Patient is doing well.
           description: Observation note.
           type: array
@@ -35024,7 +35158,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a83
+          enum: *a88
           description: Status of the observation.
         code:
           type: string
@@ -35037,7 +35171,7 @@ components:
         category:
           type: array
           description: Observation category.
-          items: *a84
+          items: *a89
         subject:
           description: Who the observation is about.
           allOf:
@@ -35059,9 +35193,9 @@ components:
         interpretation:
           type: array
           description: Observation interpretation.
-          items: *a85
+          items: *a90
         note:
-          example: *a86
+          example: *a91
           description: Observation note.
           type: array
           items:
@@ -35188,7 +35322,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: &a87
+          enum: &a92
             - active
             - draft
             - retired
@@ -35203,7 +35337,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: &a88
+          example: &a93
             - 11111-1
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
@@ -35227,7 +35361,7 @@ components:
             $ref: "#/components/schemas/IdentifierDto"
         status:
           type: string
-          enum: *a87
+          enum: *a92
           description: Status of the Questionnaire.
         name:
           type: string
@@ -35238,7 +35372,7 @@ components:
           example: abc123
           description: Description of the Questionnaire from the consumer's perspective.
         code:
-          example: *a88
+          example: *a93
           description: "Identifier for questions/s using the LOINC terminology:
             http://loinc.org"
           type: array

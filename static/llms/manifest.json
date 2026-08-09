@@ -172,6 +172,7 @@
   "/alpha/api/high-level/authentication-b-2-b/auth-b-2-b-register-controller-register",
   "/alpha/api/high-level/authentication-session-management/auth-session-controller-find-all",
   "/alpha/api/high-level/authentication-session-management/auth-session-controller-revoke-sessions",
+  "/alpha/api/high-level/authentication/auth-controller-logout",
   "/alpha/api/high-level/authentication/auth-controller-refresh-token",
   "/alpha/api/high-level/authentication/auth-delete-controller-delete-user",
   "/alpha/api/high-level/authentication/auth-login-controller-login-v-2",

@@ -2353,5 +2353,19 @@
       "alpha",
       "beta"
     ]
+  },
+  {
+    "method": "POST",
+    "path": "/auth/logout",
+    "summary": "Log out (server-side token revocation)",
+    "description": "## Log out",
+    "tag": "Authentication",
+    "operationId": "AuthController_logout",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha"
+    ]
   }
 ]
