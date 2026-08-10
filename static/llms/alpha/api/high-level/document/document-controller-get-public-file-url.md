@@ -24,7 +24,7 @@ Information such as id, contentType, fileName, publicToken can be fetched by que
 
 | Parameter | In       | Description                                                                                                  | Example             |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-| `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYzMTE5ODcsImV4cCI6MTc4NjMxNTU4N30.G7ojLVmrlPfHrd7N3K9bgTeDslXdBTdAbYbbVE3CRro` |
+| `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODYzNTQwNzAsImV4cCI6MTc4NjM1NzY3MH0._l8QAW409nZuahw3KANm0SQVC1WS85yh-hkFNDu91-Y` |
 | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
 | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
 | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
