@@ -401,6 +401,7 @@
   "/beta/api/high-level/authentication-b-2-b/auth-b-2-b-register-controller-register",
   "/beta/api/high-level/authentication-session-management/auth-session-controller-find-all",
   "/beta/api/high-level/authentication-session-management/auth-session-controller-revoke-sessions",
+  "/beta/api/high-level/authentication/auth-controller-logout",
   "/beta/api/high-level/authentication/auth-controller-refresh-token",
   "/beta/api/high-level/authentication/auth-delete-controller-delete-user",
   "/beta/api/high-level/authentication/auth-login-controller-login-v-2",

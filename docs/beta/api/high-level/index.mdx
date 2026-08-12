@@ -16,7 +16,7 @@ signals — exposed as a coherent REST surface.
 ## Areas
 
 - **[AI Translation](/beta/api/high-level/ai-translation/translation-controller-translate)** — 1 endpoint
-- **[Authentication](/beta/api/high-level/authentication/auth-me-controller-get-user-profile)** — 5 endpoints
+- **[Authentication](/beta/api/high-level/authentication/auth-me-controller-get-user-profile)** — 7 endpoints
 - **[Authentication - B2B](/beta/api/high-level/authentication-b-2-b/auth-b-2-b-login-controller-login)** — 2 endpoints
 - **[Authentication - Session Management](/beta/api/high-level/authentication-session-management/auth-session-controller-find-all)** — 2 endpoints
 - **[Bots - Execute a custom script](/beta/api/high-level/bots-execute-a-custom-script/bots-controller-exec-bot-by-identifier-post)** — 1 endpoint

@@ -9,7 +9,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
+      "password": "zn!-)fglH{}C3JVl",
       "clientId": "a703da46-ec97-a84a-4573-c50634706367",
       "tenantId": "f6f4da8d-93e8-8a08-220e-03b7810451d3"
     },
@@ -29,7 +29,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
+      "password": "zn!-)fglH{}C3JVl",
       "name": "Max",
       "surname": "Mustermann",
       "tenantId": "79762310-6da9-48e3-f18a-8ae1f4a6dc25",
@@ -50,8 +50,38 @@
     "operationId": "AuthController_refreshToken",
     "parameters": [],
     "bodyExample": {
-      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODU3NTYyMDUsImV4cCI6MTc4NTc1OTgwNX0.6ei71fV_xmOPVPlRmxipLGPEG2cxve7YzALzIeiKK4c"
+      "refresh_token": "example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY1MjcwNjIsImV4cCI6MTc4NjUzMDY2Mn0.gyiZxHkYOW1W606gnU8Rt-YxccrTxffolAgX9Iyv8OM"
     },
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/v1/auth/logout",
+    "summary": "Log out (server-side token revocation)",
+    "description": "## Log out",
+    "tag": "Authentication",
+    "operationId": "AuthController_logout[0]_v1",
+    "parameters": [],
+    "bodyExample": null,
+    "deprecated": false,
+    "availableIn": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/auth/logout",
+    "summary": "Log out (server-side token revocation)",
+    "description": "## Log out",
+    "tag": "Authentication",
+    "operationId": "AuthController_logout[1]",
+    "parameters": [],
+    "bodyExample": null,
     "deprecated": false,
     "availableIn": [
       "alpha",
@@ -86,7 +116,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
+      "password": "zn!-)fglH{}C3JVl",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb"
     },
     "deprecated": false,
@@ -120,7 +150,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
+      "password": "zn!-)fglH{}C3JVl",
       "clientId": "c3499c27-2973-0a7f-807e-fb8676a92dcb",
       "name": "Max",
       "surname": "Mustermann"
@@ -178,8 +208,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
-      "codeChallenge": "1GDYicpiJG9STKuE44OqypcDv4gS23AA"
+      "password": "zn!-)fglH{}C3JVl",
+      "codeChallenge": "NBVtxDGJhOMbg9BzLRBVdjFgBTASuVfF"
     },
     "deprecated": false,
     "availableIn": [
@@ -196,8 +226,8 @@
     "operationId": "TenantPractitionerAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "6OKt4GtYs8J0aUECBdy760rIoZuUzBoh",
-      "codeVerifier": "tLZQTDvziSKNsIt7WhzvL2aix0xWfpTnjBDhdOQdHTTa1brwGuHj2DPeZJ8hlzYh",
+      "sessionCode": "uU9flPVQmyM43V4QeI9izu8WD34nFpz0",
+      "codeVerifier": "KT1npXtcQGp1st4tNSKBPLq2hT28fngPV3mFMMV9xEked5LULmSozTdNHTON8d1u",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -234,8 +264,8 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
-      "codeChallenge": "HczjTzu9fEkJGFHOgCugCvST6VXWy3BO",
+      "password": "zn!-)fglH{}C3JVl",
+      "codeChallenge": "5m1XY7wAVjZuVIQIlRlzOKhktcN83hqM",
       "tenantCode": "big-health-company"
     },
     "deprecated": false,
@@ -253,8 +283,8 @@
     "operationId": "TenantPatientAuthController_finishLogin",
     "parameters": [],
     "bodyExample": {
-      "sessionCode": "O1Fsx9VDtRbHkbvId6FHfkMsDmqCNho0",
-      "codeVerifier": "iYjMQtGZFqEMEndYEPQ3kQM39Kc8MX1wvCfwD1tyuSE4QS9GPDx1Sdon4U9VIc1d"
+      "sessionCode": "xIdkT86SymnnQjDCOq58JEPz2oSYJEC6",
+      "codeVerifier": "Nev5jYybdYn3dOad5DPjVQCAlx103jzT82nhlRdVJfqDnFsFYlRqsVq1gU96PAHJ"
     },
     "deprecated": false,
     "availableIn": [
@@ -290,7 +320,7 @@
     "parameters": [],
     "bodyExample": {
       "email": "max.mustermann@example.com",
-      "password": ",TQe!XdWQG*YKSEE",
+      "password": "zn!-)fglH{}C3JVl",
       "name": "Max",
       "surname": "Mustermann",
       "tenantCode": "big-health-company"
@@ -2352,34 +2382,6 @@
     "availableIn": [
       "alpha",
       "beta"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/v1/auth/logout",
-    "summary": "Log out (server-side token revocation)",
-    "description": "## Log out",
-    "tag": "Authentication",
-    "operationId": "AuthController_logout[0]_v1",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/auth/logout",
-    "summary": "Log out (server-side token revocation)",
-    "description": "## Log out",
-    "tag": "Authentication",
-    "operationId": "AuthController_logout[1]",
-    "parameters": [],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha"
     ]
   }
 ]
