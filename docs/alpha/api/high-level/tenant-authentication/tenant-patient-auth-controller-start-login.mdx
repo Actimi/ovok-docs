@@ -49,6 +49,6 @@ Login with email and password. Response either contains challange or MFA challen
 ```json
 {
   "nextStep": "token",
-  "sessionCode": "OzojD2ypef4MTAWStlyuPDofFeFLTZz1"
+  "sessionCode": "xaSHn9QiXv9ITyEpujGyXueKTXM0ncNA"
 }
 ```
