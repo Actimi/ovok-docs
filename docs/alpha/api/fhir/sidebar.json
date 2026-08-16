@@ -126,11 +126,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/foundation/permission",
-        "label": "Permission"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/foundation/provenance",
         "label": "Provenance"
       },
@@ -138,16 +133,6 @@
         "type": "doc",
         "id": "api/fhir/foundation/subscription",
         "label": "Subscription"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/foundation/subscription-status",
-        "label": "SubscriptionStatus"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/foundation/subscription-topic",
-        "label": "SubscriptionTopic"
       }
     ]
   },
@@ -284,16 +269,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/genomic-study",
-        "label": "GenomicStudy"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/clinical-diagnostics/imaging-selection",
-        "label": "ImagingSelection"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/clinical-diagnostics/imaging-study",
         "label": "ImagingStudy"
       },
@@ -329,15 +304,10 @@
     "label": "Clinical — Medications",
     "link": {
       "type": "doc",
-      "id": "api/fhir/clinical-medications/formulary-item"
+      "id": "api/fhir/clinical-medications/immunization"
     },
     "collapsed": true,
     "items": [
-      {
-        "type": "doc",
-        "id": "api/fhir/clinical-medications/formulary-item",
-        "label": "FormularyItem"
-      },
       {
         "type": "doc",
         "id": "api/fhir/clinical-medications/immunization",
@@ -426,11 +396,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/encounter-history",
-        "label": "EncounterHistory"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/clinical-care-provision/episode-of-care",
         "label": "EpisodeOfCare"
       },
@@ -446,18 +411,8 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/clinical-care-provision/nutrition-intake",
-        "label": "NutritionIntake"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/clinical-care-provision/nutrition-order",
         "label": "NutritionOrder"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/clinical-care-provision/request-orchestration",
-        "label": "RequestOrchestration"
       },
       {
         "type": "doc",
@@ -514,11 +469,6 @@
         "type": "doc",
         "id": "api/fhir/workflow/task",
         "label": "Task"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/workflow/transport",
-        "label": "Transport"
       },
       {
         "type": "doc",
@@ -639,11 +589,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/biologically-derived-product-dispense",
-        "label": "BiologicallyDerivedProductDispense"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/specialized-public-health-research/detected-issue",
         "label": "DetectedIssue"
       },
@@ -654,18 +599,8 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/evidence-report",
-        "label": "EvidenceReport"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/specialized-public-health-research/evidence-variable",
         "label": "EvidenceVariable"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-public-health-research/nutrition-product",
-        "label": "NutritionProduct"
       },
       {
         "type": "doc",
@@ -700,28 +635,13 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/device-association",
-        "label": "DeviceAssociation"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/specialized-devices/device-definition",
         "label": "DeviceDefinition"
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-devices/device-dispense",
-        "label": "DeviceDispense"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/specialized-devices/device-metric",
         "label": "DeviceMetric"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-devices/device-usage",
-        "label": "DeviceUsage"
       }
     ]
   },
@@ -776,11 +696,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/specialized-quality-testing/test-plan",
-        "label": "TestPlan"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/specialized-quality-testing/test-report",
         "label": "TestReport"
       },
@@ -796,50 +711,10 @@
     "label": "Specialized — Medication Definition",
     "link": {
       "type": "doc",
-      "id": "api/fhir/specialized-medication-definition/administrable-product-definition"
+      "id": "api/fhir/specialized-medication-definition/substance-nucleic-acid"
     },
     "collapsed": true,
     "items": [
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/administrable-product-definition",
-        "label": "AdministrableProductDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/clinical-use-definition",
-        "label": "ClinicalUseDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/ingredient",
-        "label": "Ingredient"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/manufactured-item-definition",
-        "label": "ManufacturedItemDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/medicinal-product-definition",
-        "label": "MedicinalProductDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/packaged-product-definition",
-        "label": "PackagedProductDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/regulated-authorization",
-        "label": "RegulatedAuthorization"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/specialized-medication-definition/substance-definition",
-        "label": "SubstanceDefinition"
-      },
       {
         "type": "doc",
         "id": "api/fhir/specialized-medication-definition/substance-nucleic-acid",
@@ -908,20 +783,10 @@
     "label": "Conformance",
     "link": {
       "type": "doc",
-      "id": "api/fhir/conformance/actor-definition"
+      "id": "api/fhir/conformance/capability-statement"
     },
     "collapsed": true,
     "items": [
-      {
-        "type": "doc",
-        "id": "api/fhir/conformance/actor-definition",
-        "label": "ActorDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/conformance/artifact-assessment",
-        "label": "ArtifactAssessment"
-      },
       {
         "type": "doc",
         "id": "api/fhir/conformance/capability-statement",
@@ -929,18 +794,8 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/citation",
-        "label": "Citation"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/conformance/compartment-definition",
         "label": "CompartmentDefinition"
-      },
-      {
-        "type": "doc",
-        "id": "api/fhir/conformance/condition-definition",
-        "label": "ConditionDefinition"
       },
       {
         "type": "doc",
@@ -969,11 +824,6 @@
       },
       {
         "type": "doc",
-        "id": "api/fhir/conformance/requirements",
-        "label": "Requirements"
-      },
-      {
-        "type": "doc",
         "id": "api/fhir/conformance/search-parameter",
         "label": "SearchParameter"
       },
@@ -994,19 +844,109 @@
     "label": "Other",
     "link": {
       "type": "doc",
-      "id": "api/fhir/other/inventory-item"
+      "id": "api/fhir/other/catalog-entry"
     },
     "collapsed": true,
     "items": [
       {
         "type": "doc",
-        "id": "api/fhir/other/inventory-item",
-        "label": "InventoryItem"
+        "id": "api/fhir/other/catalog-entry",
+        "label": "CatalogEntry"
       },
       {
         "type": "doc",
-        "id": "api/fhir/other/inventory-report",
-        "label": "InventoryReport"
+        "id": "api/fhir/other/device-use-statement",
+        "label": "DeviceUseStatement"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/document-manifest",
+        "label": "DocumentManifest"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/effect-evidence-synthesis",
+        "label": "EffectEvidenceSynthesis"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/media",
+        "label": "Media"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product",
+        "label": "MedicinalProduct"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-authorization",
+        "label": "MedicinalProductAuthorization"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-contraindication",
+        "label": "MedicinalProductContraindication"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-indication",
+        "label": "MedicinalProductIndication"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-ingredient",
+        "label": "MedicinalProductIngredient"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-interaction",
+        "label": "MedicinalProductInteraction"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-manufactured",
+        "label": "MedicinalProductManufactured"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-packaged",
+        "label": "MedicinalProductPackaged"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-pharmaceutical",
+        "label": "MedicinalProductPharmaceutical"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/medicinal-product-undesirable-effect",
+        "label": "MedicinalProductUndesirableEffect"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/request-group",
+        "label": "RequestGroup"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/research-definition",
+        "label": "ResearchDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/research-element-definition",
+        "label": "ResearchElementDefinition"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/risk-evidence-synthesis",
+        "label": "RiskEvidenceSynthesis"
+      },
+      {
+        "type": "doc",
+        "id": "api/fhir/other/substance-specification",
+        "label": "SubstanceSpecification"
       }
     ]
   }

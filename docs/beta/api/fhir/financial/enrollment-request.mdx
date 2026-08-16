@@ -17,22 +17,21 @@ This resource provides the insurance enrollment details to the insurer regarding
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/EnrollmentRequest/[id]` |
-| Vread        | `GET`    | `/fhir/R5/EnrollmentRequest/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/EnrollmentRequest/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/EnrollmentRequest/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/EnrollmentRequest/[id]` |
-| Create       | `POST`   | `/fhir/R5/EnrollmentRequest` |
-| Search       | `GET`    | `/fhir/R5/EnrollmentRequest?...` |
-| History      | `GET`    | `/fhir/R5/EnrollmentRequest/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/EnrollmentRequest/_history` |
+| Read | `GET` | `/fhir/R4/EnrollmentRequest/[id]` |
+| Vread | `GET` | `/fhir/R4/EnrollmentRequest/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/EnrollmentRequest/[id]` |
+| Patch | `PATCH` | `/fhir/R4/EnrollmentRequest/[id]` |
+| Delete | `DELETE` | `/fhir/R4/EnrollmentRequest/[id]` |
+| Create | `POST` | `/fhir/R4/EnrollmentRequest` |
+| Search | `GET` | `/fhir/R4/EnrollmentRequest` |
+| History | `GET` | `/fhir/R4/EnrollmentRequest/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier |
-| `status` | `code` | `0..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `status` | `code` | `0..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
 | `created` | `dateTime` | `0..1` | Creation date |
 | `insurer` | `Reference` | `0..1` | Target |
 | `provider` | `Reference` | `0..1` | Responsible practitioner |
@@ -43,12 +42,24 @@ This resource provides the insurance enrollment details to the insurer regarding
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `identifier` | `token` | Account number |
-| `patient` | `reference` | The entity that caused the expenses |
-| `status` | `token` | The status of the enrollment |
-| `subject` | `reference` | The party to be enrolled |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentRequest-identifier |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentRequest-patient |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentRequest-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentRequest-subject |
 
 ## Reference
 
-- Official FHIR R5 spec: [`EnrollmentRequest`](https://hl7.org/fhir/R5/enrollmentrequest.html)
+- Official FHIR R4 spec: [`EnrollmentRequest`](https://hl7.org/fhir/R4/enrollmentrequest.html)
 - Maturity: **Draft** (FMM 0).

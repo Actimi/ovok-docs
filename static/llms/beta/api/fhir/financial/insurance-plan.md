@@ -17,30 +17,29 @@ Details of a Health Insurance product/plan provided by an organization.
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/InsurancePlan/[id]` |
-| Vread        | `GET`    | `/fhir/R5/InsurancePlan/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/InsurancePlan/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/InsurancePlan/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/InsurancePlan/[id]` |
-| Create       | `POST`   | `/fhir/R5/InsurancePlan` |
-| Search       | `GET`    | `/fhir/R5/InsurancePlan?...` |
-| History      | `GET`    | `/fhir/R5/InsurancePlan/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/InsurancePlan/_history` |
+| Read | `GET` | `/fhir/R4/InsurancePlan/[id]` |
+| Vread | `GET` | `/fhir/R4/InsurancePlan/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/InsurancePlan/[id]` |
+| Patch | `PATCH` | `/fhir/R4/InsurancePlan/[id]` |
+| Delete | `DELETE` | `/fhir/R4/InsurancePlan/[id]` |
+| Create | `POST` | `/fhir/R4/InsurancePlan` |
+| Search | `GET` | `/fhir/R4/InsurancePlan` |
+| History | `GET` | `/fhir/R4/InsurancePlan/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier for Product |
-| `status` | `code` | `0..1` | draft | active | retired | unknown _modifier_ |
+| `status` | `code` | `0..1` | draft \| active \| retired \| unknown _modifier_ |
 | `type` | `CodeableConcept` | `0..*` | Kind of product |
 | `name` | `string` | `0..1` | Official name |
 | `alias` | `string` | `0..*` | Alternate names |
 | `period` | `Period` | `0..1` | When the product is available |
-| `ownedBy` | `Reference` | `0..1` | Product issuer |
+| `ownedBy` | `Reference` | `0..1` | Plan issuer |
 | `administeredBy` | `Reference` | `0..1` | Product administrator |
 | `coverageArea` | `Reference` | `0..*` | Where product applies |
-| `contact` | `ExtendedContactDetail` | `0..*` | Official contact details relevant to the health insurance plan/product |
+| `contact` | `BackboneElement` | `0..*` | Contact for the product |
 | `endpoint` | `Reference` | `0..*` | Technical endpoint |
 | `network` | `Reference` | `0..*` | What networks are Included |
 | `coverage` | `BackboneElement` | `0..*` | Coverage details |
@@ -50,22 +49,34 @@ Details of a Health Insurance product/plan provided by an organization.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `address` | `string` | A server defined search that may match any of the string fields in the Address, including line, city, district, state, country, postalCode, and/or text |
-| `address-city` | `string` | A city specified in an address |
-| `address-country` | `string` | A country specified in an address |
-| `address-postalcode` | `string` | A postal code specified in an address |
-| `address-state` | `string` | A state specified in an address |
-| `address-use` | `token` | A use code specified in an address |
-| `administered-by` | `reference` | Product administrator |
-| `endpoint` | `reference` | Technical endpoint |
-| `identifier` | `token` | Any identifier for the organization (not the accreditation issuer's identifier) |
-| `name` | `string` | A portion of the organization's name or alias |
-| `owned-by` | `reference` | An organization of which this organization forms a part |
-| `phonetic` | `string` | A portion of the organization's name using some kind of phonetic matching algorithm |
-| `status` | `token` | Is the Organization record active |
-| `type` | `token` | A code for the type of organization |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `address` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address |
+| `address-city` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address-city |
+| `address-country` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address-country |
+| `address-postalcode` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address-postalcode |
+| `address-state` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address-state |
+| `address-use` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-address-use |
+| `administered-by` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-administered-by |
+| `endpoint` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-endpoint |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-identifier |
+| `name` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-name |
+| `owned-by` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-owned-by |
+| `phonetic` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-phonetic |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-status |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/InsurancePlan-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`InsurancePlan`](https://hl7.org/fhir/R5/insuranceplan.html)
+- Official FHIR R4 spec: [`InsurancePlan`](https://hl7.org/fhir/R4/insuranceplan.html)
 - Maturity: **Draft** (FMM 0).

@@ -14,7 +14,7 @@ import { DEFAULT_ENV } from '../lib/env';
  */
 const DEFAULT_TIER_PATH = `/${DEFAULT_ENV}`;
 
-function RootRedirect(): JSX.Element {
+function RootRedirect(): React.JSX.Element {
   const history = useHistory();
   useEffect(() => {
     history.replace(DEFAULT_TIER_PATH);
@@ -26,7 +26,7 @@ function RootRedirect(): JSX.Element {
   );
 }
 
-export default function Home(): JSX.Element {
+export default function Home(): React.JSX.Element {
   return (
     <Layout title="Ovok docs" description="Documentation for the Ovok platform.">
       <BrowserOnly fallback={<p style={{ padding: '3rem 1.5rem', textAlign: 'center' }}>Loading…</p>}>

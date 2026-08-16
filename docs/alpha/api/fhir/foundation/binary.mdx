@@ -17,15 +17,14 @@ A resource that represents the data of a single raw artifact as digital content 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Binary/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Binary/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Binary/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Binary/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Binary/[id]` |
-| Create       | `POST`   | `/fhir/R5/Binary` |
-| Search       | `GET`    | `/fhir/R5/Binary?...` |
-| History      | `GET`    | `/fhir/R5/Binary/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Binary/_history` |
+| Read | `GET` | `/fhir/R4/Binary/[id]` |
+| Vread | `GET` | `/fhir/R4/Binary/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Binary/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Binary/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Binary/[id]` |
+| Create | `POST` | `/fhir/R4/Binary` |
+| Search | `GET` | `/fhir/R4/Binary` |
+| History | `GET` | `/fhir/R4/Binary/[id]/_history` |
 
 ## Top-level elements
 
@@ -37,9 +36,15 @@ A resource that represents the data of a single raw artifact as digital content 
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Binary`](https://hl7.org/fhir/R5/binary.html)
+- Official FHIR R4 spec: [`Binary`](https://hl7.org/fhir/R4/binary.html)
 - Maturity: **Normative** (FMM 5).

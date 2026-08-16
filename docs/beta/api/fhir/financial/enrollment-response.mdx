@@ -17,24 +17,23 @@ This resource provides enrollment and plan details from the processing of an Enr
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/EnrollmentResponse/[id]` |
-| Vread        | `GET`    | `/fhir/R5/EnrollmentResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/EnrollmentResponse/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/EnrollmentResponse/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/EnrollmentResponse/[id]` |
-| Create       | `POST`   | `/fhir/R5/EnrollmentResponse` |
-| Search       | `GET`    | `/fhir/R5/EnrollmentResponse?...` |
-| History      | `GET`    | `/fhir/R5/EnrollmentResponse/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/EnrollmentResponse/_history` |
+| Read | `GET` | `/fhir/R4/EnrollmentResponse/[id]` |
+| Vread | `GET` | `/fhir/R4/EnrollmentResponse/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/EnrollmentResponse/[id]` |
+| Patch | `PATCH` | `/fhir/R4/EnrollmentResponse/[id]` |
+| Delete | `DELETE` | `/fhir/R4/EnrollmentResponse/[id]` |
+| Create | `POST` | `/fhir/R4/EnrollmentResponse` |
+| Search | `GET` | `/fhir/R4/EnrollmentResponse` |
+| History | `GET` | `/fhir/R4/EnrollmentResponse/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier |
-| `status` | `code` | `0..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `status` | `code` | `0..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
 | `request` | `Reference` | `0..1` | Claim reference |
-| `outcome` | `code` | `0..1` | queued | complete | error | partial |
+| `outcome` | `code` | `0..1` | queued \| complete \| error \| partial |
 | `disposition` | `string` | `0..1` | Disposition Message |
 | `created` | `dateTime` | `0..1` | Creation date |
 | `organization` | `Reference` | `0..1` | Insurer |
@@ -44,11 +43,23 @@ This resource provides enrollment and plan details from the processing of an Enr
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `identifier` | `token` | The business identifier of the EnrollmentResponse |
-| `request` | `reference` | The reference to the claim |
-| `status` | `token` | The status of the enrollment response |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentResponse-identifier |
+| `request` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentResponse-request |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/EnrollmentResponse-status |
 
 ## Reference
 
-- Official FHIR R5 spec: [`EnrollmentResponse`](https://hl7.org/fhir/R5/enrollmentresponse.html)
+- Official FHIR R4 spec: [`EnrollmentResponse`](https://hl7.org/fhir/R4/enrollmentresponse.html)
 - Maturity: **Draft** (FMM 0).

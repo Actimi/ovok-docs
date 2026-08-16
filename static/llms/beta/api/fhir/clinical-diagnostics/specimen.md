@@ -17,15 +17,14 @@ A sample to be used for analysis.
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Specimen/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Specimen/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Specimen/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Specimen/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Specimen/[id]` |
-| Create       | `POST`   | `/fhir/R5/Specimen` |
-| Search       | `GET`    | `/fhir/R5/Specimen?...` |
-| History      | `GET`    | `/fhir/R5/Specimen/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Specimen/_history` |
+| Read | `GET` | `/fhir/R4/Specimen/[id]` |
+| Vread | `GET` | `/fhir/R4/Specimen/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Specimen/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Specimen/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Specimen/[id]` |
+| Create | `POST` | `/fhir/R4/Specimen` |
+| Search | `GET` | `/fhir/R4/Specimen` |
+| History | `GET` | `/fhir/R4/Specimen/[id]/_history` |
 
 ## Top-level elements
 
@@ -33,15 +32,12 @@ A sample to be used for analysis.
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | External Identifier |
 | `accessionIdentifier` | `Identifier` | `0..1` | Identifier assigned by the lab |
-| `status` | `code` | `0..1` | available | unavailable | unsatisfactory | entered-in-error _modifier_ |
+| `status` | `code` | `0..1` | available \| unavailable \| unsatisfactory \| entered-in-error _modifier_ |
 | `type` | `CodeableConcept` | `0..1` | Kind of material that forms the specimen |
-| `subject` | `Reference` | `0..1` | Where the specimen came from. This may be from patient(s), from a location (e.g., the source of an environmental sample), or a sampling of a substance, a biologically-derived product, or a device |
-| `receivedTime` | `dateTime` | `0..1` | The time when specimen is received by the testing laboratory |
+| `subject` | `Reference` | `0..1` | Where the specimen came from. This may be from patient(s), from a location (e.g., the source of an environmental sample), or a sampling of a substance or a device |
+| `receivedTime` | `dateTime` | `0..1` | The time when specimen was received for processing |
 | `parent` | `Reference` | `0..*` | Specimen from which this specimen originated |
 | `request` | `Reference` | `0..*` | Why the specimen was collected |
-| `combined` | `code` | `0..1` | grouped | pooled |
-| `role` | `CodeableConcept` | `0..*` | The role the specimen serves |
-| `feature` | `BackboneElement` | `0..*` | The physical feature of a specimen |
 | `collection` | `BackboneElement` | `0..1` | Collection details |
 | `processing` | `BackboneElement` | `0..*` | Processing and processing step details |
 | `container` | `BackboneElement` | `0..*` | Direct container of specimen (tube/slide, etc.) |
@@ -52,20 +48,32 @@ A sample to be used for analysis.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `accession` | `token` | The accession number associated with the specimen |
-| `bodysite` | `reference` | Reference to a resource (by instance) |
-| `collected` | `date` | The date the specimen was collected |
-| `collector` | `reference` | Who collected the specimen |
-| `container-device` | `reference` | The unique identifier associated with the specimen container |
-| `identifier` | `token` | Account number |
-| `parent` | `reference` | The parent of the specimen |
-| `patient` | `reference` | The entity that caused the expenses |
-| `procedure` | `reference` | The procedure that collected the specimen |
-| `status` | `token` | available | unavailable | unsatisfactory | entered-in-error |
-| `subject` | `reference` | The subject of the specimen |
-| `type` | `token` | E.g. patient, expense, depreciation |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `accession` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-accession |
+| `bodysite` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-bodysite |
+| `collected` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-collected |
+| `collector` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-collector |
+| `container` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-container |
+| `container-id` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-container-id |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-identifier |
+| `parent` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-parent |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-patient |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-subject |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/Specimen-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Specimen`](https://hl7.org/fhir/R5/specimen.html)
+- Official FHIR R4 spec: [`Specimen`](https://hl7.org/fhir/R4/specimen.html)
 - Maturity: **Trial Use 2** (FMM 2).

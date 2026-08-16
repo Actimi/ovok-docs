@@ -17,15 +17,14 @@ A patient's point-in-time set of recommendations (i.e. forecasting) according to
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/ImmunizationRecommendation/[id]` |
-| Vread        | `GET`    | `/fhir/R5/ImmunizationRecommendation/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/ImmunizationRecommendation/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/ImmunizationRecommendation/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/ImmunizationRecommendation/[id]` |
-| Create       | `POST`   | `/fhir/R5/ImmunizationRecommendation` |
-| Search       | `GET`    | `/fhir/R5/ImmunizationRecommendation?...` |
-| History      | `GET`    | `/fhir/R5/ImmunizationRecommendation/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/ImmunizationRecommendation/_history` |
+| Read | `GET` | `/fhir/R4/ImmunizationRecommendation/[id]` |
+| Vread | `GET` | `/fhir/R4/ImmunizationRecommendation/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/ImmunizationRecommendation/[id]` |
+| Patch | `PATCH` | `/fhir/R4/ImmunizationRecommendation/[id]` |
+| Delete | `DELETE` | `/fhir/R4/ImmunizationRecommendation/[id]` |
+| Create | `POST` | `/fhir/R4/ImmunizationRecommendation` |
+| Search | `GET` | `/fhir/R4/ImmunizationRecommendation` |
+| History | `GET` | `/fhir/R4/ImmunizationRecommendation/[id]/_history` |
 
 ## Top-level elements
 
@@ -41,16 +40,28 @@ A patient's point-in-time set of recommendations (i.e. forecasting) according to
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `date` | `date` | When the event occurred |
-| `identifier` | `token` | Account number |
-| `information` | `reference` | Patient observations supporting recommendation |
-| `patient` | `reference` | The entity that caused the expenses |
-| `status` | `token` | Vaccine recommendation status |
-| `support` | `reference` | Past immunizations supporting recommendation |
-| `target-disease` | `token` | Disease to be immunized against |
-| `vaccine-type` | `token` | Vaccine  or vaccine group recommendation applies to |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-date |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-identifier |
+| `information` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-information |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-patient |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-status |
+| `support` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-support |
+| `target-disease` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-target-disease |
+| `vaccine-type` | `string` | http://hl7.org/fhir/SearchParameter/ImmunizationRecommendation-vaccine-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`ImmunizationRecommendation`](https://hl7.org/fhir/R5/immunizationrecommendation.html)
+- Official FHIR R4 spec: [`ImmunizationRecommendation`](https://hl7.org/fhir/R4/immunizationrecommendation.html)
 - Maturity: **Trial Use 1** (FMM 1).

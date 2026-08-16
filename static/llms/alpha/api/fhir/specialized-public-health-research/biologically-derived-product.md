@@ -1,15 +1,16 @@
 ---
 title: BiologicallyDerivedProduct
 sidebar_label: BiologicallyDerivedProduct
-description: "A biological material originating from a biological entity intended to be transplanted or infused into another (possibly the same) biological entity."
+description: "A material substance originating from a biological entity intended to be transplanted or infused"
 ---
 
 # BiologicallyDerivedProduct
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Public Health & Research</span>
 
-A biological material originating from a biological entity intended to be transplanted or infused into another (possibly the same) biological entity.
+A material substance originating from a biological entity intended to be transplanted or infused
+into another (possibly the same) biological entity.
 
 ## Endpoints
 
@@ -17,48 +18,49 @@ A biological material originating from a biological entity intended to be transp
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/BiologicallyDerivedProduct/[id]` |
-| Vread        | `GET`    | `/fhir/R5/BiologicallyDerivedProduct/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/BiologicallyDerivedProduct/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/BiologicallyDerivedProduct/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/BiologicallyDerivedProduct/[id]` |
-| Create       | `POST`   | `/fhir/R5/BiologicallyDerivedProduct` |
-| Search       | `GET`    | `/fhir/R5/BiologicallyDerivedProduct?...` |
-| History      | `GET`    | `/fhir/R5/BiologicallyDerivedProduct/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/BiologicallyDerivedProduct/_history` |
+| Read | `GET` | `/fhir/R4/BiologicallyDerivedProduct/[id]` |
+| Vread | `GET` | `/fhir/R4/BiologicallyDerivedProduct/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/BiologicallyDerivedProduct/[id]` |
+| Patch | `PATCH` | `/fhir/R4/BiologicallyDerivedProduct/[id]` |
+| Delete | `DELETE` | `/fhir/R4/BiologicallyDerivedProduct/[id]` |
+| Create | `POST` | `/fhir/R4/BiologicallyDerivedProduct` |
+| Search | `GET` | `/fhir/R4/BiologicallyDerivedProduct` |
+| History | `GET` | `/fhir/R4/BiologicallyDerivedProduct/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `productCategory` | `Coding` | `0..1` | organ | tissue | fluid | cells | biologicalAgent |
-| `productCode` | `CodeableConcept` | `0..1` | A code that identifies the kind of this biologically derived product |
-| `parent` | `Reference` | `0..*` | The parent biologically-derived product |
-| `request` | `Reference` | `0..*` | Request to obtain and/or infuse this product |
-| `identifier` | `Identifier` | `0..*` | Instance identifier |
-| `biologicalSourceEvent` | `Identifier` | `0..1` | An identifier that supports traceability to the event during which material in this product from one or more biological entities was obtained or pooled |
-| `processingFacility` | `Reference` | `0..*` | Processing facilities responsible for the labeling and distribution of this biologically derived product |
-| `division` | `string` | `0..1` | A unique identifier for an aliquot of a product |
-| `productStatus` | `Coding` | `0..1` | available | unavailable |
-| `expirationDate` | `dateTime` | `0..1` | Date, and where relevant time, of expiration |
+| `identifier` | `Identifier` | `0..*` | External ids for this item |
+| `productCategory` | `code` | `0..1` | organ \| tissue \| fluid \| cells \| biologicalAgent |
+| `productCode` | `CodeableConcept` | `0..1` | What this biologically derived product is |
+| `status` | `code` | `0..1` | available \| unavailable |
+| `request` | `Reference` | `0..*` | Procedure request |
+| `quantity` | `integer` | `0..1` | The amount of this biologically derived product |
+| `parent` | `Reference` | `0..*` | BiologicallyDerivedProduct parent |
 | `collection` | `BackboneElement` | `0..1` | How this product was collected |
-| `storageTempRequirements` | `Range` | `0..1` | Product storage temperature requirements |
-| `property` | `BackboneElement` | `0..*` | A property that is specific to this BiologicallyDerviedProduct instance |
+| `processing` | `BackboneElement` | `0..*` | Any processing of the product during collection |
+| `manipulation` | `BackboneElement` | `0..1` | Any manipulation of product post-collection |
+| `storage` | `BackboneElement` | `0..*` | Product storage |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `biological-source-event` | `token` | The biological source for the biologically derived product |
-| `code` | `token` | A code that identifies the kind of this biologically derived product (SNOMED CT code). |
-| `collector` | `reference` | Procedure request to obtain this biologically derived product. |
-| `identifier` | `token` | Identifier |
-| `product-category` | `token` | Broad category of this product. |
-| `product-status` | `token` | Whether the product is currently available. |
-| `request` | `reference` | Procedure request to obtain this biologically derived product. |
-| `serial-number` | `token` | Identifier |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`BiologicallyDerivedProduct`](https://hl7.org/fhir/R5/biologicallyderivedproduct.html)
-- Maturity: **Trial Use 2** (FMM 2).
+- Official FHIR R4 spec: [`BiologicallyDerivedProduct`](https://hl7.org/fhir/R4/biologicallyderivedproduct.html)
+- Maturity: **Draft** (FMM 0).

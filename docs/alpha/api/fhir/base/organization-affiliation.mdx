@@ -1,15 +1,15 @@
 ---
 title: OrganizationAffiliation
 sidebar_label: OrganizationAffiliation
-description: "Defines an affiliation/assotiation/relationship between 2 distinct organizations, that is not a part-of relationship/sub-division relationship."
+description: "Defines an affiliation/assotiation/relationship between 2 distinct oganizations, that is not a part-of relationship/sub-division relationship."
 ---
 
 # OrganizationAffiliation
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Base</span>
 
-Defines an affiliation/assotiation/relationship between 2 distinct organizations, that is not a part-of relationship/sub-division relationship.
+Defines an affiliation/assotiation/relationship between 2 distinct oganizations, that is not a part-of relationship/sub-division relationship.
 
 ## Endpoints
 
@@ -17,15 +17,14 @@ Defines an affiliation/assotiation/relationship between 2 distinct organizations
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/OrganizationAffiliation/[id]` |
-| Vread        | `GET`    | `/fhir/R5/OrganizationAffiliation/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/OrganizationAffiliation/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/OrganizationAffiliation/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/OrganizationAffiliation/[id]` |
-| Create       | `POST`   | `/fhir/R5/OrganizationAffiliation` |
-| Search       | `GET`    | `/fhir/R5/OrganizationAffiliation?...` |
-| History      | `GET`    | `/fhir/R5/OrganizationAffiliation/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/OrganizationAffiliation/_history` |
+| Read | `GET` | `/fhir/R4/OrganizationAffiliation/[id]` |
+| Vread | `GET` | `/fhir/R4/OrganizationAffiliation/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/OrganizationAffiliation/[id]` |
+| Patch | `PATCH` | `/fhir/R4/OrganizationAffiliation/[id]` |
+| Delete | `DELETE` | `/fhir/R4/OrganizationAffiliation/[id]` |
+| Create | `POST` | `/fhir/R4/OrganizationAffiliation` |
+| Search | `GET` | `/fhir/R4/OrganizationAffiliation` |
+| History | `GET` | `/fhir/R4/OrganizationAffiliation/[id]/_history` |
 
 ## Top-level elements
 
@@ -36,34 +35,46 @@ Defines an affiliation/assotiation/relationship between 2 distinct organizations
 | `period` | `Period` | `0..1` | The period during which the participatingOrganization is affiliated with the primary organization |
 | `organization` | `Reference` | `0..1` | Organization where the role is available |
 | `participatingOrganization` | `Reference` | `0..1` | Organization that provides/performs the role (e.g. providing services or is a member of) |
-| `network` | `Reference` | `0..*` | The network in which the participatingOrganization provides the role's services (if defined) at the indicated locations (if defined) |
+| `network` | `Reference` | `0..*` | Health insurance provider network in which the participatingOrganization provides the role's services (if defined) at the indicated locations (if defined) |
 | `code` | `CodeableConcept` | `0..*` | Definition of the role the participatingOrganization plays |
 | `specialty` | `CodeableConcept` | `0..*` | Specific specialty of the participatingOrganization in the context of the role |
 | `location` | `Reference` | `0..*` | The location(s) at which the role occurs |
 | `healthcareService` | `Reference` | `0..*` | Healthcare services provided through the role |
-| `contact` | `ExtendedContactDetail` | `0..*` | Official contact details at the participatingOrganization relevant to this Affiliation |
+| `telecom` | `ContactPoint` | `0..*` | Contact details at the participatingOrganization relevant to this Affiliation |
 | `endpoint` | `Reference` | `0..*` | Technical endpoints providing access to services operated for this role |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `active` | `token` | Whether this organization affiliation record is in active use |
-| `date` | `date` | The period during which the participatingOrganization is affiliated with the primary organization |
-| `email` | `token` | A value in an email contact |
-| `endpoint` | `reference` | Technical endpoints providing access to services operated for this role |
-| `identifier` | `token` | An organization affiliation's Identifier |
-| `location` | `reference` | The location(s) at which the role occurs |
-| `network` | `reference` | Health insurance provider network in which the participatingOrganization provides the role's services (if defined) at the indicated locations (if defined) |
-| `participating-organization` | `reference` | The organization that provides services to the primary organization |
-| `phone` | `token` | A value in a phone contact |
-| `primary-organization` | `reference` | The organization that receives the services from the participating organization |
-| `role` | `token` | Definition of the role the participatingOrganization plays |
-| `service` | `reference` | Healthcare services provided through the role |
-| `specialty` | `token` | Specific specialty of the participatingOrganization in the context of the role |
-| `telecom` | `token` | The value in any kind of contact |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `active` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-active |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-date |
+| `email` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-email |
+| `endpoint` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-endpoint |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-identifier |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-location |
+| `network` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-network |
+| `participating-organization` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-participating-organization |
+| `phone` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-phone |
+| `primary-organization` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-primary-organization |
+| `role` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-role |
+| `service` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-service |
+| `specialty` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-specialty |
+| `telecom` | `string` | http://hl7.org/fhir/SearchParameter/OrganizationAffiliation-telecom |
 
 ## Reference
 
-- Official FHIR R5 spec: [`OrganizationAffiliation`](https://hl7.org/fhir/R5/organizationaffiliation.html)
-- Maturity: **Trial Use 1** (FMM 1).
+- Official FHIR R4 spec: [`OrganizationAffiliation`](https://hl7.org/fhir/R4/organizationaffiliation.html)
+- Maturity: **Draft** (FMM 0).

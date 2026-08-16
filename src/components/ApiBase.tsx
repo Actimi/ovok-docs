@@ -16,7 +16,7 @@ interface Props {
  * same MDX page reads correctly regardless of which tier the visitor
  * has selected from the navbar switcher.
  */
-export default function ApiBase({ surface = 'api', path = '', inline = true }: Props): JSX.Element {
+export default function ApiBase({ surface = 'api', path = '', inline = true }: Props): React.JSX.Element {
   const { config } = useEnv();
   const value = `${config.hosts[surface]}${path}`;
 

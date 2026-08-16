@@ -6,7 +6,7 @@ description: "Financial instrument which may be used to reimburse or pay for hea
 
 # Coverage
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Financial</span>
 
 Financial instrument which may be used to reimburse or pay for health care products and services. Includes both insurance and self-payment.
@@ -17,60 +17,66 @@ Financial instrument which may be used to reimburse or pay for health care produ
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Coverage/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Coverage/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Coverage/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Coverage/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Coverage/[id]` |
-| Create       | `POST`   | `/fhir/R5/Coverage` |
-| Search       | `GET`    | `/fhir/R5/Coverage?...` |
-| History      | `GET`    | `/fhir/R5/Coverage/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Coverage/_history` |
+| Read | `GET` | `/fhir/R4/Coverage/[id]` |
+| Vread | `GET` | `/fhir/R4/Coverage/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Coverage/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Coverage/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Coverage/[id]` |
+| Create | `POST` | `/fhir/R4/Coverage` |
+| Search | `GET` | `/fhir/R4/Coverage` |
+| History | `GET` | `/fhir/R4/Coverage/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `identifier` | `Identifier` | `0..*` | Business identifier(s) for this coverage |
-| `status` | `code` | `1..1` | active | cancelled | draft | entered-in-error _modifier_ |
-| `kind` | `code` | `1..1` | insurance | self-pay | other |
-| `paymentBy` | `BackboneElement` | `0..*` | Self-pay parties and responsibility |
+| `identifier` | `Identifier` | `0..*` | Business Identifier for the coverage |
+| `status` | `code` | `1..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
 | `type` | `CodeableConcept` | `0..1` | Coverage category such as medical or accident |
 | `policyHolder` | `Reference` | `0..1` | Owner of the policy |
 | `subscriber` | `Reference` | `0..1` | Subscriber to the policy |
-| `subscriberId` | `Identifier` | `0..*` | ID assigned to the subscriber |
+| `subscriberId` | `string` | `0..1` | ID assigned to the subscriber |
 | `beneficiary` | `Reference` | `1..1` | Plan beneficiary |
 | `dependent` | `string` | `0..1` | Dependent number |
 | `relationship` | `CodeableConcept` | `0..1` | Beneficiary relationship to the subscriber |
 | `period` | `Period` | `0..1` | Coverage start and end dates |
-| `insurer` | `Reference` | `0..1` | Issuer of the policy |
+| `payor` | `Reference` | `1..*` | Issuer of the policy |
 | `class` | `BackboneElement` | `0..*` | Additional coverage classifications |
 | `order` | `positiveInt` | `0..1` | Relative order of the coverage |
 | `network` | `string` | `0..1` | Insurer network |
 | `costToBeneficiary` | `BackboneElement` | `0..*` | Patient payments for services/products |
 | `subrogation` | `boolean` | `0..1` | Reimbursement to insurer |
 | `contract` | `Reference` | `0..*` | Contract details |
-| `insurancePlan` | `Reference` | `0..1` | Insurance plan details |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `beneficiary` | `reference` | Covered party |
-| `class-type` | `token` | Coverage class (e.g. plan, group) |
-| `class-value` | `token` | Value of the class (e.g. Plan number, group number) |
-| `dependent` | `string` | Dependent number |
-| `identifier` | `token` | Account number |
-| `insurer` | `reference` | The identity of the insurer |
-| `patient` | `reference` | The entity that caused the expenses |
-| `paymentby-party` | `reference` | Parties who will pay for services |
-| `policy-holder` | `reference` | Reference to the policyholder |
-| `status` | `token` | The status of the Coverage |
-| `subscriber` | `reference` | Reference to the subscriber |
-| `subscriberid` | `token` | Identifier of the subscriber |
-| `type` | `token` | E.g. patient, expense, depreciation |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `beneficiary` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-beneficiary |
+| `class-type` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-class-type |
+| `class-value` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-class-value |
+| `dependent` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-dependent |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-identifier |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-patient |
+| `payor` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-payor |
+| `policy-holder` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-policy-holder |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-status |
+| `subscriber` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-subscriber |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/Coverage-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Coverage`](https://hl7.org/fhir/R5/coverage.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`Coverage`](https://hl7.org/fhir/R4/coverage.html)
+- Maturity: **Trial Use 2** (FMM 2).

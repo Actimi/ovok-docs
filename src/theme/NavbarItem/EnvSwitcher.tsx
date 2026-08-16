@@ -10,7 +10,7 @@ interface Props {
   mobile?: boolean;
 }
 
-export default function EnvSwitcher({ mobile = false }: Props): JSX.Element {
+export default function EnvSwitcher({ mobile = false }: Props): React.JSX.Element {
   const { env, config } = useEnv();
   const history = useHistory();
   const location = useLocation();

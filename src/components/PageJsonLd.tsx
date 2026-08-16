@@ -12,7 +12,7 @@ import { useLocation } from '@docusaurus/router';
  * name=description> Docusaurus stamps in the head — we don't try to
  * duplicate them here. We emit the *structural* schema only.
  */
-export default function PageJsonLd(): JSX.Element | null {
+export default function PageJsonLd(): React.JSX.Element | null {
   const { siteConfig } = useDocusaurusContext();
   const { pathname } = useLocation();
 

@@ -1,15 +1,15 @@
 ---
 title: Location
 sidebar_label: Location
-description: "Details and position information for a place where services are provided and resources and participants may be stored, found, contained, or accommodated."
+description: "Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodate"
 ---
 
 # Location
 
-<span className="fhir-maturity" data-level="5">Normative</span>
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
 <span className="fhir-category">Base</span>
 
-Details and position information for a place where services are provided and resources and participants may be stored, found, contained, or accommodated.
+Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodated.
 
 ## Endpoints
 
@@ -17,62 +17,71 @@ Details and position information for a place where services are provided and res
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Location/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Location/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Location/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Location/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Location/[id]` |
-| Create       | `POST`   | `/fhir/R5/Location` |
-| Search       | `GET`    | `/fhir/R5/Location?...` |
-| History      | `GET`    | `/fhir/R5/Location/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Location/_history` |
+| Read | `GET` | `/fhir/R4/Location/[id]` |
+| Vread | `GET` | `/fhir/R4/Location/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Location/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Location/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Location/[id]` |
+| Create | `POST` | `/fhir/R4/Location` |
+| Search | `GET` | `/fhir/R4/Location` |
+| History | `GET` | `/fhir/R4/Location/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Unique code or number identifying the location to its users |
-| `status` | `code` | `0..1` | active | suspended | inactive _modifier_ |
+| `status` | `code` | `0..1` | active \| suspended \| inactive _modifier_ |
 | `operationalStatus` | `Coding` | `0..1` | The operational status of the location (typically only for a bed/room) |
 | `name` | `string` | `0..1` | Name of the location as used by humans |
 | `alias` | `string` | `0..*` | A list of alternate names that the location is known as, or was known as, in the past |
-| `description` | `markdown` | `0..1` | Additional details about the location that could be displayed as further information to identify the location beyond its name |
-| `mode` | `code` | `0..1` | instance | kind |
+| `description` | `string` | `0..1` | Additional details about the location that could be displayed as further information to identify the location beyond its name |
+| `mode` | `code` | `0..1` | instance \| kind |
 | `type` | `CodeableConcept` | `0..*` | Type of function performed |
-| `contact` | `ExtendedContactDetail` | `0..*` | Official contact details for the location |
+| `telecom` | `ContactPoint` | `0..*` | Contact details of the location |
 | `address` | `Address` | `0..1` | Physical location |
-| `form` | `CodeableConcept` | `0..1` | Physical form of the location |
+| `physicalType` | `CodeableConcept` | `0..1` | Physical form of the location |
 | `position` | `BackboneElement` | `0..1` | The absolute geographic location |
 | `managingOrganization` | `Reference` | `0..1` | Organization responsible for provisioning and upkeep |
 | `partOf` | `Reference` | `0..1` | Another Location this one is physically a part of |
-| `characteristic` | `CodeableConcept` | `0..*` | Collection of characteristics (attributes) |
-| `hoursOfOperation` | `Availability` | `0..*` | What days/times during a week is this location usually open (including exceptions) |
-| `virtualService` | `VirtualServiceDetail` | `0..*` | Connection details of a virtual service (e.g. conference call) |
+| `hoursOfOperation` | `BackboneElement` | `0..*` | What days/times during a week is this location usually open |
+| `availabilityExceptions` | `string` | `0..1` | Description of availability exceptions |
 | `endpoint` | `Reference` | `0..*` | Technical endpoints providing access to services operated for the location |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `address` | `string` | A (part of the) address of the location |
-| `address-city` | `string` | A city specified in an address |
-| `address-country` | `string` | A country specified in an address |
-| `address-postalcode` | `string` | A postal code specified in an address |
-| `address-state` | `string` | A state specified in an address |
-| `address-use` | `token` | A use code specified in an address |
-| `characteristic` | `token` | One of the Location's characteristics |
-| `contains` | `special` | Select locations that contain the specified co-ordinates |
-| `endpoint` | `reference` | Technical endpoints providing access to services operated for the location |
-| `identifier` | `token` | An identifier for the location |
-| `name` | `string` | A portion of the location's name or alias |
-| `near` | `special` | Search for locations where the location.position is near to, or within a specified distance of, the provided coordinates expressed as [latitude]|[longitude]|[distance]|[units] (using the WGS84 datum,  |
-| `operational-status` | `token` | Searches for locations (typically bed/room) that have an operational status (e.g. contaminated, housekeeping) |
-| `organization` | `reference` | Searches for locations that are managed by the provided organization |
-| `partof` | `reference` | A location of which this location is a part |
-| `status` | `token` | Searches for locations with a specific kind of status |
-| `type` | `token` | A code for the type of location |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `address` | `string` | http://hl7.org/fhir/SearchParameter/Location-address |
+| `address-city` | `string` | http://hl7.org/fhir/SearchParameter/Location-address-city |
+| `address-country` | `string` | http://hl7.org/fhir/SearchParameter/Location-address-country |
+| `address-postalcode` | `string` | http://hl7.org/fhir/SearchParameter/Location-address-postalcode |
+| `address-state` | `string` | http://hl7.org/fhir/SearchParameter/Location-address-state |
+| `address-use` | `string` | http://hl7.org/fhir/SearchParameter/Location-address-use |
+| `endpoint` | `string` | http://hl7.org/fhir/SearchParameter/Location-endpoint |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Location-identifier |
+| `name` | `string` | http://hl7.org/fhir/SearchParameter/Location-name |
+| `near` | `string` | http://hl7.org/fhir/SearchParameter/Location-near |
+| `operational-status` | `string` | http://hl7.org/fhir/SearchParameter/Location-operational-status |
+| `organization` | `string` | http://hl7.org/fhir/SearchParameter/Location-organization |
+| `partof` | `string` | http://hl7.org/fhir/SearchParameter/Location-partof |
+| `physical-type` | `string` | https://medplum.com/fhir/SearchParameter/Location-physical-type |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Location-status |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/Location-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Location`](https://hl7.org/fhir/R5/location.html)
-- Maturity: **Normative** (FMM 5).
+- Official FHIR R4 spec: [`Location`](https://hl7.org/fhir/R4/location.html)
+- Maturity: **Trial Use 3** (FMM 3).

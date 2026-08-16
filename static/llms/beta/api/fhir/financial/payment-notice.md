@@ -6,7 +6,7 @@ description: "This resource provides the status of the payment for goods and ser
 
 # PaymentNotice
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Financial</span>
 
 This resource provides the status of the payment for goods and services rendered, and the request and response resource references.
@@ -17,27 +17,26 @@ This resource provides the status of the payment for goods and services rendered
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/PaymentNotice/[id]` |
-| Vread        | `GET`    | `/fhir/R5/PaymentNotice/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/PaymentNotice/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/PaymentNotice/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/PaymentNotice/[id]` |
-| Create       | `POST`   | `/fhir/R5/PaymentNotice` |
-| Search       | `GET`    | `/fhir/R5/PaymentNotice?...` |
-| History      | `GET`    | `/fhir/R5/PaymentNotice/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/PaymentNotice/_history` |
+| Read | `GET` | `/fhir/R4/PaymentNotice/[id]` |
+| Vread | `GET` | `/fhir/R4/PaymentNotice/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/PaymentNotice/[id]` |
+| Patch | `PATCH` | `/fhir/R4/PaymentNotice/[id]` |
+| Delete | `DELETE` | `/fhir/R4/PaymentNotice/[id]` |
+| Create | `POST` | `/fhir/R4/PaymentNotice` |
+| Search | `GET` | `/fhir/R4/PaymentNotice` |
+| History | `GET` | `/fhir/R4/PaymentNotice/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `identifier` | `Identifier` | `0..*` | Business Identifier for the payment notice |
-| `status` | `code` | `1..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `identifier` | `Identifier` | `0..*` | Business Identifier for the payment noctice |
+| `status` | `code` | `1..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
 | `request` | `Reference` | `0..1` | Request reference |
 | `response` | `Reference` | `0..1` | Response reference |
 | `created` | `dateTime` | `1..1` | Creation date |
-| `reporter` | `Reference` | `0..1` | Responsible practitioner |
-| `payment` | `Reference` | `0..1` | Payment reference |
+| `provider` | `Reference` | `0..1` | Responsible practitioner |
+| `payment` | `Reference` | `1..1` | Payment reference |
 | `paymentDate` | `date` | `0..1` | Payment or clearing date |
 | `payee` | `Reference` | `0..1` | Party being paid |
 | `recipient` | `Reference` | `1..1` | Party being notified |
@@ -48,15 +47,27 @@ This resource provides the status of the payment for goods and services rendered
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `created` | `date` | Creation date for the notice |
-| `identifier` | `token` | The business identifier of the notice |
-| `payment-status` | `token` | The type of payment notice |
-| `reporter` | `reference` | The reference to the reporter |
-| `request` | `reference` | The Claim |
-| `response` | `reference` | The ClaimResponse |
-| `status` | `token` | The status of the payment notice |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `created` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-created |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-identifier |
+| `payment-status` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-payment-status |
+| `provider` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-provider |
+| `request` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-request |
+| `response` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-response |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/PaymentNotice-status |
 
 ## Reference
 
-- Official FHIR R5 spec: [`PaymentNotice`](https://hl7.org/fhir/R5/paymentnotice.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`PaymentNotice`](https://hl7.org/fhir/R4/paymentnotice.html)
+- Maturity: **Trial Use 2** (FMM 2).

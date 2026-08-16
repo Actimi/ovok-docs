@@ -17,44 +17,53 @@ A homogeneous material with a definite composition.
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Substance/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Substance/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Substance/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Substance/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Substance/[id]` |
-| Create       | `POST`   | `/fhir/R5/Substance` |
-| Search       | `GET`    | `/fhir/R5/Substance?...` |
-| History      | `GET`    | `/fhir/R5/Substance/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Substance/_history` |
+| Read | `GET` | `/fhir/R4/Substance/[id]` |
+| Vread | `GET` | `/fhir/R4/Substance/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Substance/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Substance/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Substance/[id]` |
+| Create | `POST` | `/fhir/R4/Substance` |
+| Search | `GET` | `/fhir/R4/Substance` |
+| History | `GET` | `/fhir/R4/Substance/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Unique identifier |
-| `instance` | `boolean` | `1..1` | Is this an instance of a substance or a kind of one _modifier_ |
-| `status` | `code` | `0..1` | active | inactive | entered-in-error _modifier_ |
+| `status` | `code` | `0..1` | active \| inactive \| entered-in-error _modifier_ |
 | `category` | `CodeableConcept` | `0..*` | What class/type of substance this is |
-| `code` | `CodeableReference` | `1..1` | What substance this is |
-| `description` | `markdown` | `0..1` | Textual description of the substance, comments |
-| `expiry` | `dateTime` | `0..1` | When no longer valid to use |
-| `quantity` | `Quantity` | `0..1` | Amount of substance in the package |
+| `code` | `CodeableConcept` | `1..1` | What substance this is |
+| `description` | `string` | `0..1` | Textual description of the substance, comments |
+| `instance` | `BackboneElement` | `0..*` | If this describes a specific package/container of the substance |
 | `ingredient` | `BackboneElement` | `0..*` | Composition information about the substance |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `category` | `token` | The category of the substance |
-| `code` | `token` | The code of the substance or ingredient |
-| `code-reference` | `reference` | A reference to the defining substance |
-| `expiry` | `date` | Expiry date of package or container of substance |
-| `identifier` | `token` | Unique identifier for the substance |
-| `quantity` | `quantity` | Amount of substance in the package |
-| `status` | `token` | active | inactive | entered-in-error |
-| `substance-reference` | `reference` | A component of the substance |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `category` | `string` | http://hl7.org/fhir/SearchParameter/Substance-category |
+| `code` | `string` | http://hl7.org/fhir/SearchParameter/Substance-code |
+| `container-identifier` | `string` | http://hl7.org/fhir/SearchParameter/Substance-container-identifier |
+| `expiry` | `string` | http://hl7.org/fhir/SearchParameter/Substance-expiry |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Substance-identifier |
+| `quantity` | `string` | http://hl7.org/fhir/SearchParameter/Substance-quantity |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Substance-status |
+| `substance-reference` | `string` | http://hl7.org/fhir/SearchParameter/Substance-substance-reference |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Substance`](https://hl7.org/fhir/R5/substance.html)
+- Official FHIR R4 spec: [`Substance`](https://hl7.org/fhir/R4/substance.html)
 - Maturity: **Trial Use 2** (FMM 2).

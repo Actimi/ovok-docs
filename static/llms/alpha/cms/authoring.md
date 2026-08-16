@@ -91,7 +91,7 @@ The catch-all proxy supports every method Payload exposes:
 The `{path}` is whatever Payload route you'd call directly — typically
 `api/<collection>` or `api/<collection>/<id>` or `api/globals/<slug>`.
 
-See the [auto-generated reference](/alpha/api/high-level/content/content-proxy-controller-proxy) for the
+See the [auto-generated reference](/alpha/api/high-level) for the
 per-method OpenAPI schema.
 
 ## Examples
@@ -188,4 +188,4 @@ Body handling:
 ## Next
 
 - [Public delivery](/alpha/cms/public-delivery) — read published content from apps
-- [Content API reference](/alpha/api/high-level/content/content-proxy-controller-proxy)
+- [High Level API reference](/alpha/api/high-level)

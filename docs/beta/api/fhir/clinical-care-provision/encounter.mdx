@@ -1,15 +1,15 @@
 ---
 title: Encounter
 sidebar_label: Encounter
-description: "An interaction between healthcare provider(s), and/or patient(s) for the purpose of providing healthcare service(s) or assessing the health status of patient(s)"
+description: "An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient."
 ---
 
 # Encounter
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Clinical — Care Provision</span>
 
-An interaction between healthcare provider(s), and/or patient(s) for the purpose of providing healthcare service(s) or assessing the health status of patient(s).
+An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
 
 ## Endpoints
 
@@ -17,83 +17,85 @@ An interaction between healthcare provider(s), and/or patient(s) for the purpose
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Encounter/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Encounter/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Encounter/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Encounter/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Encounter/[id]` |
-| Create       | `POST`   | `/fhir/R5/Encounter` |
-| Search       | `GET`    | `/fhir/R5/Encounter?...` |
-| History      | `GET`    | `/fhir/R5/Encounter/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Encounter/_history` |
+| Read | `GET` | `/fhir/R4/Encounter/[id]` |
+| Vread | `GET` | `/fhir/R4/Encounter/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Encounter/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Encounter/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Encounter/[id]` |
+| Create | `POST` | `/fhir/R4/Encounter` |
+| Search | `GET` | `/fhir/R4/Encounter` |
+| History | `GET` | `/fhir/R4/Encounter/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Identifier(s) by which this encounter is known |
-| `status` | `code` | `1..1` | planned | in-progress | on-hold | discharged | completed | cancelled | discontinued | entered-in-error | unknown _modifier_ |
-| `class` | `CodeableConcept` | `0..*` | Classification of patient encounter context - e.g. Inpatient, outpatient |
+| `status` | `code` | `1..1` | planned \| arrived \| triaged \| in-progress \| onleave \| finished \| cancelled + _modifier_ |
+| `statusHistory` | `BackboneElement` | `0..*` | List of past encounter statuses |
+| `class` | `Coding` | `1..1` | Classification of patient encounter |
+| `classHistory` | `BackboneElement` | `0..*` | List of past encounter classes |
+| `type` | `CodeableConcept` | `0..*` | Specific type of encounter |
+| `serviceType` | `CodeableConcept` | `0..1` | Specific type of service |
 | `priority` | `CodeableConcept` | `0..1` | Indicates the urgency of the encounter |
-| `type` | `CodeableConcept` | `0..*` | Specific type of encounter (e.g. e-mail consultation, surgical day-care, ...) |
-| `serviceType` | `CodeableReference` | `0..*` | Specific type of service |
-| `subject` | `Reference` | `0..1` | The patient or group related to this encounter |
-| `subjectStatus` | `CodeableConcept` | `0..1` | The current status of the subject in relation to the Encounter |
+| `subject` | `Reference` | `0..1` | The patient or group present at the encounter |
 | `episodeOfCare` | `Reference` | `0..*` | Episode(s) of care that this encounter should be recorded against |
-| `basedOn` | `Reference` | `0..*` | The request that initiated this encounter |
-| `careTeam` | `Reference` | `0..*` | The group(s) that are allocated to participate in this encounter |
-| `partOf` | `Reference` | `0..1` | Another Encounter this encounter is part of |
-| `serviceProvider` | `Reference` | `0..1` | The organization (facility) responsible for this encounter |
+| `basedOn` | `Reference` | `0..*` | The ServiceRequest that initiated this encounter |
 | `participant` | `BackboneElement` | `0..*` | List of participants involved in the encounter |
 | `appointment` | `Reference` | `0..*` | The appointment that scheduled this encounter |
-| `virtualService` | `VirtualServiceDetail` | `0..*` | Connection details of a virtual service (e.g. conference call) |
-| `actualPeriod` | `Period` | `0..1` | The actual start and end time of the encounter |
-| `plannedStartDate` | `dateTime` | `0..1` | The planned start date/time (or admission date) of the encounter |
-| `plannedEndDate` | `dateTime` | `0..1` | The planned end date/time (or discharge date) of the encounter |
-| `length` | `Duration` | `0..1` | Actual quantity of time the encounter lasted (less time absent) |
-| `reason` | `BackboneElement` | `0..*` | The list of medical reasons that are expected to be addressed during the episode of care |
+| `period` | `Period` | `0..1` | The start and end time of the encounter |
+| `length` | `Duration` | `0..1` | Quantity of time the encounter lasted (less time absent) |
+| `reasonCode` | `CodeableConcept` | `0..*` | Coded reason the encounter takes place |
+| `reasonReference` | `Reference` | `0..*` | Reason the encounter takes place (reference) |
 | `diagnosis` | `BackboneElement` | `0..*` | The list of diagnosis relevant to this encounter |
 | `account` | `Reference` | `0..*` | The set of accounts that may be used for billing for this Encounter |
-| `dietPreference` | `CodeableConcept` | `0..*` | Diet preferences reported by the patient |
-| `specialArrangement` | `CodeableConcept` | `0..*` | Wheelchair, translator, stretcher, etc |
-| `specialCourtesy` | `CodeableConcept` | `0..*` | Special courtesies (VIP, board member) |
-| `admission` | `BackboneElement` | `0..1` | Details about the admission to a healthcare service |
+| `hospitalization` | `BackboneElement` | `0..1` | Details about the admission to a healthcare service |
 | `location` | `BackboneElement` | `0..*` | List of locations where the patient has been |
+| `serviceProvider` | `Reference` | `0..1` | The organization (facility) responsible for this encounter |
+| `partOf` | `Reference` | `0..1` | Another Encounter this encounter is part of |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `account` | `reference` | The set of accounts that may be used for billing for this Encounter |
-| `appointment` | `reference` | The appointment that scheduled this encounter |
-| `based-on` | `reference` | The ServiceRequest that initiated this encounter |
-| `careteam` | `reference` | Careteam allocated to participate in the encounter |
-| `class` | `token` | Classification of patient encounter |
-| `date` | `date` | When the event occurred |
-| `date-start` | `date` | The actual start date of the Encounter |
-| `diagnosis-code` | `token` | The diagnosis or procedure relevant to the encounter (coded) |
-| `diagnosis-reference` | `reference` | The diagnosis or procedure relevant to the encounter (resource reference) |
-| `end-date` | `date` | The actual end date of the Encounter |
-| `episode-of-care` | `reference` | Episode(s) of care that this encounter should be recorded against |
-| `identifier` | `token` | Account number |
-| `length` | `quantity` | Length of encounter in days |
-| `location` | `reference` | Location the encounter takes place |
-| `location-period` | `composite` | Time period during which the patient was present at the location |
-| `part-of` | `reference` | Another Encounter this encounter is part of |
-| `participant` | `reference` | Persons involved in the encounter other than the patient |
-| `participant-type` | `token` | Role of participant in encounter |
-| `patient` | `reference` | The entity that caused the expenses |
-| `practitioner` | `reference` | Persons involved in the encounter other than the patient |
-| `reason-code` | `token` | Reference to a concept (coded) |
-| `reason-reference` | `reference` | Reference to a resource (resource reference) |
-| `service-provider` | `reference` | The organization (facility) responsible for this encounter |
-| `special-arrangement` | `token` | Wheelchair, translator, stretcher, etc. |
-| `status` | `token` | planned | in-progress | on-hold | completed | cancelled | entered-in-error | unknown |
-| `subject` | `reference` | The patient or group present at the encounter |
-| `subject-status` | `token` | The current status of the subject in relation to the Encounter |
-| `type` | `token` | E.g. patient, expense, depreciation |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `account` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-account |
+| `appointment` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-appointment |
+| `based-on` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-based-on |
+| `class` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-class |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/clinical-date |
+| `diagnosis` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-diagnosis |
+| `discharge-disposition` | `string` | http://hl7.org/fhir/us/core/SearchParameter/us-core-encounter-discharge-disposition |
+| `episode-of-care` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-episode-of-care |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/clinical-identifier |
+| `length` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-length |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-location |
+| `location-period` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-location-period |
+| `part-of` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-part-of |
+| `participant` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-participant |
+| `participant-type` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-participant-type |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/clinical-patient |
+| `practitioner` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-practitioner |
+| `reason-code` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-reason-code |
+| `reason-reference` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-reason-reference |
+| `service-provider` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-service-provider |
+| `special-arrangement` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-special-arrangement |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/Encounter-subject |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/clinical-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Encounter`](https://hl7.org/fhir/R5/encounter.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`Encounter`](https://hl7.org/fhir/R4/encounter.html)
+- Maturity: **Trial Use 2** (FMM 2).

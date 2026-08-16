@@ -11,7 +11,6 @@ description: "This endpoint builds a FHIR QuestionnaireResponse based on provide
 <div className="endpoint-hero__paths">
   <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/Questionnaire/{id}/$populate"}</code></div>
   <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/R4/Questionnaire/{id}/$populate"}</code></div>
-  <div className="endpoint-hero__path-row"><span className="api-method post">POST</span> <code className="endpoint-hero__path">{"/fhir/R5/Questionnaire/{id}/$populate"}</code></div>
 </div>
 
 <ApiBase inline={false} />

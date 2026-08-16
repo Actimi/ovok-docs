@@ -1,7 +1,7 @@
 ---
 title: Public API surface
 sidebar_position: 2
-description: Map of every public HTTPS route on api.sandbox.ovok.com — auth, projects, CMS, FHIR, and more.
+description: Map of every public HTTPS route on api.dev.ovok.com — auth, projects, CMS, FHIR, and more.
 keywords:
   - public API
   - route map
@@ -18,7 +18,7 @@ specific endpoint.
 Base URL (alpha tier):
 
 ```
-https://api.sandbox.ovok.com
+https://api.dev.ovok.com
 ```
 
 Authenticate with `Authorization: Bearer <project-jwt>` unless noted.
@@ -39,7 +39,7 @@ Login first via `POST /v2/auth/login`.
 | **Bots**                | `/bots`                       | JWT                | Execute project bots                             |
 | **AI translation**      | `/ai/translation`             | JWT                | Translate text                                   |
 | **Partner**             | `/v1/partner/health-check`    | Partner auth       | Integration health probes                        |
-| **FHIR**                | `/fhir/R4/*`, `/fhir/R5/*`    | JWT / Basic        | Clinical resources + custom operations           |
+| **FHIR**                | `/fhir/R4/*`                  | JWT / Basic        | Capability-declared resources + custom operations |
 
 Internal-only routes (sub-project admin, legacy internal CMS, cache purge)
 are **not** listed here — they live in the internal OpenAPI spec.
@@ -57,24 +57,24 @@ register. Without them, CMS routes return **404**.
 | `GET`  | `/v1/public/cms/{typeSlug}/items/{idOrSlug}` | Published items only                     |
 | `*`    | `/v1/cms/projects/*`                         | Proxies to ovok-control-plane            |
 
-See [Content (CMS)](../cms/index) for guides; see
+See [Content (CMS)](/alpha/cms/) for guides; see
 [Payload stack](./payload-stack) for infrastructure.
 
 ## Authentication quick reference
 
 ```bash
 # 1. Login
-curl -X POST https://api.sandbox.ovok.com/v2/auth/login \
+curl -X POST https://api.dev.ovok.com/v2/auth/login \
   -H 'Content-Type: application/json' \
   -d '{"email":"you@example.com","password":"***","clientId":"<ACTIMI_CLIENT_ID>"}'
 
 # 2. Call a project route
-curl https://api.sandbox.ovok.com/v1/projects/me/features \
+curl https://api.dev.ovok.com/v1/projects/me/features \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
 ## Where to go next
 
-- [High Level API](../api/high-level/index) — auto-generated per-endpoint reference
-- [FHIR API](../api/fhir/index) — FHIR R5 resources + custom ops
+- [High Level API](/alpha/api/high-level) — auto-generated per-endpoint reference
+- [FHIR API](/alpha/api/fhir) — capability-backed FHIR R4 resources + custom ops
 - [Release tiers](./environments) — alpha vs beta vs final hosts

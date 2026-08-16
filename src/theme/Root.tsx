@@ -8,7 +8,7 @@ import PageJsonLd from '@site/src/components/PageJsonLd';
  * on routes with no markdown twin) and emits per-page TechArticle
  * JSON-LD so docs surface as rich results.
  */
-export default function Root({ children }: { children: ReactNode }): JSX.Element {
+export default function Root({ children }: { children: ReactNode }): React.JSX.Element {
   return (
     <>
       <PageJsonLd />

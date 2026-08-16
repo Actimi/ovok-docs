@@ -10,7 +10,7 @@ type Props = WrapperProps<typeof ContentType>;
  * dropdown — placed above the H1 so it's the first thing visible when
  * a reader lands on a page.
  */
-export default function ContentWrapper(props: Props): JSX.Element {
+export default function ContentWrapper(props: Props): React.JSX.Element {
   return (
     <>
       <CopyForAI variant="inline" />

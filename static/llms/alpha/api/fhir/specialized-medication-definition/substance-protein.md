@@ -17,15 +17,14 @@ A SubstanceProtein is defined as a single unit of a linear amino acid sequence, 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/SubstanceProtein/[id]` |
-| Vread        | `GET`    | `/fhir/R5/SubstanceProtein/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/SubstanceProtein/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/SubstanceProtein/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/SubstanceProtein/[id]` |
-| Create       | `POST`   | `/fhir/R5/SubstanceProtein` |
-| Search       | `GET`    | `/fhir/R5/SubstanceProtein?...` |
-| History      | `GET`    | `/fhir/R5/SubstanceProtein/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/SubstanceProtein/_history` |
+| Read | `GET` | `/fhir/R4/SubstanceProtein/[id]` |
+| Vread | `GET` | `/fhir/R4/SubstanceProtein/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/SubstanceProtein/[id]` |
+| Patch | `PATCH` | `/fhir/R4/SubstanceProtein/[id]` |
+| Delete | `DELETE` | `/fhir/R4/SubstanceProtein/[id]` |
+| Create | `POST` | `/fhir/R4/SubstanceProtein` |
+| Search | `GET` | `/fhir/R4/SubstanceProtein` |
+| History | `GET` | `/fhir/R4/SubstanceProtein/[id]/_history` |
 
 ## Top-level elements
 
@@ -38,9 +37,22 @@ A SubstanceProtein is defined as a single unit of a linear amino acid sequence, 
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`SubstanceProtein`](https://hl7.org/fhir/R5/substanceprotein.html)
+- Official FHIR R4 spec: [`SubstanceProtein`](https://hl7.org/fhir/R4/substanceprotein.html)
 - Maturity: **Draft** (FMM 0).

@@ -7,7 +7,7 @@ description: Ovok-specific operations layered on top of the FHIR API on the alph
 # Custom FHIR operations
 
 Ovok layers a handful of named operations on top of standard FHIR
-resources. Each is mounted at `/fhir/`, `/fhir/R4/` and `/fhir/R5/`.
+resources. Each is mounted at `/fhir/` and `/fhir/R4/`.
 
 <ApiBase inline={false} />
 

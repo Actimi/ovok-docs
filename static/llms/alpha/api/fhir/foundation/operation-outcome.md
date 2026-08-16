@@ -17,15 +17,14 @@ A collection of error, warning, or information messages that result from a syste
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/OperationOutcome/[id]` |
-| Vread        | `GET`    | `/fhir/R5/OperationOutcome/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/OperationOutcome/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/OperationOutcome/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/OperationOutcome/[id]` |
-| Create       | `POST`   | `/fhir/R5/OperationOutcome` |
-| Search       | `GET`    | `/fhir/R5/OperationOutcome?...` |
-| History      | `GET`    | `/fhir/R5/OperationOutcome/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/OperationOutcome/_history` |
+| Read | `GET` | `/fhir/R4/OperationOutcome/[id]` |
+| Vread | `GET` | `/fhir/R4/OperationOutcome/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/OperationOutcome/[id]` |
+| Patch | `PATCH` | `/fhir/R4/OperationOutcome/[id]` |
+| Delete | `DELETE` | `/fhir/R4/OperationOutcome/[id]` |
+| Create | `POST` | `/fhir/R4/OperationOutcome` |
+| Search | `GET` | `/fhir/R4/OperationOutcome` |
+| History | `GET` | `/fhir/R4/OperationOutcome/[id]/_history` |
 
 ## Top-level elements
 
@@ -35,9 +34,22 @@ A collection of error, warning, or information messages that result from a syste
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`OperationOutcome`](https://hl7.org/fhir/R5/operationoutcome.html)
+- Official FHIR R4 spec: [`OperationOutcome`](https://hl7.org/fhir/R4/operationoutcome.html)
 - Maturity: **Normative** (FMM 5).

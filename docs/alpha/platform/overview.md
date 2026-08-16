@@ -16,8 +16,8 @@ You write your product; we run the rest.
 ## What Ovok gives you
 
 - **A FHIR-native API.** Patients, encounters, observations, care
-  plans, diagnostic reports — modelled in FHIR R4 and R5 and exposed
-  through one HTTPS API.
+  plans, diagnostic reports — modelled in FHIR R4 and exposed through
+  one HTTPS API.
 - **A Console** for the work that doesn't belong inside your product:
   project setup, member roles, content management, billing, audit.
 - **A Data Dashboard** for working with the data your product produces:
@@ -73,7 +73,7 @@ and Data Dashboard are clients like any other.
 Ovok ships an optional headless CMS backed by Payload. It shares the
 same API host but uses dedicated Railway services (payload-ovok +
 ovok-control-plane) behind ovok-core proxies. See
-[Payload stack](./payload-stack) and [Content (CMS)](../cms/index).
+[Payload stack](./payload-stack) and [Content (CMS)](/alpha/cms/).
 
 ## Next
 

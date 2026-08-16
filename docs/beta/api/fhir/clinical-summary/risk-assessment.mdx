@@ -6,7 +6,7 @@ description: "An assessment of the likely outcome(s) for a patient or other subj
 
 # RiskAssessment
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
 <span className="fhir-category">Clinical — Summary</span>
 
 An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
@@ -17,15 +17,14 @@ An assessment of the likely outcome(s) for a patient or other subject as well as
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/RiskAssessment/[id]` |
-| Vread        | `GET`    | `/fhir/R5/RiskAssessment/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/RiskAssessment/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/RiskAssessment/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/RiskAssessment/[id]` |
-| Create       | `POST`   | `/fhir/R5/RiskAssessment` |
-| Search       | `GET`    | `/fhir/R5/RiskAssessment?...` |
-| History      | `GET`    | `/fhir/R5/RiskAssessment/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/RiskAssessment/_history` |
+| Read | `GET` | `/fhir/R4/RiskAssessment/[id]` |
+| Vread | `GET` | `/fhir/R4/RiskAssessment/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/RiskAssessment/[id]` |
+| Patch | `PATCH` | `/fhir/R4/RiskAssessment/[id]` |
+| Delete | `DELETE` | `/fhir/R4/RiskAssessment/[id]` |
+| Create | `POST` | `/fhir/R4/RiskAssessment` |
+| Search | `GET` | `/fhir/R4/RiskAssessment` |
+| History | `GET` | `/fhir/R4/RiskAssessment/[id]/_history` |
 
 ## Top-level elements
 
@@ -34,7 +33,7 @@ An assessment of the likely outcome(s) for a patient or other subject as well as
 | `identifier` | `Identifier` | `0..*` | Unique identifier for the assessment |
 | `basedOn` | `Reference` | `0..1` | Request fulfilled by this assessment |
 | `parent` | `Reference` | `0..1` | Part of this occurrence |
-| `status` | `code` | `1..1` | registered | preliminary | final | amended + |
+| `status` | `code` | `1..1` | registered \| preliminary \| final \| amended + |
 | `method` | `CodeableConcept` | `0..1` | Evaluation mechanism |
 | `code` | `CodeableConcept` | `0..1` | Type of assessment |
 | `subject` | `Reference` | `1..1` | Who/what does assessment apply to? |
@@ -42,7 +41,8 @@ An assessment of the likely outcome(s) for a patient or other subject as well as
 | `occurrence[x]` | `dateTime` / `Period` | `0..1` | When was assessment made? |
 | `condition` | `Reference` | `0..1` | Condition assessed |
 | `performer` | `Reference` | `0..1` | Who did assessment? |
-| `reason` | `CodeableReference` | `0..*` | Why the assessment was necessary? |
+| `reasonCode` | `CodeableConcept` | `0..*` | Why the assessment was necessary? |
+| `reasonReference` | `Reference` | `0..*` | Why the assessment was necessary? |
 | `basis` | `Reference` | `0..*` | Information used in assessment |
 | `prediction` | `BackboneElement` | `0..*` | Outcome predicted |
 | `mitigation` | `string` | `0..1` | How to reduce risk |
@@ -52,18 +52,30 @@ An assessment of the likely outcome(s) for a patient or other subject as well as
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `condition` | `reference` | Condition assessed |
-| `date` | `date` | When the event occurred |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `identifier` | `token` | Account number |
-| `method` | `token` | Evaluation mechanism |
-| `patient` | `reference` | The entity that caused the expenses |
-| `performer` | `reference` | Who did assessment? |
-| `probability` | `number` | Likelihood of specified outcome |
-| `risk` | `token` | Likelihood of specified outcome as a qualitative value |
-| `subject` | `reference` | Who/what does assessment apply to? |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `condition` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-condition |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/clinical-date |
+| `encounter` | `string` | http://hl7.org/fhir/SearchParameter/clinical-encounter |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/clinical-identifier |
+| `method` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-method |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/clinical-patient |
+| `performer` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-performer |
+| `probability` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-probability |
+| `risk` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-risk |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/RiskAssessment-subject |
 
 ## Reference
 
-- Official FHIR R5 spec: [`RiskAssessment`](https://hl7.org/fhir/R5/riskassessment.html)
-- Maturity: **Trial Use 2** (FMM 2).
+- Official FHIR R4 spec: [`RiskAssessment`](https://hl7.org/fhir/R4/riskassessment.html)
+- Maturity: **Trial Use 1** (FMM 1).

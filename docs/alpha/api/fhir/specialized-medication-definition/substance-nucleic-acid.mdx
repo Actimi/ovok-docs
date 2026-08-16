@@ -17,15 +17,14 @@ Nucleic acids are defined by three distinct elements: the base, sugar and linkag
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/SubstanceNucleicAcid/[id]` |
-| Vread        | `GET`    | `/fhir/R5/SubstanceNucleicAcid/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/SubstanceNucleicAcid/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/SubstanceNucleicAcid/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/SubstanceNucleicAcid/[id]` |
-| Create       | `POST`   | `/fhir/R5/SubstanceNucleicAcid` |
-| Search       | `GET`    | `/fhir/R5/SubstanceNucleicAcid?...` |
-| History      | `GET`    | `/fhir/R5/SubstanceNucleicAcid/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/SubstanceNucleicAcid/_history` |
+| Read | `GET` | `/fhir/R4/SubstanceNucleicAcid/[id]` |
+| Vread | `GET` | `/fhir/R4/SubstanceNucleicAcid/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/SubstanceNucleicAcid/[id]` |
+| Patch | `PATCH` | `/fhir/R4/SubstanceNucleicAcid/[id]` |
+| Delete | `DELETE` | `/fhir/R4/SubstanceNucleicAcid/[id]` |
+| Create | `POST` | `/fhir/R4/SubstanceNucleicAcid` |
+| Search | `GET` | `/fhir/R4/SubstanceNucleicAcid` |
+| History | `GET` | `/fhir/R4/SubstanceNucleicAcid/[id]/_history` |
 
 ## Top-level elements
 
@@ -39,9 +38,22 @@ Nucleic acids are defined by three distinct elements: the base, sugar and linkag
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`SubstanceNucleicAcid`](https://hl7.org/fhir/R5/substancenucleicacid.html)
+- Official FHIR R4 spec: [`SubstanceNucleicAcid`](https://hl7.org/fhir/R4/substancenucleicacid.html)
 - Maturity: **Draft** (FMM 0).
