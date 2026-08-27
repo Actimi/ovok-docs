@@ -288,7 +288,7 @@ project until an operator grants it explicitly on
 
 ```ts
 {
-  resourceType:  ClinicalFhirResourceType;   // 149 FHIR R5 clinical types
+  resourceType:  ClinicalFhirResourceType;   // security-reviewed resource allowlist
   id?:           string;                     // exactly one of…
   searchFilter?: {                           // …id or searchFilter
     identifier?:   string | number;
@@ -308,13 +308,14 @@ project until an operator grants it explicitly on
 }
 ```
 
-**`resourceType` — every FHIR R5 clinical resource is allowed** (Patient,
+**`resourceType` uses a security-reviewed allowlist** (Patient,
 Observation, DiagnosticReport, ServiceRequest, Encounter, Immunization,
 MedicationRequest, DocumentReference, CarePlan, RiskAssessment, Task,
-… 149 types total). The allowlist is a **whitelist**, not a blacklist —
-it explicitly excludes 23 admin / tenancy / security-sensitive types
-so Medplum shipping a new admin resource never silently widens the
-attack surface:
+and other clinical types). A request succeeds only when the active FHIR
+R4 CapabilityStatement also declares that resource. The allowlist is a
+**whitelist**, not a blacklist — it explicitly excludes 23 admin,
+tenancy, and security-sensitive types so Medplum shipping a new admin
+resource never silently widens the attack surface:
 
 | Excluded type          | Why                                                          |
 | ---------------------- | ------------------------------------------------------------ |
@@ -331,7 +332,7 @@ attack surface:
 | `Endpoint`             | address + auth headers of outbound integrations               |
 | `JsonWebKey`           | signing/verification keys                                     |
 | `Login`                | live session tokens + refresh tokens                          |
-| `Permission`           | FHIR R5 access rules (equivalent to AccessPolicy)             |
+| `Permission`           | Access rules equivalent to AccessPolicy                        |
 | `Project`              | tenant root                                                   |
 | `ProjectMembership`    | tenancy graph + effective permissions                         |
 | `Provenance`           | change actor + timeline (companion to AuditEvent)             |
@@ -659,8 +660,8 @@ path.
 ## API reference
 
 Full HTTP contract auto-generated from the ovok-core Swagger dump
-into [High Level API → IotDevice/Admin](../../api/high-level/) and
-[High Level API → Signals](../../api/high-level/). Endpoint index
+into [High Level API → IotDevice/Admin](/alpha/api/high-level) and
+[High Level API → Signals](/alpha/api/high-level). Endpoint index
 here for the operator-facing view:
 
 | Method | Path | Purpose |
@@ -748,4 +749,4 @@ Pages with the soft-degrade wired: `/signals`, `/devices`,
 - Console-side API index: [`docs/iot-builder/API.md`](https://github.com/Actimi/ovok-console/blob/sandbox/docs/iot-builder/API.md) on ovok-console.
 - Ovok-core rule-chain source: [`src/iot-device/rule-chain/*`](https://github.com/Actimi/ovok-core/tree/sandbox/src/iot-device/rule-chain).
 - Sleepiz ingest pattern (source of the template): [`src/ingest/*`](https://github.com/Actimi/ovok-core/tree/sandbox/src/ingest).
-- OpenAPI (auto-generated): [High Level API](../../api/high-level/).
+- OpenAPI (auto-generated): [High Level API](/alpha/api/high-level).

@@ -17,15 +17,14 @@ Record details about an anatomical structure.  This resource may be used when a 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/BodyStructure/[id]` |
-| Vread        | `GET`    | `/fhir/R5/BodyStructure/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/BodyStructure/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/BodyStructure/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/BodyStructure/[id]` |
-| Create       | `POST`   | `/fhir/R5/BodyStructure` |
-| Search       | `GET`    | `/fhir/R5/BodyStructure?...` |
-| History      | `GET`    | `/fhir/R5/BodyStructure/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/BodyStructure/_history` |
+| Read | `GET` | `/fhir/R4/BodyStructure/[id]` |
+| Vread | `GET` | `/fhir/R4/BodyStructure/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/BodyStructure/[id]` |
+| Patch | `PATCH` | `/fhir/R4/BodyStructure/[id]` |
+| Delete | `DELETE` | `/fhir/R4/BodyStructure/[id]` |
+| Create | `POST` | `/fhir/R4/BodyStructure` |
+| Search | `GET` | `/fhir/R4/BodyStructure` |
+| History | `GET` | `/fhir/R4/BodyStructure/[id]/_history` |
 
 ## Top-level elements
 
@@ -34,9 +33,9 @@ Record details about an anatomical structure.  This resource may be used when a 
 | `identifier` | `Identifier` | `0..*` | Bodystructure identifier |
 | `active` | `boolean` | `0..1` | Whether this record is in active use _modifier_ |
 | `morphology` | `CodeableConcept` | `0..1` | Kind of Structure |
-| `includedStructure` | `BackboneElement` | `1..*` | Included anatomic location(s) |
-| `excludedStructure` | — | `0..*` | Excluded anatomic locations(s) |
-| `description` | `markdown` | `0..1` | Text description |
+| `location` | `CodeableConcept` | `0..1` | Body site |
+| `locationQualifier` | `CodeableConcept` | `0..*` | Body site modifier |
+| `description` | `string` | `0..1` | Text description |
 | `image` | `Attachment` | `0..*` | Attached images |
 | `patient` | `Reference` | `1..1` | Who this is about |
 
@@ -44,13 +43,24 @@ Record details about an anatomical structure.  This resource may be used when a 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `excluded_structure` | `token` | Body site excludedStructure structure |
-| `identifier` | `token` | Account number |
-| `included_structure` | `token` | Body site includedStructure structure |
-| `morphology` | `token` | Kind of Structure |
-| `patient` | `reference` | The entity that caused the expenses |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/BodyStructure-identifier |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/BodyStructure-location |
+| `morphology` | `string` | http://hl7.org/fhir/SearchParameter/BodyStructure-morphology |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/BodyStructure-patient |
 
 ## Reference
 
-- Official FHIR R5 spec: [`BodyStructure`](https://hl7.org/fhir/R5/bodystructure.html)
+- Official FHIR R4 spec: [`BodyStructure`](https://hl7.org/fhir/R4/bodystructure.html)
 - Maturity: **Trial Use 1** (FMM 1).

@@ -6,7 +6,7 @@ description: "A record of a clinical assessment performed to determine what prob
 
 # ClinicalImpression
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Clinical — Summary</span>
 
 A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1 with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow. This resource is called "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the recording of assessment tools such as Apgar score.
@@ -17,32 +17,32 @@ A record of a clinical assessment performed to determine what problem(s) may aff
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/ClinicalImpression/[id]` |
-| Vread        | `GET`    | `/fhir/R5/ClinicalImpression/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/ClinicalImpression/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/ClinicalImpression/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/ClinicalImpression/[id]` |
-| Create       | `POST`   | `/fhir/R5/ClinicalImpression` |
-| Search       | `GET`    | `/fhir/R5/ClinicalImpression?...` |
-| History      | `GET`    | `/fhir/R5/ClinicalImpression/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/ClinicalImpression/_history` |
+| Read | `GET` | `/fhir/R4/ClinicalImpression/[id]` |
+| Vread | `GET` | `/fhir/R4/ClinicalImpression/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/ClinicalImpression/[id]` |
+| Patch | `PATCH` | `/fhir/R4/ClinicalImpression/[id]` |
+| Delete | `DELETE` | `/fhir/R4/ClinicalImpression/[id]` |
+| Create | `POST` | `/fhir/R4/ClinicalImpression` |
+| Search | `GET` | `/fhir/R4/ClinicalImpression` |
+| History | `GET` | `/fhir/R4/ClinicalImpression/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business identifier |
-| `status` | `code` | `1..1` | preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown _modifier_ |
+| `status` | `code` | `1..1` | in-progress \| completed \| entered-in-error _modifier_ |
 | `statusReason` | `CodeableConcept` | `0..1` | Reason for current status |
+| `code` | `CodeableConcept` | `0..1` | Kind of assessment performed |
 | `description` | `string` | `0..1` | Why/how the assessment was performed |
 | `subject` | `Reference` | `1..1` | Patient or group assessed |
-| `encounter` | `Reference` | `0..1` | The Encounter during which this ClinicalImpression was created |
+| `encounter` | `Reference` | `0..1` | Encounter created as part of |
 | `effective[x]` | `dateTime` / `Period` | `0..1` | Time of assessment |
 | `date` | `dateTime` | `0..1` | When the assessment was documented |
-| `performer` | `Reference` | `0..1` | The clinician performing the assessment |
+| `assessor` | `Reference` | `0..1` | The clinician performing the assessment |
 | `previous` | `Reference` | `0..1` | Reference to last assessment |
 | `problem` | `Reference` | `0..*` | Relevant impressions of patient state |
-| `changePattern` | `CodeableConcept` | `0..1` | Change in the status/pattern of a subject's condition since previously assessed, such as worsening, improving, or no change |
+| `investigation` | `BackboneElement` | `0..*` | One or more sets of investigations (signs, symptoms, etc.) |
 | `protocol` | `uri` | `0..*` | Clinical Protocol followed |
 | `summary` | `string` | `0..1` | Summary of the assessment |
 | `finding` | `BackboneElement` | `0..*` | Possible or likely findings and diagnoses |
@@ -55,20 +55,33 @@ A record of a clinical assessment performed to determine what problem(s) may aff
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `date` | `date` | When the event occurred |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `finding-code` | `token` | Reference to a concept (by class) |
-| `finding-ref` | `reference` | Reference to a resource (by instance) |
-| `identifier` | `token` | Account number |
-| `patient` | `reference` | The entity that caused the expenses |
-| `performer` | `reference` | The clinician performing the assessment |
-| `previous` | `reference` | Reference to last assessment |
-| `problem` | `reference` | Relevant impressions of patient state |
-| `status` | `token` | preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown |
-| `subject` | `reference` | Patient or group assessed |
-| `supporting-info` | `reference` | Information supporting the clinical impression |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `assessor` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-assessor |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/clinical-date |
+| `encounter` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-encounter |
+| `finding-code` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-finding-code |
+| `finding-ref` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-finding-ref |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-identifier |
+| `investigation` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-investigation |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/clinical-patient |
+| `previous` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-previous |
+| `problem` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-problem |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-subject |
+| `supporting-info` | `string` | http://hl7.org/fhir/SearchParameter/ClinicalImpression-supporting-info |
 
 ## Reference
 
-- Official FHIR R5 spec: [`ClinicalImpression`](https://hl7.org/fhir/R5/clinicalimpression.html)
-- Maturity: **Trial Use 1** (FMM 1).
+- Official FHIR R4 spec: [`ClinicalImpression`](https://hl7.org/fhir/R4/clinicalimpression.html)
+- Maturity: **Draft** (FMM 0).

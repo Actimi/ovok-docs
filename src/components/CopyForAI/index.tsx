@@ -30,7 +30,7 @@ async function fetchMarkdown(url: string): Promise<string | null> {
   }
 }
 
-function CopyForAIImpl({ variant = 'inline' }: Props): JSX.Element | null {
+function CopyForAIImpl({ variant = 'inline' }: Props): React.JSX.Element | null {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>('idle');
@@ -189,7 +189,7 @@ I'll ask my question next.`;
   );
 }
 
-export default function CopyForAI(props: Props): JSX.Element {
+export default function CopyForAI(props: Props): React.JSX.Element {
   return (
     <BrowserOnly>
       {() => <CopyForAIImpl {...props} />}

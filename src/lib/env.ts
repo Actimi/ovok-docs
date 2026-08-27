@@ -7,7 +7,7 @@
  *
  *   tier    source branch    docs folder            URL prefix
  *   ────    ──────────────   ────────────────       ─────────────
- *   alpha   sandbox          docs/alpha/            /alpha/...
+ *   alpha   development      docs/alpha/            /alpha/...
  *   beta    staging          docs/beta/             /beta/...
  *   final   master           docs/final/            /final/...   (or /)
  *
@@ -37,10 +37,10 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     shortLabel: 'alpha',
     description: 'Alpha tier. Bleeding-edge, unstable.',
     hosts: {
-      api:       'https://api.sandbox.ovok.com',
-      fhir:      'https://api.sandbox.ovok.com/fhir/R5',
-      console:   'https://console.sandbox.ovok.com',
-      dashboard: 'https://dashboard.sandbox.ovok.com',
+      api:       'https://api.dev.ovok.com',
+      fhir:      'https://api.dev.ovok.com/fhir/R4',
+      console:   'https://console.dev.ovok.com',
+      dashboard: 'https://dashboard.dev.ovok.com',
     },
     maturity: 'alpha',
   },
@@ -50,10 +50,10 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     shortLabel: 'beta',
     description: 'Release-candidate surface. Stable enough for integration testing.',
     hosts: {
-      api:       'https://api.staging.eu.ovok.com',
-      fhir:      'https://api.staging.eu.ovok.com/fhir/R5',
-      console:   'https://console.staging.eu.ovok.com',
-      dashboard: 'https://dashboard.staging.eu.ovok.com',
+      api:       'https://api.staging.ovok.com',
+      fhir:      'https://api.staging.ovok.com/fhir/R4',
+      console:   'https://console.staging.ovok.com',
+      dashboard: 'https://dashboard.staging.ovok.com',
     },
     maturity: 'pre-release',
   },
@@ -63,10 +63,10 @@ export const ENVS: Record<EnvKey, EnvConfig> = {
     shortLabel: 'final',
     description: 'The contract you build against. Versioned and supported.',
     hosts: {
-      api:       'https://api.eu.ovok.com',
-      fhir:      'https://api.eu.ovok.com/fhir/R5',
-      console:   'https://console.eu.ovok.com',
-      dashboard: 'https://dashboard.eu.ovok.com',
+      api:       'https://api.ovok.com',
+      fhir:      'https://api.ovok.com/fhir/R4',
+      console:   'https://console.ovok.com',
+      dashboard: 'https://dashboard.ovok.com',
     },
     maturity: 'production',
   },

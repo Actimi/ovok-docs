@@ -6,7 +6,7 @@ description: "A formal computable definition of a graph of resources - that is, 
 
 # GraphDefinition
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="1">Trial Use 1</span>
 <span className="fhir-category">Conformance</span>
 
 A formal computable definition of a graph of resources - that is, a coherent set of resources that form a graph by following references. The Graph Definition resource defines a set and makes rules about the set.
@@ -17,62 +17,67 @@ A formal computable definition of a graph of resources - that is, a coherent set
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/GraphDefinition/[id]` |
-| Vread        | `GET`    | `/fhir/R5/GraphDefinition/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/GraphDefinition/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/GraphDefinition/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/GraphDefinition/[id]` |
-| Create       | `POST`   | `/fhir/R5/GraphDefinition` |
-| Search       | `GET`    | `/fhir/R5/GraphDefinition?...` |
-| History      | `GET`    | `/fhir/R5/GraphDefinition/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/GraphDefinition/_history` |
+| Read | `GET` | `/fhir/R4/GraphDefinition/[id]` |
+| Vread | `GET` | `/fhir/R4/GraphDefinition/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/GraphDefinition/[id]` |
+| Patch | `PATCH` | `/fhir/R4/GraphDefinition/[id]` |
+| Delete | `DELETE` | `/fhir/R4/GraphDefinition/[id]` |
+| Create | `POST` | `/fhir/R4/GraphDefinition` |
+| Search | `GET` | `/fhir/R4/GraphDefinition` |
+| History | `GET` | `/fhir/R4/GraphDefinition/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `url` | `uri` | `0..1` | Canonical identifier for this graph definition, represented as a URI (globally unique) |
-| `identifier` | `Identifier` | `0..*` | Additional identifier for the GraphDefinition (business identifier) |
 | `version` | `string` | `0..1` | Business version of the graph definition |
-| `versionAlgorithm[x]` | `string` / `Coding` | `0..1` | How to compare versions |
 | `name` | `string` | `1..1` | Name for this graph definition (computer friendly) |
-| `title` | `string` | `0..1` | Name for this graph definition (human friendly) |
-| `status` | `code` | `1..1` | draft | active | retired | unknown _modifier_ |
+| `status` | `code` | `1..1` | draft \| active \| retired \| unknown _modifier_ |
 | `experimental` | `boolean` | `0..1` | For testing purposes, not real usage |
 | `date` | `dateTime` | `0..1` | Date last changed |
-| `publisher` | `string` | `0..1` | Name of the publisher/steward (organization or individual) |
+| `publisher` | `string` | `0..1` | Name of the publisher (organization or individual) |
 | `contact` | `ContactDetail` | `0..*` | Contact details for the publisher |
 | `description` | `markdown` | `0..1` | Natural language description of the graph definition |
 | `useContext` | `UsageContext` | `0..*` | The context that the content is intended to support |
 | `jurisdiction` | `CodeableConcept` | `0..*` | Intended jurisdiction for graph definition (if applicable) |
 | `purpose` | `markdown` | `0..1` | Why this graph definition is defined |
-| `copyright` | `markdown` | `0..1` | Use and/or publishing restrictions |
-| `copyrightLabel` | `string` | `0..1` | Copyright holder and year(s) |
-| `start` | `id` | `0..1` | Starting Node |
-| `node` | `BackboneElement` | `0..*` | Potential target for the link |
+| `start` | `code` | `1..1` | Type of resource at which the graph starts |
+| `profile` | `canonical` | `0..1` | Profile on base resource |
 | `link` | `BackboneElement` | `0..*` | Links this graph makes rules about |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `context` | `token` | A use context assigned to the activity definition |
-| `context-quantity` | `quantity` | A quantity- or range-valued use context assigned to the activity definition |
-| `context-type` | `token` | A type of use context assigned to the activity definition |
-| `context-type-quantity` | `composite` | A use context type and quantity- or range-based value assigned to the activity definition |
-| `context-type-value` | `composite` | A use context type and value assigned to the activity definition |
-| `date` | `date` | The activity definition publication date |
-| `description` | `string` | The description of the activity definition |
-| `identifier` | `token` | External identifier for the activity definition |
-| `jurisdiction` | `token` | Intended jurisdiction for the activity definition |
-| `name` | `string` | Computationally friendly name of the activity definition |
-| `publisher` | `string` | Name of the publisher of the activity definition |
-| `start` | `token` | Type of resource at which the graph starts |
-| `status` | `token` | The current status of the activity definition |
-| `url` | `uri` | The uri that identifies the activity definition |
-| `version` | `token` | The business version of the activity definition |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `context` | `string` | http://hl7.org/fhir/SearchParameter/conformance-context |
+| `context-quantity` | `string` | http://hl7.org/fhir/SearchParameter/conformance-context-quantity |
+| `context-type` | `string` | http://hl7.org/fhir/SearchParameter/conformance-context-type |
+| `context-type-quantity` | `string` | http://hl7.org/fhir/SearchParameter/conformance-context-type-quantity |
+| `context-type-value` | `string` | http://hl7.org/fhir/SearchParameter/conformance-context-type-value |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/conformance-date |
+| `description` | `string` | http://hl7.org/fhir/SearchParameter/conformance-description |
+| `jurisdiction` | `string` | http://hl7.org/fhir/SearchParameter/conformance-jurisdiction |
+| `name` | `string` | http://hl7.org/fhir/SearchParameter/conformance-name |
+| `publisher` | `string` | http://hl7.org/fhir/SearchParameter/conformance-publisher |
+| `start` | `string` | http://hl7.org/fhir/SearchParameter/GraphDefinition-start |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/conformance-status |
+| `url` | `string` | http://hl7.org/fhir/SearchParameter/conformance-url |
+| `version` | `string` | http://hl7.org/fhir/SearchParameter/conformance-version |
 
 ## Reference
 
-- Official FHIR R5 spec: [`GraphDefinition`](https://hl7.org/fhir/R5/graphdefinition.html)
-- Maturity: **Trial Use 2** (FMM 2).
+- Official FHIR R4 spec: [`GraphDefinition`](https://hl7.org/fhir/R4/graphdefinition.html)
+- Maturity: **Trial Use 1** (FMM 1).

@@ -8,9 +8,9 @@
     "postinstall": "pnpm run gen:api",
     "start": "pnpm run gen:api && docusaurus start",
     "build": "docusaurus build",
-    "gen:api": "node scripts/fetch-fhir-r5.mjs && node scripts/generate-api-docs.mjs && node scripts/generate-llms-bundle.mjs",
+    "gen:api": "node scripts/fetch-fhir-r4.mjs && node scripts/generate-api-docs.mjs && node scripts/generate-llms-bundle.mjs",
     "gen:llms": "node scripts/generate-llms-bundle.mjs",
-    "gen:fhir-fetch": "node scripts/fetch-fhir-r5.mjs --force",
+    "gen:fhir-fetch": "node scripts/fetch-fhir-r4.mjs --force",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -38,12 +38,6 @@
     "@types/js-yaml": "^4.0.9",
     "js-yaml": "^4.1.1",
     "typescript": "~5.5.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "webpack": "5.97.1",
-      "webpackbar": "6.0.1"
-    }
   },
   "browserslist": {
     "production": [

@@ -17,54 +17,57 @@ A financial tool for tracking value accrued for a particular purpose.  In the he
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Account/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Account/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Account/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Account/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Account/[id]` |
-| Create       | `POST`   | `/fhir/R5/Account` |
-| Search       | `GET`    | `/fhir/R5/Account?...` |
-| History      | `GET`    | `/fhir/R5/Account/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Account/_history` |
+| Read | `GET` | `/fhir/R4/Account/[id]` |
+| Vread | `GET` | `/fhir/R4/Account/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Account/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Account/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Account/[id]` |
+| Create | `POST` | `/fhir/R4/Account` |
+| Search | `GET` | `/fhir/R4/Account` |
+| History | `GET` | `/fhir/R4/Account/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Account number |
-| `status` | `code` | `1..1` | active | inactive | entered-in-error | on-hold | unknown _modifier_ |
-| `billingStatus` | `CodeableConcept` | `0..1` | Tracks the lifecycle of the account through the billing process |
+| `status` | `code` | `1..1` | active \| inactive \| entered-in-error \| on-hold \| unknown _modifier_ |
 | `type` | `CodeableConcept` | `0..1` | E.g. patient, expense, depreciation |
 | `name` | `string` | `0..1` | Human-readable label |
 | `subject` | `Reference` | `0..*` | The entity that caused the expenses |
 | `servicePeriod` | `Period` | `0..1` | Transaction window |
 | `coverage` | `BackboneElement` | `0..*` | The party(s) that are responsible for covering the payment of this account, and what order should they be applied to the account |
 | `owner` | `Reference` | `0..1` | Entity managing the Account |
-| `description` | `markdown` | `0..1` | Explanation of purpose/use |
+| `description` | `string` | `0..1` | Explanation of purpose/use |
 | `guarantor` | `BackboneElement` | `0..*` | The parties ultimately responsible for balancing the Account |
-| `diagnosis` | `BackboneElement` | `0..*` | The list of diagnoses relevant to this account |
-| `procedure` | `BackboneElement` | `0..*` | The list of procedures relevant to this account |
-| `relatedAccount` | `BackboneElement` | `0..*` | Other associated accounts related to this account |
-| `currency` | `CodeableConcept` | `0..1` | The base or default currency |
-| `balance` | `BackboneElement` | `0..*` | Calculated account balance(s) |
-| `calculatedAt` | `instant` | `0..1` | Time the balance amount was calculated |
+| `partOf` | `Reference` | `0..1` | Reference to a parent Account |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `guarantor` | `reference` | The parties ultimately responsible for balancing the Account |
-| `identifier` | `token` | Account number |
-| `name` | `string` | Human-readable label |
-| `owner` | `reference` | Entity managing the Account |
-| `patient` | `reference` | The entity that caused the expenses |
-| `period` | `date` | Transaction window |
-| `relatedaccount` | `reference` | Parent and other related accounts |
-| `status` | `token` | active | inactive | entered-in-error | on-hold | unknown |
-| `subject` | `reference` | The entity that caused the expenses |
-| `type` | `token` | E.g. patient, expense, depreciation |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Account-identifier |
+| `name` | `string` | http://hl7.org/fhir/SearchParameter/Account-name |
+| `owner` | `string` | http://hl7.org/fhir/SearchParameter/Account-owner |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Account-patient |
+| `period` | `string` | http://hl7.org/fhir/SearchParameter/Account-period |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Account-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/Account-subject |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/Account-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Account`](https://hl7.org/fhir/R5/account.html)
+- Official FHIR R4 spec: [`Account`](https://hl7.org/fhir/R4/account.html)
 - Maturity: **Trial Use 2** (FMM 2).

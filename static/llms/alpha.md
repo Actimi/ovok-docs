@@ -78,7 +78,7 @@ the top-right navbar. New visitors land on **alpha** by default.
 
 1. Read the [platform overview](./platform/overview.md) for the
    one-page mental model.
-2. Skim the [public API map](./platform/public-api) for route families.
+2. Skim the [public API map](/alpha/platform/public-api) for route families.
 3. Skim the [release tiers](./platform/environments.md) page to choose
    the surface you'll build against.
 4. Operators — jump to the [Console](./surfaces/console.md).
@@ -87,5 +87,5 @@ the top-right navbar. New visitors land on **alpha** by default.
 6. Builders — pick an API surface:
    - [**High Level API**](./api/high-level/index.mdx) — auth, projects,
      content, billing, devices, signals. The convenience layer.
-   - [**FHIR API**](./api/fhir/index.mdx) — every FHIR R5 resource,
-     served with the standard FHIR REST interactions.
+   - [**FHIR API**](./api/fhir/index.mdx) — the FHIR R4 resources and
+     interactions declared by the alpha server's CapabilityStatement.

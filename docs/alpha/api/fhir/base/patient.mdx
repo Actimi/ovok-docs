@@ -17,15 +17,14 @@ Demographics and other administrative information about an individual or animal 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Patient/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Patient/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Patient/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Patient/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Patient/[id]` |
-| Create       | `POST`   | `/fhir/R5/Patient` |
-| Search       | `GET`    | `/fhir/R5/Patient?...` |
-| History      | `GET`    | `/fhir/R5/Patient/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Patient/_history` |
+| Read | `GET` | `/fhir/R4/Patient/[id]` |
+| Vread | `GET` | `/fhir/R4/Patient/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Patient/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Patient/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Patient/[id]` |
+| Create | `POST` | `/fhir/R4/Patient` |
+| Search | `GET` | `/fhir/R4/Patient` |
+| History | `GET` | `/fhir/R4/Patient/[id]/_history` |
 
 ## Top-level elements
 
@@ -35,7 +34,7 @@ Demographics and other administrative information about an individual or animal 
 | `active` | `boolean` | `0..1` | Whether this patient's record is in active use _modifier_ |
 | `name` | `HumanName` | `0..*` | A name associated with the patient |
 | `telecom` | `ContactPoint` | `0..*` | A contact detail for the individual |
-| `gender` | `code` | `0..1` | male | female | other | unknown |
+| `gender` | `code` | `0..1` | male \| female \| other \| unknown |
 | `birthDate` | `date` | `0..1` | The date of birth for the individual |
 | `deceased[x]` | `boolean` / `dateTime` | `0..1` | Indicates if the individual is deceased or not _modifier_ |
 | `address` | `Address` | `0..*` | An address for the individual |
@@ -46,38 +45,52 @@ Demographics and other administrative information about an individual or animal 
 | `communication` | `BackboneElement` | `0..*` | A language which may be used to communicate with the patient about his or her health |
 | `generalPractitioner` | `Reference` | `0..*` | Patient's nominated primary care provider |
 | `managingOrganization` | `Reference` | `0..1` | Organization that is the custodian of the patient record |
-| `link` | `BackboneElement` | `0..*` | Link to a Patient or RelatedPerson resource that concerns the same actual individual _modifier_ |
+| `link` | `BackboneElement` | `0..*` | Link to another patient resource that concerns the same actual person _modifier_ |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `active` | `token` | Whether the patient record is active |
-| `address` | `string` | A server defined search that may match any of the string fields in the Address, including line, city, district, state, country, postalCode, and/or text |
-| `address-city` | `string` | A city specified in an address |
-| `address-country` | `string` | A country specified in an address |
-| `address-postalcode` | `string` | A postalCode specified in an address |
-| `address-state` | `string` | A state specified in an address |
-| `address-use` | `token` | A use code specified in an address |
-| `birthdate` | `date` | The patient's date of birth |
-| `death-date` | `date` | The date of death has been provided and satisfies this search value |
-| `deceased` | `token` | This patient has been marked as deceased, or has a death date entered |
-| `email` | `token` | A value in an email contact |
-| `family` | `string` | A portion of the family name of the patient |
-| `gender` | `token` | Gender of the patient |
-| `general-practitioner` | `reference` | Patient's nominated general practitioner, not the organization that manages the record |
-| `given` | `string` | A portion of the given name of the patient |
-| `identifier` | `token` | A patient identifier |
-| `language` | `token` | Language code (irrespective of use value) |
-| `link` | `reference` | All patients/related persons linked to the given patient |
-| `name` | `string` | A server defined search that may match any of the string fields in the HumanName, including family, given, prefix, suffix, and/or text |
-| `organization` | `reference` | The organization that is the custodian of the patient record |
-| `part-agree` | `reference` | Search by url for a participation agreement, which is stored as an extension referencing a DocumentReference |
-| `phone` | `token` | A value in a phone contact |
-| `phonetic` | `string` | A portion of either family or given name using some kind of phonetic matching algorithm |
-| `telecom` | `token` | The value in any kind of telecom details of the patient |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `active` | `string` | http://hl7.org/fhir/SearchParameter/Patient-active |
+| `address` | `string` | http://hl7.org/fhir/SearchParameter/individual-address |
+| `address-city` | `string` | http://hl7.org/fhir/SearchParameter/individual-address-city |
+| `address-country` | `string` | http://hl7.org/fhir/SearchParameter/individual-address-country |
+| `address-postalcode` | `string` | http://hl7.org/fhir/SearchParameter/individual-address-postalcode |
+| `address-state` | `string` | http://hl7.org/fhir/SearchParameter/individual-address-state |
+| `address-use` | `string` | http://hl7.org/fhir/SearchParameter/individual-address-use |
+| `birthdate` | `string` | http://hl7.org/fhir/SearchParameter/individual-birthdate |
+| `death-date` | `string` | http://hl7.org/fhir/SearchParameter/Patient-death-date |
+| `deceased` | `string` | http://hl7.org/fhir/SearchParameter/Patient-deceased |
+| `email` | `string` | http://hl7.org/fhir/SearchParameter/individual-email |
+| `ethnicity` | `string` | http://hl7.org/fhir/us/core/SearchParameter/us-core-ethnicity |
+| `family` | `string` | http://hl7.org/fhir/SearchParameter/individual-family |
+| `gender` | `string` | http://hl7.org/fhir/SearchParameter/individual-gender |
+| `gender-identity` | `string` | http://hl7.org/fhir/us/core/SearchParameter/us-core-patient-gender-identity |
+| `general-practitioner` | `string` | http://hl7.org/fhir/SearchParameter/Patient-general-practitioner |
+| `given` | `string` | http://hl7.org/fhir/SearchParameter/individual-given |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Patient-identifier |
+| `language` | `string` | http://hl7.org/fhir/SearchParameter/Patient-language |
+| `link` | `string` | http://hl7.org/fhir/SearchParameter/Patient-link |
+| `name` | `string` | http://hl7.org/fhir/SearchParameter/Patient-name |
+| `organization` | `string` | http://hl7.org/fhir/SearchParameter/Patient-organization |
+| `phone` | `string` | http://hl7.org/fhir/SearchParameter/individual-phone |
+| `phonetic` | `string` | http://hl7.org/fhir/SearchParameter/individual-phonetic |
+| `race` | `string` | http://hl7.org/fhir/us/core/SearchParameter/us-core-race |
+| `telecom` | `string` | http://hl7.org/fhir/SearchParameter/individual-telecom |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Patient`](https://hl7.org/fhir/R5/patient.html)
+- Official FHIR R4 spec: [`Patient`](https://hl7.org/fhir/R4/patient.html)
 - Maturity: **Normative** (FMM 5).

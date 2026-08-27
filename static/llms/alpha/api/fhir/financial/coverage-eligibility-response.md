@@ -6,7 +6,7 @@ description: "This resource provides eligibility and plan details from the proce
 
 # CoverageEligibilityResponse
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Financial</span>
 
 This resource provides eligibility and plan details from the processing of an CoverageEligibilityRequest resource.
@@ -17,30 +17,28 @@ This resource provides eligibility and plan details from the processing of an Co
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/CoverageEligibilityResponse/[id]` |
-| Vread        | `GET`    | `/fhir/R5/CoverageEligibilityResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/CoverageEligibilityResponse/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/CoverageEligibilityResponse/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/CoverageEligibilityResponse/[id]` |
-| Create       | `POST`   | `/fhir/R5/CoverageEligibilityResponse` |
-| Search       | `GET`    | `/fhir/R5/CoverageEligibilityResponse?...` |
-| History      | `GET`    | `/fhir/R5/CoverageEligibilityResponse/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/CoverageEligibilityResponse/_history` |
+| Read | `GET` | `/fhir/R4/CoverageEligibilityResponse/[id]` |
+| Vread | `GET` | `/fhir/R4/CoverageEligibilityResponse/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/CoverageEligibilityResponse/[id]` |
+| Patch | `PATCH` | `/fhir/R4/CoverageEligibilityResponse/[id]` |
+| Delete | `DELETE` | `/fhir/R4/CoverageEligibilityResponse/[id]` |
+| Create | `POST` | `/fhir/R4/CoverageEligibilityResponse` |
+| Search | `GET` | `/fhir/R4/CoverageEligibilityResponse` |
+| History | `GET` | `/fhir/R4/CoverageEligibilityResponse/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier for coverage eligiblity request |
-| `status` | `code` | `1..1` | active | cancelled | draft | entered-in-error _modifier_ |
-| `purpose` | `code` | `1..*` | auth-requirements | benefits | discovery | validation |
+| `status` | `code` | `1..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
+| `purpose` | `code` | `1..*` | auth-requirements \| benefits \| discovery \| validation |
 | `patient` | `Reference` | `1..1` | Intended recipient of products and services |
-| `event` | `BackboneElement` | `0..*` | Event information |
 | `serviced[x]` | `date` / `Period` | `0..1` | Estimated date or dates of service |
 | `created` | `dateTime` | `1..1` | Response creation date |
 | `requestor` | `Reference` | `0..1` | Party responsible for the request |
 | `request` | `Reference` | `1..1` | Eligibility request reference |
-| `outcome` | `code` | `1..1` | queued | complete | error | partial |
+| `outcome` | `code` | `1..1` | queued \| complete \| error \| partial |
 | `disposition` | `string` | `0..1` | Disposition Message |
 | `insurer` | `Reference` | `1..1` | Coverage issuer |
 | `insurance` | `BackboneElement` | `0..*` | Patient insurance information |
@@ -52,17 +50,29 @@ This resource provides eligibility and plan details from the processing of an Co
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `created` | `date` | The creation date |
-| `disposition` | `string` | The contents of the disposition message |
-| `identifier` | `token` | Account number |
-| `insurer` | `reference` | The organization which generated this resource |
-| `outcome` | `token` | The processing outcome |
-| `patient` | `reference` | The entity that caused the expenses |
-| `request` | `reference` | The EligibilityRequest reference |
-| `requestor` | `reference` | The EligibilityRequest provider |
-| `status` | `token` | The EligibilityRequest status |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `created` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-created |
+| `disposition` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-disposition |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-identifier |
+| `insurer` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-insurer |
+| `outcome` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-outcome |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-patient |
+| `request` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-request |
+| `requestor` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-requestor |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/CoverageEligibilityResponse-status |
 
 ## Reference
 
-- Official FHIR R5 spec: [`CoverageEligibilityResponse`](https://hl7.org/fhir/R5/coverageeligibilityresponse.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`CoverageEligibilityResponse`](https://hl7.org/fhir/R4/coverageeligibilityresponse.html)
+- Maturity: **Trial Use 2** (FMM 2).

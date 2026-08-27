@@ -17,26 +17,23 @@ Measurements and simple assertions made about a patient, device or other subject
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Observation/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Observation/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Observation/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Observation/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Observation/[id]` |
-| Create       | `POST`   | `/fhir/R5/Observation` |
-| Search       | `GET`    | `/fhir/R5/Observation?...` |
-| History      | `GET`    | `/fhir/R5/Observation/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Observation/_history` |
+| Read | `GET` | `/fhir/R4/Observation/[id]` |
+| Vread | `GET` | `/fhir/R4/Observation/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Observation/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Observation/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Observation/[id]` |
+| Create | `POST` | `/fhir/R4/Observation` |
+| Search | `GET` | `/fhir/R4/Observation` |
+| History | `GET` | `/fhir/R4/Observation/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier for observation |
-| `instantiates[x]` | `canonical` / `Reference` | `0..1` | Instantiates FHIR ObservationDefinition |
 | `basedOn` | `Reference` | `0..*` | Fulfills plan, proposal or order |
-| `triggeredBy` | `BackboneElement` | `0..*` | Triggering observation(s) |
 | `partOf` | `Reference` | `0..*` | Part of referenced event |
-| `status` | `code` | `1..1` | registered | preliminary | final | amended + _modifier_ |
+| `status` | `code` | `1..1` | registered \| preliminary \| final \| amended + _modifier_ |
 | `category` | `CodeableConcept` | `0..*` | Classification of  type of observation |
 | `code` | `CodeableConcept` | `1..1` | Type of observation (code / type) |
 | `subject` | `Reference` | `0..1` | Who and/or what the observation is about |
@@ -45,68 +42,75 @@ Measurements and simple assertions made about a patient, device or other subject
 | `effective[x]` | `dateTime` / `Period` / `Timing` / `instant` | `0..1` | Clinically relevant time/time-period for observation |
 | `issued` | `instant` | `0..1` | Date/Time this version was made available |
 | `performer` | `Reference` | `0..*` | Who is responsible for the observation |
-| `value[x]` | `Quantity` / `CodeableConcept` / `string` / `boolean` / `integer` / `Range` / `Ratio` / `SampledData` / `time` / `dateTime` / `Period` / `Attachment` / `Reference` | `0..1` | Actual result |
+| `value[x]` | `Quantity` / `CodeableConcept` / `string` / `boolean` / `integer` / `Range` / `Ratio` / `SampledData` / `time` / `dateTime` / `Period` | `0..1` | Actual result |
 | `dataAbsentReason` | `CodeableConcept` | `0..1` | Why the result is missing |
-| `interpretation` | `CodeableConcept` | `0..*` | High, low, normal, etc |
+| `interpretation` | `CodeableConcept` | `0..*` | High, low, normal, etc. |
 | `note` | `Annotation` | `0..*` | Comments about the observation |
 | `bodySite` | `CodeableConcept` | `0..1` | Observed body part |
-| `bodyStructure` | `Reference` | `0..1` | Observed body structure |
 | `method` | `CodeableConcept` | `0..1` | How it was done |
 | `specimen` | `Reference` | `0..1` | Specimen used for this observation |
-| `device` | `Reference` | `0..1` | A reference to the device that generates the measurements or the device settings for the device |
+| `device` | `Reference` | `0..1` | (Measurement) Device |
 | `referenceRange` | `BackboneElement` | `0..*` | Provides guide for interpretation |
 | `hasMember` | `Reference` | `0..*` | Related resource that belongs to the Observation group |
-| `derivedFrom` | `Reference` | `0..*` | Related resource from which the observation is made |
+| `derivedFrom` | `Reference` | `0..*` | Related measurements the observation is made from |
 | `component` | `BackboneElement` | `0..*` | Component results |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `based-on` | `reference` | Reference to the service request. |
-| `category` | `token` | The classification of the type of observation |
-| `code` | `token` | Event or incident that occurred or was averted |
-| `code-value-concept` | `composite` | Code and coded value parameter pair |
-| `code-value-date` | `composite` | Code and date/time value parameter pair |
-| `code-value-quantity` | `composite` | Code and quantity value parameter pair |
-| `code-value-string` | `composite` | Code and string value parameter pair |
-| `combo-code` | `token` | The code of the observation type or component type |
-| `combo-code-value-concept` | `composite` | Code and coded value parameter pair, including in components |
-| `combo-code-value-quantity` | `composite` | Code and quantity value parameter pair, including in components |
-| `combo-data-absent-reason` | `token` | The reason why the expected value in the element Observation.value[x] or Observation.component.value[x] is missing. |
-| `combo-value-concept` | `token` | The value or component value of the observation, if the value is a CodeableConcept |
-| `combo-value-quantity` | `quantity` | The value or component value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data) |
-| `component-code` | `token` | The component code of the observation type |
-| `component-code-value-concept` | `composite` | Component code and component coded value parameter pair |
-| `component-code-value-quantity` | `composite` | Component code and component quantity value parameter pair |
-| `component-data-absent-reason` | `token` | The reason why the expected value in the element Observation.component.value[x] is missing. |
-| `component-value-canonical` | `uri` | URL contained in valueCanonical. |
-| `component-value-concept` | `token` | The value of the component observation, if the value is a CodeableConcept |
-| `component-value-quantity` | `quantity` | The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data) |
-| `component-value-reference` | `reference` | Reference contained in valueReference. |
-| `data-absent-reason` | `token` | The reason why the expected value in the element Observation.value[x] is missing. |
-| `date` | `date` | When the event occurred |
-| `derived-from` | `reference` | Related measurements the observation is made from |
-| `device` | `reference` | The Device that generated the observation data. |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `focus` | `reference` | The focus of an observation when the focus is not the patient of record. |
-| `has-member` | `reference` | Related resource that belongs to the Observation group |
-| `identifier` | `token` | Account number |
-| `method` | `token` | The method used for the observation |
-| `part-of` | `reference` | Part of referenced event |
-| `patient` | `reference` | The entity that caused the expenses |
-| `performer` | `reference` | Who performed the observation |
-| `specimen` | `reference` | Specimen used for this observation |
-| `status` | `token` | The status of the observation |
-| `subject` | `reference` | The subject that the observation is about |
-| `value-canonical` | `uri` | URL contained in valueCanonical. |
-| `value-concept` | `token` | The value of the observation, if the value is a CodeableConcept |
-| `value-date` | `date` | The value of the observation, if the value is a date or period of time |
-| `value-markdown` | `string` | The value of the observation, if the value is a string, and also searches in CodeableConcept.text |
-| `value-quantity` | `quantity` | The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data) |
-| `value-reference` | `reference` | Reference contained in valueReference. |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `based-on` | `string` | http://hl7.org/fhir/SearchParameter/Observation-based-on |
+| `category` | `string` | http://hl7.org/fhir/SearchParameter/Observation-category |
+| `code` | `string` | http://hl7.org/fhir/SearchParameter/clinical-code |
+| `code-value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-code-value-concept |
+| `code-value-date` | `string` | http://hl7.org/fhir/SearchParameter/Observation-code-value-date |
+| `code-value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-code-value-quantity |
+| `code-value-string` | `string` | http://hl7.org/fhir/SearchParameter/Observation-code-value-string |
+| `combo-code` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-code |
+| `combo-code-value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-code-value-concept |
+| `combo-code-value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-code-value-quantity |
+| `combo-data-absent-reason` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-data-absent-reason |
+| `combo-value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-value-concept |
+| `combo-value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-combo-value-quantity |
+| `component-code` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-code |
+| `component-code-value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-code-value-concept |
+| `component-code-value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-code-value-quantity |
+| `component-data-absent-reason` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-data-absent-reason |
+| `component-value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-value-concept |
+| `component-value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-component-value-quantity |
+| `data-absent-reason` | `string` | http://hl7.org/fhir/SearchParameter/Observation-data-absent-reason |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/clinical-date |
+| `derived-from` | `string` | http://hl7.org/fhir/SearchParameter/Observation-derived-from |
+| `device` | `string` | http://hl7.org/fhir/SearchParameter/Observation-device |
+| `encounter` | `string` | http://hl7.org/fhir/SearchParameter/clinical-encounter |
+| `focus` | `string` | http://hl7.org/fhir/SearchParameter/Observation-focus |
+| `has-member` | `string` | http://hl7.org/fhir/SearchParameter/Observation-has-member |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/clinical-identifier |
+| `method` | `string` | http://hl7.org/fhir/SearchParameter/Observation-method |
+| `part-of` | `string` | http://hl7.org/fhir/SearchParameter/Observation-part-of |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/clinical-patient |
+| `performer` | `string` | http://hl7.org/fhir/SearchParameter/Observation-performer |
+| `specimen` | `string` | http://hl7.org/fhir/SearchParameter/Observation-specimen |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Observation-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/Observation-subject |
+| `value-concept` | `string` | http://hl7.org/fhir/SearchParameter/Observation-value-concept |
+| `value-date` | `string` | http://hl7.org/fhir/SearchParameter/Observation-value-date |
+| `value-quantity` | `string` | http://hl7.org/fhir/SearchParameter/Observation-value-quantity |
+| `value-string` | `string` | http://hl7.org/fhir/SearchParameter/Observation-value-string |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Observation`](https://hl7.org/fhir/R5/observation.html)
+- Official FHIR R4 spec: [`Observation`](https://hl7.org/fhir/R4/observation.html)
 - Maturity: **Normative** (FMM 5).

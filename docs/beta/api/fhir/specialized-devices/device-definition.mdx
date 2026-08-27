@@ -1,15 +1,15 @@
 ---
 title: DeviceDefinition
 sidebar_label: DeviceDefinition
-description: "This is a specialized resource that defines the characteristics and capabilities of a device."
+description: "The characteristics, operational status and capabilities of a medical-related component of a medical device."
 ---
 
 # DeviceDefinition
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Devices</span>
 
-This is a specialized resource that defines the characteristics and capabilities of a device.
+The characteristics, operational status and capabilities of a medical-related component of a medical device.
 
 ## Endpoints
 
@@ -17,60 +17,64 @@ This is a specialized resource that defines the characteristics and capabilities
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/DeviceDefinition/[id]` |
-| Vread        | `GET`    | `/fhir/R5/DeviceDefinition/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/DeviceDefinition/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/DeviceDefinition/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/DeviceDefinition/[id]` |
-| Create       | `POST`   | `/fhir/R5/DeviceDefinition` |
-| Search       | `GET`    | `/fhir/R5/DeviceDefinition?...` |
-| History      | `GET`    | `/fhir/R5/DeviceDefinition/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/DeviceDefinition/_history` |
+| Read | `GET` | `/fhir/R4/DeviceDefinition/[id]` |
+| Vread | `GET` | `/fhir/R4/DeviceDefinition/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/DeviceDefinition/[id]` |
+| Patch | `PATCH` | `/fhir/R4/DeviceDefinition/[id]` |
+| Delete | `DELETE` | `/fhir/R4/DeviceDefinition/[id]` |
+| Create | `POST` | `/fhir/R4/DeviceDefinition` |
+| Search | `GET` | `/fhir/R4/DeviceDefinition` |
+| History | `GET` | `/fhir/R4/DeviceDefinition/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `description` | `markdown` | `0..1` | Additional information to describe the device |
 | `identifier` | `Identifier` | `0..*` | Instance identifier |
 | `udiDeviceIdentifier` | `BackboneElement` | `0..*` | Unique Device Identifier (UDI) Barcode string |
-| `regulatoryIdentifier` | `BackboneElement` | `0..*` | Regulatory identifier(s) associated with this device |
-| `partNumber` | `string` | `0..1` | The part number or catalog number of the device |
-| `manufacturer` | `Reference` | `0..1` | Name of device manufacturer |
-| `deviceName` | `BackboneElement` | `0..*` | The name or names of the device as given by the manufacturer |
-| `modelNumber` | `string` | `0..1` | The catalog or model number for the device for example as defined by the manufacturer |
-| `classification` | `BackboneElement` | `0..*` | What kind of device or device system this is |
-| `conformsTo` | `BackboneElement` | `0..*` | Identifies the standards, specifications, or formal guidances for the capabilities supported by the device |
-| `hasPart` | `BackboneElement` | `0..*` | A device, part of the current one |
-| `packaging` | `BackboneElement` | `0..*` | Information about the packaging of the device, i.e. how the device is packaged |
-| `version` | `BackboneElement` | `0..*` | The version of the device or software |
+| `manufacturer[x]` | `string` / `Reference` | `0..1` | Name of device manufacturer |
+| `deviceName` | `BackboneElement` | `0..*` | A name given to the device to identify it |
+| `modelNumber` | `string` | `0..1` | The model number for the device |
+| `type` | `CodeableConcept` | `0..1` | What kind of device or device system this is |
+| `specialization` | `BackboneElement` | `0..*` | The capabilities supported on a  device, the standards to which the device conforms for a particular purpose, and used for the communication |
+| `version` | `string` | `0..*` | Available versions |
 | `safety` | `CodeableConcept` | `0..*` | Safety characteristics of the device |
 | `shelfLifeStorage` | `ProductShelfLife` | `0..*` | Shelf Life and storage information |
+| `physicalCharacteristics` | `ProdCharacteristic` | `0..1` | Dimensions, color etc. |
 | `languageCode` | `CodeableConcept` | `0..*` | Language code for the human-readable text strings produced by the device (all supported) |
-| `property` | `BackboneElement` | `0..*` | Inherent, essentially fixed, characteristics of this kind of device, e.g., time properties, size, etc |
+| `capability` | `BackboneElement` | `0..*` | Device capabilities |
+| `property` | `BackboneElement` | `0..*` | The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties |
 | `owner` | `Reference` | `0..1` | Organization responsible for device |
 | `contact` | `ContactPoint` | `0..*` | Details for human/organization for support |
-| `link` | `BackboneElement` | `0..*` | An associated device, attached to, used with, communicating with or linking a previous or new device model to the focal device |
+| `url` | `uri` | `0..1` | Network address to contact device |
+| `onlineInformation` | `uri` | `0..1` | Access to on-line information |
 | `note` | `Annotation` | `0..*` | Device notes and comments |
+| `quantity` | `Quantity` | `0..1` | The quantity of the device present in the packaging (e.g. the number of devices present in a pack, or the number of devices in the same package of the medicinal product) |
+| `parentDevice` | `Reference` | `0..1` | The parent device it can be part of |
 | `material` | `BackboneElement` | `0..*` | A substance used to create the material(s) of which the device is made |
-| `productionIdentifierInUDI` | `code` | `0..*` | lot-number | manufactured-date | serial-number | expiration-date | biological-source | software-version |
-| `guideline` | `BackboneElement` | `0..1` | Information aimed at providing directions for the usage of this model of device |
-| `correctiveAction` | `BackboneElement` | `0..1` | Tracking of latest field safety corrective action |
-| `chargeItem` | `BackboneElement` | `0..*` | Billing code or reference associated with the device |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `device-name` | `string` | A server defined search that may match any of the string fields in DeviceDefinition.name or DeviceDefinition.classification.type - the latter to search for 'generic' devices. |
-| `identifier` | `token` | The identifier of the component |
-| `manufacturer` | `reference` | The manufacturer of the device |
-| `organization` | `reference` | The organization responsible for the device |
-| `specification` | `token` | The specification that the device conforms to |
-| `specification-version` | `composite` | A composite of both specification and version |
-| `type` | `token` | The device type |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `classification` | `string` | http://hl7.org/fhir/SearchParameter/DeviceDefinition-classification |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/DeviceDefinition-identifier |
+| `parent` | `string` | http://hl7.org/fhir/SearchParameter/DeviceDefinition-parent |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/DeviceDefinition-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`DeviceDefinition`](https://hl7.org/fhir/R5/devicedefinition.html)
-- Maturity: **Trial Use 1** (FMM 1).
+- Official FHIR R4 spec: [`DeviceDefinition`](https://hl7.org/fhir/R4/devicedefinition.html)
+- Maturity: **Draft** (FMM 0).

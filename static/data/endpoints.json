@@ -1488,40 +1488,6 @@
   },
   {
     "method": "GET",
-    "path": "/fhir/R5/Observation/$lastn",
-    "summary": "Get last observations",
-    "description": "This endpoint allows users to fetch patient informations, specifically observations.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getPatientLastObservation[2]",
-    "parameters": [
-      {
-        "name": "patient",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "max",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "GET",
     "path": "/fhir/Device/{id}/telemetry",
     "summary": "Get device telemetry",
     "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
@@ -1549,28 +1515,6 @@
     "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
     "tag": "FHIR Operations",
     "operationId": "FhirController_getDeviceTelemetry[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "GET",
-    "path": "/fhir/R5/Device/{id}/telemetry",
-    "summary": "Get device telemetry",
-    "description": "Returns the current effective telemetry for a device as a FHIR searchset Bundle of Observations, derived from the device's state machine snapshot. One Observation per metric is included: presence, hea",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetry[2]",
     "parameters": [
       {
         "name": "id",
@@ -1691,58 +1635,6 @@
     ]
   },
   {
-    "method": "GET",
-    "path": "/fhir/R5/Device/{id}/telemetry/history",
-    "summary": "Get device telemetry history",
-    "description": "Query observation history for a device from Signals. Defaults to the last 72 hours.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_getDeviceTelemetryHistory[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "from",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "to",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "code",
-        "in": "query",
-        "required": false,
-        "type": "string"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      },
-      {
-        "name": "pageSize",
-        "in": "query",
-        "required": false,
-        "type": "integer"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
     "method": "POST",
     "path": "/fhir/Patient",
     "summary": "Create Patient with Signals linking",
@@ -1771,28 +1663,6 @@
     "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
     "tag": "FHIR Operations",
     "operationId": "FhirController_createPatient[1]",
-    "parameters": [
-      {
-        "name": "withSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/Patient",
-    "summary": "Create Patient with Signals linking",
-    "description": "Create a FHIR Patient resource. When withSignals=true, also provisions a corresponding Signals patient.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_createPatient[2]",
     "parameters": [
       {
         "name": "withSignals",
@@ -1867,58 +1737,6 @@
     "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
     "tag": "FHIR Operations",
     "operationId": "FhirController_updatePatientThreshold[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
-      {
-        "name": "updateOnSignals",
-        "in": "query",
-        "required": false,
-        "type": "boolean"
-      }
-    ],
-    "bodyExample": {
-      "id": "123",
-      "patientId": "patient-123",
-      "date": {},
-      "settings": {
-        "heartRate": {
-          "mode": "patient",
-          "enabled": true,
-          "absolute": {
-            "enabled": true,
-            "min": 60,
-            "max": 100
-          }
-        },
-        "respiratoryRate": {
-          "mode": "organization",
-          "enabled": false,
-          "absolute": {
-            "enabled": false,
-            "min": 0,
-            "max": 0
-          }
-        }
-      }
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "PUT",
-    "path": "/fhir/R5/Patient/{id}/threshold",
-    "summary": "Update patient threshold",
-    "description": "Save a patient-level threshold CarePlan. When updateOnSignals=true, also pushes the configuration to Signals.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_updatePatientThreshold[2]",
     "parameters": [
       {
         "name": "id",
@@ -2048,47 +1866,6 @@
   },
   {
     "method": "POST",
-    "path": "/fhir/R5/Questionnaire/{id}/$populate",
-    "summary": "Populate questionnaire",
-    "description": "This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_populateQuestionnaire[2]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": {
-      "resourceType": "Parameters",
-      "parameter": [
-        {
-          "name": "context",
-          "part": [
-            {
-              "name": "name",
-              "valueString": "patientWeight"
-            },
-            {
-              "name": "content",
-              "resource": {
-                "valueDecimal": 66.5
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "POST",
     "path": "/fhir/QuestionnaireResponse/{id}/$extract",
     "summary": "Extract observations from questionnaire response",
     "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
@@ -2116,28 +1893,6 @@
     "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
     "tag": "FHIR Operations",
     "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[1]",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      }
-    ],
-    "bodyExample": null,
-    "deprecated": false,
-    "availableIn": [
-      "alpha",
-      "beta"
-    ]
-  },
-  {
-    "method": "POST",
-    "path": "/fhir/R5/QuestionnaireResponse/{id}/$extract",
-    "summary": "Extract observations from questionnaire response",
-    "description": "This endpoint builds Observations based on the provided QuestionnaireResponse.",
-    "tag": "FHIR Operations",
-    "operationId": "FhirController_extractObservationsFromQuestionnaireResponse[2]",
     "parameters": [
       {
         "name": "id",

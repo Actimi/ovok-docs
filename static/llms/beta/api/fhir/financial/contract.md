@@ -17,15 +17,14 @@ Legally enforceable, formally recorded unilateral or bilateral directive i.e., a
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Contract/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Contract/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Contract/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Contract/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Contract/[id]` |
-| Create       | `POST`   | `/fhir/R5/Contract` |
-| Search       | `GET`    | `/fhir/R5/Contract?...` |
-| History      | `GET`    | `/fhir/R5/Contract/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Contract/_history` |
+| Read | `GET` | `/fhir/R4/Contract/[id]` |
+| Vread | `GET` | `/fhir/R4/Contract/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Contract/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Contract/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Contract/[id]` |
+| Create | `POST` | `/fhir/R4/Contract` |
+| Search | `GET` | `/fhir/R4/Contract` |
+| History | `GET` | `/fhir/R4/Contract/[id]/_history` |
 
 ## Top-level elements
 
@@ -34,7 +33,7 @@ Legally enforceable, formally recorded unilateral or bilateral directive i.e., a
 | `identifier` | `Identifier` | `0..*` | Contract number |
 | `url` | `uri` | `0..1` | Basal definition |
 | `version` | `string` | `0..1` | Business edition |
-| `status` | `code` | `0..1` | amended | appended | cancelled | disputed | entered-in-error | executable + _modifier_ |
+| `status` | `code` | `0..1` | amended \| appended \| cancelled \| disputed \| entered-in-error \| executable \| executed \| negotiable \| offered \| policy \| rejected \| renewed \| revoked \| resolved \| terminated _modifier_ |
 | `legalState` | `CodeableConcept` | `0..1` | Negotiation status |
 | `instantiatesCanonical` | `Reference` | `0..1` | Source Contract Definition |
 | `instantiatesUri` | `uri` | `0..1` | External Contract Definition |
@@ -69,18 +68,30 @@ Legally enforceable, formally recorded unilateral or bilateral directive i.e., a
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `authority` | `reference` | The authority of the contract |
-| `domain` | `reference` | The domain of the contract |
-| `identifier` | `token` | Account number |
-| `instantiates` | `uri` | A source definition of the contract |
-| `issued` | `date` | The date/time the contract was issued |
-| `patient` | `reference` | The entity that caused the expenses |
-| `signer` | `reference` | Contract Signatory Party |
-| `status` | `token` | The status of the contract |
-| `subject` | `reference` | The identity of the subject of the contract |
-| `url` | `uri` | The basal contract definition |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `authority` | `string` | http://hl7.org/fhir/SearchParameter/Contract-authority |
+| `domain` | `string` | http://hl7.org/fhir/SearchParameter/Contract-domain |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Contract-identifier |
+| `instantiates` | `string` | http://hl7.org/fhir/SearchParameter/Contract-instantiates |
+| `issued` | `string` | http://hl7.org/fhir/SearchParameter/Contract-issued |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Contract-patient |
+| `signer` | `string` | http://hl7.org/fhir/SearchParameter/Contract-signer |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Contract-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/Contract-subject |
+| `url` | `string` | http://hl7.org/fhir/SearchParameter/Contract-url |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Contract`](https://hl7.org/fhir/R5/contract.html)
+- Official FHIR R4 spec: [`Contract`](https://hl7.org/fhir/R4/contract.html)
 - Maturity: **Trial Use 1** (FMM 1).

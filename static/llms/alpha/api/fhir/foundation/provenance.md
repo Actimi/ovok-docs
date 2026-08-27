@@ -6,7 +6,7 @@ description: "Provenance of a resource is a record that describes entities and p
 
 # Provenance
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
 <span className="fhir-category">Foundation</span>
 
 Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust policies.
@@ -17,15 +17,14 @@ Provenance of a resource is a record that describes entities and processes invol
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Provenance/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Provenance/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Provenance/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Provenance/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Provenance/[id]` |
-| Create       | `POST`   | `/fhir/R5/Provenance` |
-| Search       | `GET`    | `/fhir/R5/Provenance?...` |
-| History      | `GET`    | `/fhir/R5/Provenance/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Provenance/_history` |
+| Read | `GET` | `/fhir/R4/Provenance/[id]` |
+| Vread | `GET` | `/fhir/R4/Provenance/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Provenance/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Provenance/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Provenance/[id]` |
+| Create | `POST` | `/fhir/R4/Provenance` |
+| Search | `GET` | `/fhir/R4/Provenance` |
+| History | `GET` | `/fhir/R4/Provenance/[id]/_history` |
 
 ## Top-level elements
 
@@ -33,14 +32,11 @@ Provenance of a resource is a record that describes entities and processes invol
 | --- | --- | --- | --- |
 | `target` | `Reference` | `1..*` | Target Reference(s) (usually version specific) |
 | `occurred[x]` | `Period` / `dateTime` | `0..1` | When the activity occurred |
-| `recorded` | `instant` | `0..1` | When the activity was recorded / updated |
+| `recorded` | `instant` | `1..1` | When the activity was recorded / updated |
 | `policy` | `uri` | `0..*` | Policy or plan the activity was defined by |
 | `location` | `Reference` | `0..1` | Where the activity occurred, if relevant |
-| `authorization` | `CodeableReference` | `0..*` | Authorization (purposeOfUse) related to the event |
+| `reason` | `CodeableConcept` | `0..*` | Reason the activity is occurring |
 | `activity` | `CodeableConcept` | `0..1` | Activity that occurred |
-| `basedOn` | `Reference` | `0..*` | Workflow authorization within which this event occurred |
-| `patient` | `Reference` | `0..1` | The patient is the subject of the data created/updated (.target) by the activity |
-| `encounter` | `Reference` | `0..1` | Encounter within which this event occurred or which the event is tightly associated |
 | `agent` | `BackboneElement` | `1..*` | Actor involved |
 | `entity` | `BackboneElement` | `0..*` | An entity used in this activity |
 | `signature` | `Signature` | `0..*` | Signature on target |
@@ -49,21 +45,30 @@ Provenance of a resource is a record that describes entities and processes invol
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `activity` | `token` | Activity that occurred |
-| `agent` | `reference` | Who participated |
-| `agent-role` | `token` | What the agents role was |
-| `agent-type` | `token` | How the agent participated |
-| `based-on` | `reference` | Reference to the service request. |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `entity` | `reference` | Identity of entity |
-| `location` | `reference` | Where the activity occurred, if relevant |
-| `patient` | `reference` | The entity that caused the expenses |
-| `recorded` | `date` | When the activity was recorded / updated |
-| `signature-type` | `token` | Indication of the reason the entity signed the object(s) |
-| `target` | `reference` | Target Reference(s) (usually version specific) |
-| `when` | `date` | When the activity occurred |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `agent` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-agent |
+| `agent-role` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-agent-role |
+| `agent-type` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-agent-type |
+| `entity` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-entity |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-location |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-patient |
+| `recorded` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-recorded |
+| `signature-type` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-signature-type |
+| `target` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-target |
+| `when` | `string` | http://hl7.org/fhir/SearchParameter/Provenance-when |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Provenance`](https://hl7.org/fhir/R5/provenance.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`Provenance`](https://hl7.org/fhir/R4/provenance.html)
+- Maturity: **Trial Use 3** (FMM 3).

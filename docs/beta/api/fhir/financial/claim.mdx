@@ -17,50 +17,44 @@ A provider issued list of professional services and products which have been pro
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Claim/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Claim/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Claim/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Claim/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Claim/[id]` |
-| Create       | `POST`   | `/fhir/R5/Claim` |
-| Search       | `GET`    | `/fhir/R5/Claim?...` |
-| History      | `GET`    | `/fhir/R5/Claim/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Claim/_history` |
+| Read | `GET` | `/fhir/R4/Claim/[id]` |
+| Vread | `GET` | `/fhir/R4/Claim/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Claim/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Claim/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Claim/[id]` |
+| Create | `POST` | `/fhir/R4/Claim` |
+| Search | `GET` | `/fhir/R4/Claim` |
+| History | `GET` | `/fhir/R4/Claim/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | Business Identifier for claim |
-| `traceNumber` | `Identifier` | `0..*` | Number for tracking |
-| `status` | `code` | `1..1` | active | cancelled | draft | entered-in-error _modifier_ |
+| `status` | `code` | `1..1` | active \| cancelled \| draft \| entered-in-error _modifier_ |
 | `type` | `CodeableConcept` | `1..1` | Category or discipline |
 | `subType` | `CodeableConcept` | `0..1` | More granular claim type |
-| `use` | `code` | `1..1` | claim | preauthorization | predetermination |
+| `use` | `code` | `1..1` | claim \| preauthorization \| predetermination |
 | `patient` | `Reference` | `1..1` | The recipient of the products and services |
 | `billablePeriod` | `Period` | `0..1` | Relevant time frame for the claim |
 | `created` | `dateTime` | `1..1` | Resource creation date |
 | `enterer` | `Reference` | `0..1` | Author of the claim |
 | `insurer` | `Reference` | `0..1` | Target |
-| `provider` | `Reference` | `0..1` | Party responsible for the claim |
-| `priority` | `CodeableConcept` | `0..1` | Desired processing urgency |
+| `provider` | `Reference` | `1..1` | Party responsible for the claim |
+| `priority` | `CodeableConcept` | `1..1` | Desired processing ugency |
 | `fundsReserve` | `CodeableConcept` | `0..1` | For whom to reserve funds |
 | `related` | `BackboneElement` | `0..*` | Prior or corollary claims |
 | `prescription` | `Reference` | `0..1` | Prescription authorizing services and products |
 | `originalPrescription` | `Reference` | `0..1` | Original prescription if superseded by fulfiller |
 | `payee` | `BackboneElement` | `0..1` | Recipient of benefits payable |
 | `referral` | `Reference` | `0..1` | Treatment referral |
-| `encounter` | `Reference` | `0..*` | Encounters associated with the listed treatments |
 | `facility` | `Reference` | `0..1` | Servicing facility |
-| `diagnosisRelatedGroup` | `CodeableConcept` | `0..1` | Package billing code |
-| `event` | `BackboneElement` | `0..*` | Event information |
 | `careTeam` | `BackboneElement` | `0..*` | Members of the care team |
 | `supportingInfo` | `BackboneElement` | `0..*` | Supporting information |
 | `diagnosis` | `BackboneElement` | `0..*` | Pertinent diagnosis information |
 | `procedure` | `BackboneElement` | `0..*` | Clinical procedures performed |
-| `insurance` | `BackboneElement` | `0..*` | Patient insurance information |
+| `insurance` | `BackboneElement` | `1..*` | Patient insurance information |
 | `accident` | `BackboneElement` | `0..1` | Details of the event |
-| `patientPaid` | `Money` | `0..1` | Paid by the patient |
 | `item` | `BackboneElement` | `0..*` | Product or service provided |
 | `total` | `Money` | `0..1` | Total claim cost |
 
@@ -68,25 +62,37 @@ A provider issued list of professional services and products which have been pro
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `care-team` | `reference` | Member of the CareTeam |
-| `created` | `date` | The creation date for the Claim |
-| `detail-udi` | `reference` | UDI associated with a line item, detail product or service |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `enterer` | `reference` | The party responsible for the entry of the Claim |
-| `facility` | `reference` | Facility where the products or services have been or will be provided |
-| `identifier` | `token` | Account number |
-| `insurer` | `reference` | The target payor/insurer for the Claim |
-| `item-udi` | `reference` | UDI associated with a line item product or service |
-| `patient` | `reference` | The entity that caused the expenses |
-| `payee` | `reference` | The party receiving any payment for the Claim |
-| `priority` | `token` | Processing priority requested |
-| `procedure-udi` | `reference` | UDI associated with a procedure |
-| `provider` | `reference` | Provider responsible for the Claim |
-| `status` | `token` | The status of the Claim instance. |
-| `subdetail-udi` | `reference` | UDI associated with a line item, detail, subdetail product or service |
-| `use` | `token` | The kind of financial resource |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `care-team` | `string` | http://hl7.org/fhir/SearchParameter/Claim-care-team |
+| `created` | `string` | http://hl7.org/fhir/SearchParameter/Claim-created |
+| `detail-udi` | `string` | http://hl7.org/fhir/SearchParameter/Claim-detail-udi |
+| `encounter` | `string` | http://hl7.org/fhir/SearchParameter/Claim-encounter |
+| `enterer` | `string` | http://hl7.org/fhir/SearchParameter/Claim-enterer |
+| `facility` | `string` | http://hl7.org/fhir/SearchParameter/Claim-facility |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/Claim-identifier |
+| `insurer` | `string` | http://hl7.org/fhir/SearchParameter/Claim-insurer |
+| `item-udi` | `string` | http://hl7.org/fhir/SearchParameter/Claim-item-udi |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/Claim-patient |
+| `payee` | `string` | http://hl7.org/fhir/SearchParameter/Claim-payee |
+| `priority` | `string` | http://hl7.org/fhir/SearchParameter/Claim-priority |
+| `procedure-udi` | `string` | http://hl7.org/fhir/SearchParameter/Claim-procedure-udi |
+| `provider` | `string` | http://hl7.org/fhir/SearchParameter/Claim-provider |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/Claim-status |
+| `subdetail-udi` | `string` | http://hl7.org/fhir/SearchParameter/Claim-subdetail-udi |
+| `use` | `string` | http://hl7.org/fhir/SearchParameter/Claim-use |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Claim`](https://hl7.org/fhir/R5/claim.html)
+- Official FHIR R4 spec: [`Claim`](https://hl7.org/fhir/R4/claim.html)
 - Maturity: **Trial Use 2** (FMM 2).

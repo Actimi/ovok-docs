@@ -6,7 +6,7 @@ description: "A record of a request for service such as diagnostic investigation
 
 # ServiceRequest
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="2">Trial Use 2</span>
 <span className="fhir-category">Clinical — Care Provision</span>
 
 A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
@@ -17,15 +17,14 @@ A record of a request for service such as diagnostic investigations, treatments,
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/ServiceRequest/[id]` |
-| Vread        | `GET`    | `/fhir/R5/ServiceRequest/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/ServiceRequest/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/ServiceRequest/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/ServiceRequest/[id]` |
-| Create       | `POST`   | `/fhir/R5/ServiceRequest` |
-| Search       | `GET`    | `/fhir/R5/ServiceRequest?...` |
-| History      | `GET`    | `/fhir/R5/ServiceRequest/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/ServiceRequest/_history` |
+| Read | `GET` | `/fhir/R4/ServiceRequest/[id]` |
+| Vread | `GET` | `/fhir/R4/ServiceRequest/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/ServiceRequest/[id]` |
+| Patch | `PATCH` | `/fhir/R4/ServiceRequest/[id]` |
+| Delete | `DELETE` | `/fhir/R4/ServiceRequest/[id]` |
+| Create | `POST` | `/fhir/R4/ServiceRequest` |
+| Search | `GET` | `/fhir/R4/ServiceRequest` |
+| History | `GET` | `/fhir/R4/ServiceRequest/[id]/_history` |
 
 ## Top-level elements
 
@@ -37,16 +36,15 @@ A record of a request for service such as diagnostic investigations, treatments,
 | `basedOn` | `Reference` | `0..*` | What request fulfills |
 | `replaces` | `Reference` | `0..*` | What request replaces |
 | `requisition` | `Identifier` | `0..1` | Composite Request ID |
-| `status` | `code` | `1..1` | draft | active | on-hold | revoked | completed | entered-in-error | unknown _modifier_ |
-| `intent` | `code` | `1..1` | proposal | plan | directive | order + _modifier_ |
+| `status` | `code` | `1..1` | draft \| active \| on-hold \| revoked \| completed \| entered-in-error \| unknown _modifier_ |
+| `intent` | `code` | `1..1` | proposal \| plan \| directive \| order \| original-order \| reflex-order \| filler-order \| instance-order \| option _modifier_ |
 | `category` | `CodeableConcept` | `0..*` | Classification of service |
-| `priority` | `code` | `0..1` | routine | urgent | asap | stat |
+| `priority` | `code` | `0..1` | routine \| urgent \| asap \| stat |
 | `doNotPerform` | `boolean` | `0..1` | True if service/procedure should not be performed _modifier_ |
-| `code` | `CodeableReference` | `0..1` | What is being requested/ordered |
-| `orderDetail` | `BackboneElement` | `0..*` | Additional order information |
+| `code` | `CodeableConcept` | `0..1` | What is being requested/ordered |
+| `orderDetail` | `CodeableConcept` | `0..*` | Additional order information |
 | `quantity[x]` | `Quantity` / `Ratio` / `Range` | `0..1` | Service amount |
 | `subject` | `Reference` | `1..1` | Individual or Entity the service is ordered for |
-| `focus` | `Reference` | `0..*` | What the service request is about, when it is not about the subject of record |
 | `encounter` | `Reference` | `0..1` | Encounter in which the request was created |
 | `occurrence[x]` | `dateTime` / `Period` / `Timing` | `0..1` | When service should occur |
 | `asNeeded[x]` | `boolean` / `CodeableConcept` | `0..1` | Preconditions for service |
@@ -54,46 +52,60 @@ A record of a request for service such as diagnostic investigations, treatments,
 | `requester` | `Reference` | `0..1` | Who/what is requesting service |
 | `performerType` | `CodeableConcept` | `0..1` | Performer role |
 | `performer` | `Reference` | `0..*` | Requested performer |
-| `location` | `CodeableReference` | `0..*` | Requested location |
-| `reason` | `CodeableReference` | `0..*` | Explanation/Justification for procedure or service |
+| `locationCode` | `CodeableConcept` | `0..*` | Requested location |
+| `locationReference` | `Reference` | `0..*` | Requested location |
+| `reasonCode` | `CodeableConcept` | `0..*` | Explanation/Justification for procedure or service |
+| `reasonReference` | `Reference` | `0..*` | Explanation/Justification for service or service |
 | `insurance` | `Reference` | `0..*` | Associated insurance coverage |
-| `supportingInfo` | `CodeableReference` | `0..*` | Additional clinical information |
+| `supportingInfo` | `Reference` | `0..*` | Additional clinical information |
 | `specimen` | `Reference` | `0..*` | Procedure Samples |
-| `bodySite` | `CodeableConcept` | `0..*` | Coded location on Body |
-| `bodyStructure` | `Reference` | `0..1` | BodyStructure-based location on the body |
+| `bodySite` | `CodeableConcept` | `0..*` | Location on Body |
 | `note` | `Annotation` | `0..*` | Comments |
-| `patientInstruction` | `BackboneElement` | `0..*` | Patient or consumer-oriented instructions |
+| `patientInstruction` | `string` | `0..1` | Patient or consumer-oriented instructions |
 | `relevantHistory` | `Reference` | `0..*` | Request provenance |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `authored` | `date` | Date request signed |
-| `based-on` | `reference` | What request fulfills |
-| `body-site` | `token` | Where procedure is going to be done |
-| `body-structure` | `reference` | Body structure Where procedure is going to be done |
-| `category` | `token` | Classification of service |
-| `code-concept` | `token` | What is being requested/ordered |
-| `code-reference` | `reference` | What is being requested/ordered |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `identifier` | `token` | Account number |
-| `instantiates-canonical` | `reference` | Instantiates FHIR protocol or definition |
-| `instantiates-uri` | `uri` | Instantiates external protocol or definition |
-| `intent` | `token` | proposal | plan | directive | order + |
-| `occurrence` | `date` | When service should occur |
-| `patient` | `reference` | The entity that caused the expenses |
-| `performer` | `reference` | Requested performer |
-| `performer-type` | `token` | Performer role |
-| `priority` | `token` | routine | urgent | asap | stat |
-| `replaces` | `reference` | What request replaces |
-| `requester` | `reference` | Who/what is requesting service |
-| `requisition` | `token` | Composite Request ID |
-| `specimen` | `reference` | Specimen to be tested |
-| `status` | `token` | draft | active | on-hold | revoked | completed | entered-in-error | unknown |
-| `subject` | `reference` | Search by subject |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `authored` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-authored |
+| `based-on` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-based-on |
+| `body-site` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-body-site |
+| `category` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-category |
+| `code` | `string` | http://hl7.org/fhir/SearchParameter/clinical-code |
+| `encounter` | `string` | http://hl7.org/fhir/SearchParameter/clinical-encounter |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/clinical-identifier |
+| `instantiates-canonical` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-instantiates-canonical |
+| `instantiates-uri` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-instantiates-uri |
+| `intent` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-intent |
+| `occurrence` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-occurrence |
+| `order-detail` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-order-detail |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/clinical-patient |
+| `performer` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-performer |
+| `performer-type` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-performer-type |
+| `priority` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-priority |
+| `priority-order` | `string` | https://medplum.com/fhir/SearchParameter/priority-order |
+| `reason-code` | `string` | https://medplum.com/fhir/SearchParameter/ServiceRequest-reason-code |
+| `replaces` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-replaces |
+| `requester` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-requester |
+| `requisition` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-requisition |
+| `specimen` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-specimen |
+| `status` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-status |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/ServiceRequest-subject |
 
 ## Reference
 
-- Official FHIR R5 spec: [`ServiceRequest`](https://hl7.org/fhir/R5/servicerequest.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`ServiceRequest`](https://hl7.org/fhir/R4/servicerequest.html)
+- Maturity: **Trial Use 2** (FMM 2).

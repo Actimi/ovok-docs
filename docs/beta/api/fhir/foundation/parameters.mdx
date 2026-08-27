@@ -1,7 +1,7 @@
 ---
 title: Parameters
 sidebar_label: Parameters
-description: "This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not per"
+description: "This resource is a non-persisted resource used to pass information into and back from an [operation](operations.html). It has no other use, and there is no REST"
 ---
 
 # Parameters
@@ -9,7 +9,7 @@ description: "This resource is used to pass information into and back from an op
 <span className="fhir-maturity" data-level="5">Normative</span>
 <span className="fhir-category">Foundation</span>
 
-This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not persisted or allowed to be referenced by other resources except as described in the definition of the Parameters resource.
+This resource is a non-persisted resource used to pass information into and back from an [operation](https://hl7.org/fhir/R4/operations.html). It has no other use, and there is no RESTful endpoint associated with it.
 
 ## Endpoints
 
@@ -17,15 +17,14 @@ This resource is used to pass information into and back from an operation (wheth
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/Parameters/[id]` |
-| Vread        | `GET`    | `/fhir/R5/Parameters/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/Parameters/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/Parameters/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/Parameters/[id]` |
-| Create       | `POST`   | `/fhir/R5/Parameters` |
-| Search       | `GET`    | `/fhir/R5/Parameters?...` |
-| History      | `GET`    | `/fhir/R5/Parameters/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/Parameters/_history` |
+| Read | `GET` | `/fhir/R4/Parameters/[id]` |
+| Vread | `GET` | `/fhir/R4/Parameters/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/Parameters/[id]` |
+| Patch | `PATCH` | `/fhir/R4/Parameters/[id]` |
+| Delete | `DELETE` | `/fhir/R4/Parameters/[id]` |
+| Create | `POST` | `/fhir/R4/Parameters` |
+| Search | `GET` | `/fhir/R4/Parameters` |
+| History | `GET` | `/fhir/R4/Parameters/[id]/_history` |
 
 ## Top-level elements
 
@@ -35,9 +34,22 @@ This resource is used to pass information into and back from an operation (wheth
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`Parameters`](https://hl7.org/fhir/R5/parameters.html)
+- Official FHIR R4 spec: [`Parameters`](https://hl7.org/fhir/R4/parameters.html)
 - Maturity: **Normative** (FMM 5).

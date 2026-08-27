@@ -129,7 +129,7 @@ function safeReadLS<T>(key: string, fallback: T): T {
   } catch { return fallback; }
 }
 
-function PlaygroundImpl(): JSX.Element {
+function PlaygroundImpl(): React.JSX.Element {
   const { config, env, setEnv } = useEnv();
 
   const [surface, setSurface] = useState<Surface>('api');
@@ -614,7 +614,7 @@ function PlaygroundImpl(): JSX.Element {
   );
 }
 
-export default function Playground(): JSX.Element {
+export default function Playground(): React.JSX.Element {
   return (
     <Layout
       title="API Playground"

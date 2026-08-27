@@ -1,15 +1,15 @@
 ---
 title: AuditEvent
 sidebar_label: AuditEvent
-description: "A record of an event relevant for purposes such as operations, privacy, security, maintenance, and performance analysis."
+description: "A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usag"
 ---
 
 # AuditEvent
 
-<span className="fhir-maturity" data-level="4">Trial Use 4</span>
+<span className="fhir-maturity" data-level="3">Trial Use 3</span>
 <span className="fhir-category">Foundation</span>
 
-A record of an event relevant for purposes such as operations, privacy, security, maintenance, and performance analysis.
+A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
 
 ## Endpoints
 
@@ -17,31 +17,27 @@ A record of an event relevant for purposes such as operations, privacy, security
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/AuditEvent/[id]` |
-| Vread        | `GET`    | `/fhir/R5/AuditEvent/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/AuditEvent/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/AuditEvent/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/AuditEvent/[id]` |
-| Create       | `POST`   | `/fhir/R5/AuditEvent` |
-| Search       | `GET`    | `/fhir/R5/AuditEvent?...` |
-| History      | `GET`    | `/fhir/R5/AuditEvent/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/AuditEvent/_history` |
+| Read | `GET` | `/fhir/R4/AuditEvent/[id]` |
+| Vread | `GET` | `/fhir/R4/AuditEvent/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/AuditEvent/[id]` |
+| Patch | `PATCH` | `/fhir/R4/AuditEvent/[id]` |
+| Delete | `DELETE` | `/fhir/R4/AuditEvent/[id]` |
+| Create | `POST` | `/fhir/R4/AuditEvent` |
+| Search | `GET` | `/fhir/R4/AuditEvent` |
+| History | `GET` | `/fhir/R4/AuditEvent/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `category` | `CodeableConcept` | `0..*` | Type/identifier of event |
-| `code` | `CodeableConcept` | `1..1` | Specific type of event |
+| `type` | `Coding` | `1..1` | Type/identifier of event |
+| `subtype` | `Coding` | `0..*` | More specific type/id for the event |
 | `action` | `code` | `0..1` | Type of action performed during the event |
-| `severity` | `code` | `0..1` | emergency | alert | critical | error | warning | notice | informational | debug |
-| `occurred[x]` | `Period` / `dateTime` | `0..1` | When the activity occurred |
+| `period` | `Period` | `0..1` | When the activity occurred |
 | `recorded` | `instant` | `1..1` | Time when the event was recorded |
-| `outcome` | `BackboneElement` | `0..1` | Whether the event succeeded or failed |
-| `authorization` | `CodeableConcept` | `0..*` | Authorization related to the event |
-| `basedOn` | `Reference` | `0..*` | Workflow authorization within which this event occurred |
-| `patient` | `Reference` | `0..1` | The patient is the subject of the data used/created/updated/deleted during the activity |
-| `encounter` | `Reference` | `0..1` | Encounter within which this event occurred or which the event is tightly associated |
+| `outcome` | `code` | `0..1` | Whether the event succeeded or failed |
+| `outcomeDesc` | `string` | `0..1` | Description of the event outcome |
+| `purposeOfEvent` | `CodeableConcept` | `0..*` | The purposeOfUse of the event |
 | `agent` | `BackboneElement` | `1..*` | Actor involved in the event |
 | `source` | `BackboneElement` | `1..1` | Audit Event Reporter |
 | `entity` | `BackboneElement` | `0..*` | Data or objects used |
@@ -50,23 +46,38 @@ A record of an event relevant for purposes such as operations, privacy, security
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `action` | `token` | Type of action performed during the event |
-| `agent` | `reference` | Identifier of who |
-| `agent-role` | `token` | Agent role in the event |
-| `based-on` | `reference` | Reference to the service request. |
-| `category` | `token` | Category of event |
-| `code` | `token` | Event or incident that occurred or was averted |
-| `date` | `date` | When the event occurred |
-| `encounter` | `reference` | Encounter related to the activity recorded in the AuditEvent |
-| `entity` | `reference` | Specific instance of resource |
-| `entity-role` | `token` | What role the entity played |
-| `outcome` | `token` | Whether the event succeeded or failed |
-| `patient` | `reference` | The entity that caused the expenses |
-| `policy` | `uri` | Policy that authorized event |
-| `purpose` | `token` | The authorization (purposeOfUse) of the event |
-| `source` | `reference` | The identity of source detecting the event |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `action` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-action |
+| `address` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-address |
+| `agent` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-agent |
+| `agent-name` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-agent-name |
+| `agent-role` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-agent-role |
+| `altid` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-altid |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-date |
+| `entity` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-entity |
+| `entity-name` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-entity-name |
+| `entity-role` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-entity-role |
+| `entity-type` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-entity-type |
+| `outcome` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-outcome |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-patient |
+| `policy` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-policy |
+| `site` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-site |
+| `source` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-source |
+| `subtype` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-subtype |
+| `type` | `string` | http://hl7.org/fhir/SearchParameter/AuditEvent-type |
 
 ## Reference
 
-- Official FHIR R5 spec: [`AuditEvent`](https://hl7.org/fhir/R5/auditevent.html)
-- Maturity: **Trial Use 4** (FMM 4).
+- Official FHIR R4 spec: [`AuditEvent`](https://hl7.org/fhir/R4/auditevent.html)
+- Maturity: **Trial Use 3** (FMM 3).

@@ -14,7 +14,7 @@ interface Props {
  * on /alpha/..., and so on — the host map lives in src/lib/env.ts so
  * the API/Console/Dashboard subdomain conventions are single-sourced.
  */
-export default function EnvLink({ surface, label, mobile = false }: Props): JSX.Element {
+export default function EnvLink({ surface, label, mobile = false }: Props): React.JSX.Element {
   const { config } = useEnv();
   const href = config.hosts[surface];
   const className = mobile ? 'menu__link' : 'navbar__item navbar__link';

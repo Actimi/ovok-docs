@@ -17,15 +17,14 @@ A reply to an appointment request for a patient and/or practitioner(s), such as 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/AppointmentResponse/[id]` |
-| Vread        | `GET`    | `/fhir/R5/AppointmentResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/AppointmentResponse/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/AppointmentResponse/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/AppointmentResponse/[id]` |
-| Create       | `POST`   | `/fhir/R5/AppointmentResponse` |
-| Search       | `GET`    | `/fhir/R5/AppointmentResponse?...` |
-| History      | `GET`    | `/fhir/R5/AppointmentResponse/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/AppointmentResponse/_history` |
+| Read | `GET` | `/fhir/R4/AppointmentResponse/[id]` |
+| Vread | `GET` | `/fhir/R4/AppointmentResponse/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/AppointmentResponse/[id]` |
+| Patch | `PATCH` | `/fhir/R4/AppointmentResponse/[id]` |
+| Delete | `DELETE` | `/fhir/R4/AppointmentResponse/[id]` |
+| Create | `POST` | `/fhir/R4/AppointmentResponse` |
+| Search | `GET` | `/fhir/R4/AppointmentResponse` |
+| History | `GET` | `/fhir/R4/AppointmentResponse/[id]/_history` |
 
 ## Top-level elements
 
@@ -33,31 +32,38 @@ A reply to an appointment request for a patient and/or practitioner(s), such as 
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..*` | External Ids for this item |
 | `appointment` | `Reference` | `1..1` | Appointment this response relates to |
-| `proposedNewTime` | `boolean` | `0..1` | Indicator for a counter proposal |
 | `start` | `instant` | `0..1` | Time from appointment, or requested new start time |
 | `end` | `instant` | `0..1` | Time from appointment, or requested new end time |
 | `participantType` | `CodeableConcept` | `0..*` | Role of participant in the appointment |
-| `actor` | `Reference` | `0..1` | Person(s), Location, HealthcareService, or Device |
-| `participantStatus` | `code` | `1..1` | accepted | declined | tentative | needs-action | entered-in-error _modifier_ |
-| `comment` | `markdown` | `0..1` | Additional comments |
-| `recurring` | `boolean` | `0..1` | This response is for all occurrences in a recurring request |
-| `occurrenceDate` | `date` | `0..1` | Original date within a recurring request |
-| `recurrenceId` | `positiveInt` | `0..1` | The recurrence ID of the specific recurring request |
+| `actor` | `Reference` | `0..1` | Person, Location, HealthcareService, or Device |
+| `participantStatus` | `code` | `1..1` | accepted \| declined \| tentative \| needs-action _modifier_ |
+| `comment` | `string` | `0..1` | Additional comments |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `actor` | `reference` | The Person, Location/HealthcareService or Device that this appointment response replies for |
-| `appointment` | `reference` | The appointment that the response is attached to |
-| `group` | `reference` | This Response is for this Group |
-| `identifier` | `token` | Account number |
-| `location` | `reference` | This Response is for this Location |
-| `part-status` | `token` | The participants acceptance status for this appointment |
-| `patient` | `reference` | The entity that caused the expenses |
-| `practitioner` | `reference` | This Response is for this Practitioner |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `actor` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-actor |
+| `appointment` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-appointment |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-identifier |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-location |
+| `part-status` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-part-status |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-patient |
+| `practitioner` | `string` | http://hl7.org/fhir/SearchParameter/AppointmentResponse-practitioner |
 
 ## Reference
 
-- Official FHIR R5 spec: [`AppointmentResponse`](https://hl7.org/fhir/R5/appointmentresponse.html)
+- Official FHIR R4 spec: [`AppointmentResponse`](https://hl7.org/fhir/R4/appointmentresponse.html)
 - Maturity: **Trial Use 3** (FMM 3).

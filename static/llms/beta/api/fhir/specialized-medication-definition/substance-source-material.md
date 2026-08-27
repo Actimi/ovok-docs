@@ -17,15 +17,14 @@ Source material shall capture information on the taxonomic and anatomical origin
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/SubstanceSourceMaterial/[id]` |
-| Vread        | `GET`    | `/fhir/R5/SubstanceSourceMaterial/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/SubstanceSourceMaterial/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/SubstanceSourceMaterial/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/SubstanceSourceMaterial/[id]` |
-| Create       | `POST`   | `/fhir/R5/SubstanceSourceMaterial` |
-| Search       | `GET`    | `/fhir/R5/SubstanceSourceMaterial?...` |
-| History      | `GET`    | `/fhir/R5/SubstanceSourceMaterial/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/SubstanceSourceMaterial/_history` |
+| Read | `GET` | `/fhir/R4/SubstanceSourceMaterial/[id]` |
+| Vread | `GET` | `/fhir/R4/SubstanceSourceMaterial/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/SubstanceSourceMaterial/[id]` |
+| Patch | `PATCH` | `/fhir/R4/SubstanceSourceMaterial/[id]` |
+| Delete | `DELETE` | `/fhir/R4/SubstanceSourceMaterial/[id]` |
+| Create | `POST` | `/fhir/R4/SubstanceSourceMaterial` |
+| Search | `GET` | `/fhir/R4/SubstanceSourceMaterial` |
+| History | `GET` | `/fhir/R4/SubstanceSourceMaterial/[id]/_history` |
 
 ## Top-level elements
 
@@ -47,9 +46,22 @@ Source material shall capture information on the taxonomic and anatomical origin
 
 ## Resource-specific search parameters
 
-_No resource-specific search parameters defined._
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
 
 ## Reference
 
-- Official FHIR R5 spec: [`SubstanceSourceMaterial`](https://hl7.org/fhir/R5/substancesourcematerial.html)
+- Official FHIR R4 spec: [`SubstanceSourceMaterial`](https://hl7.org/fhir/R4/substancesourcematerial.html)
 - Maturity: **Draft** (FMM 0).

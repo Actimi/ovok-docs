@@ -1,15 +1,15 @@
 ---
 title: AdverseEvent
 sidebar_label: AdverseEvent
-description: "An event (i.e. any change to current patient status) that may be related to unintended effects on a patient or research participant. The unintended effects may "
+description: "Actual or  potential/avoided event causing unintended physical injury resulting from or contributed to by medical care, a research study or other healthcare set"
 ---
 
 # AdverseEvent
 
-<span className="fhir-maturity" data-level="2">Trial Use 2</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Public Health & Research</span>
 
-An event (i.e. any change to current patient status) that may be related to unintended effects on a patient or research participant. The unintended effects may require additional monitoring, treatment, hospitalization, or may result in death. The AdverseEvent resource also extends to potential or avoided events that could have had such effects. There are two major domains where the AdverseEvent resource is expected to be used. One is in clinical care reported adverse events and the other is in reporting adverse events in clinical  research trial management.  Adverse events can be reported by healthcare providers, patients, caregivers or by medical products manufacturers.  Given the differences between these two concepts, we recommend consulting the domain specific implementation guides when implementing the AdverseEvent Resource. The implementation guides include specific extensions, value sets and constraints.
+Actual or  potential/avoided event causing unintended physical injury resulting from or contributed to by medical care, a research study or other healthcare setting factors that requires additional monitoring, treatment, or hospitalization, or that results in death.
 
 ## Endpoints
 
@@ -17,65 +17,70 @@ An event (i.e. any change to current patient status) that may be related to unin
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/AdverseEvent/[id]` |
-| Vread        | `GET`    | `/fhir/R5/AdverseEvent/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/AdverseEvent/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/AdverseEvent/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/AdverseEvent/[id]` |
-| Create       | `POST`   | `/fhir/R5/AdverseEvent` |
-| Search       | `GET`    | `/fhir/R5/AdverseEvent?...` |
-| History      | `GET`    | `/fhir/R5/AdverseEvent/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/AdverseEvent/_history` |
+| Read | `GET` | `/fhir/R4/AdverseEvent/[id]` |
+| Vread | `GET` | `/fhir/R4/AdverseEvent/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/AdverseEvent/[id]` |
+| Patch | `PATCH` | `/fhir/R4/AdverseEvent/[id]` |
+| Delete | `DELETE` | `/fhir/R4/AdverseEvent/[id]` |
+| Create | `POST` | `/fhir/R4/AdverseEvent` |
+| Search | `GET` | `/fhir/R4/AdverseEvent` |
+| History | `GET` | `/fhir/R4/AdverseEvent/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
-| `identifier` | `Identifier` | `0..*` | Business identifier for the event |
-| `status` | `code` | `1..1` | in-progress | completed | entered-in-error | unknown _modifier_ |
-| `actuality` | `code` | `1..1` | actual | potential _modifier_ |
-| `category` | `CodeableConcept` | `0..*` | wrong-patient | procedure-mishap | medication-mishap | device | unsafe-physical-environment | hospital-aquired-infection | wrong-body-site |
-| `code` | `CodeableConcept` | `0..1` | Event or incident that occurred or was averted |
+| `identifier` | `Identifier` | `0..1` | Business identifier for the event |
+| `actuality` | `code` | `1..1` | actual \| potential _modifier_ |
+| `category` | `CodeableConcept` | `0..*` | product-problem \| product-quality \| product-use-error \| wrong-dose \| incorrect-prescribing-information \| wrong-technique \| wrong-route-of-administration \| wrong-rate \| wrong-duration \| wrong-time \| expired-drug \| medical-device-use-error \| problem-different-manufacturer \| unsafe-physical-environment |
+| `event` | `CodeableConcept` | `0..1` | Type of the event itself in relation to the subject |
 | `subject` | `Reference` | `1..1` | Subject impacted by event |
-| `encounter` | `Reference` | `0..1` | The Encounter associated with the start of the AdverseEvent |
-| `occurrence[x]` | `dateTime` / `Period` / `Timing` | `0..1` | When the event occurred |
+| `encounter` | `Reference` | `0..1` | Encounter created as part of |
+| `date` | `dateTime` | `0..1` | When the event occurred |
 | `detected` | `dateTime` | `0..1` | When the event was detected |
 | `recordedDate` | `dateTime` | `0..1` | When the event was recorded |
-| `resultingEffect` | `Reference` | `0..*` | Effect on the subject due to this event |
+| `resultingCondition` | `Reference` | `0..*` | Effect on the subject due to this event |
 | `location` | `Reference` | `0..1` | Location where adverse event occurred |
-| `seriousness` | `CodeableConcept` | `0..1` | Seriousness or gravity of the event |
-| `outcome` | `CodeableConcept` | `0..*` | Type of outcome from the adverse event |
+| `seriousness` | `CodeableConcept` | `0..1` | Seriousness of the event |
+| `severity` | `CodeableConcept` | `0..1` | mild \| moderate \| severe |
+| `outcome` | `CodeableConcept` | `0..1` | resolved \| recovering \| ongoing \| resolvedWithSequelae \| fatal \| unknown |
 | `recorder` | `Reference` | `0..1` | Who recorded the adverse event |
-| `participant` | `BackboneElement` | `0..*` | Who was involved in the adverse event or the potential adverse event and what they did |
-| `study` | `Reference` | `0..*` | Research study that the subject is enrolled in |
-| `expectedInResearchStudy` | `boolean` | `0..1` | Considered likely or probable or anticipated in the research study |
+| `contributor` | `Reference` | `0..*` | Who  was involved in the adverse event or the potential adverse event |
 | `suspectEntity` | `BackboneElement` | `0..*` | The suspected agent causing the adverse event |
-| `contributingFactor` | `BackboneElement` | `0..*` | Contributing factors suspected to have increased the probability or severity of the adverse event |
-| `preventiveAction` | `BackboneElement` | `0..*` | Preventive actions that contributed to avoiding the adverse event |
-| `mitigatingAction` | `BackboneElement` | `0..*` | Ameliorating actions taken after the adverse event occured in order to reduce the extent of harm |
-| `supportingInfo` | `BackboneElement` | `0..*` | Supporting information relevant to the event |
-| `note` | `Annotation` | `0..*` | Comment on adverse event |
+| `subjectMedicalHistory` | `Reference` | `0..*` | AdverseEvent.subjectMedicalHistory |
+| `referenceDocument` | `Reference` | `0..*` | AdverseEvent.referenceDocument |
+| `study` | `Reference` | `0..*` | AdverseEvent.study |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `actuality` | `token` | actual | potential |
-| `category` | `token` | wrong-patient | procedure-mishap | medication-mishap | device | unsafe-physical-environment | hospital-aquired-infection | wrong-body-site |
-| `code` | `token` | Event or incident that occurred or was averted |
-| `date` | `date` | When the event occurred |
-| `identifier` | `token` | Account number |
-| `location` | `reference` | Location where adverse event occurred |
-| `patient` | `reference` | The entity that caused the expenses |
-| `recorder` | `reference` | Who recorded the adverse event |
-| `resultingeffect` | `reference` | Effect on the subject due to this event |
-| `seriousness` | `token` | Seriousness or gravity of the event |
-| `status` | `token` | in-progress | completed | entered-in-error | unknown |
-| `study` | `reference` | Research study that the subject is enrolled in |
-| `subject` | `reference` | Subject impacted by event |
-| `substance` | `reference` | Refers to the specific entity that caused the adverse event |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `actuality` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-actuality |
+| `category` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-category |
+| `date` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-date |
+| `event` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-event |
+| `location` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-location |
+| `recorder` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-recorder |
+| `resultingcondition` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-resultingcondition |
+| `seriousness` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-seriousness |
+| `severity` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-severity |
+| `study` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-study |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-subject |
+| `substance` | `string` | http://hl7.org/fhir/SearchParameter/AdverseEvent-substance |
 
 ## Reference
 
-- Official FHIR R5 spec: [`AdverseEvent`](https://hl7.org/fhir/R5/adverseevent.html)
-- Maturity: **Trial Use 2** (FMM 2).
+- Official FHIR R4 spec: [`AdverseEvent`](https://hl7.org/fhir/R4/adverseevent.html)
+- Maturity: **Draft** (FMM 0).

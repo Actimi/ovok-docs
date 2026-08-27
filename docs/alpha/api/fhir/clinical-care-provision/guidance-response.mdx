@@ -17,15 +17,14 @@ A guidance response is the formal response to a guidance request, including any 
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/GuidanceResponse/[id]` |
-| Vread        | `GET`    | `/fhir/R5/GuidanceResponse/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/GuidanceResponse/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/GuidanceResponse/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/GuidanceResponse/[id]` |
-| Create       | `POST`   | `/fhir/R5/GuidanceResponse` |
-| Search       | `GET`    | `/fhir/R5/GuidanceResponse?...` |
-| History      | `GET`    | `/fhir/R5/GuidanceResponse/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/GuidanceResponse/_history` |
+| Read | `GET` | `/fhir/R4/GuidanceResponse/[id]` |
+| Vread | `GET` | `/fhir/R4/GuidanceResponse/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/GuidanceResponse/[id]` |
+| Patch | `PATCH` | `/fhir/R4/GuidanceResponse/[id]` |
+| Delete | `DELETE` | `/fhir/R4/GuidanceResponse/[id]` |
+| Create | `POST` | `/fhir/R4/GuidanceResponse` |
+| Search | `GET` | `/fhir/R4/GuidanceResponse` |
+| History | `GET` | `/fhir/R4/GuidanceResponse/[id]/_history` |
 
 ## Top-level elements
 
@@ -34,29 +33,41 @@ A guidance response is the formal response to a guidance request, including any 
 | `requestIdentifier` | `Identifier` | `0..1` | The identifier of the request associated with this response, if any |
 | `identifier` | `Identifier` | `0..*` | Business identifier |
 | `module[x]` | `uri` / `canonical` / `CodeableConcept` | `1..1` | What guidance was requested |
-| `status` | `code` | `1..1` | success | data-requested | data-required | in-progress | failure | entered-in-error _modifier_ |
+| `status` | `code` | `1..1` | success \| data-requested \| data-required \| in-progress \| failure \| entered-in-error _modifier_ |
 | `subject` | `Reference` | `0..1` | Patient the request was performed for |
 | `encounter` | `Reference` | `0..1` | Encounter during which the response was returned |
 | `occurrenceDateTime` | `dateTime` | `0..1` | When the guidance response was processed |
 | `performer` | `Reference` | `0..1` | Device returning the guidance |
-| `reason` | `CodeableReference` | `0..*` | Why guidance is needed |
+| `reasonCode` | `CodeableConcept` | `0..*` | Why guidance is needed |
+| `reasonReference` | `Reference` | `0..*` | Why guidance is needed |
 | `note` | `Annotation` | `0..*` | Additional notes about the response |
-| `evaluationMessage` | `Reference` | `0..1` | Messages resulting from the evaluation of the artifact or artifacts |
+| `evaluationMessage` | `Reference` | `0..*` | Messages resulting from the evaluation of the artifact or artifacts |
 | `outputParameters` | `Reference` | `0..1` | The output parameters of the evaluation, if any |
-| `result` | `Reference` | `0..*` | Proposed actions, if any |
+| `result` | `Reference` | `0..1` | Proposed actions, if any |
 | `dataRequirement` | `DataRequirement` | `0..*` | Additional required data |
 
 ## Resource-specific search parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `identifier` | `token` | Account number |
-| `patient` | `reference` | The entity that caused the expenses |
-| `request` | `token` | The identifier of the request associated with the response |
-| `status` | `token` | The status of the guidance response |
-| `subject` | `reference` | The subject that the guidance response is about |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/GuidanceResponse-identifier |
+| `patient` | `string` | http://hl7.org/fhir/SearchParameter/GuidanceResponse-patient |
+| `request` | `string` | http://hl7.org/fhir/SearchParameter/GuidanceResponse-request |
+| `subject` | `string` | http://hl7.org/fhir/SearchParameter/GuidanceResponse-subject |
 
 ## Reference
 
-- Official FHIR R5 spec: [`GuidanceResponse`](https://hl7.org/fhir/R5/guidanceresponse.html)
+- Official FHIR R4 spec: [`GuidanceResponse`](https://hl7.org/fhir/R4/guidanceresponse.html)
 - Maturity: **Trial Use 2** (FMM 2).

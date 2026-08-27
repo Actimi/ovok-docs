@@ -6,7 +6,7 @@ description: "A summary of information based on the results of executing a TestS
 
 # TestReport
 
-<span className="fhir-maturity" data-level="1">Trial Use 1</span>
+<span className="fhir-maturity" data-level="0">Draft</span>
 <span className="fhir-category">Specialized — Quality & Testing</span>
 
 A summary of information based on the results of executing a TestScript.
@@ -17,25 +17,24 @@ A summary of information based on the results of executing a TestScript.
 
 | Interaction | Method | Path |
 | --- | --- | --- |
-| Read         | `GET`    | `/fhir/R5/TestReport/[id]` |
-| Vread        | `GET`    | `/fhir/R5/TestReport/[id]/_history/[vid]` |
-| Update       | `PUT`    | `/fhir/R5/TestReport/[id]` |
-| Patch        | `PATCH`  | `/fhir/R5/TestReport/[id]` |
-| Delete       | `DELETE` | `/fhir/R5/TestReport/[id]` |
-| Create       | `POST`   | `/fhir/R5/TestReport` |
-| Search       | `GET`    | `/fhir/R5/TestReport?...` |
-| History      | `GET`    | `/fhir/R5/TestReport/[id]/_history` |
-| Type-history | `GET`    | `/fhir/R5/TestReport/_history` |
+| Read | `GET` | `/fhir/R4/TestReport/[id]` |
+| Vread | `GET` | `/fhir/R4/TestReport/[id]/_history/[vid]` |
+| Update | `PUT` | `/fhir/R4/TestReport/[id]` |
+| Patch | `PATCH` | `/fhir/R4/TestReport/[id]` |
+| Delete | `DELETE` | `/fhir/R4/TestReport/[id]` |
+| Create | `POST` | `/fhir/R4/TestReport` |
+| Search | `GET` | `/fhir/R4/TestReport` |
+| History | `GET` | `/fhir/R4/TestReport/[id]/_history` |
 
 ## Top-level elements
 
 | Element | Type(s) | Cardinality | Description |
 | --- | --- | --- | --- |
 | `identifier` | `Identifier` | `0..1` | External identifier |
-| `name` | `string` | `0..1` | Informal name of the executed TestReport |
-| `status` | `code` | `1..1` | completed | in-progress | waiting | stopped | entered-in-error _modifier_ |
-| `testScript` | `canonical` | `1..1` | Canonical URL to the  version-specific TestScript that was executed to produce this TestReport |
-| `result` | `code` | `1..1` | pass | fail | pending |
+| `name` | `string` | `0..1` | Informal name of the executed TestScript |
+| `status` | `code` | `1..1` | completed \| in-progress \| waiting \| stopped \| entered-in-error _modifier_ |
+| `testScript` | `Reference` | `1..1` | Reference to the  version-specific TestScript that was executed to produce this TestReport |
+| `result` | `code` | `1..1` | pass \| fail \| pending |
 | `score` | `decimal` | `0..1` | The final score (percentage of tests passed) resulting from the execution of the TestScript |
 | `tester` | `string` | `0..1` | Name of the tester producing this report (Organization or individual) |
 | `issued` | `dateTime` | `0..1` | When the TestScript was executed and this TestReport was generated |
@@ -48,15 +47,26 @@ A summary of information based on the results of executing a TestScript.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `identifier` | `token` | An external identifier for the test report |
-| `issued` | `date` | The test report generation date |
-| `participant` | `uri` | The reference to a participant in the test execution |
-| `result` | `token` | The result disposition of the test execution |
-| `status` | `token` | The current status of the test report |
-| `tester` | `string` | The name of the testing organization |
-| `testscript` | `reference` | The test script executed to produce this report |
+| `_compartment` | `string` |  |
+| `_count` | `string` | https://www.hl7.org/fhir/search.html#_count |
+| `_elements` | `string` | https://www.hl7.org/fhir/search.html#_elements |
+| `_id` | `string` |  |
+| `_lastUpdated` | `string` |  |
+| `_profile` | `string` |  |
+| `_security` | `string` |  |
+| `_sort` | `string` | https://www.hl7.org/fhir/search.html#_sort |
+| `_source` | `string` |  |
+| `_summary` | `string` | https://www.hl7.org/fhir/search.html#_summary |
+| `_tag` | `string` |  |
+| `_total` | `string` | https://www.hl7.org/fhir/search.html#_total |
+| `identifier` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-identifier |
+| `issued` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-issued |
+| `participant` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-participant |
+| `result` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-result |
+| `tester` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-tester |
+| `testscript` | `string` | http://hl7.org/fhir/SearchParameter/TestReport-testscript |
 
 ## Reference
 
-- Official FHIR R5 spec: [`TestReport`](https://hl7.org/fhir/R5/testreport.html)
-- Maturity: **Trial Use 1** (FMM 1).
+- Official FHIR R4 spec: [`TestReport`](https://hl7.org/fhir/R4/testreport.html)
+- Maturity: **Draft** (FMM 0).
