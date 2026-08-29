@@ -3,7 +3,7 @@ info:
   title: Ovok Medplum FHIR Proxy (R4)
   description: The Ovok FHIR R4 proxy surface, generated from Medplum's live
     CapabilityStatement.
-  version: 2026.08.16
+  version: 2026.08.29
 servers:
   - url: https://api.dev.ovok.com/fhir/R4
     description: Ovok FHIR proxy
@@ -36813,32 +36813,113 @@ paths:
         - bearer: []
   /Patient:
     post:
-      tags:
-        - Patient
-      summary: Create a Patient
-      operationId: fhirPatientCreate
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/fhir+json:
-            schema:
-              $ref: "#/components/schemas/FhirResource"
+      description: Create a FHIR Patient resource. When withSignals=true, also
+        provisions a corresponding Signals patient.
+      operationId: FhirController_createPatient[1]
+      parameters:
+        - name: withSignals
+          required: false
+          in: query
+          schema:
+            default: false
+            type: boolean
       responses:
-        "201":
-          description: FHIR response
+        "200":
+          description: ""
+        "400":
+          description: The request could not be operated by the server.
           content:
-            application/fhir+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/FhirResource"
-        default:
-          description: FHIR OperationOutcome describing the error
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
           content:
-            application/fhir+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/OperationOutcome"
-      security:
-        - bearer: []
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Create Patient with Signals linking
+      tags:
+        - FHIR Operations
     get:
       tags:
         - Patient
@@ -52489,6 +52570,1296 @@ paths:
                 $ref: "#/components/schemas/OperationOutcome"
       security:
         - bearer: []
+  /Observation/$lastn:
+    get:
+      description: >
+        This endpoint allows users to fetch patient informations, specifically
+        observations.
+
+
+        ## Example cURL request
+
+
+        ```bash
+
+        curl -X GET \
+         -G 'https://api.dev.ovok.com/fhir/Observation/$lastn' \
+         -d 'patient=Patient/e70f3aec-d37e-453d-887b-72654c26b3fe' \
+         -d 'max=2' \
+         -d 'code=131328,8886-4'
+        ```
+
+
+        ## Example JSON response
+
+
+        ```json
+
+        {
+          "resourceType": "Bundle",
+          "type": "searchset",
+          "entry": [
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "subject": {
+                  "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+                  "display": "Max Mustermann"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://loinc.org",
+                      "code": "131328"
+                    }
+                  ]
+                },
+                "status": "amended",
+                "id": "a4508b00-7854-4108-a903-57aa67eaa79e"
+              },
+              "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/a4508b00-7854-4108-a903-57aa67eaa79e"
+            },
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "valueQuantity": {
+                  "unit": "bpm",
+                  "value": 150
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://loinc.org",
+                      "code": "8883-1"
+                    },
+                    {
+                      "system": "http://loinc.org",
+                      "code": "8886-4"
+                    }
+                  ]
+                },
+                "subject": {
+                  "reference": "Patient/7c4d044d-af23-4ef8-948b-c4503e64e528",
+                  "display": "Max Mustermann"
+                },
+                "id": "32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+              },
+              "fullUrl": "https://fhir.ovok.com/fhir/R4/Observation/32fd6e5d-fa2f-4923-97ac-1042ed3f90bb"
+            }
+          ]
+        }
+
+        ```
+      operationId: FhirController_getPatientLastObservation[1]
+      parameters:
+        - name: patient
+          required: false
+          in: query
+          description: Patient reference.
+          schema:
+            type: string
+        - name: max
+          required: false
+          in: query
+          description: Maximum number of observations to return.
+          schema:
+            default: "1"
+            type: string
+        - name: code
+          required: false
+          in: query
+          description: Observation code(s) with comma separated values, e.g.
+            "131328,8886-4".
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientObservationResponseDto"
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Get last observations
+      tags:
+        - FHIR Operations
+  /Device/{id}/telemetry:
+    get:
+      description: >
+        Returns the current effective telemetry for a device as a FHIR searchset
+        Bundle of Observations, derived from the device's state machine
+        snapshot. One Observation per metric is included: presence, heart rate
+        (when a fresh value is cached), respiratory rate (when a fresh value is
+        cached), and sleep status. Each Observation uses its own
+        `effectiveInstant` so clients can reason about staleness per metric.
+
+
+        ## Example cURL request
+
+
+        ```bash
+
+        curl -X GET \
+         'https://api.dev.ovok.com/fhir/R4/Device/87ea5dfc-8b8e-384d-8489-79496e706390/telemetry' \
+         -H 'Authorization: Bearer <token>'
+        ```
+
+
+        ## Example JSON response
+
+
+        ```json
+
+        {
+          "resourceType": "Bundle",
+          "type": "searchset",
+          "total": 4,
+          "entry": [
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "id": "presence",
+                "status": "final",
+                "code": {
+                  "coding": [
+                    {
+                      "system": "https://sleepiz.com/fhir/CodeSystem/observation-codes",
+                      "code": "presence-detection",
+                      "display": "Presence detection"
+                    }
+                  ]
+                },
+                "subject": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "device": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "effectiveInstant": "2026-04-22T10:00:00.000Z",
+                "valueBoolean": true
+              }
+            },
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "id": "heartRate",
+                "status": "final",
+                "code": {
+                  "coding": [{ "system": "http://loinc.org", "code": "8867-4", "display": "Heart rate" }]
+                },
+                "subject": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "device": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "effectiveInstant": "2026-04-22T10:00:00.000Z",
+                "valueQuantity": { "value": 72, "unit": "beats/min", "system": "http://unitsofmeasure.org", "code": "/min" }
+              }
+            },
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "id": "respiratoryRate",
+                "status": "final",
+                "code": {
+                  "coding": [{ "system": "http://loinc.org", "code": "9279-1", "display": "Respiratory rate" }]
+                },
+                "subject": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "device": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "effectiveInstant": "2026-04-22T10:00:00.000Z",
+                "valueQuantity": { "value": 14, "unit": "breaths/min", "system": "http://unitsofmeasure.org", "code": "/min" }
+              }
+            },
+            {
+              "resource": {
+                "resourceType": "Observation",
+                "id": "sleep",
+                "status": "final",
+                "code": {
+                  "coding": [{ "system": "http://loinc.org", "code": "107145-5", "display": "Sleep status" }]
+                },
+                "subject": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "device": { "reference": "Device/87ea5dfc-8b8e-384d-8489-79496e706390" },
+                "effectiveInstant": "2026-04-22T10:00:00.000Z",
+                "valueCodeableConcept": { "text": "asleep" }
+              }
+            }
+          ]
+        }
+
+        ```
+      operationId: FhirController_getDeviceTelemetry[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceTelemetryResponseDto"
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Get device telemetry
+      tags:
+        - FHIR Operations
+  /Device/{id}/telemetry/history:
+    get:
+      description: Query observation history for a device from Signals. Defaults to
+        the last 72 hours.
+      operationId: FhirController_getDeviceTelemetryHistory[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: from
+          required: false
+          in: query
+          schema:
+            format: date-time
+            type: string
+        - name: to
+          required: false
+          in: query
+          schema:
+            format: date-time
+            type: string
+        - name: code
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: pageSize
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 100
+            default: 50
+            type: integer
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Get device telemetry history
+      tags:
+        - FHIR Operations
+  /Patient/{id}/threshold:
+    put:
+      description: Save a patient-level threshold CarePlan. When updateOnSignals=true,
+        also pushes the configuration to Signals.
+      operationId: FhirController_updatePatientThreshold[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: updateOnSignals
+          required: false
+          in: query
+          schema:
+            default: false
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatientThresholdBodyDto"
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Update patient threshold
+      tags:
+        - FHIR Operations
+  /Questionnaire/{id}/$populate:
+    post:
+      description: |
+        This endpoint builds a FHIR QuestionnaireResponse based on provided questionnaire, patient and context.
+
+        Here is an example questionnaire and its usage to generate a questionnaire response.
+
+        The questionnaire has some variables fetched at runtime:
+
+        - `ObsBodyHeight` which is the result of the following query: `Observation?code=8302-2&_count=1&_sort=-date&patient=Patient/{{%patient.id}}`.
+        - `patient` which is the patient reference that is fetched at runtime with `launchContext`.
+
+        The other variables can be sent from the client side in the request body if desired. See the example request body for more information.
+
+        `patient-height` and `patient-weight` are the linkIds of the questionnaire items that will be populated with the fetched values and they will be used in the generated questionnaire response.
+
+        ### Example questionnaire
+
+        ```json
+        {
+          "resourceType": "Questionnaire",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ObsBodyHeight",
+                "language": "application/x-fhir-query",
+                "expression": "Observation?code=8302-2&_count=1&_sort=-date&patient=Patient/patientId
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
+              "extension": [
+                {
+                  "url": "name",
+                  "valueCoding": {
+                    "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
+                    "code": "patient"
+                  }
+                },
+                {
+                  "url": "type",
+                  "valueCode": "Patient"
+                },
+                {
+                  "url": "description",
+                  "valueString": "The patient that is to be used to pre-populate the form"
+                }
+              ]
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+              "valueCanonical": "https://smartforms.csiro.au/docs/StructureMap/extract-bmi"
+            }
+          ],
+          "url": "https://fhir.ovok.com/fhir/R4/Questionnaire/example-questionnaire-id",
+          "version": "0.1.0",
+          "name": "CalculatedExpressionBMICalculatorPrepop",
+          "title": "CalculatedExpression BMI Calculator - Pre-population",
+          "status": "draft",
+          "date": "2024-12-18",
+          "publisher": "AEHRC CSIRO",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/variable",
+                  "valueExpression": {
+                    "name": "height",
+                    "language": "text/fhirpath",
+                    // NOTE: Here it's accessing the global variables
+                    // NOTE: Instead you can also use the fetched Observation resource with %ObsBodyHeight.entry.resource.valueQuantity.value, and you don't need to use it in the request body anymore, however this would mean that the result is coming from the server and not from the client (Patient).
+                    "expression": "%response.item.where(linkId='bmi-calculation').item.where(linkId='patient-height').answer.valueDecimal"
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/variable",
+                  "valueExpression": {
+                    "name": "weight",
+                    "language": "text/fhirpath",
+                    // NOTE: Here it's accessing the locally available context
+                    "expression": "item.where(linkId='patient-weight').answer.valueDecimal"
+                  }
+                }
+              ],
+              "linkId": "bmi-calculation",
+              "text": "BMI Calculation",
+              "type": "group",
+              "repeats": false,
+              "item": [
+                {
+                  "linkId": "patient-height",
+                  "text": "Height",
+                  "type": "decimal",
+                  "repeats": false,
+                  "readOnly": false
+                },
+                {
+                  "linkId": "patient-weight",
+                  "text": "Weight",
+                  "type": "decimal",
+                  "repeats": false,
+                  "readOnly": false
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+                      "valueExpression": {
+                        "description": "BMI calculation",
+                        "language": "text/fhirpath",
+                        "expression": "(%weight/((%height/100).power(2))).round(1)"
+                      }
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+                      "valueCoding": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "kg/m2",
+                        "display": "kg/m2"
+                      }
+                    },
+                    {
+                      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationExtract",
+                      "valueBoolean": true
+                    }
+                  ],
+                  "linkId": "bmi-result",
+                  "code": [
+                    {
+                      "system": "http://snomed.info/sct",
+                      "code": "60621009",
+                      "display": "Body mass index"
+                    }
+                  ],
+                  "text": "Value",
+                  "type": "decimal",
+                  "repeats": false,
+                  "readOnly": true
+                }
+              ]
+            }
+          ],
+          "id": "example-questionnaire-id"
+        }
+        ```
+
+        ### Example request body
+
+        ```json
+        {
+          "resourceType": "Parameters",
+          "parameter": [
+            {
+              "name": "context",
+              "part": [
+                {
+                  "name": "name",
+                  "valueString": "myCustomVariableName"
+                },
+                {
+                  "name": "content",
+                  "resource": {
+                    // NOTE: This can be accessed within the questionnaire response with %context.myCustomVariableName.myCustomDataKey
+                    "myCustomDataKey": "myCustomDataValue"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "response",
+              "resource": {
+                "resourceType": "QuestionnaireResponse",
+                "status": "in-progress",
+                "item": [
+                  {
+                    "linkId": "bmi-calculation",
+                    "text": "BMI Calculation",
+                    "item": [
+                      {
+                        "linkId": "patient-height",
+                        "text": "Height",
+                        "answer": [
+                          {
+                            // NOTE: You can also use the value of this item in the questionnaire response with %response.item.where(linkId='patient-height').answer.valueDecimal
+                            // OR directly use without the global context with item.where(linkId='patient-height').answer.valueDecimal
+                            "valueDecimal": 175
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "patient-weight",
+                        "text": "Weight",
+                        "answer": [
+                          {
+                            "valueDecimal": 100
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+        ```
+
+        ### Example cURL request
+
+        ```bash
+        curl -X POST \
+         --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA' \
+         -H 'Content-Type: application/json' \
+         -d @populate-body.json # @populate-body.json is the request body from the previous example
+        ```
+
+        ### Example response, which is either a QuestionnaireResponse or an OperationOutcome (error)
+
+        ```json
+        {
+          "resourceType": "QuestionnaireResponse",
+          "status": "in-progress",
+          "item": [
+            {
+              "linkId": "bmi-calculation",
+              "text": "BMI Calculation",
+              "item": [
+                {
+                  "linkId": "patient-height",
+                  "text": "Height",
+                  "answer": [
+                    {
+                      "valueDecimal": 175
+                    }
+                  ]
+                },
+                {
+                  "linkId": "patient-weight",
+                  "text": "Weight",
+                  "answer": [
+                    {
+                      "valueDecimal": 100
+                    }
+                  ]
+                },
+                {
+                  "linkId": "bmi-result",
+                  "answer": [
+                    {
+                      "valueDecimal": 32.7
+                    }
+                  ],
+                  "text": "Value"
+                }
+              ]
+            }
+          ]
+        }
+        ```
+
+        Now you can use the response (QuestionnaireResponse) and POST it if you want to save it to the server.
+      operationId: FhirController_populateQuestionnaire[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PopulateBodyRequestDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PopulateBodyResponseDto"
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Populate questionnaire
+      tags:
+        - FHIR Operations
+  /QuestionnaireResponse/{id}/$extract:
+    post:
+      description: >
+        This endpoint builds Observations based on the provided
+        QuestionnaireResponse.
+
+
+        Please use the `Questionnaire/<id>/$populate` endpoint to get the
+        QuestionnaireResponse first, save it and then use the id of the saved
+        QuestionnaireResponse in this endpoint.
+
+
+        ### Example questionnaire response resource in the database
+
+
+        ```json
+
+        {
+          "resourceType": "QuestionnaireResponse",
+          "status": "in-progress",
+          "questionnaire": "https://fhir.ovok.com/fhir/R4/Questionnaire/59d9a1ce-008c-4e4f-97fb-ef598d3f2c34|0.1.0",
+          "item": [
+            {
+              "linkId": "bmi-calculation",
+              "text": "BMI Calculation",
+              "item": [
+                {
+                  "linkId": "bmi-result",
+                  "answer": [
+                    {
+                      "valueDecimal": 32.7
+                    }
+                  ],
+                  "text": "Value"
+                },
+                {
+                  "linkId": "patient-height",
+                  "text": "Height",
+                  "answer": [
+                    {
+                      "valueDecimal": 175
+                    }
+                  ]
+                },
+                {
+                  "linkId": "patient-weight",
+                  "text": "Weight",
+                  "answer": [
+                    {
+                      "valueDecimal": 100
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "subject": {
+            "type": "Patient",
+            "reference": "Patient/1684f841-953a-41c2-a298-64af08945349"
+          },
+          "id": "example-questionnaire-response-id"
+        }
+
+        ```
+
+
+        Given that the above questionnaire response is saved in the database,
+        you can use the id of the questionnaire response in this endpoint to
+        extract the Observations.
+
+
+        ### Example request
+
+
+        ```bash
+
+        curl -X POST \
+          --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA'
+        ```
+
+
+        ### Example response containing a bundle of Observations (wrapped in a
+        Parameter resource)
+
+
+        ```json
+
+        {
+          "resourceType": "Parameters",
+          "parameter": [
+            {
+              "name": "response",
+              "resource": {
+                "resourceType": "Bundle",
+                "type": "transaction",
+                "entry": [
+                  {
+                    "request": {
+                      "method": "POST",
+                      "url": "Observation"
+                    },
+                    "resource": {
+                      "resourceType": "Observation",
+                      "status": "final",
+                      "code": {
+                        "coding": [
+                          {
+                            "system": "http://snomed.info/sct",
+                            "code": "60621009",
+                            "display": "Body mass index"
+                          }
+                        ]
+                      },
+                      "subject": {
+                        "type": "Patient",
+                        "reference": "Patient/1684f841-953a-41c2-a298-64af08945349"
+                      },
+                      "derivedFrom": [
+                        {
+                          "reference": "QuestionnaireResponse/26073103-8a48-4fed-8f38-b1b1e39f4083"
+                        }
+                      ],
+                      "valueQuantity": {
+                        "value": 32.7
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+
+        ```
+      operationId: FhirController_extractObservationsFromQuestionnaireResponse[1]
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExtractBodyResponseDto"
+        "400":
+          description: The request could not be operated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Bad Request
+                required:
+                  - statusCode
+                  - message
+        "401":
+          description: The resource owner or authorization server denied the request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unauthorized
+                required:
+                  - statusCode
+                  - message
+        "404":
+          description: The requested resource could not be found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Not Found
+                required:
+                  - statusCode
+                  - message
+        "422":
+          description: The request could not be validated by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Unprocessable Entity
+                required:
+                  - statusCode
+                  - message
+        "500":
+          description: The server encountered an unexpected condition. Please try again
+            later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                  error:
+                    type: string
+                    example: Internal Server Error
+                required:
+                  - statusCode
+                  - message
+      summary: Extract observations from questionnaire response
+      tags:
+        - FHIR Operations
 components:
   schemas:
     CapabilityStatement:
@@ -52723,6 +54094,902 @@ components:
             type: object
             additionalProperties: true
       additionalProperties: true
+    PatientObservationResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Bundle
+        type:
+          type: string
+          enum:
+            - searchset
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: object
+                properties:
+                  id:
+                    default: 87ea5dfc-8b8e-384d-8489-79496e706390
+                    type: string
+                  resourceType:
+                    type: string
+                    enum:
+                      - Observation
+                required:
+                  - resourceType
+                example:
+                  id: 87ea5dfc-8b8e-384d-8489-79496e706390
+                  resourceType: Observation
+              fullUrl:
+                type: string
+            required:
+              - resource
+              - fullUrl
+      required:
+        - resourceType
+        - type
+        - entry
+      example:
+        resourceType: Bundle
+        type: searchset
+        entry:
+          - resource:
+              id: 87ea5dfc-8b8e-384d-8489-79496e706390
+              resourceType: Observation
+            fullUrl: https://fhir.ovok.com/fhir/R4/Observation/87ea5dfc-8b8e-384d-8489-79496e706390
+    DeviceTelemetryResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Bundle
+        type:
+          type: string
+          enum:
+            - searchset
+        total:
+          type: number
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - Observation
+                  id:
+                    type: string
+                  status:
+                    type: string
+                required:
+                  - resourceType
+                  - id
+                  - status
+                additionalProperties: true
+                example:
+                  resourceType: Observation
+                  id: heartRate
+                  status: final
+                  code:
+                    coding:
+                      - system: http://loinc.org
+                        code: 8867-4
+                        display: Heart rate
+                  subject:
+                    reference: Device/87ea5dfc-8b8e-384d-8489-79496e706390
+                  effectiveInstant: 2026-04-22T10:00:00.000Z
+                  valueQuantity:
+                    value: 72
+                    unit: beats/min
+                    system: http://unitsofmeasure.org
+                    code: /min
+              fullUrl:
+                type: string
+            required:
+              - resource
+      required:
+        - resourceType
+        - type
+        - entry
+      example:
+        resourceType: Bundle
+        type: searchset
+        total: 4
+        entry:
+          - resource:
+              resourceType: Observation
+              id: presence
+              status: final
+              code:
+                coding:
+                  - system: https://sleepiz.com/fhir/CodeSystem/observation-codes
+                    code: presence-detection
+                    display: Presence detection
+              subject:
+                reference: Device/87ea5dfc-8b8e-384d-8489-79496e706390
+              effectiveInstant: 2026-04-22T10:00:00.000Z
+              valueBoolean: true
+          - resource:
+              resourceType: Observation
+              id: heartRate
+              status: final
+              code:
+                coding:
+                  - system: http://loinc.org
+                    code: 8867-4
+                    display: Heart rate
+              subject:
+                reference: Device/87ea5dfc-8b8e-384d-8489-79496e706390
+              effectiveInstant: 2026-04-22T10:00:00.000Z
+              valueQuantity:
+                value: 72
+                unit: beats/min
+                system: http://unitsofmeasure.org
+                code: /min
+          - resource:
+              resourceType: Observation
+              id: respiratoryRate
+              status: final
+              code:
+                coding:
+                  - system: http://loinc.org
+                    code: 9279-1
+                    display: Respiratory rate
+              subject:
+                reference: Device/87ea5dfc-8b8e-384d-8489-79496e706390
+              effectiveInstant: 2026-04-22T10:00:00.000Z
+              valueQuantity:
+                value: 14
+                unit: breaths/min
+                system: http://unitsofmeasure.org
+                code: /min
+          - resource:
+              resourceType: Observation
+              id: sleep
+              status: final
+              code:
+                coding:
+                  - system: http://loinc.org
+                    code: 107145-5
+                    display: Sleep status
+              subject:
+                reference: Device/87ea5dfc-8b8e-384d-8489-79496e706390
+              effectiveInstant: 2026-04-22T10:00:00.000Z
+              valueCodeableConcept:
+                text: asleep
+    PatientThresholdBodyDto:
+      type: object
+      properties:
+        id:
+          type: string
+        patientId:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - revoked
+        date:
+          type: string
+          format: date-time
+        settings:
+          type: object
+          properties:
+            heartRate:
+              default:
+                mode: organization
+                enabled: false
+                absolute:
+                  enabled: false
+                  min: 0
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+            meanHeartRate:
+              default:
+                mode: organization
+                enabled: false
+                relative:
+                  enabled: false
+                  min: 0
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - relative
+            respiratoryRate:
+              default:
+                mode: organization
+                enabled: false
+                absolute:
+                  enabled: false
+                  min: 0
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+            meanRespiratoryRate:
+              default:
+                mode: organization
+                enabled: false
+                relative:
+                  enabled: false
+                  min: 0
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - relative
+            durationOfOutOfBed:
+              default:
+                mode: organization
+                enabled: false
+                absolute:
+                  enabled: false
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 1000000
+                  required:
+                    - enabled
+                    - max
+                relative:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 100
+                  required:
+                    - enabled
+                    - max
+              required:
+                - mode
+                - enabled
+            sleepDuration:
+              default:
+                mode: organization
+                enabled: false
+                absolute:
+                  enabled: false
+                  min: 0
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    min:
+                      type: number
+                      minimum: 0
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - min
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+            numberOfTimesGettingOutOfBed:
+              default:
+                mode: organization
+                enabled: false
+                absolute:
+                  enabled: false
+                  max: 0
+              type: object
+              properties:
+                period:
+                  default:
+                    start: 09:00:00
+                    end: 09:00:00
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - organization
+                        - patient
+                    start:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                    end:
+                      type: string
+                      pattern: ^([01]\d|2[0-3]):([0-5]\d:([0-5]\d))$
+                      nullable: true
+                    timezone:
+                      type: string
+                      nullable: true
+                    durationSeconds:
+                      type: number
+                      minimum: 0
+                      maximum: 86400
+                  required:
+                    - start
+                average:
+                  type: number
+                averageRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                    max:
+                      type: number
+                mode:
+                  type: string
+                  enum:
+                    - organization
+                    - patient
+                    - patient-auto
+                enabled:
+                  type: boolean
+                absolute:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    max:
+                      type: number
+                      maximum: 1000
+                  required:
+                    - enabled
+                    - max
+              required:
+                - mode
+                - enabled
+                - absolute
+      required:
+        - patientId
+        - status
+        - settings
+      example:
+        id: "123"
+        patientId: patient-123
+        date: 2021-01-01T00:00:00.000Z
+        settings:
+          heartRate:
+            mode: patient
+            enabled: true
+            absolute:
+              enabled: true
+              min: 60
+              max: 100
+          respiratoryRate:
+            mode: organization
+            enabled: false
+            absolute:
+              enabled: false
+              min: 0
+              max: 0
+    PopulateBodyRequestDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Parameters
+        parameter:
+          type: array
+          items:
+            oneOf:
+              - type: object
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - context
+                  part:
+                    type: array
+                    items:
+                      oneOf:
+                        - type: object
+                          properties:
+                            name:
+                              type: string
+                              enum:
+                                - name
+                            valueString:
+                              type: string
+                              minLength: 1
+                          required:
+                            - name
+                            - valueString
+                        - type: object
+                          properties:
+                            name:
+                              type: string
+                              enum:
+                                - content
+                            resource:
+                              type: object
+                              properties: {}
+                              additionalProperties: true
+                          required:
+                            - name
+                            - resource
+                    minItems: 2
+                    maxItems: 2
+                required:
+                  - name
+                  - part
+              - type: object
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - response
+                  resource:
+                    type: object
+                    properties: {}
+                    additionalProperties: true
+                required:
+                  - name
+                  - resource
+      required:
+        - resourceType
+        - parameter
+      additionalProperties: true
+      example:
+        resourceType: Parameters
+        parameter:
+          - name: context
+            part:
+              - name: name
+                valueString: patientWeight
+              - name: content
+                resource:
+                  valueDecimal: 66.5
+    PopulateBodyResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - QuestionnaireResponse
+        questionnaire:
+          type: string
+        subject:
+          type: object
+          properties: {}
+        item:
+          type: array
+          items:
+            type: object
+            properties: {}
+      required:
+        - resourceType
+        - questionnaire
+        - subject
+        - item
+      additionalProperties: true
+      example:
+        resourceType: Parameters
+        parameter:
+          - name: response
+            resource:
+              resourceType: QuestionnaireResponse
+              status: in-progress
+              questionnaire: https://fhir.ovok.com/fhir/Questionnaire/59d9a1ce-008c-4e4f-97fb-ef598d3f2c34|0.1.0
+              item:
+                - linkId: bmi-calculation
+                  text: BMI Calculation
+                  item:
+                    - linkId: bmi-result
+                      answer:
+                        - valueDecimal: 32.7
+                      text: Value
+                    - linkId: patient-height
+                      text: Height
+                      answer:
+                        - valueDecimal: 175
+                    - linkId: patient-weight
+                      text: Weight
+                      answer:
+                        - valueDecimal: 100
+              subject:
+                type: Patient
+                reference: Patient/1684f841-953a-41c2-a298-64af08945349
+              meta:
+                profile:
+                  - http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaireresponse
+    ExtractBodyResponseDto:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Observation
+        id:
+          type: string
+      required:
+        - resourceType
+        - id
+      additionalProperties: true
+      example:
+        resourceType: Parameters
+        parameter:
+          - name: response
+            resource:
+              resourceType: Bundle
+              type: transaction
+              entry:
+                - request:
+                    method: POST
+                    url: Observation
+                  resource:
+                    resourceType: Observation
+                    status: final
+                    code:
+                      coding:
+                        - system: http://snomed.info/sct
+                          code: "60621009"
+                          display: Body mass index
+                    subject:
+                      type: Patient
+                      reference: Patient/1684f841-953a-41c2-a298-64af08945349
+                    derivedFrom:
+                      - reference: QuestionnaireResponse/26073103-8a48-4fed-8f38-b1b1e39f4083
+                    valueQuantity:
+                      value: 32.7
   securitySchemes:
     bearer:
       type: http

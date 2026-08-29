@@ -210,6 +210,7 @@
   "/alpha/cms/index",
   "/alpha/cms/public-delivery",
   "/alpha/platform/deployment",
+  "/alpha/platform/email-delivery",
   "/alpha/platform/environments",
   "/alpha/platform/iot/index",
   "/alpha/platform/overview",

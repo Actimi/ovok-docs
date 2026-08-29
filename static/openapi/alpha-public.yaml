@@ -13,7 +13,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "p}mz%#iqsHnP]&#x3D;I9",
+            "password": "]3c1#TO&lt;_hKzb+46",
             "clientId": "87ea5dfc-8b8e-384d-8489-79496e706390",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390"
         }'
@@ -139,7 +139,7 @@ paths:
          -H 'Content-Type: application/json' \
          -d '{
             "email": "max.mustermann@example.com",
-            "password": "p}mz%#iqsHnP]&#x3D;I9",
+            "password": "]3c1#TO&lt;_hKzb+46",
             "name": "Max",
             "surname": "Mustermann",
             "tenantId": "87ea5dfc-8b8e-384d-8489-79496e706390",
@@ -650,7 +650,7 @@ paths:
         ```bash
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/delete' \
-         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84' \
+         -H 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA' \
          -H 'Content-Type: application/json' \
          -d '{
             "days": 30,
@@ -1148,7 +1148,7 @@ paths:
         ```bash
         curl -X GET \
          --url 'https://api.dev.ovok.com/auth/session' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA'
         ```
       operationId: AuthSessionController_findAll
       parameters: []
@@ -1265,7 +1265,7 @@ paths:
         ```bash
         curl -X DELETE \
          --url 'https://api.dev.ovok.com/auth/session/other' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84'
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA'
         ```
       operationId: AuthSessionController_revokeSessions
       parameters:
@@ -3461,7 +3461,7 @@ paths:
 
         | Parameter | In       | Description                                                                                                  | Example             |
         | --------- | -------- | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84` |
+        | `token`   | `params` | The DocumentReference public token found in the extension of the resource                                    | `example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA` |
         | `width`   | `query`  | The width of the image to resize the image to (optional)                                                     | `100`               |
         | `height`  | `query`  | The height of the image to resize the image to (optional)                                                    | `100`               |
         | `fit`     | `query`  | The fit of the image to resize the image to (optional) [See](https://sharp.pixelplumbing.com/api-resize#fit) | `cover`             |
@@ -13759,7 +13759,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -14135,7 +14135,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -14362,7 +14362,7 @@ paths:
         ```bash
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA'
         ```
 
         ### Example response containing a bundle of Observations (wrapped in a Parameter resource)
@@ -14585,7 +14585,7 @@ paths:
         ```bash
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA'
         ```
 
         ### Example response containing a bundle of Observations (wrapped in a Parameter resource)
@@ -17903,7 +17903,7 @@ info:
     mobile application. It is also used by the FHIR API to provide a high level
     interface to the FHIR resources. The FHIR API is a lower level API that provides
     direct access to the FHIR resources. Please refer to the FHIR API documentation [here](https://ovok.redocly.app) for more information.
-  version: 2026.08.16
+  version: 2026.08.29
   contact: {}
 tags: []
 servers:
@@ -18003,7 +18003,7 @@ components:
         - tenantId
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
+        password: ']3c1#TO<_hKzb+46'
         clientId: a703da46-ec97-a84a-4573-c50634706367
         tenantId: f6f4da8d-93e8-8a08-220e-03b7810451d3
     ResponseRegisterLoginDto:
@@ -18048,8 +18048,8 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -18095,7 +18095,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
+        password: ']3c1#TO<_hKzb+46'
         name: Max
         surname: Mustermann
         tenantId: 79762310-6da9-48e3-f18a-8ae1f4a6dc25
@@ -18116,8 +18116,8 @@ components:
       required:
         - idToken
       example:
-        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        idToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         expires_in: 3600
         scope: openid
         token_type: bearer
@@ -18137,8 +18137,8 @@ components:
         - access_token
         - expires_in
       example:
-        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        access_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         expires_in: 3600
     AppleLoginDto:
       type: object
@@ -18207,7 +18207,7 @@ components:
         - user
         - email
       example:
-        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        identityToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         realUserStatus: 1
         authorizationCode: hfdwe58hgsj734jh358j632gi954g.0.wfgsfv.krsvEREWF_WRFCVsrbc
         state: null
@@ -18273,7 +18273,7 @@ components:
       required:
         - refresh_token
       example:
-        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        refresh_token: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
     RequestDeleteDto:
       type: object
       properties:
@@ -18362,7 +18362,7 @@ components:
             - lastName
           description: User resource.
       example:
-        scheduled: 2026-08-16T17:06:17.445Z
+        scheduled: 2026-08-29T19:52:00.445Z
         user:
           resourceType: User
           id: 9f8a2389-a20c-a075-2aa9-e95093515517
@@ -18374,7 +18374,7 @@ components:
             display: My Medical Project
           meta:
             versionId: 87ea5dfc-8b8e-384d-8489-79496e706390
-            lastUpdated: 2026-08-16T17:06:17.445Z
+            lastUpdated: 2026-08-29T19:52:00.445Z
             author:
               reference: cd495e76-8385-ecb1-00a6-7e0381de4e42
               display: John Doe
@@ -18404,7 +18404,7 @@ components:
         - clientId
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
+        password: ']3c1#TO<_hKzb+46'
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
     ChangePasswordDto:
       type: object
@@ -18584,8 +18584,8 @@ components:
         - profile
         - project
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
-        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
+        refreshToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         expiresIn: 3600
         profile:
           reference: Patient/de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -18843,7 +18843,7 @@ components:
         - surname
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
+        password: ']3c1#TO<_hKzb+46'
         clientId: c3499c27-2973-0a7f-807e-fb8676a92dcb
         name: Max
         surname: Mustermann
@@ -18941,8 +18941,8 @@ components:
         - password
       example:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
-        secret: ugs2LsGM2e
-        password: p}mz%#iqsHnP]=I9
+        secret: OIyvUroZvi
+        password: ']3c1#TO<_hKzb+46'
     SessionsResponseDto:
       type: object
       properties:
@@ -18974,7 +18974,7 @@ components:
               - os
             example:
               id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-              lastUpdated: 2026-08-16T17:06:17.445Z
+              lastUpdated: 2026-08-29T19:52:00.445Z
               authMethod: password
               remoteAddress: 192.168.1.1
               browser: Chrome
@@ -18984,7 +18984,7 @@ components:
       example:
         sessions:
           - id: 4e5a2893-bdcc-7d23-9c1d-b72e4c4ffbe4
-            lastUpdated: 2026-08-16T17:06:17.445Z
+            lastUpdated: 2026-08-29T19:52:00.445Z
             authMethod: password
             remoteAddress: 192.168.1.1
             browser: Chrome
@@ -19028,7 +19028,7 @@ components:
         - project
         - profile
       example:
-        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        accessToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         expiresIn: 3600
         project:
           reference: Project/f6f4da8d-93e8-8a08-220e-03b7810451d3
@@ -19048,7 +19048,7 @@ components:
       required:
         - tan
       example:
-        tan: yBzyWsNbjGD8
+        tan: FqhNUjxSFFlG
     StartPractitionerLoginBodyDto:
       type: object
       properties:
@@ -19066,8 +19066,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
-        codeChallenge: 14hNhiZoOLnjz4ODnf5VPHPdkWEj8Ond
+        password: ']3c1#TO<_hKzb+46'
+        codeChallenge: j8DUAMYG0H3P4AiSSxY9buL5HYCi4QWH
     StartPractitionerLoginResponseDto:
       oneOf:
         - type: object
@@ -19106,7 +19106,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: FQEHyUr3lFKF4EJjpw7PoUtr8lorhCRx
+        sessionCode: dBdDMoVMeOmD3TYvLyexZcvcqEtcvqyh
         tenantCode: big-health-company
     FinishPractitionerLoginBodyDto:
       type: object
@@ -19122,8 +19122,8 @@ components:
         - codeVerifier
         - tenantCode
       example:
-        sessionCode: aLnjkmtH1cdLvreSt6bDbWZkenOMggfZ
-        codeVerifier: jg0EqduDJFjjQtrJRzhw3VxL1hHzJonOZbvvR5Jl38gibwSajg4kT3XiOmFo3RtR
+        sessionCode: Fpr088jd8cXzw44XXuYqHRP3uvwWN3g5
+        codeVerifier: rXtiRawOissHz8RTykr8D4qWAWgJxNhQNGXkDlJiJxmaDCJs1ghMP21WoncMAbmP
         tenantCode: big-health-company
     StartPractitionerMFABodyDto:
       type: object
@@ -19163,7 +19163,7 @@ components:
         - tenants
       example:
         nextStep: token
-        sessionCode: vEZnBVP9xRspu8UxHnuqYXEXUkJaZ0V2
+        sessionCode: ExNUAl8xAv6gLZinD5YUMHU2lCB24wgW
     StartPatientLoginBodyDto:
       type: object
       properties:
@@ -19185,8 +19185,8 @@ components:
         - codeChallenge
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
-        codeChallenge: pqR5G92IbVOCWtPACBLcx86EmOYmn708
+        password: ']3c1#TO<_hKzb+46'
+        codeChallenge: UyZyz8WmZXwGaToEplQT6qQGPlpMCphU
         tenantCode: big-health-company
     StartPatientLoginResponseDto:
       oneOf:
@@ -19214,7 +19214,7 @@ components:
             - loginId
       example:
         nextStep: token
-        sessionCode: 8lXWd0pWP7o9GAb1jo9V5XbG1eQ3BfvE
+        sessionCode: g3UAKwosMncJDrlAljmXp5BmzDb20XzD
     FinishPatientLoginBodyDto:
       type: object
       properties:
@@ -19226,8 +19226,8 @@ components:
         - sessionCode
         - codeVerifier
       example:
-        sessionCode: fl6618a8K5eu1O3PWOwUhs6lhMAG5RWg
-        codeVerifier: 3DKDOYhlHokUwu9REWBSNSShG2VJukVze8hFruwx0tUZvWEEdmVpbayPkqdYu5AH
+        sessionCode: usV3UVxb2ZyllOTBYlB9c0593XCCx6oB
+        codeVerifier: 21UaHoXu69qPlQHtpZzUixRkqbTor6dtT42CILTT23BT8nKLD6AJbhyHOTt5e4ds
     StartPatientMFABodyDto:
       type: object
       properties:
@@ -19254,7 +19254,7 @@ components:
         - sessionCode
       example:
         nextStep: token
-        sessionCode: JhoN5997iV9NgD2P6GWuSG2LPlxayRg3
+        sessionCode: 8u3FXedZ5mQJLXWztQBkGMB3bDTfDPXP
     RegisterPatientBodyDto:
       type: object
       properties:
@@ -19277,7 +19277,7 @@ components:
         - tenantCode
       example:
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
+        password: ']3c1#TO<_hKzb+46'
         name: Max
         surname: Mustermann
         tenantCode: big-health-company
@@ -20034,7 +20034,7 @@ components:
                   project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                   author:
                     reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                  lastUpdated: 2026-08-16T17:06:17.445Z
+                  lastUpdated: 2026-08-29T19:52:00.445Z
               members:
                 - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                   display: Dr. Max John Mustermann
@@ -20060,7 +20060,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-08-16T17:06:17.445Z
+                lastUpdated: 2026-08-29T19:52:00.445Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -20076,7 +20076,7 @@ components:
                 project: f6f4da8d-93e8-8a08-220e-03b7810451d3
                 author:
                   reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-                lastUpdated: 2026-08-16T17:06:17.445Z
+                lastUpdated: 2026-08-29T19:52:00.445Z
             members:
               - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
                 display: Dr. Max John Mustermann
@@ -20166,7 +20166,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-08-16T17:06:17.445Z
+            lastUpdated: 2026-08-29T19:52:00.445Z
         members:
           - reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
             display: Dr. Max John Mustermann
@@ -22706,7 +22706,7 @@ components:
         id: c51f7b72-279e-26fd-7cf6-6d9d61e7f720
         projectId: f6f4da8d-93e8-8a08-220e-03b7810451d3
         status: active
-        date: 2026-08-16T17:06:17.445Z
+        date: 2026-08-29T19:52:00.445Z
         settings:
           heartRate:
             mode: organization
@@ -24295,11 +24295,34 @@ components:
             - respiratoryRate
             - outOfBed
             - bedTimePeriod
+        signalsSync:
+          oneOf:
+            - type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - ok
+              required:
+                - status
+            - type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - pending
+                reason:
+                  type: string
+              required:
+                - status
+                - reason
+          nullable: true
       required:
         - id
         - projectId
         - updatedAt
         - settings
+        - signalsSync
       example:
         id: plan-def-uuid
         projectId: project-1
@@ -24323,6 +24346,8 @@ components:
             start: '22:00:00'
             end: '06:00:00'
             timezone: Europe/Berlin
+        signalsSync:
+          status: ok
     OrgThresholdV2BodyDto:
       type: object
       properties:
@@ -25030,343 +25055,6 @@ components:
         page: 0
         count: 50
         resources: []
-    CarehubQueryResponseDto:
-      type: object
-      properties:
-        total:
-          type: number
-        resources:
-          type: array
-          items: {}
-      required:
-        - total
-        - resources
-      example:
-        total: 25
-        resources:
-          - device:
-              resourceType: Device
-              id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
-              deviceName:
-                - type: user-friendly-name
-                  name: 'Patient Monitor #ugs2LsGM2e'
-            patient:
-              resourceType: Patient
-              id: de5c57ff-7257-57b0-13ab-aab6f5f91498
-              name:
-                - given:
-                    - Max
-                  family: Mustermann
-            location:
-              resourceType: Location
-              id: d219c681-01f5-32de-10ad-d2cf42fb9dbe
-              name: Room 201
-            organization:
-              resourceType: Organization
-              id: 519255ae-1f74-ffc5-ddd2-9979295c7572
-              name: My Medical Project
-    CarehubQueryTelemetryResponseDto:
-      type: object
-      properties:
-        telemetry:
-          type: object
-          additionalProperties: {}
-        alerts:
-          type: object
-          additionalProperties: {}
-      required:
-        - telemetry
-        - alerts
-      example:
-        telemetry:
-          11111111-1111-4111-8111-111111111111:
-            effectiveHeartRate:
-              value: 61
-              ts: 1710843420000
-        alerts:
-          11111111-1111-4111-8111-111111111111:
-            heartRate:
-              alert: false
-              state: normal
-              color: null
-    CarehubOrganizationCountResponseDto:
-      type: object
-      properties:
-        total:
-          type: number
-        totalDeviceCount:
-          type: number
-        totalAssignedResidentDeviceCount:
-          type: number
-        totalActiveDeviceCount:
-          type: number
-        totalInactiveDeviceCount:
-          type: number
-        resources:
-          type: array
-          items:
-            type: object
-            properties:
-              organization:
-                type: object
-                properties:
-                  resourceType:
-                    type: string
-                    enum:
-                      - Organization
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  meta:
-                    type: object
-                    properties:
-                      project:
-                        type: string
-                      lastUpdated:
-                        type: string
-                required:
-                  - resourceType
-                  - id
-                  - name
-              deviceCount:
-                type: number
-              assignedResidentDeviceCount:
-                type: number
-              activeDeviceCount:
-                type: number
-              inactiveDeviceCount:
-                type: number
-            required:
-              - deviceCount
-              - assignedResidentDeviceCount
-              - activeDeviceCount
-              - inactiveDeviceCount
-      required:
-        - total
-        - totalDeviceCount
-        - totalAssignedResidentDeviceCount
-        - totalActiveDeviceCount
-        - totalInactiveDeviceCount
-        - resources
-      example:
-        total: 2
-        totalDeviceCount: 18
-        totalAssignedResidentDeviceCount: 18
-        totalActiveDeviceCount: 16
-        totalInactiveDeviceCount: 2
-        resources:
-          - organization:
-              resourceType: Organization
-              id: 519255ae-1f74-ffc5-ddd2-9979295c7572
-              name: My Medical Project
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
-            deviceCount: 12
-            assignedResidentDeviceCount: 12
-            activeDeviceCount: 11
-            inactiveDeviceCount: 1
-          - organization:
-              resourceType: Organization
-              id: fa48d626-f96b-dbe0-056b-48a353dbd2ed
-              name: My Medical Project - Branch
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
-            deviceCount: 6
-            assignedResidentDeviceCount: 6
-            activeDeviceCount: 5
-            inactiveDeviceCount: 1
-    CarehubUserQueryResponseDto:
-      type: object
-      properties:
-        total:
-          type: number
-        resources:
-          type: array
-          items:
-            type: object
-            properties:
-              user:
-                type: object
-                properties:
-                  resourceType:
-                    type: string
-                    enum:
-                      - User
-                  id:
-                    type: string
-                  firstName:
-                    type: string
-                  lastName:
-                    type: string
-                  email:
-                    type: string
-                    format: email
-                  project:
-                    type: string
-                  meta:
-                    type: object
-                    properties:
-                      project:
-                        type: string
-                      lastUpdated:
-                        type: string
-                required:
-                  - resourceType
-                  - id
-                  - email
-              profile:
-                type: object
-                properties:
-                  resourceType:
-                    type: string
-                    enum:
-                      - Practitioner
-                  id:
-                    type: string
-                  name:
-                    type: array
-                    items: {}
-                  meta:
-                    type: object
-                    properties:
-                      project:
-                        type: string
-                      lastUpdated:
-                        type: string
-                required:
-                  - resourceType
-                  - id
-              membership:
-                type: object
-                properties:
-                  resourceType:
-                    type: string
-                    enum:
-                      - ProjectMembership
-                  id:
-                    type: string
-                  project:
-                    type: string
-                  user:
-                    type: object
-                    properties:
-                      reference:
-                        type: string
-                    required:
-                      - reference
-                  profile:
-                    type: object
-                    properties:
-                      reference:
-                        type: string
-                    required:
-                      - reference
-                  accessPolicy:
-                    type: object
-                    properties:
-                      reference:
-                        type: string
-                    required:
-                      - reference
-                  meta:
-                    type: object
-                    properties:
-                      project:
-                        type: string
-                      lastUpdated:
-                        type: string
-                required:
-                  - resourceType
-                  - id
-              status:
-                type: string
-                enum:
-                  - Active
-                  - Pending
-              accessPolicy:
-                type: object
-                properties:
-                  resourceType:
-                    type: string
-                    enum:
-                      - AccessPolicy
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  resource:
-                    type: array
-                    items:
-                      type: string
-                  meta:
-                    type: object
-                    properties:
-                      project:
-                        type: string
-                      lastUpdated:
-                        type: string
-                required:
-                  - resourceType
-                  - id
-                  - name
-            required:
-              - user
-              - profile
-              - membership
-              - status
-      required:
-        - total
-        - resources
-      example:
-        total: 1
-        resources:
-          - user:
-              resourceType: User
-              id: 9f8a2389-a20c-a075-2aa9-e95093515517
-              firstName: Max
-              lastName: Mustermann
-              email: max.mustermann@example.com
-              project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
-            profile:
-              resourceType: Practitioner
-              id: cd495e76-8385-ecb1-00a6-7e0381de4e42
-              name:
-                - given:
-                    - Max
-                  family: Mustermann
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
-            membership:
-              resourceType: ProjectMembership
-              id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
-              project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-              user:
-                reference: User/9f8a2389-a20c-a075-2aa9-e95093515517
-              profile:
-                reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-              accessPolicy:
-                reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
-            status: Active
-            accessPolicy:
-              resourceType: AccessPolicy
-              id: cca28116-f888-97bf-c336-5b992bd02672
-              name: Practitioner Access Policy
-              resource:
-                - Patient
-                - Device
-              meta:
-                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-                lastUpdated: 2026-08-16T17:06:17.445Z
     SignalsAlertDto:
       type: object
       properties:
@@ -25639,6 +25327,343 @@ components:
     BatchPatientsConfigDto:
       type: object
       properties: {}
+    CarehubQueryResponseDto:
+      type: object
+      properties:
+        total:
+          type: number
+        resources:
+          type: array
+          items: {}
+      required:
+        - total
+        - resources
+      example:
+        total: 25
+        resources:
+          - device:
+              resourceType: Device
+              id: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
+              deviceName:
+                - type: user-friendly-name
+                  name: 'Patient Monitor #OIyvUroZvi'
+            patient:
+              resourceType: Patient
+              id: de5c57ff-7257-57b0-13ab-aab6f5f91498
+              name:
+                - given:
+                    - Max
+                  family: Mustermann
+            location:
+              resourceType: Location
+              id: d219c681-01f5-32de-10ad-d2cf42fb9dbe
+              name: Room 201
+            organization:
+              resourceType: Organization
+              id: 519255ae-1f74-ffc5-ddd2-9979295c7572
+              name: My Medical Project
+    CarehubQueryTelemetryResponseDto:
+      type: object
+      properties:
+        telemetry:
+          type: object
+          additionalProperties: {}
+        alerts:
+          type: object
+          additionalProperties: {}
+      required:
+        - telemetry
+        - alerts
+      example:
+        telemetry:
+          11111111-1111-4111-8111-111111111111:
+            effectiveHeartRate:
+              value: 61
+              ts: 1710843420000
+        alerts:
+          11111111-1111-4111-8111-111111111111:
+            heartRate:
+              alert: false
+              state: normal
+              color: null
+    CarehubOrganizationCountResponseDto:
+      type: object
+      properties:
+        total:
+          type: number
+        totalDeviceCount:
+          type: number
+        totalAssignedResidentDeviceCount:
+          type: number
+        totalActiveDeviceCount:
+          type: number
+        totalInactiveDeviceCount:
+          type: number
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              organization:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - Organization
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      project:
+                        type: string
+                      lastUpdated:
+                        type: string
+                required:
+                  - resourceType
+                  - id
+                  - name
+              deviceCount:
+                type: number
+              assignedResidentDeviceCount:
+                type: number
+              activeDeviceCount:
+                type: number
+              inactiveDeviceCount:
+                type: number
+            required:
+              - deviceCount
+              - assignedResidentDeviceCount
+              - activeDeviceCount
+              - inactiveDeviceCount
+      required:
+        - total
+        - totalDeviceCount
+        - totalAssignedResidentDeviceCount
+        - totalActiveDeviceCount
+        - totalInactiveDeviceCount
+        - resources
+      example:
+        total: 2
+        totalDeviceCount: 18
+        totalAssignedResidentDeviceCount: 18
+        totalActiveDeviceCount: 16
+        totalInactiveDeviceCount: 2
+        resources:
+          - organization:
+              resourceType: Organization
+              id: 519255ae-1f74-ffc5-ddd2-9979295c7572
+              name: My Medical Project
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
+            deviceCount: 12
+            assignedResidentDeviceCount: 12
+            activeDeviceCount: 11
+            inactiveDeviceCount: 1
+          - organization:
+              resourceType: Organization
+              id: fa48d626-f96b-dbe0-056b-48a353dbd2ed
+              name: My Medical Project - Branch
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
+            deviceCount: 6
+            assignedResidentDeviceCount: 6
+            activeDeviceCount: 5
+            inactiveDeviceCount: 1
+    CarehubUserQueryResponseDto:
+      type: object
+      properties:
+        total:
+          type: number
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - User
+                  id:
+                    type: string
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  project:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      project:
+                        type: string
+                      lastUpdated:
+                        type: string
+                required:
+                  - resourceType
+                  - id
+                  - email
+              profile:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - Practitioner
+                  id:
+                    type: string
+                  name:
+                    type: array
+                    items: {}
+                  meta:
+                    type: object
+                    properties:
+                      project:
+                        type: string
+                      lastUpdated:
+                        type: string
+                required:
+                  - resourceType
+                  - id
+              membership:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - ProjectMembership
+                  id:
+                    type: string
+                  project:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                    required:
+                      - reference
+                  profile:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                    required:
+                      - reference
+                  accessPolicy:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                    required:
+                      - reference
+                  meta:
+                    type: object
+                    properties:
+                      project:
+                        type: string
+                      lastUpdated:
+                        type: string
+                required:
+                  - resourceType
+                  - id
+              status:
+                type: string
+                enum:
+                  - Active
+                  - Pending
+              accessPolicy:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                    enum:
+                      - AccessPolicy
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  resource:
+                    type: array
+                    items:
+                      type: string
+                  meta:
+                    type: object
+                    properties:
+                      project:
+                        type: string
+                      lastUpdated:
+                        type: string
+                required:
+                  - resourceType
+                  - id
+                  - name
+            required:
+              - user
+              - profile
+              - membership
+              - status
+      required:
+        - total
+        - resources
+      example:
+        total: 1
+        resources:
+          - user:
+              resourceType: User
+              id: 9f8a2389-a20c-a075-2aa9-e95093515517
+              firstName: Max
+              lastName: Mustermann
+              email: max.mustermann@example.com
+              project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
+            profile:
+              resourceType: Practitioner
+              id: cd495e76-8385-ecb1-00a6-7e0381de4e42
+              name:
+                - given:
+                    - Max
+                  family: Mustermann
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
+            membership:
+              resourceType: ProjectMembership
+              id: d7f418aa-467d-d1ea-f0fc-d2dd841733e6
+              project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+              user:
+                reference: User/9f8a2389-a20c-a075-2aa9-e95093515517
+              profile:
+                reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
+              accessPolicy:
+                reference: AccessPolicy/cca28116-f888-97bf-c336-5b992bd02672
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
+            status: Active
+            accessPolicy:
+              resourceType: AccessPolicy
+              id: cca28116-f888-97bf-c336-5b992bd02672
+              name: Practitioner Access Policy
+              resource:
+                - Patient
+                - Device
+              meta:
+                project: f6f4da8d-93e8-8a08-220e-03b7810451d3
+                lastUpdated: 2026-08-29T19:52:00.445Z
     MedicalSettingsNotificationsConsentResponseDto:
       type: object
       properties:
@@ -26177,7 +26202,7 @@ components:
         id: 87ea5dfc-8b8e-384d-8489-79496e706390
         fileName: test.txt
         contentType: text/plain
-        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         uploadOptions:
           url: https://example.com/upload
           fields:
@@ -26245,7 +26270,7 @@ components:
               id: 87ea5dfc-8b8e-384d-8489-79496e706390
               fileName: test.txt
               contentType: text/plain
-              publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+              publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
               uploadOptions:
                 url: https://example.com/upload
                 fields:
@@ -26259,7 +26284,7 @@ components:
           - id: 87ea5dfc-8b8e-384d-8489-79496e706390
             fileName: test.txt
             contentType: text/plain
-            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+            publicToken: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
     UpdateDocumentMetadataDto:
       type: object
       properties:
@@ -26735,7 +26760,7 @@ components:
               name: Maxi
               nickname: Maxi
               residentState: active
-              admissionDate: 2026-08-16T17:06:17.445Z
+              admissionDate: 2026-08-29T19:52:00.445Z
               dischargeDate: null
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project
@@ -26757,7 +26782,7 @@ components:
             name: Maxi
             nickname: Maxi
             residentState: active
-            admissionDate: 2026-08-16T17:06:17.445Z
+            admissionDate: 2026-08-29T19:52:00.445Z
             dischargeDate: null
             organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
             organizationName: My Medical Project
@@ -26944,22 +26969,22 @@ components:
             telemetry:
               active:
                 value: true
-                ts: 1786899977445
+                ts: 1788033120445
               effectiveHeartRate:
                 value: 74
-                ts: 1786899977445
+                ts: 1788033120445
               effectiveRespiratoryRate:
                 value: 16
-                ts: 1786899977445
+                ts: 1788033120445
               effectiveSleepStatus:
                 value: asleep
-                ts: 1786899977445
+                ts: 1788033120445
               lastMeasurementTime:
-                value: 2026-08-16T17:06:17.445Z
-                ts: 1786899977445
+                value: 2026-08-29T19:52:00.445Z
+                ts: 1788033120445
               lastActivityTime:
-                value: 2026-08-16T17:06:17.445Z
-                ts: 1786899977445
+                value: 2026-08-29T19:52:00.445Z
+                ts: 1788033120445
               name:
                 value: Sleepiz/3001472
                 ts: null
@@ -27174,11 +27199,8 @@ components:
                 type: array
                 items:
                   type: string
-                  minLength: 1
-                minItems: 1
               family:
                 type: string
-                minLength: 1
             required:
               - use
           minItems: 1
@@ -27212,12 +27234,12 @@ components:
           enum:
             - active
             - discharged
+            - discharged-recent
+            - archived
         dischargeDate:
           type: string
-          format: date-time
       required:
         - name
-      additionalProperties: false
       example:
         name: Patient 1
         gender: male
@@ -27316,8 +27338,8 @@ components:
               locationName: Room 201 Bed 1
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
               patientName: Maxi
-              lastActivityTime: 2026-08-16T17:06:17.445Z
-              createdAt: 2026-08-16T17:06:17.445Z
+              lastActivityTime: 2026-08-29T19:52:00.445Z
+              createdAt: 2026-08-29T19:52:00.445Z
       required:
         - total
         - page
@@ -27663,22 +27685,22 @@ components:
               telemetry:
                 active:
                   value: true
-                  ts: 1786899977445
+                  ts: 1788033120445
                 effectiveHeartRate:
                   value: 74
-                  ts: 1786899977445
+                  ts: 1788033120445
                 effectiveRespiratoryRate:
                   value: 16
-                  ts: 1786899977445
+                  ts: 1788033120445
                 effectiveSleepStatus:
                   value: asleep
-                  ts: 1786899977445
+                  ts: 1788033120445
                 lastMeasurementTime:
-                  value: 2026-08-16T17:06:17.445Z
-                  ts: 1786899977445
+                  value: 2026-08-29T19:52:00.445Z
+                  ts: 1788033120445
                 lastActivityTime:
-                  value: 2026-08-16T17:06:17.445Z
-                  ts: 1786899977445
+                  value: 2026-08-29T19:52:00.445Z
+                  ts: 1788033120445
                 name:
                   value: Sleepiz/3001472
                   ts: null
@@ -27710,7 +27732,7 @@ components:
                 residentState: active
                 effectiveSleepStatus: asleep
                 active: true
-                admissionDate: 2026-08-16T17:06:17.445Z
+                admissionDate: 2026-08-29T19:52:00.445Z
                 dischargeDate: null
       required:
         - total
@@ -28119,22 +28141,22 @@ components:
           a5a74a6d-f092-78b8-8cb6-ea23b7d7f257:
             active:
               value: true
-              ts: 1786899977445
+              ts: 1788033120445
             effectiveHeartRate:
               value: 74
-              ts: 1786899977445
+              ts: 1788033120445
             effectiveRespiratoryRate:
               value: 16
-              ts: 1786899977445
+              ts: 1788033120445
             effectiveSleepStatus:
               value: asleep
-              ts: 1786899977445
+              ts: 1788033120445
             lastMeasurementTime:
-              value: 2026-08-16T17:06:17.445Z
-              ts: 1786899977445
+              value: 2026-08-29T19:52:00.445Z
+              ts: 1788033120445
             lastActivityTime:
-              value: 2026-08-16T17:06:17.445Z
-              ts: 1786899977445
+              value: 2026-08-29T19:52:00.445Z
+              ts: 1788033120445
             name:
               value: Sleepiz/3001472
               ts: null
@@ -28199,9 +28221,9 @@ components:
         - locationName
         - patientName
       example:
-        name: 'Patient Monitor Device #ugs2LsGM2e'
+        name: 'Patient Monitor Device #OIyvUroZvi'
         status: active
-        thingsboardId: TB_DEVICE_ugs2LsGM2e
+        thingsboardId: TB_DEVICE_OIyvUroZvi
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project
         locationId: d219c681-01f5-32de-10ad-d2cf42fb9dbe
@@ -29473,13 +29495,13 @@ components:
                 url: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8
                 size: 1024000
                 title: Patient Data Export - Max Mustermann
-          created: 2026-08-16T17:06:17.445Z
+          created: 2026-08-29T19:52:00.445Z
         binary:
           resourceType: Binary
           id: 66639f7d-455d-d71f-aa91-47f5d69e5ce8
           contentType: application/pdf
         downloadUrl: https://api.example.com/binary/66639f7d-455d-d71f-aa91-47f5d69e5ce8/download
-        expiresAt: 2026-08-17T17:06:17.000Z
+        expiresAt: 2026-08-30T19:52:00.000Z
     ContentBodyDto:
       type: object
       properties:
@@ -30074,7 +30096,7 @@ components:
               bed: A
               organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
               organizationName: My Medical Project North Campus
-              deviceName: 'Patient Monitor Device #ugs2LsGM2e'
+              deviceName: 'Patient Monitor Device #OIyvUroZvi'
               patientName: Maxi
               deviceId: a5a74a6d-f092-78b8-8cb6-ea23b7d7f257
               patientId: de5c57ff-7257-57b0-13ab-aab6f5f91498
@@ -30155,7 +30177,7 @@ components:
         bed: A
         organizationId: 519255ae-1f74-ffc5-ddd2-9979295c7572
         organizationName: My Medical Project North Campus
-        deviceName: 'Patient Monitor Device #ugs2LsGM2e'
+        deviceName: 'Patient Monitor Device #OIyvUroZvi'
         patientName: Max
     CarehubCreateLocationDto:
       type: object
@@ -30600,7 +30622,7 @@ components:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
             author:
               reference: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-            lastUpdated: 2026-08-16T17:06:17.445Z
+            lastUpdated: 2026-08-29T19:52:00.445Z
         profile:
           resourceType: Practitioner
           id: cd495e76-8385-ecb1-00a6-7e0381de4e42
@@ -30610,7 +30632,7 @@ components:
               family: Mustermann
           meta:
             project: f6f4da8d-93e8-8a08-220e-03b7810451d3
-            lastUpdated: 2026-08-16T17:06:17.445Z
+            lastUpdated: 2026-08-29T19:52:00.445Z
         status: Pending
     FindCustomersResponseDto:
       type: object
@@ -31415,11 +31437,11 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-08-16T17:06:17.445Z
+              authoredOn: 2026-08-29T19:52:00.445Z
               alertCount: 5
-              occurrenceDateTime: 2026-08-16T17:06:17.445Z
-              effectiveTimestamp: 2026-08-16T17:06:17.445Z
-              latestObservationTimestamp: 2026-08-16T17:06:17.445Z
+              occurrenceDateTime: 2026-08-29T19:52:00.445Z
+              effectiveTimestamp: 2026-08-29T19:52:00.445Z
+              latestObservationTimestamp: 2026-08-29T19:52:00.445Z
       required:
         - total
         - page
@@ -31432,7 +31454,7 @@ components:
         resources:
           - commId: 2adae28d-6664-74a9-3f4c-cad5f551ce1e
             status: active
-            authoredOn: 2026-08-16T17:06:17.445Z
+            authoredOn: 2026-08-29T19:52:00.445Z
             type: hr
     CarehubNotificationsRecentResponseDto:
       type: object
@@ -31528,11 +31550,11 @@ components:
                 threshold: 600
                 value: 602
                 level: high
-              authoredOn: 2026-08-16T17:06:17.445Z
+              authoredOn: 2026-08-29T19:52:00.445Z
               alertCount: 5
-              occurrenceDateTime: 2026-08-16T17:06:17.445Z
-              effectiveTimestamp: 2026-08-16T17:06:17.445Z
-              latestObservationTimestamp: 2026-08-16T17:06:17.445Z
+              occurrenceDateTime: 2026-08-29T19:52:00.445Z
+              effectiveTimestamp: 2026-08-29T19:52:00.445Z
+              latestObservationTimestamp: 2026-08-29T19:52:00.445Z
         total:
           type: integer
           minimum: 0
@@ -31553,6 +31575,190 @@ components:
         total: 0
         warm: true
         source: redis
+    CarehubMedicalNotificationDetailDto:
+      type: object
+      properties:
+        episode:
+          type: object
+          properties:
+            id:
+              type: string
+            patientId:
+              type: string
+            code:
+              type: string
+            system:
+              type: string
+              nullable: true
+            display:
+              type: string
+              nullable: true
+            status:
+              type: string
+            openedAt:
+              type: string
+            closedAt:
+              type: string
+              nullable: true
+            closeReason:
+              type: string
+              nullable: true
+            lastSampleAt:
+              type: string
+              nullable: true
+            durationMs:
+              type: number
+              nullable: true
+            observationCount:
+              type: number
+              nullable: true
+            firingCount:
+              type: number
+              nullable: true
+            minValue:
+              type: number
+              nullable: true
+            maxValue:
+              type: number
+              nullable: true
+            avgValue:
+              type: number
+              nullable: true
+            lastValue:
+              type: number
+              nullable: true
+            peakValue:
+              type: number
+              nullable: true
+            peakAt:
+              type: string
+              nullable: true
+            values:
+              type: array
+              items:
+                type: object
+                properties:
+                  observationId:
+                    type: string
+                  valueNumber:
+                    type: number
+                    nullable: true
+                  valueString:
+                    type: string
+                    nullable: true
+                  valueUnit:
+                    type: string
+                    nullable: true
+                  note:
+                    type: string
+                    nullable: true
+                  observedAt:
+                    type: string
+                    nullable: true
+                  recordedAt:
+                    type: string
+                required:
+                  - observationId
+                  - valueNumber
+                  - valueString
+                  - valueUnit
+                  - note
+                  - observedAt
+                  - recordedAt
+            truncated:
+              type: boolean
+          required:
+            - id
+            - patientId
+            - code
+            - system
+            - display
+            - status
+            - openedAt
+            - closedAt
+            - closeReason
+            - lastSampleAt
+            - durationMs
+            - observationCount
+            - firingCount
+            - minValue
+            - maxValue
+            - avgValue
+            - lastValue
+            - peakValue
+            - peakAt
+            - values
+            - truncated
+        carehub:
+          type: object
+          properties:
+            patientId:
+              type: string
+              nullable: true
+            patientName:
+              type: string
+              nullable: true
+            locationId:
+              type: string
+              nullable: true
+            locationName:
+              type: string
+              nullable: true
+            room:
+              type: string
+              nullable: true
+            bed:
+              type: string
+              nullable: true
+            floor:
+              type: string
+              nullable: true
+            deviceId:
+              type: string
+              nullable: true
+            deviceMedplumId:
+              type: string
+              nullable: true
+            deviceName:
+              type: string
+              nullable: true
+            organizationId:
+              type: string
+              nullable: true
+            organizationName:
+              type: string
+              nullable: true
+          required:
+            - patientId
+            - patientName
+            - locationId
+            - locationName
+            - room
+            - bed
+            - floor
+            - deviceId
+            - deviceMedplumId
+            - deviceName
+            - organizationId
+            - organizationName
+        acknowledgement:
+          type: object
+          properties:
+            acknowledgedAt:
+              type: string
+              nullable: true
+            acknowledgedBy:
+              type: string
+              nullable: true
+          required:
+            - acknowledgedAt
+            - acknowledgedBy
+          nullable: true
+      required:
+        - episode
+        - carehub
+        - acknowledgement
+      description: One HR/BR episode with its full value history plus the carehub context Signals does not hold.
     CarehubNotificationResponseDto:
       type: object
       properties:
@@ -31642,11 +31848,11 @@ components:
           threshold: 600
           value: 602
           level: high
-        authoredOn: 2026-08-16T17:06:17.445Z
+        authoredOn: 2026-08-29T19:52:00.445Z
         alertCount: 5
-        occurrenceDateTime: 2026-08-16T17:06:17.445Z
-        effectiveTimestamp: 2026-08-16T17:06:17.445Z
-        latestObservationTimestamp: 2026-08-16T17:06:17.445Z
+        occurrenceDateTime: 2026-08-29T19:52:00.445Z
+        effectiveTimestamp: 2026-08-29T19:52:00.445Z
+        latestObservationTimestamp: 2026-08-29T19:52:00.445Z
     GetGraphsDataResponseDto:
       type: object
       additionalProperties:
@@ -34629,8 +34835,8 @@ components:
       example:
         name: Dr. Max John Mustermann
         email: max.mustermann@example.com
-        password: p}mz%#iqsHnP]=I9
-        productId: prod_ugs2LsGM2e
+        password: ']3c1#TO<_hKzb+46'
+        productId: prod_OIyvUroZvi
         projectPurpose: ''
         organizationName: My Organization
     StripeProductsDto:
@@ -34770,6 +34976,37 @@ components:
         - enabled
       example:
         enabled: true
+    CreateProjectRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+      required:
+        - name
+      example:
+        name: Ovok Signals Monitor
+    CreateProjectResponseDto:
+      type: object
+      properties:
+        projectId:
+          type: string
+          format: uuid
+        tenantCode:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+      required:
+        - projectId
+        - tenantCode
+        - name
+      example:
+        projectId: f21e09ce-b1dc-4a9a-92be-f3775770679b
+        tenantCode: ovok-signals-monitor
+        name: Ovok Signals Monitor
     ProjectMembersResponseDto:
       type: object
       properties:
@@ -36109,6 +36346,273 @@ components:
         - deviceId
         - eventType
         - eventValue
+    StatisticsResponseDto:
+      type: object
+      properties:
+        window:
+          type: object
+          properties:
+            from:
+              type: string
+              description: First UTC day, inclusive
+            to:
+              type: string
+              description: Last UTC day, inclusive
+            dayCount:
+              type: integer
+              description: Number of days covered
+          required:
+            - from
+            - to
+            - dayCount
+        granularity:
+          type: string
+          enum:
+            - day
+            - total
+          description: Row granularity that was applied
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                nullable: true
+                description: UTC day this row covers, or null when granularity is `total`
+              project:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Medplum project id
+                  name:
+                    type: string
+                    nullable: true
+                    description: Project name, null when the project record carries none
+                required:
+                  - id
+                  - name
+                nullable: true
+                description: Project this row covers
+              traffic:
+                type: object
+                properties:
+                  calls:
+                    type: integer
+                    description: Total requests attributed to this project
+                  callsSuccessful:
+                    type: integer
+                    description: Requests that returned < 400
+                  callsFailed:
+                    type: integer
+                    description: Requests that returned >= 400
+                required:
+                  - calls
+                  - callsSuccessful
+                  - callsFailed
+                description: Exact request counts, from the billing counters
+              bandwidth:
+                type: object
+                properties:
+                  requestBytes:
+                    type: integer
+                    description: Summed request content-length
+                  responseBytes:
+                    type: integer
+                    description: Summed response content-length
+                  totalBytes:
+                    type: integer
+                    description: requestBytes + responseBytes
+                  callsUnmeasuredBytes:
+                    type: integer
+                    description: Requests whose size could not be measured because no content-length was set
+                  isLowerBound:
+                    type: boolean
+                    description: True when callsUnmeasuredBytes > 0, meaning streamed or chunked responses contributed 0 bytes and the byte totals understate actual transfer
+                required:
+                  - requestBytes
+                  - responseBytes
+                  - totalBytes
+                  - callsUnmeasuredBytes
+                  - isLowerBound
+                description: Exact byte counts, from the billing counters
+              activeUsers:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Distinct users who logged in during the period
+                  byProfileType:
+                    type: object
+                    properties:
+                      Practitioner:
+                        type: integer
+                      Patient:
+                        type: integer
+                      RelatedPerson:
+                        type: integer
+                    required:
+                      - Practitioner
+                      - Patient
+                      - RelatedPerson
+                    description: Distinct users who logged in, split by profile type
+                required:
+                  - total
+                  - byProfileType
+                nullable: true
+                description: Distinct logins in the period, null when Medplum could not be reached
+            required:
+              - date
+              - project
+              - traffic
+              - bandwidth
+              - activeUsers
+          description: Per-period usage, ordered by date then project id
+        snapshots:
+          type: array
+          items:
+            type: object
+            properties:
+              asOf:
+                type: string
+                description: ISO instant these counts were read
+              project:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Medplum project id
+                  name:
+                    type: string
+                    nullable: true
+                    description: Project name, null when the project record carries none
+                required:
+                  - id
+                  - name
+                description: Project the counts belong to
+              resources:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Estimated total resources across all types
+                  byType:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                    description: Estimated count per FHIR resource type; types with zero resources are omitted
+                required:
+                  - total
+                  - byType
+                nullable: true
+                description: Point-in-time resource counts, null when the count fan-out failed
+              seats:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total provisioned project memberships
+                  byProfileType:
+                    type: object
+                    properties:
+                      Practitioner:
+                        type: integer
+                      Patient:
+                        type: integer
+                      RelatedPerson:
+                        type: integer
+                    required:
+                      - Practitioner
+                      - Patient
+                      - RelatedPerson
+                    description: Provisioned memberships split by profile type
+                required:
+                  - total
+                  - byProfileType
+                nullable: true
+                description: Point-in-time seat counts, null when memberships could not be read
+            required:
+              - asOf
+              - project
+              - resources
+              - seats
+          description: Point-in-time counts, one entry per project in scope. NOT a time series — see `asOf`.
+        coverage:
+          type: object
+          properties:
+            retentionDays:
+              type: integer
+              description: Billing counters are retained for 400 days; older days read as zero
+            daysMissingCounters:
+              type: array
+              items:
+                type: string
+              description: Days in the window with no counter data at all — before collection started, past retention, or genuinely no traffic. A non-empty list means the window may be partial.
+            warnings:
+              type: array
+              items:
+                type: string
+              description: Human-readable notes about degraded or partial data
+          required:
+            - retentionDays
+            - daysMissingCounters
+            - warnings
+          description: What this response does and does not cover
+      required:
+        - window
+        - granularity
+        - rows
+        - snapshots
+        - coverage
+      example:
+        window:
+          from: 2026-08-01T00:00:00.000Z
+          to: 2026-08-02T00:00:00.000Z
+          dayCount: 2
+        granularity: day
+        rows:
+          - date: 2026-08-01T00:00:00.000Z
+            project:
+              id: 0191c2a4-1d3e-7f2b-9c44-5a6b7c8d9e01
+              name: Kinderspitex Zürich
+            traffic:
+              calls: 18432
+              callsSuccessful: 18301
+              callsFailed: 131
+            bandwidth:
+              requestBytes: 4812004
+              responseBytes: 91337882
+              totalBytes: 96149886
+              callsUnmeasuredBytes: 12
+              isLowerBound: true
+            activeUsers:
+              total: 34
+              byProfileType:
+                Practitioner: 9
+                Patient: 24
+                RelatedPerson: 1
+        snapshots:
+          - asOf: 2026-08-18T09:14:02.511Z
+            project:
+              id: 0191c2a4-1d3e-7f2b-9c44-5a6b7c8d9e01
+              name: Kinderspitex Zürich
+            resources:
+              total: 412889
+              byType:
+                Patient: 240
+                Observation: 388412
+                CommunicationRequest: 21004
+            seats:
+              total: 270
+              byProfileType:
+                Practitioner: 12
+                Patient: 240
+                RelatedPerson: 18
+        coverage:
+          retentionDays: 400
+          daysMissingCounters: []
+          warnings: []
     ResponseLivekitVideoCallAccessPermissionDto:
       type: object
       properties:
@@ -36232,8 +36736,8 @@ components:
         - livekitJwt
         - passphrase
       example:
-        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84#m_pmt6dt0fLWkVeBj8X6
-        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODY4OTk5NzcsImV4cCI6MTc4NjkwMzU3N30.sZTke9fx_gPeoj2v-FL9GhDqY0hh9EzdEc4XywFqb84
+        videoCallUrl: https://call.ovok.online/room?token=example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA#m_pmt6dt0fLWkVeBj8X6
+        livekitJwt: example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwMzMxMjAsImV4cCI6MTc4ODAzNjcyMH0.gyUu1p0hB6su9kJUHDzRvffhL_1WWzEa-GXL8jfomLA
         passphrase: m_pmt6dt0fLWkVeBj8X6
     RequestBodyLivekitVideoCallAppointmentDto:
       type: object
@@ -36364,15 +36868,15 @@ components:
         - passphrase
       example:
         status: booked
-        start: 2026-08-16T17:06:17.000Z
-        end: 2026-08-17T17:06:17.000Z
+        start: 2026-08-29T19:52:00.000Z
+        end: 2026-08-30T19:52:00.000Z
         comment: Appointment on 31.01.2025
         description: Check-up appointment
         videoCallParticipants:
           - email: max.mustermann@example.com
             status: accepted
             profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-        passphrase: ugs2LsGM2e
+        passphrase: OIyvUroZvi
     ResponseBodyLivekitVideoCallAppointmentArrayDto:
       type: array
       items:
@@ -36454,26 +36958,26 @@ components:
           - passphrase
         example:
           status: booked
-          start: 2026-08-16T17:06:17.000Z
-          end: 2026-08-17T17:06:17.000Z
+          start: 2026-08-29T19:52:00.000Z
+          end: 2026-08-30T19:52:00.000Z
           comment: Appointment on 31.01.2025
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: ugs2LsGM2e
+          passphrase: OIyvUroZvi
       example:
         - status: booked
-          start: 2026-08-16T17:06:17.000Z
-          end: 2026-08-17T17:06:17.000Z
+          start: 2026-08-29T19:52:00.000Z
+          end: 2026-08-30T19:52:00.000Z
           description: Check-up appointment
           videoCallParticipants:
             - email: max.mustermann@example.com
               name: Max Mustermann
               status: accepted
               profileRef: Practitioner/cd495e76-8385-ecb1-00a6-7e0381de4e42
-          passphrase: ugs2LsGM2e
+          passphrase: OIyvUroZvi
     RequestBodyLivekitVideoCallMailDto:
       type: object
       properties:
