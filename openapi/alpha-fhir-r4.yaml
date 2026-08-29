@@ -53453,7 +53453,7 @@ paths:
         ```bash
         curl -X POST \
          --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
-         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDc0ODQsImV4cCI6MTc4ODA1MTA4NH0.jqhG2Wc4KwNw6WljCdsY8-hVy96ksj5sVHaEzwEK66o' \
+         -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDc2MjAsImV4cCI6MTc4ODA1MTIyMH0.Teun_U3mQF0GWbKwCek-3plVsP61Kr0K8RQV4kBLb2E' \
          -H 'Content-Type: application/json' \
          -d @populate-body.json # @populate-body.json is the request body from the previous example
         ```
@@ -53695,7 +53695,7 @@ paths:
 
         curl -X POST \
           --url 'https://api.dev.ovok.com/QuestionnaireResponse/example-questionnaire-response-id/$extract' \
-          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDc0ODQsImV4cCI6MTc4ODA1MTA4NH0.jqhG2Wc4KwNw6WljCdsY8-hVy96ksj5sVHaEzwEK66o'
+          --header 'Authorization: Bearer example.jwt.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDc2MjAsImV4cCI6MTc4ODA1MTIyMH0.Teun_U3mQF0GWbKwCek-3plVsP61Kr0K8RQV4kBLb2E'
         ```
 
 
