@@ -227,7 +227,7 @@ The other variables can be sent from the client side in the request body if desi
 ```bash
 curl -X POST \
  --url 'https://api.dev.ovok.com/fhir/Questionnaire/example-questionnaire-id/$populate' \
- -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDc2MjAsImV4cCI6MTc4ODA1MTIyMH0.WCW8Qf_LR7rvEjCYKh65rwualCMF5zwaNN3ozsLoZkY' \
+ -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3ODgwNDg2MzIsImV4cCI6MTc4ODA1MjIzMn0.D5NSva9B9zP-ZFXtg2qsMtKbeTbiBy6wi9Xe6oiwrY4' \
  -H 'Content-Type: application/json' \
  -d @populate-body.json # @populate-body.json is the request body from the previous example
 ```
